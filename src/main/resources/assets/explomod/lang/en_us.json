@@ -14,5 +14,6 @@
   "item.explomod.copper_pickaxe": "Copper Pickaxe",
   "block.explomod.log": "log",
   "entity.minecraft.villager.explomod": "Mod Seller",
-  "block.explomod.xrayer": "Pickaxe block"
+  "block.explomod.xrayer": "Pickaxe block",
+  "block.explomod.redtrav": "Launcher Block"
 }

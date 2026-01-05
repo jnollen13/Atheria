@@ -7,6 +7,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.StairBlock;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import org.slf4j.Logger;
 
@@ -67,6 +68,11 @@ public class ExploMod {
     public static final DeferredItem<Item> COPPER_PICKAXE = ITEMS.registerSimpleItem("copper_pickaxe", new Item.Properties());
     public static final DeferredBlock<Block> XRAY_BLOCK = BLOCKS.registerSimpleBlock("xrayer", BlockBehaviour.Properties.of().instabreak().air());
     public static final DeferredItem<BlockItem> XRAY_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("xrayer", XRAY_BLOCK);
+/*    public static final DeferredBlock<StairBlock> LOG_STAIRS = BLOCKS.registerSimpleBlock("log_stairs", () -> new StairBlock(ExploMod.LOG_BLOCK.get().defaultBlockState(), BlockBehaviour.Properties.of().strength(2f).requiresCorrectToolForDrops()));*/
+    public static final DeferredBlock<Block> REDTRAV = BLOCKS.registerSimpleBlock("redtrav", BlockBehaviour.Properties.of().sound(SoundType.WET_GRASS).instabreak().jumpFactor(3f).ignitedByLava().speedFactor(7f));
+    public static final DeferredItem<BlockItem> REDTRAV_ITEM = ITEMS.registerSimpleBlockItem("redtrav", REDTRAV);
+
+
 
     // Creates a creative tab with the id "explomod:example_tab" for the example item, that is placed after the combat tab
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
@@ -139,8 +145,8 @@ public class ExploMod {
         if(event.getType() == VillagerProfession.MASON) {
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
             trades.get(1).add((entity, randomSource) -> new MerchantOffer(
-                    new ItemCost(Items.EMERALD_BLOCK, 3),
-                    new ItemStack(ExploMod.EXAMPLE_BLOCK.get(), 2), 3, 25, 5.35f));
+                    new ItemCost(Items.EMERALD_BLOCK, 8),
+                    new ItemStack(ExploMod.EXAMPLE_BLOCK.get(), 1), 3, 25, 25.35f));
             trades.get(2).add((entity, randomSource) -> new MerchantOffer(
                     new ItemCost(Items.EMERALD, 3),
                     new ItemStack(ExploMod.WEAPON_ITEM.get(), 1), 1, 1, 1.1f));
@@ -164,6 +170,16 @@ public class ExploMod {
             trades.get(5).add((entity, randomSource) -> new MerchantOffer(
                     new ItemCost(Items.EMERALD, 64),
                     new ItemStack(Items.BAT_SPAWN_EGG, 1), 1, 5, 35.85f));
+        }if(event.getType() == VillagerProfession.CARTOGRAPHER) {
+            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+
+            trades.get(3).add((entity, randomSource) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, 8),
+                    new ItemStack(ExploMod.REDTRAV_ITEM.get(), 1), 1, 1, 8.87f));
+
+            trades.get(5).add((entity, randomSource) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, 14),
+                    new ItemStack(ExploMod.XRAY_BLOCK_ITEM.get(), 1), 1, 5, 35.85f));
         }
     }
 }
