@@ -1,0 +1,16 @@
+{
+  "itemGroup.explomod": "New creative tab",
+  "item.explomod.example_item": "Uncooked Food",
+
+  "explomod.configuration.title": "Explo Mod Configs",
+  "explomod.configuration.section.explomod.common.toml": "Explo Mod Configs",
+  "explomod.configuration.section.explomod.common.toml.title": "Explo Mod Configs",
+  "explomod.configuration.items": "Item List",
+  "explomod.configuration.logDirtBlock": "Log Dirt Block",
+  "explomod.configuration.magicNumberIntroduction": "Magic Number Text",
+  "explomod.configuration.magicNumber": "Magic Number",
+  "block.explomod.example_block": "Stone-Encased Food",
+  "item.explomod.weapon": "sword",
+  "block.explomod.log": "log",
+  "entity.minecraft.villager.explomod": "Mod Seller"
+}

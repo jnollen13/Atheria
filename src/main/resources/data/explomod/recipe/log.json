@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "explomod:example_block"
+    },
+    "B": {
+      "item": "minecraft:slimeball"
+    }
+  },
+  "pattern": [
+    "BBB",
+    "BAB",
+    "BBB"
+  ],
+  "result": {
+    "count": 4,
+    "id": "explomod:log"
+  }
+}

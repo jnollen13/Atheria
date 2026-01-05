@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "explomod:kaupen_poi",
+      "required": false
+    }
+  ]
+}
