@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "explomod:example_block"
+    "explomod:example_block",
+    "explomod:log"
   ]
 }

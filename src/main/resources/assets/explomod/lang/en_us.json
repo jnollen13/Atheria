@@ -11,6 +11,8 @@
   "explomod.configuration.magicNumber": "Magic Number",
   "block.explomod.example_block": "Stone-Encased Food",
   "item.explomod.weapon": "sword",
+  "item.explomod.copper_pickaxe": "Copper Pickaxe",
   "block.explomod.log": "log",
-  "entity.minecraft.villager.explomod": "Mod Seller"
+  "entity.minecraft.villager.explomod": "Mod Seller",
+  "block.explomod.xrayer": "Pickaxe block"
 }

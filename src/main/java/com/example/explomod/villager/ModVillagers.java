@@ -1,8 +1,7 @@
-package villager;
+package com.example.explomod.villager;
 
 import com.example.explomod.ExploMod;
 import com.google.common.collect.ImmutableSet;
-import net.minecraft.client.resources.sounds.Sound;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
@@ -18,11 +17,11 @@ public class ModVillagers {
          DeferredRegister.create(BuiltInRegistries.VILLAGER_PROFESSION, ExploMod.MODID);
 
     public static final Holder<PoiType> KAUPEN_POI = POI_TYPES.register("kaupen_poi",
-            () ->  new PoiType(ImmutableSet.copyOf(ExploMod.LOG_BLOCK.get().getStateDefinition().getPossibleStates()),1,1));
+            () ->  new PoiType(ImmutableSet.copyOf(ExploMod.XRAY_BLOCK.get().getStateDefinition().getPossibleStates()),1,1));
 
     public static final Holder<VillagerProfession> MODSELLER = VILLAGER_PROFESSIONS.register("modseller",
             () -> new VillagerProfession("modseller", holder -> holder.value() == KAUPEN_POI.value(),
-                    poiTypeHolder -> poiTypeHolder.value() == KAUPEN_POI.value(), ImmutableSet.of(), ImmutableSet.of(),
+        poiTypeHolder -> poiTypeHolder.value() == KAUPEN_POI.value(), ImmutableSet.of(), ImmutableSet.of(),
                     ModSounds.MAGIC_BLOCK_HIT.get()));
 
 
