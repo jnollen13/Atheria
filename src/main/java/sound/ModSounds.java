@@ -3,8 +3,11 @@ package sound;
 
 import com.example.explomod.ExploMod;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.item.JukeboxSong;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.util.DeferredSoundType;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -26,6 +29,12 @@ public class ModSounds {
     public static final DeferredSoundType MAGIC_BLOCK_SOUNDS = new DeferredSoundType(1f, 1f,
             ModSounds.MAGIC_BLOCK_BREAK, ModSounds.MAGIC_BLOCK_HIT, ModSounds.MAGIC_BLOCK_PLACE, ModSounds.MAGIC_BLOCK_STEP, ModSounds.MAGIC_BLOCK_FALL);
 
+    public static final Supplier<SoundEvent> LEGEND_FROST = registerSoundEvent("lfrost");
+    public static final ResourceKey<JukeboxSong> LEGEND_FROST_KEY = createSong("lfrost");
+
+    private static ResourceKey<JukeboxSong> createSong(String name) {
+        return ResourceKey.create(Registries.JUKEBOX_SONG, ResourceLocation.fromNamespaceAndPath(ExploMod.MODID, name));
+    }
 
     private static Supplier<SoundEvent> registerSoundEvent(String name) {
         ResourceLocation id = ResourceLocation.fromNamespaceAndPath(ExploMod.MODID, name);

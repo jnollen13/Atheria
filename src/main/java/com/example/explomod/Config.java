@@ -21,6 +21,11 @@ public class Config {
             .comment("Whether to log the dirt block on common setup")
             .define("logDirtBlock", true);
 
+    public static final ModConfigSpec.BooleanValue BUTTON = BUILDER
+            .comment("a button for testing experimental items & block (intended for dev use only)")
+            .worldRestart()
+            .define("buttonthing", false);
+
     public static final ModConfigSpec.IntValue MAGIC_NUMBER = BUILDER
             .comment("A magic number")
             .defineInRange("magicNumber", 42, 0, Integer.MAX_VALUE);
@@ -32,7 +37,7 @@ public class Config {
     // a list of strings that are treated as resource locations for items
     public static final ModConfigSpec.ConfigValue<List<? extends String>> ITEM_STRINGS = BUILDER
             .comment("A list of items to log on common setup.")
-            .defineListAllowEmpty("items", List.of("minecraft:iron_ingot"), () -> "", Config::validateItemName);
+            .defineListAllowEmpty("items", List.of("explomod:table"), () -> "", Config::validateItemName);
 
     static final ModConfigSpec SPEC = BUILDER.build();
 

@@ -1,6 +1,41 @@
 {
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "explomod:block/log"
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "explomod:block/logside",
+		"1": "explomod:block/logtop",
+		"particle": "explomod:block/logside"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#1"}
+			}
+		}
+	],
+  "display": {
+    "thirdperson_righthand": {
+      "scale": [0.4, 0.4, 0.4]
+    },
+    "firstperson_righthand": {
+      "scale": [0.42, 0.4, 0.4]
+    },
+    "firstperson_lefthand": {
+      "scale": [0.42, 0.4, 0.4]
+    },
+    "thirdperson_lefthand": {
+      "scale": [0.4, 0.4, 0.4]
+    },
+    "gui": {
+      "rotation": [24, -42, 0],
+      "scale": [0.71, 0.71, 0.71]
+    }
   }
 }

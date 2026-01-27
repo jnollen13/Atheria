@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:oak_planks"
+    },
+    "B": {
+      "item": "explomod:nice_stick"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "B B",
+    "B B"
+  ],
+  "result": {
+    "count": 1,
+    "id": "explomod:stool"
+  }
+}

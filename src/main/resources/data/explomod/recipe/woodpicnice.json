@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "explomod:weapon"
+    },
+    "B": {
+      "item": "explomod:nice_stick"
+    }
+  },
+  "pattern": [
+    " A ",
+    " B ",
+    "   "
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:wooden_pickaxe"
+  }
+}

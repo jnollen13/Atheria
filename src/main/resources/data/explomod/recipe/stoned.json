@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:stonecutting",
+  "category": "stoned",
+  "experience": 0.84,
+  "group": "stoned",
+  "ingredient": {
+    "item": "minecraft:stone"
+  },
+  "result": {
+    "count": 1,
+    "id": "explomod:stoned"
+  }
+}

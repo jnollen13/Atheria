@@ -34,5 +34,13 @@
     "sounds": [
       "explomod:magic_block_step"
     ]
+  },
+  "lfrost": {
+    "sounds": [
+      {
+        "name": "explomod:lfrost",
+        "stream": true
+      }
+    ]
   }
 }

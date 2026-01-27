@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "cookingtime": 900,
+  "experience": 0.78,
+  "group": "food",
+  "ingredient": {
+    "item": "explomod:example_item"
+  },
+  "result": {
+    "count": 1,
+    "id": "explomod:food"
+  }
+}

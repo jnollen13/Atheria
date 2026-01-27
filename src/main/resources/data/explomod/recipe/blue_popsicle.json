@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:sweet_berries"
+    },
+    "B": {
+      "item": "explomod:ice_food"
+    },
+    "C": {
+      "item": "minecraft:apple"
+    },
+    "D": {
+      "item": "minecraft:snowball"
+    }
+  },
+  "pattern": [
+    "AD",
+    "BC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "explomod:bpopsicle"
+  }
+}

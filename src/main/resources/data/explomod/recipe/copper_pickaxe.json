@@ -7,15 +7,12 @@
     },
     "B": {
       "item": "minecraft:stick"
-    },
-    "C": {
-      "item": "minecraft:dirt"
     }
   },
   "pattern": [
     "AAA",
-    "CBC",
-    "CBC"
+    " B ",
+    " B "
   ],
   "result": {
     "count": 1,

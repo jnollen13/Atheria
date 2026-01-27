@@ -16,12 +16,12 @@ public class ModVillagers {
     public static final DeferredRegister<VillagerProfession> VILLAGER_PROFESSIONS =
          DeferredRegister.create(BuiltInRegistries.VILLAGER_PROFESSION, ExploMod.MODID);
 
-    public static final Holder<PoiType> KAUPEN_POI = POI_TYPES.register("kaupen_poi",
-            () ->  new PoiType(ImmutableSet.copyOf(ExploMod.XRAY_BLOCK.get().getStateDefinition().getPossibleStates()),1,1));
+    public static final Holder<PoiType> MODSELLER_POI = POI_TYPES.register("modseller_poi",
+            () ->  new PoiType(ImmutableSet.copyOf(ExploMod.XRAY_BLOCK.get().getStateDefinition().getPossibleStates()),4,2));
 
     public static final Holder<VillagerProfession> MODSELLER = VILLAGER_PROFESSIONS.register("modseller",
-            () -> new VillagerProfession("modseller", holder -> holder.value() == KAUPEN_POI.value(),
-        poiTypeHolder -> poiTypeHolder.value() == KAUPEN_POI.value(), ImmutableSet.of(), ImmutableSet.of(),
+            () -> new VillagerProfession("modseller", holder -> holder.value() == MODSELLER_POI.value(),
+        poiTypeHolder -> poiTypeHolder.value() == MODSELLER_POI.value(), ImmutableSet.of(), ImmutableSet.of(),
                     ModSounds.MAGIC_BLOCK_HIT.get()));
 
 

@@ -2,6 +2,14 @@
   "variants": {
     "": {
       "model": "explomod:block/log"
+    },
+    "facing2": {
+      "model": "explomod:block/log",
+      "x": 90
+    },
+    "facing3": {
+      "model": "explomod:block/log",
+      "x": 270
     }
   }
 }

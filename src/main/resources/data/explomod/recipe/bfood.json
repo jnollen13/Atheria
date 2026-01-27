@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:blasting",
+  "category": "food",
+  "cookingtime": 450,
+  "experience": 0.84,
+  "group": "food",
+  "ingredient": {
+    "item": "explomod:example_item"
+  },
+  "result": {
+    "count": 1,
+    "id": "explomod:food"
+  }
+}

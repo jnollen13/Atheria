@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "": {
+      "model": "explomod:block/stool"
+    },
+    "2": {
+      "model": "explomod:block/stool",
+      "y": 180
+    },
+    "3": {
+      "model": "explomod:block/stool",
+      "y": 90
+    },
+    "4": {
+      "model": "explomod:block/stool",
+      "y": 270
+    }
+  }
+}

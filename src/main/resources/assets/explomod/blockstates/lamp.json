@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "clicked=true": {
+      "model": "explomod:block/lamp_on"
+    },
+    "clicked=false": {
+      "model": "explomod:block/log_off"
+    }
+  }
+}

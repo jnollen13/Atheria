@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "": {
+      "model": "explomod:block/kit"
+    },
+    "on": {
+      "model": "explomod:block/lamp_on"
+   }
+  }
+}
