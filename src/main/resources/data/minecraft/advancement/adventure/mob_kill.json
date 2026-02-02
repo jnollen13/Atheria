@@ -1,0 +1,67 @@
+{
+  "parent": "minecraft:adventure/root",
+  "criteria": {
+    "minecraft:cow": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:cow"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    },
+    "minecraft:sheep": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:sheep"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    },
+    "minecraft:pig": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:pig"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "display": {
+  "description": {
+  "translate": "advancements.adventure.mob_kill.description"
+  },
+"icon": {
+"count": 1,
+"id": "explomod:new_sword"
+},
+"title": {
+"translate": "advancements.adventure.mob_kill.title"
+}
+},
+"requirements": [
+[
+  "minecraft:cow",
+  "minecraft:sheep",
+  "minecraft:pig"
+]
+],
+"sends_telemetry_event": true
+}

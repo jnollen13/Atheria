@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:adventure/ol_betsy",
+  "criteria": {
+    "crossbow_user": {
+      "conditions": {
+        "unique_entity_types": 10
+      },
+      "trigger": "minecraft:killed_by_crossbow"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.adventure.crossbow_user.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "minecraft:crossbow"
+    },
+    "title": {
+      "translate": "advancements.adventure.crossbow_user.title"
+    }
+  },
+  "requirements": [
+    [
+      "crossbow_user"
+    ]
+  ],
+  "rewards": {
+    "experience": 50
+  },
+  "sends_telemetry_event": true
+}

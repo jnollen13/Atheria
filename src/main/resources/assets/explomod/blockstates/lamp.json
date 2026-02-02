@@ -4,7 +4,7 @@
       "model": "explomod:block/lamp_on"
     },
     "clicked=false": {
-      "model": "explomod:block/log_off"
+      "model": "explomod:block/lamp_off"
     }
   }
 }

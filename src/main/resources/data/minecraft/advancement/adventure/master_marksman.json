@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:adventure/skilled_marksman",
+  "criteria": {
+    "master_marksman": {
+      "conditions": {
+        "projectile": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "distance": {
+                "horizontal": {
+                  "min": 99.1
+                }
+              }
+            }
+          }
+        ],
+        "signal_strength": {
+          "min": 6
+        }
+      },
+      "trigger": "minecraft:target_hit"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.adventure.master_marksman.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "minecraft:bow"
+    },
+    "title": {
+      "translate": "advancements.adventure.master_marksman.title"
+    }
+  },
+  "requirements": [
+    [
+      "master_marksman"
+    ]
+  ],
+  "rewards": {
+    "experience": 200
+  },
+  "sends_telemetry_event": true
+}

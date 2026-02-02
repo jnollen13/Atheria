@@ -1,9 +1,5 @@
 {
-  "replace": false,
   "values": [
-    {
-      "id": "explomod:modseller_poi",
-      "required": false
-    }
+      "explomod:modseller_poi"
   ]
 }

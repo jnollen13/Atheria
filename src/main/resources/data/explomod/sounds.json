@@ -12,10 +12,10 @@
     ]
   },
   "magic_block_fall": {
-    "subtitle": "sounds.explomod.magic_block_fall",
     "sounds": [
-      "explomod:magic_block_fall"
-    ]
+      "explomod:sounds/magic_block_fall"
+    ],
+    "subtitle": "subtitles.item.bucket.fill"
   },
   "magic_block_hit": {
     "subtitle": "sounds.explomod.magic_block_hit",

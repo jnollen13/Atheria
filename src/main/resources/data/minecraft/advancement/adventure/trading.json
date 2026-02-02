@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:adventure/trade",
+  "criteria": {
+    "trade_at_spawn": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "position": {
+                  "x": {
+                    "max": 4.5,
+                    "min": -4.5
+                  },
+                  "z": {
+                    "max": 4.5,
+                    "min": -4.5
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:villager_trade"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.adventure.trade_at_spawn.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft:map"
+    },
+    "title": {
+      "translate": "advancements.adventure.trade_at_spawn.title"
+    }
+  },
+  "requirements": [
+    [
+      "trade_at_spawn"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

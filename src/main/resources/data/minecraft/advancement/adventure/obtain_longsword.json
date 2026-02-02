@@ -1,0 +1,36 @@
+{
+  "parent": "minecraft:adventure/root",
+  "criteria": {
+    "longsword": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:new_sword"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.adventure.obtain_longsword.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "explomod:new_sword"
+    },
+    "title": {
+      "translate": "advancements.adventure.obtain_longsword.title"
+    }
+  },
+  "requirements": [
+    [
+      "longsword"
+    ]
+  ],
+  "rewards": {
+    "experience": 5
+  },
+  "sends_telemetry_event": true
+}

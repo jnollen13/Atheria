@@ -1,0 +1,36 @@
+{
+  "parent": "minecraft:story/root",
+  "criteria": {
+    "diamond": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:redstone_dust"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.story.mine_redstone.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft:redststone"
+    },
+    "title": {
+      "translate": "advancements.story.mine_redstone.title"
+    }
+  },
+  "requirements": [
+    [
+      "redstone"
+    ]
+  ],
+  "rewards": {
+  "experience": 5
+},
+  "sends_telemetry_event": true
+}

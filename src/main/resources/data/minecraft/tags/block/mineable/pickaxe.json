@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "explomod:example_block",
-    "explomod:log"
+    "explomod:log",
+    "explomod:stoned"
   ]
 }

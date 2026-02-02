@@ -206,9 +206,6 @@
 		"fixed": {
 			"translation": [0, 0, -2],
 			"scale": [0.7, 0.7, 0.7]
-		},
-		"on_shelf": {
-			"translation": [0, 0, 2]
 		}
 	}
 }

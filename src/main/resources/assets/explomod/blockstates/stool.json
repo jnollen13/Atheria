@@ -1,19 +1,18 @@
 {
   "variants": {
-    "": {
+    "facing=north": {
       "model": "explomod:block/stool"
     },
-    "2": {
+    "facing=south": {
       "model": "explomod:block/stool",
       "y": 180
     },
-    "3": {
-      "model": "explomod:block/stool",
-      "y": 90
+    "facing=east": {
+      "model": "explomod:block/stoolturn"
     },
-    "4": {
-      "model": "explomod:block/stool",
-      "y": 270
+    "facing=west": {
+      "model": "explomod:block/stoolturn",
+      "y": 180
     }
   }
 }
