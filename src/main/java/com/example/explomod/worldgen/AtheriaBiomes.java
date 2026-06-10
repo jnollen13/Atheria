@@ -1,0 +1,32 @@
+package worldgen;
+
+import com.example.explomod.ExploMod;
+import datagen.AtheriaBiomeBuilders;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+
+public class AtheriaBiomes {
+    public static final ResourceKey<Biome> SKYROOT_MEADOW = createKey("skyroot_meadow");
+    public static final ResourceKey<Biome> SKYROOT_GROVE = createKey("skyroot_grove");
+    public static final ResourceKey<Biome> SKYROOT_WOODLAND = createKey("skyroot_woodland");
+    public static final ResourceKey<Biome> SKYROOT_FOREST = createKey("skyroot_forest");
+
+    private static ResourceKey<Biome> createKey(String name) {
+        return ResourceKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(ExploMod.MODID, name));
+    }
+
+    public static void bootstrap(BootstrapContext<Biome> context) {
+        HolderGetter<PlacedFeature> placedFeatures = context.lookup(Registries.PLACED_FEATURE);
+        HolderGetter<ConfiguredWorldCarver<?>> vanillaConfiguredCarvers = context.lookup(Registries.CONFIGURED_CARVER);
+        context.register(SKYROOT_MEADOW, AtheriaBiomeBuilders.skyrootMeadowBiome(placedFeatures, vanillaConfiguredCarvers));
+        context.register(SKYROOT_GROVE, AtheriaBiomeBuilders.skyrootGroveBiome(placedFeatures, vanillaConfiguredCarvers));
+        context.register(SKYROOT_WOODLAND, AtheriaBiomeBuilders.skyrootWoodlandBiome(placedFeatures, vanillaConfiguredCarvers));
+        context.register(SKYROOT_FOREST, AtheriaBiomeBuilders.skyrootForestBiome(placedFeatures, vanillaConfiguredCarvers));
+    }
+}
