@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:glass_bottle"
+    },
+    "B": {
+      "item": "minecraft:melon_slice"
+    },
+    "C": {
+      "item": "minecraft:sugar"
+    }
+  },
+  "pattern": [
+    " B ",
+    "BCB",
+    " A "
+  ],
+  "result": {
+    "count": 1,
+    "id": "explomod:melon_juice"
+  }
+}

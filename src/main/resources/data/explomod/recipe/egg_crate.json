@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "explomod:empty_crate"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "explomod:crate"
+  }
+}

@@ -1,4 +1,4 @@
-package sound;
+package com.example.explomod.sound;
 
 
 import com.example.explomod.ExploMod;

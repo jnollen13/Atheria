@@ -1,4 +1,4 @@
-package item.custom;
+package com.example.explomod.item.custom;
 
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;

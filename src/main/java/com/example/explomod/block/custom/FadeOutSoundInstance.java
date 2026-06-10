@@ -1,4 +1,4 @@
-package com.example.explomod.block.custom.client.sound;
+package com.example.explomod.block.custom;
 
 import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
 import net.minecraft.client.resources.sounds.SoundInstance;

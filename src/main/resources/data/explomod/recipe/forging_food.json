@@ -1,0 +1,10 @@
+{
+  "type": "explomod:forge",
+  "ingredient": {
+    "item": "explomod:food"
+  },
+  "result": {
+    "id": "minecraft:raw_chicken",
+    "count": 64
+  }
+}

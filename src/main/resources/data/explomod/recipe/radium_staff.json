@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:wind_charge"
+    },
+    "B": {
+      "item": "explomod:tnt_staff"
+    },
+    "C": {
+      "item": "explomod:radium_ingot"
+    }
+  },
+  "pattern": [
+    "A ",
+    "BC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "explomod:radium_staff"
+  }
+}

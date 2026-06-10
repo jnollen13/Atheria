@@ -1,0 +1,10 @@
+{
+  "type": "explomod:forge",
+  "ingredient": {
+    "item": "explomod:bloodwood_button"
+  },
+  "result": {
+    "id": "explomod:bloodwood_door",
+    "count": 1
+  }
+}

@@ -1,11 +1,11 @@
-package item.custom;
+package com.example.explomod.item.custom;
 
 import com.example.explomod.ExploMod;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.common.SimpleTier;
-import utill.ModTags;
+import com.example.explomod.utill.ModTags;
 
 public class ModToolTiers {
     public static final Tier PHANTOM = new SimpleTier(ModTags.Blocks.INCORRECT_FOR_PHANTOM_TOOL,

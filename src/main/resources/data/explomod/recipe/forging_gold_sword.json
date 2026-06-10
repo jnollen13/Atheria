@@ -1,0 +1,10 @@
+{
+  "type": "explomod:forge",
+  "ingredient": {
+    "item": "minecraft:gold_sword"
+  },
+  "result": {
+    "id": "explomod:dagger",
+    "count": 1
+  }
+}

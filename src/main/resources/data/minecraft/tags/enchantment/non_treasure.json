@@ -1,0 +1,15 @@
+{
+  "values": [
+    "minecraft:freezing",
+    "minecraft:thundering",
+    "minecraft:phantom",
+    "minecraft:dullness",
+    "minecraft:inefficiency",
+    "minecraft:slow_charge",
+    "minecraft:vulnerability",
+    "minecraft:weak_shot",
+    "minecraft:rapid_fire",
+    "minecraft:swiftness",
+    "minecraft:bane_of_plants"
+  ]
+}

@@ -1,6 +1,7 @@
 package com.example.explomod.block.custom;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -30,13 +31,14 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.common.CommonHooks;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-public class BerryBushBlock extends SweetBerryBushBlock {
+public class GlowBerryBushBlock extends SweetBerryBushBlock {
     private final Item berry;
     public static final BooleanProperty GLOWING = BooleanProperty.create("glowing");
     private static final VoxelShape SAPLING_SHAPE;
     private static final VoxelShape MID_GROWTH_SHAPE;
-    public BerryBushBlock(Item berry, Properties properties) {
+    public GlowBerryBushBlock(Item berry, Properties properties) {
         super(properties);
         this.berry = berry;
         this.registerDefaultState(this.defaultBlockState().setValue(GLOWING, false));
@@ -82,6 +84,28 @@ public class BerryBushBlock extends SweetBerryBushBlock {
         }
     }
 
+    @Override
+    public void onCaughtFire(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @Nullable Direction direction, @Nullable LivingEntity igniter) {
+        super.onCaughtFire(state, level, pos, direction, igniter);
+        int i = state.getValue(AGE);
+        if(i>1){
+            level.setBlockAndUpdate(pos, state.setValue(GLOWING, true));
+        }else {
+            level.setBlockAndUpdate(pos, state.setValue(GLOWING, false));
+        }
+    }
+
+    @Override
+    protected void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Block neighborBlock, @NotNull BlockPos neighborPos, boolean movedByPiston) {
+        super.neighborChanged(state, level, pos, neighborBlock, neighborPos, movedByPiston);
+        int i = state.getValue(AGE);
+        if(i>1){
+            level.setBlockAndUpdate(pos, state.setValue(GLOWING, true));
+        }else {
+            level.setBlockAndUpdate(pos, state.setValue(GLOWING, false));
+        }
+    }
+
     protected void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity) {
         if (entity instanceof LivingEntity && entity.getType() != EntityType.FOX && entity.getType() != EntityType.BEE) {
             entity.makeStuckInBlock(state, new Vec3(0.8F, 0.75F, 0.8F));
@@ -93,7 +117,7 @@ public class BerryBushBlock extends SweetBerryBushBlock {
                 }
             }
             int i = state.getValue(AGE);
-            if(i>1){
+            if(i>=2){
                 level.setBlockAndUpdate(pos, state.setValue(GLOWING, true));
             }else {
                 level.setBlockAndUpdate(pos, state.setValue(GLOWING, false));
@@ -112,10 +136,17 @@ public class BerryBushBlock extends SweetBerryBushBlock {
             BlockState blockstate = state.setValue(AGE, 1);
             level.setBlock(pos, blockstate, 2);
             level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, blockstate));
+            afterInteraction(blockstate, level, pos, player);
             return InteractionResult.sidedSuccess(level.isClientSide);
         } else {
             return super.useWithoutItem(state, level, pos, player, hitResult);
         }
+    }
+
+    protected void afterInteraction(BlockState state, Level level, BlockPos pos, Player player){
+        BlockState glowState = state.setValue(GLOWING, false);
+        level.setBlock(pos, glowState, 2);
+        level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, glowState));
     }
 
     @Override

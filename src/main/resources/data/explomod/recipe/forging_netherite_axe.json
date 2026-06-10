@@ -1,0 +1,10 @@
+{
+  "type": "explomod:forge",
+  "ingredient": {
+    "item": "minecraft:netherite_axe"
+  },
+  "result": {
+    "id": "minecraft:netherite_ingot",
+    "count": 2
+  }
+}

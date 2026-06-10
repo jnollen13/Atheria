@@ -1,4 +1,4 @@
-package datagen;
+package com.example.explomod.datagen;
 
 import com.example.explomod.ExploMod;
 import net.minecraft.core.Holder;
@@ -49,6 +49,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
             dropOther(ExploMod.GLOWBERRY_BUSH.get(), Items.GLOW_BERRIES);
             dropSelf(ExploMod.STORMBERRY_CAKE.get());
             dropSelf(ExploMod.BLOODWOOD_BUTTON.get());
+            dropSelf(ExploMod.EMPTY_CRATE.get());
+            dropSelf(ExploMod.CANE_CRATE.get());
+            dropSelf(ExploMod.CRATE.get());
             add(ExploMod.EXAMPLE_BLOCK.get(),
                     block -> createOreDrop(ExploMod.EXAMPLE_BLOCK.get(), ExploMod.EXAMPLE_ITEM.get()));
             add(ExploMod.RADIUM_ORE.get(),

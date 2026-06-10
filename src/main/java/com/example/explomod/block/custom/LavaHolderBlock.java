@@ -20,12 +20,11 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class LavaHolderBlock extends Block implements SimpleWaterloggedBlock {
     public static final MapCodec<LavaHolderBlock> CODEC = simpleCodec(LavaHolderBlock::new);
-    private static final VoxelShape LEG1 = Block.box(7.0, 2.0, 7.0, 9.0, 15.0, 9.0);
+    private static final VoxelShape LEG1 = Block.box(0.0, 0.0, 0.0, 16.0, 2.0, 16.0);
     private static final VoxelShape LEG2 = Block.box(0.0, 0.0, 7.0, 16.0, 2.0, 9.0);
     private static final VoxelShape LEG3 = Block.box(7.0, 0.0, 0.0, 9.0, 2.0, 7.0);
     private static final VoxelShape LEG4 = Block.box(7.0, 0.0, 9.0, 9.0, 2.0, 16.0);
-    private static final VoxelShape TOP = Block.box(0.0, 15.0, 0.0, 16.0, 16.0, 16.0);
-    private static final VoxelShape SHAPE = Shapes.or(LEG1, LEG2, LEG3, LEG4, TOP);
+    private static final VoxelShape SHAPE = Shapes.or(LEG1, LEG2, LEG3, LEG4);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     @Override

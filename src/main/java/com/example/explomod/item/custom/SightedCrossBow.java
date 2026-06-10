@@ -1,4 +1,4 @@
-package item.custom;
+package com.example.explomod.item.custom;
 
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.ItemStack;

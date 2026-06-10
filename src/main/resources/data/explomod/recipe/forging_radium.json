@@ -1,0 +1,10 @@
+{
+  "type": "explomod:forge",
+  "ingredient": {
+    "item": "explomod:radium_ingot"
+  },
+  "result": {
+    "id": "explomod:tnt_staff",
+    "count": 1
+  }
+}

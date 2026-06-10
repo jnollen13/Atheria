@@ -1,0 +1,10 @@
+{
+  "type": "explomod:forge",
+  "ingredient": {
+    "item": "minecraft:netherite_hoe"
+  },
+  "result": {
+    "id": "minecraft:netherite_ingot",
+    "count": 1
+  }
+}

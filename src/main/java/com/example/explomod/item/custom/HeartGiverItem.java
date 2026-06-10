@@ -1,4 +1,4 @@
-package item.custom;
+package com.example.explomod.item.custom;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;

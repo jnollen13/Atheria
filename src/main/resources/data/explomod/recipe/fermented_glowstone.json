@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:glowstone_dust"
+    },
+    "B": {
+      "item": "minecraft:slimeball"
+    }
+  },
+  "pattern": [
+    "AB",
+    "  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "explomod:fermented_glowstone"
+  }
+}

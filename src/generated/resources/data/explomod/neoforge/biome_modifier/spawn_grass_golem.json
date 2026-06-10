@@ -1,0 +1,14 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": [
+    "minecraft:lush_caves",
+    "minecraft:plains",
+    "minecraft:meadow"
+  ],
+  "spawners": {
+    "type": "explomod:grass_golem",
+    "maxCount": 5,
+    "minCount": 1,
+    "weight": 1
+  }
+}

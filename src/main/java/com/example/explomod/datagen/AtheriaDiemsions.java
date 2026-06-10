@@ -1,4 +1,4 @@
-package datagen;
+package com.example.explomod.datagen;
 
 import com.example.explomod.ExploMod;
 import net.minecraft.core.HolderGetter;
@@ -25,7 +25,7 @@ public class AtheriaDiemsions {
     public static final ResourceKey<DimensionType> DARK_DIMENSION_TYPE = ResourceKey.create(Registries.DIMENSION_TYPE, AETHER_LEVEL_ID);
     // Level - The dimension during runtime.
     public static final ResourceKey<Level> AETHER_LEVEL = ResourceKey.create(Registries.DIMENSION, AETHER_LEVEL_ID);
-    // LevelStem - The dimension during lifecycle start and datagen.
+    // LevelStem - The dimension during lifecycle start and com.example.explomod.datagen.
     public static final ResourceKey<LevelStem> AETHER_LEVEL_STEM = ResourceKey.create(Registries.LEVEL_STEM, AETHER_LEVEL_ID);
 
     public static void bootstrapDimensionType(BootstrapContext<DimensionType> context) {

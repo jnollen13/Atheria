@@ -3,7 +3,9 @@
     "air": [
       "minecraft:cave",
       "minecraft:cave_extra_underground",
-      "minecraft:canyon"
+      "minecraft:canyon",
+      "explomod:mini_cave",
+      "explomod:cavern"
     ]
   },
   "downfall": 0.93,
@@ -65,9 +67,10 @@
       "minecraft:glow_lichen",
       "minecraft:patch_large_fern",
       "minecraft:dark_forest_vegetation",
-      "explomod:lush_vegetation_high",
+      "explomod:glowberry_bush",
       "minecraft:cave_vines",
       "minecraft:trees_old_growth_spruce_taiga",
+      "minecraft:lush_caves_ceiling_vegetation",
       "explomod:bloodwood_placed",
       "explomod:stormberry_bush_placed",
       "explomod:winter_oak_placed",
@@ -129,29 +132,28 @@
         "type": "explomod:trader",
         "maxCount": 1,
         "minCount": 1,
-        "weight": 5
-      }
-    ],
-    "misc": [
+        "weight": 1
+      },
       {
         "type": "minecraft:parrot",
-        "maxCount": 8,
-        "minCount": 4,
+        "maxCount": 6,
+        "minCount": 2,
         "weight": 50
       }
     ],
+    "misc": [],
     "monster": [
       {
         "type": "minecraft:spider",
-        "maxCount": 10,
+        "maxCount": 5,
         "minCount": 1,
-        "weight": 145
+        "weight": 50
       },
       {
         "type": "minecraft:creeper",
-        "maxCount": 15,
+        "maxCount": 10,
         "minCount": 1,
-        "weight": 5
+        "weight": 9
       },
       {
         "type": "minecraft:slime",
@@ -162,8 +164,8 @@
       {
         "type": "explomod:grass_golem",
         "maxCount": 15,
-        "minCount": 4,
-        "weight": 10
+        "minCount": 5,
+        "weight": 68
       }
     ],
     "underground_water_creature": [

@@ -1,0 +1,36 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_snowball": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:snowball"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": [
+          "explomod:snowball_red",
+          "explomod:snowball_orange"
+        ]
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_snowball"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "explomod:snowball_red",
+      "explomod:snowball_orange"
+    ]
+  }
+}

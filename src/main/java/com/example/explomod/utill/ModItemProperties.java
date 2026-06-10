@@ -1,4 +1,4 @@
-package utill;
+package com.example.explomod.utill;
 
 import com.example.explomod.ExploMod;
 import net.minecraft.client.renderer.item.ItemProperties;

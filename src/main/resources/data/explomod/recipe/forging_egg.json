@@ -1,0 +1,10 @@
+{
+  "type": "explomod:forge",
+  "ingredient": {
+    "item": "minecraft:egg"
+  },
+  "result": {
+    "id": "minecraft:chicken_spawn_egg",
+    "count":1
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "explomod:forge",
+  "ingredient": {
+    "item": "minecraft:diamond_chestplate"
+  },
+  "result": {
+    "id": "minecraft:diamond",
+    "count": 1
+  }
+}

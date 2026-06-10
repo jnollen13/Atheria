@@ -1,0 +1,6 @@
+{
+    "parent": "explomod:item/newbow",
+    "textures": {
+        "layer0": "explomod:item/newbow_pulling_0"
+    }
+}

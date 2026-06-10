@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "explomod:phantom_ingot"
+    }
+  },
+  "pattern": [
+    "BBB",
+    "B B",
+    "   "
+  ],
+  "result": {
+    "count": 1,
+    "id": "explomod:phantom_helmet"
+  }
+}

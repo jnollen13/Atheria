@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "minecraft:jagged_peaks",
+    "minecraft:snowy_slopes",
+    "minecraft:snowy_taiga"
+  ],
+  "features": "explomod:winter_oak_placed",
+  "step": "vegetal_decoration"
+}

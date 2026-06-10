@@ -1,0 +1,22 @@
+{
+  "type": "explomod:mini_tree",
+  "config": {
+    "to_place": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "explomod:log"
+      }
+    },
+    "top": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:mangrove_leaves",
+        "Properties": {
+          "distance": "7",
+          "persistent": "true",
+          "waterlogged": "false"
+        }
+      }
+    }
+  }
+}

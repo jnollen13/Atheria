@@ -1,0 +1,10 @@
+{
+  "type": "explomod:forge",
+  "ingredient": {
+    "item": "minecraft:birch_door"
+  },
+  "result": {
+    "id": "minecraft:stick",
+    "count": 1
+  }
+}

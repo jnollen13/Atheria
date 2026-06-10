@@ -1,4 +1,4 @@
-package item.custom;
+package com.example.explomod.item.custom;
 
 import com.example.explomod.ExploMod;
 import net.minecraft.Util;

@@ -1,17 +1,24 @@
 package com.example.explomod;
 
-import com.example.explomod.block.custom.LavaHolderBlock;
-import com.example.explomod.block.custom.NewLampBlock;
-import com.example.explomod.block.custom.StoolBlock;
-import com.example.explomod.block.custom.TableBlock;
+import com.example.explomod.block.custom.*;
+import com.example.explomod.block.custom.crates.CrateBlock;
+import com.example.explomod.block.custom.crates.EggBasketBlock;
+import com.example.explomod.block.custom.crates.SugarCaneCrateBlock;
+import com.example.explomod.command.AtheriaCommands;
+import com.example.explomod.effect.ModEffects;
+import com.example.explomod.entity.ModEntities;
+import com.example.explomod.entity.client.*;
 import com.example.explomod.loot.ModLootModifiers;
+import com.example.explomod.particle.ModParticles;
+import com.example.explomod.particle.SafteyParticle;
+import com.example.explomod.worldgen.structure.ModStructureType;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.chat.ChatLog;
-import net.minecraft.core.particles.ParticleType;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.level.ServerPlayer;
+import com.example.explomod.item.alchemy.ModPotions;
+import com.example.explomod.item.custom.*;
+import com.example.explomod.item.custom.Throwable;
+import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.npc.VillagerProfession;
@@ -21,7 +28,13 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.material.PushReaction;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
+import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
@@ -30,7 +43,6 @@ import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.food.FoodProperties;
@@ -49,10 +61,15 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import sound.ModSounds;
+import com.example.explomod.sound.ModSounds;
 import com.example.explomod.villager.ModVillagers;
+import com.example.explomod.utill.ModItemProperties;
+import com.example.explomod.worldgen.feature.ModFeature;
+import com.example.explomod.worldgen.tree.ModTreeGrower;
 
 import java.util.List;
+
+import static net.minecraft.world.item.Items.registerBlock;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(ExploMod.MODID)
@@ -68,27 +85,28 @@ public class ExploMod {
     // Create a Deferred Register to hold CreativeModeTabs which will all be registered under the "explomod" namespace
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
+    //registries
     public static final DeferredBlock<Block> EXAMPLE_BLOCK = BLOCKS.registerSimpleBlock("example_block", BlockBehaviour.Properties.of()
             .mapColor(MapColor.STONE).destroyTime(35f).explosionResistance(999f).friction(0.85f).requiresCorrectToolForDrops().sound(SoundType.STONE));
-    //() -> new DropExperienceBlock(UniformInt.of(2, 4),
+    //remember () -> new DropExperienceBlock(UniformInt.of(2, 4),
     public static final DeferredItem<BlockItem> EXAMPLE_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("example_block", EXAMPLE_BLOCK);
-    public static final DeferredBlock<Block> LOG_BLOCK = BLOCKS.registerSimpleBlock("log", BlockBehaviour.Properties.of().mapColor(MapColor.FIRE).jumpFactor(3.141526f).sound(SoundType.WOOD).pushReaction(PushReaction.PUSH_ONLY));
+    public static final DeferredBlock<Block> LOG_BLOCK = BLOCKS.registerSimpleBlock("log", BlockBehaviour.Properties.of().mapColor(MapColor.FIRE).jumpFactor(2f).explosionResistance(5f).destroyTime(1).sound(SoundType.WOOD).pushReaction(PushReaction.PUSH_ONLY));
     public static final DeferredItem<BlockItem> LOG_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("log", LOG_BLOCK);
     public static final DeferredItem<Item> EXAMPLE_ITEM = ITEMS.registerSimpleItem("example_item", new Item.Properties().food(new FoodProperties.Builder()
             .alwaysEdible().nutrition(5).saturationModifier(8f).effect(() -> new MobEffectInstance(MobEffects.POISON, 500), 0.456789f).effect(() -> new MobEffectInstance(MobEffects.HUNGER, 424, 9), 0.756f).build()));
     public static final DeferredItem<Item> WEAPON_ITEM = ITEMS.registerSimpleItem("weapon", new Item.Properties().stacksTo(1).durability(200).attributes(SwordItem.createAttributes(Tiers.STONE, 4, -3.2F)));
-    public static final DeferredItem<Item> COPPER_PICKAXE = ITEMS.registerSimpleItem("copper_pickaxe", new Item.Properties().stacksTo(4).rarity(Rarity.COMMON));
+    public static final DeferredItem<Item> COPPER_PICKAXE = ITEMS.register("copper_pickaxe", () -> new PickaxeItem(ModToolTiers.COPPER, new Item.Properties().attributes(PickaxeItem.createAttributes(ModToolTiers.COPPER, 1.0F, -2.8F))));
     public static final DeferredBlock<Block> XRAY_BLOCK = BLOCKS.registerSimpleBlock("xrayer", BlockBehaviour.Properties.of().instabreak().speedFactor(0.9f).noOcclusion());
     public static final DeferredItem<BlockItem> XRAY_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("xrayer", XRAY_BLOCK);
     public static final DeferredBlock<Block> REDTRAV = BLOCKS.registerSimpleBlock("redtrav", BlockBehaviour.Properties.of().sound(SoundType.WET_GRASS).instabreak().jumpFactor(2f).ignitedByLava().speedFactor(2.5f));
     public static final DeferredItem<BlockItem> REDTRAV_ITEM = ITEMS.registerSimpleBlockItem("redtrav", REDTRAV);
-    public static final DeferredItem<Item> NICE_STICK = ITEMS.registerSimpleItem("nice_stick", new Item.Properties().setNoRepair().food(new FoodProperties.Builder().nutrition(0).saturationModifier(0f).usingConvertsTo(Items.STICK).build()));
+    public static final DeferredItem<Item> NICE_STICK = ITEMS.register("nice_stick", () -> new NiceStick(new Item.Properties().setNoRepair().food(new FoodProperties.Builder().nutrition(0).saturationModifier(0f).usingConvertsTo(Items.STICK).build())));
     public static final DeferredItem<Item> HEART_FOOD = ITEMS.registerSimpleItem("food", new Item.Properties().stacksTo(16).fireResistant().food(new FoodProperties.Builder()
             .nutrition(19).fast().effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 324), 0.5f).saturationModifier(20f).usingConvertsTo(Items.BONE).alwaysEdible().build()));
     public static final DeferredItem<Item> NEW = ITEMS.registerSimpleItem("placeholder", new Item.Properties().stacksTo(5));
     public static final DeferredItem<Item> LEGENDS_FROST_MUSIC_DISC = ITEMS.registerSimpleItem("lfrost_music_disc", new Item.Properties().jukeboxPlayable(JukeboxSongs.CAT).stacksTo(1).rarity(Rarity.RARE));
     public static final DeferredItem<Item> POPSICLE_FOOD = ITEMS.registerSimpleItem("ice_food",
-            new Item.Properties().rarity(Rarity.COMMON).food(new FoodProperties.Builder().alwaysEdible().nutrition(0).saturationModifier(1f).usingConvertsTo(Items.STICK)
+            new Item.Properties().rarity(Rarity.COMMON).food(new FoodProperties.Builder().nutrition(0).saturationModifier(1f).usingConvertsTo(Items.STICK)
                     .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 224, 2), 0.9f)
                     .effect(() -> new MobEffectInstance(MobEffects.JUMP, 204), 0.71f)
                     .effect(() -> new MobEffectInstance(MobEffects.DIG_SPEED, 163), 0.51f)
@@ -123,16 +141,15 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
     public static final DeferredBlock<Block> TANK_BLOCK = BLOCKS.registerSimpleBlock("tank", BlockBehaviour.Properties.of().instabreak().noOcclusion().lightLevel(p_187433_ -> 11).pushReaction(PushReaction.NORMAL).noCollission());
     public static final DeferredItem<BlockItem> TANK_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("tank", TANK_BLOCK);
     public static final DeferredItem<Item> NEW_SWORD = ITEMS.registerSimpleItem(
-            "new_sword", new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).attributes(SwordItem.createAttributes(Tiers.DIAMOND, 10, -3.6F)));
+            "new_sword", new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).attributes(SwordItem.createAttributes(Tiers.IRON, 10, -3.6F)));
     public static final DeferredBlock<Block> STOOL = BLOCKS.register("stool", () -> new StoolBlock(
-            BlockBehaviour.Properties.of()
-            .noOcclusion().mapColor(MapColor.WOOD).ignitedByLava().strength(6f)));
+            BlockBehaviour.Properties.of().noOcclusion().mapColor(MapColor.WOOD).ignitedByLava().strength(6f)));
     public static final DeferredItem<BlockItem> STOOL_ITEM = ITEMS.registerSimpleBlockItem("stool", STOOL);
     public static final DeferredBlock<Block>  TABLE = BLOCKS.register("table", () -> new TableBlock(BlockBehaviour.Properties.of().ignitedByLava().noOcclusion().sound(SoundType.WOOD).strength(5f).explosionResistance(8f).pushReaction(PushReaction.PUSH_ONLY)));
     public static final DeferredItem<BlockItem> TABLE_ITEM = ITEMS.registerSimpleBlockItem("table", TABLE, new Item.Properties().stacksTo(32));
     public static final DeferredItem<Item> FUEL = ITEMS.register("fuel", () -> new Item(new Item.Properties().rarity(Rarity.COMMON).stacksTo(32)));
     public static final DeferredBlock<Block> NEW_LAMP = BLOCKS.register("lamp", () -> new NewLampBlock(Block.Properties.of().explosionResistance(2f).strength(10f).sound(ModSounds.MAGIC_BLOCK_SOUNDS)
-                    .lightLevel(state -> state.getValue(NewLampBlock.CLICKED) ? 15 : 0)));
+                    .lightLevel(state -> state.getValue(NewLampBlock.CLICKED) ? 12 : 0)));
     public static final DeferredItem<BlockItem> LAMP_ITEM = ITEMS.registerSimpleBlockItem("lamp", NEW_LAMP);
     public static final DeferredBlock<Block> STONED = BLOCKS.registerSimpleBlock("stoned", BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(9f).sound(SoundType.GRAVEL).explosionResistance(1f)
             .jumpFactor(0.75f).pushReaction(PushReaction.NORMAL));
@@ -143,25 +160,161 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
     public static final DeferredItem<BlockItem> GROUND_ITEM = ITEMS.registerSimpleBlockItem("sground", GROUND, new Item.Properties().rarity(Rarity.COMMON).stacksTo(99).setNoRepair());
     public static final DeferredBlock<Block> LAVA_HOLDER = BLOCKS.register("lavaholder", () -> new LavaHolderBlock(Block.Properties.of().noOcclusion().instabreak()));
     public static final DeferredItem<BlockItem> LAVA_ITEM = ITEMS.registerSimpleBlockItem("lavaholder", LAVA_HOLDER);
+    public static final DeferredItem<Item> BOW = ITEMS.register("newbow", () -> new BowItem(new Item.Properties().durability(150)));
+    public static final DeferredItem<Item> DAGGER = ITEMS.register("dagger", () -> new SwordItem(Tiers.GOLD, new Item.Properties().attributes(SwordItem.createAttributes(Tiers.IRON, 1, -2.1F)).durability(171)));
+    public static final DeferredItem<Item> THROWABLE = ITEMS.register("throwable", () -> new ThrownItem(new Item.Properties().rarity(Rarity.EPIC).durability(250).attributes(TridentItem.createAttributes()).component(DataComponents.TOOL, TridentItem.createToolProperties())));
+    public static final DeferredItem<Item> PHANTOM_HELM = ITEMS.register("phantom_helm", () -> new ArmorItem(ModArmorMaterials.PHANTOM, ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(55))));
+    public static final DeferredItem<Item> FERMENTED_GLOWSTONE = ITEMS.registerSimpleItem("fermented_glowstone", new Item.Properties().rarity(Rarity.COMMON).stacksTo(64).fireResistant());
+    public static final DeferredItem<Item> PHANTOM_CHESTPLATE = ITEMS.register("phantom_chestplate", () -> new ArmorItem(ModArmorMaterials.PHANTOM, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(155))));
+    public static final DeferredItem<Item> PHANTOM_BOOTS = ITEMS.register("phantom_boots", () -> new ArmorItem(ModArmorMaterials.PHANTOM, ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(85))));
+    public static final DeferredItem<Item> PHANTOM_LEGGINGS = ITEMS.register("phantom_leggings", () -> new ArmorItem(ModArmorMaterials.PHANTOM, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(115))));
+    public static final DeferredItem<Item> PHANTOM_INGOT = ITEMS.register("phantom_ingot", () -> new Item(new Item.Properties().stacksTo(32).rarity(Rarity.RARE)));
+    public static final DeferredItem<Item> PHANTOM_SWORD = ITEMS.register("phantom_sword", () -> new SwordItem(ModToolTiers.PHANTOM, new Item.Properties().attributes(SwordItem.createAttributes(Tiers.IRON, 2, -2.3F)).durability(175)));
+    public static final DeferredItem<Item> PHANTOM_AXE = ITEMS.register("phantom_axe", () -> new AxeItem(ModToolTiers.PHANTOM, new Item.Properties().attributes(AxeItem.createAttributes(ModToolTiers.PHANTOM, 9.5F, -2.9F)).durability(100)));
+    public static final DeferredItem<Item> PHANTOM_HOE = ITEMS.register("phantom_hoe", () -> new HoeItem(ModToolTiers.PHANTOM, new Item.Properties().attributes(HoeItem.createAttributes(ModToolTiers.PHANTOM, 2.5F, -3.2F))));
+    public static final DeferredBlock<Block> PHANTOM_BLOCK = BLOCKS.register("phantom_block", () -> new PhantomBlock(BlockBehaviour.Properties.of().strength(15f).explosionResistance(5f).lightLevel(p_187433_ -> 6).noOcclusion().noTerrainParticles()));
+    public static final DeferredItem<BlockItem> PHANTOM_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("phantom_block", PHANTOM_BLOCK);
+    public static final DeferredBlock<DoorBlock> BLOODWOOD_DOOR = BLOCKS.register("bloodwood_door",
+            () -> new DoorBlock(BlockSetType.ACACIA, BlockBehaviour.Properties.of().strength(2f).requiresCorrectToolForDrops().explosionResistance(4f).noOcclusion().ignitedByLava()));
+    public static final DeferredItem<BlockItem> BLOODWOOD_DOOR_ITEM = ITEMS.registerSimpleBlockItem("bloodwood_door", BLOODWOOD_DOOR);
+    public static final DeferredItem<Item> GECKO_SPAWN_EGG = ITEMS.register("gecko_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.GECKO, 16579584, 0xffac00,
+                    new Item.Properties().stacksTo(64)));
+    public static final DeferredItem<Item> LPHANTOM_SPAWN_EGG = ITEMS.register("cave_phantom_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.LEGGED_PHANTOM, 0x38bfaf, 0x78bfaf,
+                    new Item.Properties().stacksTo(64)));
+    public static final DeferredBlock<ButtonBlock> BLOODWOOD_BUTTON = BLOCKS.register("bloodwood_button", () -> new ButtonBlock(BlockSetType.ACACIA, 1, BlockBehaviour.Properties.of().strength(1f).requiresCorrectToolForDrops().explosionResistance(1f).noOcclusion().ignitedByLava()));
+    public static final DeferredItem<BlockItem> BLOODWOOD_BUTTON_ITEM = ITEMS.registerSimpleBlockItem("bloodwood_button", BLOODWOOD_BUTTON);
+    public static final DeferredItem<Item> TRADER_SPAWN_EGG = ITEMS.register("trader_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.TRADER,0x78bfaf , 0,
+                    new Item.Properties().stacksTo(64)));
+    public static final DeferredBlock<Block> INSTANT_BOOM = BLOCKS.register("instant_boom", () -> new BoomBlock(BlockBehaviour.Properties.of().noOcclusion().destroyTime(1f).ignitedByLava().noLootTable()));
+    public static final DeferredItem<BlockItem> INSTANTBOOM_ITEM = ITEMS.registerSimpleBlockItem("instant_boom", INSTANT_BOOM);
+    public static final DeferredItem<Item> RADIATION_STAFF = ITEMS.register("tnt_staff", () -> new RadiationStaffItem(new Item.Properties().rarity(Rarity.RARE).stacksTo(1).durability(100)));
+    public static final DeferredItem<Item> RADIUM_INGOT = ITEMS.registerSimpleItem("radium_ingot");
+    public static final DeferredBlock<Block> RADIUM_ORE = BLOCKS.register("radium_ore", () -> new DropExperienceBlock(UniformInt.of(1,2),BlockBehaviour.Properties.of().explosionResistance(7f).strength(6f)));
+    public static final DeferredItem<BlockItem> RADIUM_ORE_ITEM = ITEMS.registerSimpleBlockItem("radium_ore", RADIUM_ORE);
+    public static final DeferredItem<Item> STRANGE_ARROW = ITEMS.register("mysterious_arrow", () -> new Throwable(new Item.Properties().durability(85)));
+    public static final DeferredItem<Item> RAW_RADIUM = ITEMS.registerSimpleItem("raw_radium");
+    public static final DeferredItem<Item> PHANTOM_SHOVEL = ITEMS.register("phantom_shovel", () -> new ShovelItem(ModToolTiers.PHANTOM, new Item.Properties().attributes(ShovelItem.createAttributes(ModToolTiers.PHANTOM, 1.5F, -3.0F))));
+    public static final DeferredBlock<Block> DARK_PORTAL = BLOCKS.register("dark_portal", () -> new DarkPortalBlock(BlockBehaviour.Properties.of().noLootTable().noOcclusion().instabreak().noCollission().randomTicks().lightLevel(p_187433_ -> 15)));
+    public static final DeferredItem<BlockItem> PORTAL_ITEM = ITEMS.registerSimpleBlockItem("dark_portal", DARK_PORTAL);
+    public static final DeferredItem<Item> MELON_JUICE_HALF_EMPTY = ITEMS.register("melon_juice_half", ()-> new DrinkBottle(new Item.Properties().stacksTo(1).rarity(Rarity.COMMON).food(new FoodProperties.Builder().nutrition(2).saturationModifier(4)
+            .usingConvertsTo(Items.GLASS_BOTTLE).build())));
+    public static final DeferredItem<Item> FERMENTED_MELON_JUICE_HALF = ITEMS.register("fermented_melon_juice_half", ()-> new DrinkBottle(new Item.Properties().stacksTo(1).rarity(Rarity.COMMON).food(new FoodProperties.Builder().nutrition(1).saturationModifier(5)
+            .usingConvertsTo(Items.GLASS_BOTTLE).effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 593), 0.5f).effect(() -> new MobEffectInstance(MobEffects.WEAKNESS, 593), 0.5f).effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 1250), 0.65f).build())));
+    public static final DeferredItem<Item> MELON_JUICE = ITEMS.register("melon_juice", ()-> new DrinkBottle(new Item.Properties().stacksTo(1).rarity(Rarity.COMMON).food(new FoodProperties.Builder().nutrition(2).saturationModifier(3)
+            .usingConvertsTo(ExploMod.MELON_JUICE_HALF_EMPTY.get()).build())));
+    public static final DeferredItem<Item> FERMENTED_MELON_JUICE = ITEMS.register("fermented_melon_juice", ()-> new DrinkBottle(new Item.Properties().stacksTo(1).rarity(Rarity.COMMON).food(new FoodProperties.Builder().nutrition(1).saturationModifier(4)
+            .usingConvertsTo(ExploMod.FERMENTED_MELON_JUICE_HALF.get()).effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 5000), 0.5f).effect(() -> new MobEffectInstance(MobEffects.WEAKNESS, 3000), 0.5f).effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 1000), 0.35f).build())));
+    public static final DeferredItem<Item> STORM_BERRY_ROLL = ITEMS.register("stormberry_roll", () -> new StormBerryRoll(new Item.Properties().rarity(Rarity.RARE).food(new FoodProperties.Builder().nutrition(5).saturationModifier(1).build()).component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)));
+    public static final DeferredItem<Item> STORM_BERRY = ITEMS.register("storm_berry", () -> new Item(new Item.Properties().rarity(Rarity.COMMON).food(new FoodProperties.Builder().nutrition(1).effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 300), 0.5f).effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 600), 0.5f).effect(() -> new MobEffectInstance(MobEffects.POISON, 3000), 0.999f).saturationModifier(0f).build())));
+    public static final DeferredItem<Item> STORMBERRY_COOKIE = ITEMS.register("stormberry_cookie", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.15f).build())));
+    public static final DeferredItem<Item> STORMBERRY_PIE = ITEMS.register("stormberry_pie", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(6).saturationModifier(0.3f).build())));
+    public static final DeferredItem<Item> APPLE_PIE = ITEMS.register("apple_pie", () -> new ShieldDisabler(new Item.Properties().food(new FoodProperties.Builder().nutrition(6).saturationModifier(0.3f).build())));
+    public static final DeferredBlock<Block> STORMBERRY_CAKE = BLOCKS.register("stormberry_cake", () -> new CakeBlock(BlockBehaviour.Properties.of().forceSolidOn().strength(0.5F).sound(SoundType.WOOL).pushReaction(PushReaction.DESTROY)));
+    public static final DeferredItem<BlockItem> STORM_BERRY_CAKE = ITEMS.registerSimpleBlockItem("stormberry_cake", STORMBERRY_CAKE);
+    public static final DeferredItem<Item> MAGIC_RADIATION_STAFF = ITEMS.register("radiation_staff", () -> new MagicRadiationStaffItem(new Item.Properties().rarity(Rarity.RARE).durability(50)));
+    public static final DeferredItem<Item> PHANTOM_PICKAXE = ITEMS.register("phantom_pickaxe", () -> new PickaxeItem(ModToolTiers.PHANTOM, new Item.Properties().attributes(PickaxeItem.createAttributes(ModToolTiers.PHANTOM, 1.0F, -2.8F))));
+    public static final DeferredItem<Item> RED_SNOWBALL = ITEMS.register("red_snowball", () -> new SnowballItem(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> WHITE_SNOWBALL = ITEMS.register("white_snowball", () -> new SnowballItem(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> GREEN_SNOWBALL = ITEMS.register("green_snowball", () -> new SnowballItem(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> LIGHT_BLUE_SNOWBALL = ITEMS.register("light_blue_snowball", () -> new SnowballItem(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> BLUE_SNOWBALL = ITEMS.register("blue_snowball", () -> new SnowballItem(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> YELLOW_SNOWBALL = ITEMS.register("yellow_snowball", () -> new SnowballItem(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> ORANGE_SNOWBALL = ITEMS.register("orange_snowball", () -> new SnowballItem(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> BLACK_SNOWBALL = ITEMS.register("black_snowball", () -> new SnowballItem(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> BROWN_SNOWBALL = ITEMS.register("brown_snowball", () -> new SnowballItem(new Item.Properties().stacksTo(16)));
+    public static final DeferredBlock<Block> STORMBERRY_BUSH = BLOCKS.register("stormberry_bush", () -> new StormBerryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)));
+    public static final DeferredItem<Item> RAPIER_OF_NINE_LIVES = ITEMS.register("rapier_of_nine_lives", () -> new RapierOfNineLivesItem(ModToolTiers.RAPIER, new Item.Properties().attributes(SwordItem.createAttributes(ModToolTiers.RAPIER, 2, -2.3F)).rarity(Rarity.RARE)));
+    public static final DeferredBlock<Block> BLOODWOOD_SAPLING = BLOCKS.register("bloodwood_sapling",
+            () -> new SaplingBlock(ModTreeGrower.BLOODWOOD, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+    public static final DeferredItem<BlockItem> BLOOD_WOOD_SAPLING = ITEMS.registerSimpleBlockItem("bloodwood_sapling", BLOODWOOD_SAPLING);
+    public static final DeferredItem<BlockItem> STORM_BERRY_BUSH = ITEMS.registerSimpleBlockItem("stormberry_bush", STORMBERRY_BUSH);
+    public static final DeferredItem<Item> RADIUM_FIRESTARTER = ITEMS.register("radium_firestarter", () -> new FlintAndSteelItem(new Item.Properties().durability(500)));
+    public static final DeferredItem<Item> RADIUM_NUGGET = ITEMS.registerSimpleItem("radium_nugget");
+    public static final DeferredBlock<Block> FLOWERED_LEAVES = BLOCKS.register("flowering_oak_leaves", () -> new LeavesBlock(BlockBehaviour.Properties.of().ignitedByLava().destroyTime(0.5f).noOcclusion().randomTicks()));
+    public static final DeferredItem<BlockItem> FLOWERING_OAK_LEAVES = ITEMS.registerSimpleBlockItem("flowering_oak_leaves", FLOWERED_LEAVES);
+    public static final DeferredBlock<Block> WINTER_OAK_SAPLING = BLOCKS.register("winter_oak_sapling", () -> new SaplingBlock(ModTreeGrower.WINTER_OAK, BlockBehaviour.Properties.of().instabreak().noCollission()));
+    public static final DeferredItem<BlockItem> WINTEROAK_SAPLING = ITEMS.registerSimpleBlockItem("winter_oak_sapling", WINTER_OAK_SAPLING);
+    public static final DeferredItem<Item> GRASS_GOLEM_SPAWN_EGG = ITEMS.register("grass_golem_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.GRASS_GOLEM,0x78bfaf , 894731,
+                    new Item.Properties().stacksTo(64)));
+    public static final DeferredItem<Item> HEALTH_INCREASER = ITEMS.register("health_boost", () -> new HeartGiverItem(new Item.Properties().rarity(Rarity.EPIC).stacksTo(1).fireResistant()));
+    public static final DeferredBlock<Block> DENSE_GRASS = BLOCKS.registerSimpleBlock("dense_grass");
+    public static final DeferredItem<BlockItem> DENSEGRASS = ITEMS.registerSimpleBlockItem("dense_grass", DENSE_GRASS);
+    public static final DeferredItem<Item> DASH_SWORD = ITEMS.register("dash_sword", () -> new DashSwordItem(Tiers.IRON, new Item.Properties().durability(5).attributes(SwordItem.createAttributes(Tiers.IRON, 3, -2.4F))));
+    public static final DeferredItem<Item> HARBINGER = ITEMS.register("harbinger", () -> new SightedCrossBow(new Item.Properties().durability(320).rarity(Rarity.UNCOMMON)));
+    public static final DeferredBlock<Block> AIR = BLOCKS.register("glowing_air", () -> new TimeOutAirBlock(BlockBehaviour.Properties.of()
+            .replaceable().randomTicks().noCollission().lightLevel(p_187433_ -> 11).noLootTable().air()));
+    public static final DeferredBlock<Block> GLOWBERRY_BUSH = BLOCKS.register("glowberry_bush", () -> new GlowBerryBushBlock(Items.GLOW_BERRIES, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).randomTicks().noCollission().sound(SoundType.SWEET_BERRY_BUSH).pushReaction(PushReaction.DESTROY)
+            .lightLevel(state -> state.getValue(GlowBerryBushBlock.GLOWING)? 12 : 1)));
+    public static final DeferredBlock<Block> CRATE = BLOCKS.register("crate", () -> new EggBasketBlock(BlockBehaviour.Properties.of().noOcclusion().destroyTime(2f)));
+    public static final DeferredItem<BlockItem> CRATE_ITEM = ITEMS.registerSimpleBlockItem("crate", CRATE);
+    public static final DeferredBlock<Block> EMPTY_CRATE = BLOCKS.register("empty_crate", () -> new CrateBlock(BlockBehaviour.Properties.of().noOcclusion().destroyTime(1.5f)));
+    public static final DeferredItem<BlockItem> EMPTY_CRATE_ITEM = ITEMS.registerSimpleBlockItem("empty_crate", EMPTY_CRATE);
+    public static final DeferredBlock<Block> CANE_CRATE = BLOCKS.register("sugar_cane_crate", () -> new SugarCaneCrateBlock(BlockBehaviour.Properties.of().noOcclusion().destroyTime(1.5f)));
+    public static final DeferredItem<BlockItem> CANE_CRATE_ITEM = ITEMS.registerSimpleBlockItem("sugar_cane_crate", CANE_CRATE);
 
 
-
-
-
-//replace item on use causes error
-    // Creates a creative tab with the id "explomod:example_tab" for the example item, that is placed after the combat tab
+    //creative tabs
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
-            .title(Component.translatable("itemGroup.explomod.new")) //The language key for the title of your CreativeModeTab
+            .title(Component.translatable("itemGroup.explomod.new")) //The language key
             .withTabsBefore(CreativeModeTabs.BUILDING_BLOCKS)
             .icon(() -> NEW.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
-                output.accept(EXAMPLE_ITEM.get()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
+                output.accept(EXAMPLE_ITEM.get()); // Add the example com.example.explomod.item to the tab
                 output.accept(EXAMPLE_BLOCK_ITEM.get());
+                output.accept(INSTANTBOOM_ITEM.get());
+                output.accept(PORTAL_ITEM.get());
+                output.accept(CANE_CRATE_ITEM.get());
+                output.accept(FERMENTED_GLOWSTONE.get());
+                output.accept(EMPTY_CRATE_ITEM.get());
+                output.accept(CRATE_ITEM.get());
+                output.accept(HARBINGER);
+                output.accept(WINTEROAK_SAPLING.get());
+                output.accept(FLOWERING_OAK_LEAVES.get());
+                output.accept(GRASS_GOLEM_SPAWN_EGG.get());
+                output.accept(RAPIER_OF_NINE_LIVES.get());
+                output.accept(DENSEGRASS.get());
+                output.accept(RADIUM_NUGGET.get());
+                output.accept(BLOOD_WOOD_SAPLING.get());
+                output.accept(STORM_BERRY_BUSH.get());
+                output.accept(STORMBERRY_COOKIE.get());
+                output.accept(MAGIC_RADIATION_STAFF.get());
+                output.accept(STORMBERRY_PIE.get());
+                output.accept(APPLE_PIE.get());
+                output.accept(STORM_BERRY_ROLL.get());
+                output.accept(FERMENTED_MELON_JUICE.get());
+                output.accept(MELON_JUICE.get());
+                output.accept(TRADER_SPAWN_EGG.get());
+                output.accept(PHANTOM_HELM.get());
+                output.accept(PHANTOM_INGOT.get());
+                output.accept(STRANGE_ARROW.get());
+                output.accept(LPHANTOM_SPAWN_EGG.get());
+                output.accept(GECKO_SPAWN_EGG.get());
+                output.accept(BLOODWOOD_BUTTON_ITEM.get());
+                output.accept(STORM_BERRY.get());
+                output.accept(BLOODWOOD_DOOR_ITEM.get());
+                output.accept(RADIATION_STAFF.get());
+                output.accept(PHANTOM_HOE.get());
                 output.accept(TABLE_ITEM.get());
                 output.accept(LOG_BLOCK_ITEM.get());
+                output.accept(PHANTOM_BLOCK_ITEM.get());
+                output.accept(PHANTOM_SHOVEL.get());
+                output.accept(DAGGER.get());
                 output.accept(STOOL_ITEM.get());
+                output.accept(PHANTOM_AXE.get());
+                output.accept(PHANTOM_BOOTS.get());
+                output.accept(PHANTOM_SWORD.get());
+                output.accept(PHANTOM_LEGGINGS.get());
+                output.accept(PHANTOM_PICKAXE.get());
+                output.accept(THROWABLE.get());
+                output.accept(PHANTOM_CHESTPLATE.get());
                 output.accept(GREEN_POPSICLE.get());
+                output.accept(BOW.get());
                 output.accept(WEAPON_ITEM.get());
+                output.accept(RADIUM_FIRESTARTER.get());
                 output.accept(FUEL.get());
                 output.accept(LAMP_ITEM.get());
                 output.accept(REDTRAV_ITEM.get());
@@ -175,19 +328,22 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
                 output.accept(YELLOW_POPSICLE.get());
                 output.accept(POPSICLE_FOOD.get());
                 output.accept(STONED_ITEM.get());
+                output.accept(DAGGER.get());
                 output.accept(BLUE_POPSICLE.get());
                 output.accept(HEART_FOOD.get());
             }).build());
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> FOOD_TAB = CREATIVE_MODE_TABS.register("food_tab", () -> CreativeModeTab.builder()
-            .title(Component.translatable("itemGroup.explomod.custom")) //The language key for the title of your CreativeModeTab
-            .withTabsBefore(CreativeModeTabs.FUNCTIONAL_BLOCKS)
-            .icon(() -> EXAMPLE_BLOCK_ITEM.get().getDefaultInstance())
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> RADIUM_TAB = CREATIVE_MODE_TABS.register("radium_tab", () -> CreativeModeTab.builder()
+            .title(Component.translatable("itemGroup.explomod.radium")) //The language key for the title of your CreativeModeTab
+            .withTabsBefore(CreativeModeTabs.COMBAT)
+            .icon(() -> RADIATION_STAFF.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
-                output.accept(EXAMPLE_ITEM.get()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
-                output.accept(EXAMPLE_BLOCK_ITEM.get());
-                output.accept(LOG_BLOCK_ITEM.get());
-                output.accept(REDTRAV_ITEM.get());
-                output.accept(HEART_FOOD.get());
+                output.accept(RADIATION_STAFF.get());
+                output.accept(MAGIC_RADIATION_STAFF.get());
+                output.accept(RADIUM_INGOT.get());
+                output.accept(RADIUM_ORE_ITEM.get());
+                output.accept(RAW_RADIUM.get());
+                output.accept(RADIUM_NUGGET.get());
+                output.accept(RADIUM_FIRESTARTER.get());
             }).build());
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
@@ -195,8 +351,6 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
     public ExploMod(IEventBus modEventBus, ModContainer modContainer) {
         // Register the commonSetup method for mod loading
         modEventBus.addListener(this::commonSetup);
-        ModVillagers.register(modEventBus);
-        ModSounds.register(modEventBus);
         // Register the Deferred Register to the mod event bus so blocks get registered
         BLOCKS.register(modEventBus);
         // Register the Deferred Register to the mod event bus so items get registered
@@ -204,104 +358,103 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
         // Register the Deferred Register to the mod event bus so tabs get registered
         CREATIVE_MODE_TABS.register(modEventBus);
         ModLootModifiers.register(modEventBus);
-
+        ModParticles.register(modEventBus);
+        ModEffects.register(modEventBus);
+        ModVillagers.register(modEventBus);
+        ModSounds.register(modEventBus);
+        ModEntities.register(modEventBus);
+        ModFeature.register(modEventBus);
+        ModPotions.register(modEventBus);
+        ModStructureType.register(modEventBus);
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ExploMod) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
 
-        // Register the item to a creative tab
+        // Register the com.example.explomod.item to a creative tab
         modEventBus.addListener(this::addCreative);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        modContainer.registerConfig(ModConfig.Type.SERVER, Config.SERVER_SPEC);
+
+        this.eventSetup(modEventBus);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
-        // Some common setup code
-        LOGGER.info("HELLO FROM COMMON SETUP");
-
-        if (Config.LOG_DIRT_BLOCK.getAsBoolean()) {
-            LOGGER.info("DIRT BLOCK >> {}", BuiltInRegistries.BLOCK.getKey(Blocks.DIRT));
-        }
-
-        if (Config.BUTTON.getAsBoolean()) {
-            LOGGER.info("The button is on!");
-        }
-
-        LOGGER.info("{}{}", Config.MAGIC_NUMBER_INTRODUCTION.get(), Config.MAGIC_NUMBER.getAsInt());
-
-        Config.ITEM_STRINGS.get().forEach((item) -> LOGGER.info("ITEM >> {}", item));
     }
 
-    // Add the example block item to the building blocks tab
+    public void eventSetup(IEventBus neoBus) {
+        IEventBus bus = NeoForge.EVENT_BUS;
+
+        bus.addListener(AtheriaCommands::registerCommands);
+    }
+
+    // Add the example block com.example.explomod.item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
             event.accept(POPSICLE_FOOD);
             event.accept(YELLOW_POPSICLE);
             event.accept(BLUE_POPSICLE);
+            event.accept(GREEN_POPSICLE);
+            event.accept(STORMBERRY_COOKIE);
+            event.accept(STORM_BERRY_ROLL);
+            event.accept(STORMBERRY_PIE);
+            event.accept(STORM_BERRY_CAKE);
+            event.accept(MELON_JUICE);
+        }
+        if (event.getTabKey() == CreativeModeTabs.COMBAT) {
+            event.accept(RED_SNOWBALL);
+            event.accept(WHITE_SNOWBALL);
+            event.accept(GREEN_SNOWBALL);
+            event.accept(BLUE_SNOWBALL);
+            event.accept(LIGHT_BLUE_SNOWBALL);
+            event.accept(YELLOW_SNOWBALL);
+            event.accept(ORANGE_SNOWBALL);
+            event.accept(BLACK_SNOWBALL);
+            event.accept(BROWN_SNOWBALL, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+        }
+        if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
+            event.accept(GECKO_SPAWN_EGG);
+            event.accept(TRADER_SPAWN_EGG);
+            event.accept(GRASS_GOLEM_SPAWN_EGG);
+            event.accept(LPHANTOM_SPAWN_EGG);
         }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
-        // Do something when the server starts
-        LOGGER.info("HELLO from server starting");
-        ChatLog.codec(6);
-        if(Config.ITEM_STRINGS.get().contains("minecraft:iron_ingot")) {
-            Minecraft.getInstance().gui.getChat().addMessage(Component.keybind("Player Joined"));
-            MinecraftServer server = event.getServer(); // Or ServerLifecycleHooks.getCurrentServer()
-            if (server != null) {
-                int playerCount = server.getPlayerList().getPlayerCount() + 1;
-                List<ServerPlayer> players = server.getPlayerList().getPlayers();
-                System.out.println("Players online: " + playerCount);
-                if (playerCount == 1) {
-                    if (Config.ITEM_STRINGS.get().contains("explomod:kit")) {
-                        Minecraft.getInstance().gui.getChat().addMessage(Component.translatable("text.single"));
-                    } else {
-                        Minecraft.getInstance().gui.getChat().addMessage(Component.nullToEmpty("Total players: " + playerCount));
-                    }
-                } else {
-                    Minecraft.getInstance().gui.getChat().addMessage(Component.nullToEmpty("Total players: " + playerCount));
-                }
-            }
-        }
     }
 
     @SubscribeEvent
     public void OnPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
         if (event.getEntity() instanceof Player player) {
-            player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 34));
-            Minecraft.getInstance().gui.getChat().addRecentChat("Welcome");
+            player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 22));
         }
     }
 
     @SubscribeEvent
     public void onPlayerJoin(EntityJoinLevelEvent event) {
-        if(event.getEntity() instanceof Player player && !event.getLevel().isClientSide()) {
-            if(!player.getPersistentData().getBoolean("started_with_items")) {
-                if(Config.ITEM_STRINGS.get().contains("explomod:sground")){
-            player.getInventory().add(new ItemStack(Items.STICK, 1));
-                player.sendSystemMessage(Component.translatable("message.joining.text"));
-            player.getPersistentData().putBoolean("started_with_items", true);}
-        }
     }
-}
     @SubscribeEvent
     public void addCustomTrades(VillagerTradesEvent event) {
         if(event.getType() == VillagerProfession.MASON) {
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
             trades.get(5).add((entity, randomSource) -> new MerchantOffer(
-                    new ItemCost(Items.EMERALD_BLOCK, 8),
-                    new ItemStack(ExploMod.EXAMPLE_BLOCK.get(), 1), 3, 5, 2.35f));
-            trades.get(2).add((entity, randomSource) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD_BLOCK, 38),
+                    new ItemStack(ExploMod.EXAMPLE_BLOCK.get(), 1), 2, 5, -0.25f));
+            trades.get(5).add((entity, randomSource) -> new MerchantOffer(
                     new ItemCost(Items.EMERALD, 1),
-                    new ItemStack(ExploMod.WEAPON_ITEM.get(), 1), 1, 1, 1.5f));
+                    new ItemStack(ExploMod.WEAPON_ITEM.get(), 1), 1, 1, 0.5f));
             if(Config.ITEM_STRINGS.get().contains("explomod:stoned")){
                 trades.get(1).add((entity, randomSource) -> new MerchantOffer(
                         new ItemCost(Items.EMERALD, 1),
-                        new ItemStack(ExploMod.GROUND_ITEM.get(), 1), 1, 1, 1.5f));
+                        new ItemStack(ExploMod.GROUND_ITEM.get(), 32), 1, 1, 0.5f));
+            } else {
+                trades.get(1).add((entity, randomSource) -> new MerchantOffer(
+                        new ItemCost(Items.EMERALD, 1),
+                        new ItemStack(ExploMod.GROUND_ITEM.get(), 16), 1, 1, 0.5f));
             }
         }if(event.getType() == VillagerProfession.FARMER) {
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
@@ -319,7 +472,6 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
             trades.get(3).add((entity, randomSource) -> new MerchantOffer(
                     new ItemCost(Items.EMERALD, 17),
                     new ItemStack(ExploMod.LOG_BLOCK_ITEM.get(), 1), 1, 1, 8.87f));
-
             if (Config.BUTTON.getAsBoolean()) {
                 trades.get(1).add((entity, randomSource) -> new MerchantOffer(
                         new ItemCost(Items.EMERALD, 32),
@@ -346,11 +498,11 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
 
             if (Config.BUTTON.getAsBoolean()) {
                 trades.get(1).add((entity, randomSource) -> new MerchantOffer(
-                        new ItemCost(Items.EMERALD, 8),
-                        new ItemStack(ExploMod.REDTRAV_ITEM.get(), 1), 1, 1, 8.87f));
-            } else{
-                trades.get(3).add((entity, randomSource) -> new MerchantOffer(
                         new ItemCost(Items.EMERALD, 18),
+                        new ItemStack(ExploMod.REDTRAV_ITEM.get(), 2), 1, 1, 8.87f));
+            } else{
+                trades.get(5).add((entity, randomSource) -> new MerchantOffer(
+                        new ItemCost(Items.EMERALD, 11),
                         new ItemStack(ExploMod.REDTRAV_ITEM.get(), 1), 1, 1, 8.87f));
             }
 
@@ -383,5 +535,24 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
         rareTrades.add((entity, randomSource) -> new MerchantOffer(
                 new ItemCost(Items.EMERALD, 1),
                 new ItemStack(Items.ARROW, 3), 3, 3, 0.81f));
+    }
+    @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    public static class ClientModEvents {
+        @SubscribeEvent
+        public static void onClientSetup(FMLClientSetupEvent event) {
+            ModItemProperties.addCustomItemProperties();
+            EntityRenderers.register(ModEntities.GECKO.get(), GeckoRenderer::new);
+            EntityRenderers.register(ModEntities.GRASS_GOLEM.get(), GrassGolemRenderer::new);
+            EntityRenderers.register(ModEntities.LEGGED_PHANTOM.get(), PhantomLizardRenderer::new);
+            EntityRenderers.register(ModEntities.TRADER.get(), TraderRenderer::new);
+            EntityRenderers.register(ModEntities.STRANGE_ARROW.get(), StrangeArrowRenderer::new);
+            EntityRenderers.register(ModEntities.BOSS_GRASS_GOLEM.get(), BossGrassGolemRenderer::new);
+            EntityRenderers.register(ModEntities.GLOW_BAT.get(), GlowBatRenderer::new);
+        }
+
+        @SubscribeEvent
+        public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
+            event.registerSpriteSet(ModParticles.SAFETY_PARTICLES.get(), SafteyParticle.Provider::new);
+        }
     }
 }

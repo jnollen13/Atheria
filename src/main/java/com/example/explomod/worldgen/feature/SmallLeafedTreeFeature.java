@@ -1,4 +1,4 @@
-package worldgen.feature;
+package com.example.explomod.worldgen.feature;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;

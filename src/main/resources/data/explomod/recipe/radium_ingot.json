@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.5,
+  "group": "radium_ingot",
+  "ingredient": {
+    "item": "explomod:raw_radium"
+  },
+  "result": {
+    "count": 1,
+    "id": "explomod:radium_ingot"
+  }
+}

@@ -1,4 +1,4 @@
-package worldgen;
+package com.example.explomod.worldgen;
 
 import net.minecraft.world.level.levelgen.placement.*;
 

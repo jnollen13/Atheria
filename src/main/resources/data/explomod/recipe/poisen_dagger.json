@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "combat",
+  "key": {
+    "A": {
+      "item": "explomod:dagger"
+    }
+  },
+  "pattern": [
+    "A ",
+    "  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "explomod:dagger"
+  }
+}

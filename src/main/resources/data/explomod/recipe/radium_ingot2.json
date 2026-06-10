@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.5,
+  "group": "radium_ingot",
+  "ingredient": {
+    "item": "explomod:raw_radium"
+  },
+  "result": {
+    "count": 1,
+    "id": "explomod:radium_ingot"
+  }
+}

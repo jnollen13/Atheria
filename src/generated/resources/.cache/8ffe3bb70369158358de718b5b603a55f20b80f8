@@ -1,0 +1,8 @@
+// 1.21.1	2026-02-10T20:14:29.692043666	Global Loot Modifiers : explomod
+9563af250dc94a3aaa30fbd76d4dc28cb03c689f data/explomod/loot_modifiers/fuel_from_dungeon_chest.json
+b2b2a8ea1c9ba0504d5b864196896d9c803e6248 data/explomod/loot_modifiers/fuel_from_village_chest.json
+da463733f6f9dfda7a3c79e80af699fa5461666d data/explomod/loot_modifiers/longsword_from_chest.json
+0d813c1863427369d4a8c5c0a1e67ca47a167d75 data/explomod/loot_modifiers/nice_stick_to_deepslate_diamond_ore.json
+3785a623189402b6559ffb385d1677772d9082d3 data/explomod/loot_modifiers/popsicle_from_stray.json
+a5f5f8d0be9614280a735cb88aebf9d058bf724e data/explomod/loot_modifiers/stool_from_enderman.json
+73c53850aa3ccb0861ae7bc207f9f0bc8ac9541d data/neoforge/loot_modifiers/global_loot_modifiers.json

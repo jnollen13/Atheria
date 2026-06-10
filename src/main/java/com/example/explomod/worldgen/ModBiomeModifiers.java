@@ -1,4 +1,4 @@
-package worldgen;
+package com.example.explomod.worldgen;
 
 import com.example.explomod.ExploMod;
 import com.example.explomod.entity.ModEntities;
@@ -14,7 +14,7 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.common.world.BiomeModifiers;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
-import utill.ModTags;
+import com.example.explomod.utill.ModTags;
 
 import java.util.List;
 
@@ -41,7 +41,7 @@ public class ModBiomeModifiers {
                 GenerationStep.Decoration.UNDERGROUND_ORES));
 
         context.register(ADD_FOOD_ORE, new BiomeModifiers.AddFeaturesBiomeModifier(
-                biomes.getOrThrow(ModTags.Biomes.IS_KNOWN),
+                biomes.getOrThrow(ModTags.cTags.Biomes.IS_STONE),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.FOOD_ORE_PLACED_KEY)),
                 GenerationStep.Decoration.UNDERGROUND_ORES));
 
@@ -51,7 +51,7 @@ public class ModBiomeModifiers {
                 GenerationStep.Decoration.VEGETAL_DECORATION));
 
         context.register(ADD_TREE_WINTER_OAK, new BiomeModifiers.AddFeaturesBiomeModifier(
-                HolderSet.direct(biomes.getOrThrow(Biomes.DARK_FOREST), biomes.getOrThrow(Biomes.FLOWER_FOREST), biomes.getOrThrow(Biomes.SNOWY_TAIGA)),
+                HolderSet.direct(biomes.getOrThrow(Biomes.JAGGED_PEAKS), biomes.getOrThrow(Biomes.SNOWY_SLOPES), biomes.getOrThrow(Biomes.SNOWY_TAIGA)),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.WINTER_OAK_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
 
@@ -61,7 +61,7 @@ public class ModBiomeModifiers {
                 GenerationStep.Decoration.VEGETAL_DECORATION));
 
         context.register(SPAWN_GRASS_GOLEM, new BiomeModifiers.AddSpawnsBiomeModifier(
-                HolderSet.direct(biomes.getOrThrow(Biomes.LUSH_CAVES), biomes.getOrThrow(Biomes.PLAINS)),
+                HolderSet.direct(biomes.getOrThrow(Biomes.LUSH_CAVES), biomes.getOrThrow(Biomes.PLAINS), biomes.getOrThrow(Biomes.MEADOW)),
                 List.of(new MobSpawnSettings.SpawnerData(ModEntities.GRASS_GOLEM.get(), 1, 1, 5))));
 
         context.register(SPAWN_TRADER, new BiomeModifiers.AddSpawnsBiomeModifier(

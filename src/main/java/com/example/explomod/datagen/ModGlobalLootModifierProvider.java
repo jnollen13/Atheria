@@ -1,4 +1,4 @@
-package datagen;
+package com.example.explomod.datagen;
 
 import com.example.explomod.ExploMod;
 import com.example.explomod.loot.AddItemModifier;

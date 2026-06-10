@@ -1,16 +1,13 @@
 package com.example.explomod;
 
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
+import com.example.explomod.datagen.AtheriaDiemsions;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.event.config.ModConfigEvent;
+import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.ModConfigSpec;
+import org.apache.commons.lang3.tuple.Pair;
 
 // An example config class. This is not required, but it's a good idea to have one to keep your config organized.
 // Demonstrates how to use Neo's config APIs
@@ -43,5 +40,32 @@ public class Config {
 
     private static boolean validateItemName(final Object obj) {
         return obj instanceof String itemName && BuiltInRegistries.ITEM.containsKey(ResourceLocation.parse(itemName));
+    }
+
+    public static class Server {
+        public final ModConfigSpec.ConfigValue<String> portal_destination_dimension_ID;
+        public final ModConfigSpec.ConfigValue<String> portal_return_dimension_ID;
+
+        public Server(ModConfigSpec.Builder builder) {
+            builder.push("Modpack");
+            portal_destination_dimension_ID = builder
+                    .comment("Sets the ID of the dimension that the Aether Portal will send the player to")
+                    .translation("config.aether.server.modpack.portal_destination_dimension_ID")
+                    .define("Sets portal destination dimension", AtheriaDiemsions.AETHER_LEVEL.location().toString());
+            portal_return_dimension_ID = builder
+                    .comment("Sets the ID of the dimension that the Aether Portal will return the player to")
+                    .translation("config.aether.server.modpack.portal_return_dimension_ID")
+                    .define("Sets portal return dimension", Level.OVERWORLD.location().toString());
+            builder.pop();
+        }
+    }
+
+    public static final ModConfigSpec SERVER_SPEC;
+    public static final Server SERVER;
+
+    static {
+        final Pair<Server, ModConfigSpec> serverSpecPair = new ModConfigSpec.Builder().configure(Server::new);
+        SERVER_SPEC = serverSpecPair.getRight();
+        SERVER = serverSpecPair.getLeft();
     }
 }

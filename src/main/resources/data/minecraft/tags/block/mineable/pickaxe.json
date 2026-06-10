@@ -1,8 +1,10 @@
 {
-  "replace": false,
   "values": [
     "explomod:example_block",
-    "explomod:log",
-    "explomod:stoned"
+    "explomod:stoned",
+    "explomod:tank",
+    "explomod:phantom_block",
+    "explomod:radium_ore",
+    "minecraft:stone"
   ]
 }

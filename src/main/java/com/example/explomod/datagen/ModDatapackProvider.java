@@ -1,4 +1,4 @@
-package datagen;
+package com.example.explomod.datagen;
 
 import com.example.explomod.ExploMod;
 import net.minecraft.core.HolderLookup;
@@ -7,9 +7,9 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
-import worldgen.ModBiomeModifiers;
-import worldgen.ModConfiguredFeatures;
-import worldgen.ModPlacedFeatures;
+import com.example.explomod.worldgen.ModBiomeModifiers;
+import com.example.explomod.worldgen.ModConfiguredFeatures;
+import com.example.explomod.worldgen.ModPlacedFeatures;
 
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;

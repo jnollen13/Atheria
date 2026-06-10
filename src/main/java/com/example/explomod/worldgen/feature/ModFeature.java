@@ -1,4 +1,4 @@
-package worldgen.feature;
+package com.example.explomod.worldgen.feature;
 
 import com.example.explomod.ExploMod;
 import net.minecraft.core.registries.BuiltInRegistries;

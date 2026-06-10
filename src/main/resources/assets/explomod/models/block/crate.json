@@ -2,15 +2,15 @@
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "block/crate_top",
-		"2": "block/crate_bottom",
-		"particle": "block/crate_top"
+		"0": "explomod:block/crate_side",
+		"2": "explomod:block/crate_bottom",
+		"particle": "explomod:block/crate_bottom"
 	},
 	"elements": [
 		{
-			"from": [2, 0, 2],
-			"to": [14, 0, 14],
-			"rotation": {"angle": 0, "axis": "y", "origin": [2, 0, 2]},
+			"from": [2, 0.01, 2],
+			"to": [14, 0.01, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [2, 0.01, 2]},
 			"faces": {
 				"north": {"uv": [0, 2, 12, 2], "texture": "#missing"},
 				"east": {"uv": [1, 2, 13, 2], "texture": "#missing"},

@@ -36,15 +36,15 @@ public class AtheriaDimensionSpecialEffects extends DimensionSpecialEffects {
     @OnlyIn(Dist.CLIENT)
     public static class DarkEffects extends DimensionSpecialEffects {
         public DarkEffects() {
-            super(Float.NaN, false, SkyType.END, false, false);
+            super(Float.NaN, false, DimensionSpecialEffects.SkyType.END, false, false);
         }
 
-        public @NotNull Vec3 getBrightnessDependentFogColor(@NotNull Vec3 p_108901_, float p_108902_) {
-            return p_108901_;
+        public @NotNull Vec3 getBrightnessDependentFogColor(Vec3 p_108894_, float p_108895_) {
+            return p_108894_.scale(0.15F);
         }
 
-        public boolean isFoggyAt(int p_108898_, int p_108899_) {
-            return true;
+        public boolean isFoggyAt(int p_108891_, int p_108892_) {
+            return false;
         }
 
         @Nullable

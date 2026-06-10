@@ -1,8 +1,7 @@
-package com.example.explomod.block.custom;
+package com.example.explomod.block.custom.crates;
 
 import com.example.explomod.ExploMod;
 import com.mojang.serialization.MapCodec;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -11,9 +10,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -33,9 +29,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Objects;
-import java.util.function.Consumer;
 
 public class EggBasketBlock extends HorizontalDirectionalBlock {
     public static final MapCodec<EggBasketBlock> CODEC = simpleCodec(EggBasketBlock::new);
@@ -69,15 +62,17 @@ public class EggBasketBlock extends HorizontalDirectionalBlock {
         if(entity instanceof ItemEntity itemEntity) {
             if(itemEntity.getItem().getItem() == Items.EGG) {
                 if(state.getValue(EGGS)<MAX_EGGS) {
-                    itemEntity.setRemoved(Entity.RemovalReason.DISCARDED);
-                    level.setBlock(pos, state.setValue(EGGS, state.getValue(EGGS) + 1), 2);
-                    if(level.isDay()){
-                        entity.setRemainingFireTicks(20);
+                    int i = itemEntity.getItem().getCount();
+                    if(itemEntity.getItem().getCount()+state.getValue(EGGS)>MAX_EGGS){
+                        i=0;int j =state.getValue(EGGS);int b;
+                        if(j<=MAX_EGGS){b=1;}else{b=-1;}
+                        for (int a = state.getValue(EGGS); a != MAX_EGGS; a+=b) {i+=b;j+=b;}
                     }
+                    itemEntity.getItem().setCount(itemEntity.getItem().getCount()-i);
+                    level.setBlock(pos, state.setValue(EGGS, state.getValue(EGGS)+i),2);
                 }
             }
         }
-
         super.stepOn(level, pos, state, entity);
     }
 
@@ -118,7 +113,7 @@ public class EggBasketBlock extends HorizontalDirectionalBlock {
 
     @Override
     public boolean onDestroyedByPlayer(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, boolean willHarvest, @NotNull FluidState fluid) {
-        drop(state, level, pos, player, false);
+        drop(state, level, pos, player, player.getMainHandItem().is(Items.SHEARS));
         return super.onDestroyedByPlayer(state, level, pos, player, willHarvest, fluid);
     }
 

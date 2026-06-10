@@ -1,4 +1,4 @@
-package worldgen;
+package com.example.explomod.worldgen;
 
 import com.example.explomod.ExploMod;
 import com.example.explomod.block.custom.GlowBerryBushBlock;
@@ -24,9 +24,9 @@ import net.minecraft.world.level.levelgen.feature.trunkplacers.GiantTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
-import utill.ModTags;
-import worldgen.feature.ModFeature;
-import worldgen.feature.TwoBlockConfiguration;
+import com.example.explomod.utill.ModTags;
+import com.example.explomod.worldgen.feature.ModFeature;
+import com.example.explomod.worldgen.feature.TwoBlockConfiguration;
 
 import java.util.List;
 
@@ -56,7 +56,7 @@ public class ModConfiguredFeatures {
                 OreConfiguration.target(stoneReplaceables, ExploMod.RADIUM_ORE.get().defaultBlockState()));
 
         List<OreConfiguration.TargetBlockState> stoneFoodOres = List.of(
-                OreConfiguration.target(oreReplaceables, ExploMod.EXAMPLE_BLOCK.get().defaultBlockState()));
+                OreConfiguration.target(stoneReplaceables, ExploMod.EXAMPLE_BLOCK.get().defaultBlockState()));
 
         register(context, FOOD_ORE_KEY, Feature.ORE, new OreConfiguration(stoneFoodOres, 1));
 

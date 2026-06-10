@@ -1,4 +1,4 @@
-package worldgen;
+package com.example.explomod.worldgen;
 
 import com.example.explomod.Config;
 import net.minecraft.core.registries.Registries;

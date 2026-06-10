@@ -1,0 +1,10 @@
+{
+  "type": "explomod:forge",
+  "ingredient": {
+    "item": "explomod:phantom_block"
+  },
+  "result": {
+    "id": "explomod:phantom_ingot",
+    "count": 8
+  }
+}

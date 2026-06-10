@@ -2,6 +2,12 @@
   "values": {
     "explomod:fuel": {
       "burn_time": 450
+    },
+    "explomod:radium_firestarter": {
+      "burn_time": 500
+    },
+    "explomod:storm_berry": {
+      "burn_time": 2
     }
   }
 }

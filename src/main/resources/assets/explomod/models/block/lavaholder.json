@@ -4,7 +4,7 @@
 	"textures": {
 		"0": "explomod:block/bar",
 		"1": "explomod:block/lamp_on",
-		"particle": "block/texture"
+		"particle": "explomod:block/lamp_on"
 	},
 	"elements": [
 		{
@@ -123,5 +123,23 @@
 				"down": {"uv": [1, 0, 2, 14], "texture": "#0"}
 			}
 		}
-	]
+	],
+  "display": {
+    "thirdperson_righthand": {
+      "scale": [0.4, 0.4, 0.4]
+    },
+    "firstperson_righthand": {
+      "scale": [0.42, 0.4, 0.4]
+    },
+    "firstperson_lefthand": {
+      "scale": [0.42, 0.4, 0.4]
+    },
+    "thirdperson_lefthand": {
+      "scale": [0.4, 0.4, 0.4]
+    },
+    "gui": {
+      "rotation": [24, -42, 0],
+      "scale": [0.51, 0.51, 0.51]
+    }
+  }
 }

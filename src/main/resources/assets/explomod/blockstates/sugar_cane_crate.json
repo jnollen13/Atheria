@@ -1,0 +1,243 @@
+{
+  "variants": {
+    "sugar_cane=0,facing=north": {
+      "model": "explomod:block/sbasket"
+    },
+    "sugar_cane=0,facing=east": {
+      "model": "explomod:block/sbasket",
+      "y": 90
+    },
+    "sugar_cane=0,facing=south": {
+      "model": "explomod:block/sbasket",
+      "y": 180
+    },
+    "sugar_cane=0,facing=west": {
+      "model": "explomod:block/sbasket",
+      "y": -90
+    },
+    "sugar_cane=1,facing=north": {
+      "model": "explomod:block/scrate",
+      "y": 0
+    },
+    "sugar_cane=1,facing=east": {
+      "model": "explomod:block/scrate",
+      "y": 90
+    },
+    "sugar_cane=1,facing=south": {
+      "model": "explomod:block/scrate",
+      "y": 180
+    },
+    "sugar_cane=1,facing=west": {
+      "model": "explomod:block/scrate",
+      "y": -90
+    },
+    "sugar_cane=2,facing=north": {
+      "model": "explomod:block/scrate1",
+      "y": 0
+    },
+    "sugar_cane=2,facing=east": {
+      "model": "explomod:block/scrate1",
+      "y": 90
+    },
+    "sugar_cane=2,facing=south": {
+      "model": "explomod:block/scrate1",
+      "y": 180
+    },
+    "sugar_cane=2,facing=west": {
+      "model": "explomod:block/scrate1",
+      "y": -90
+    },
+    "sugar_cane=3,facing=north": {
+      "model": "explomod:block/scrate2",
+      "y": 0
+    },
+    "sugar_cane=3,facing=east": {
+      "model": "explomod:block/scrate2",
+      "y": 90
+    },
+    "sugar_cane=3,facing=south": {
+      "model": "explomod:block/scrate2",
+      "y": 180
+    },
+    "sugar_cane=3,facing=west": {
+      "model": "explomod:block/scrate2",
+      "y": -90
+    },
+    "sugar_cane=4,facing=north": {
+      "model": "explomod:block/scrate3",
+      "y": 0
+    },
+    "sugar_cane=4,facing=east": {
+      "model": "explomod:block/scrate3",
+      "y": 90
+    },
+    "sugar_cane=4,facing=south": {
+      "model": "explomod:block/scrate3",
+      "y": 180
+    },
+    "sugar_cane=4,facing=west": {
+      "model": "explomod:block/scrate3",
+      "y": -90
+    },
+    "sugar_cane=5,facing=north": {
+      "model": "explomod:block/scrate4",
+      "y": 0
+    },
+    "sugar_cane=5,facing=east": {
+      "model": "explomod:block/scrate4",
+      "y": 90
+    },
+    "sugar_cane=5,facing=south": {
+      "model": "explomod:block/scrate4",
+      "y": 180
+    },
+    "sugar_cane=5,facing=west": {
+      "model": "explomod:block/scrate4",
+      "y": -90
+    },
+    "sugar_cane=6,facing=north": {
+      "model": "explomod:block/scrate5",
+      "y": 0
+    },
+    "sugar_cane=6,facing=east": {
+      "model": "explomod:block/scrate5",
+      "y": 90
+    },
+    "sugar_cane=6,facing=south": {
+      "model": "explomod:block/scrate5",
+      "y": 180
+    },
+    "sugar_cane=6,facing=west": {
+      "model": "explomod:block/scrate5",
+      "y": -90
+    },
+    "sugar_cane=7,facing=north": {
+      "model": "explomod:block/scrate6",
+      "y": 0
+    },
+    "sugar_cane=7,facing=east": {
+      "model": "explomod:block/scrate6",
+      "y": 90
+    },
+    "sugar_cane=7,facing=south": {
+      "model": "explomod:block/scrate6",
+      "y": 180
+    },
+    "sugar_cane=7,facing=west": {
+      "model": "explomod:block/scrate6",
+      "y": -90
+    },
+    "sugar_cane=8,facing=north": {
+      "model": "explomod:block/scrate7",
+      "y": 0
+    },
+    "sugar_cane=8,facing=east": {
+      "model": "explomod:block/scrate7",
+      "y": 90
+    },
+    "sugar_cane=8,facing=south": {
+      "model": "explomod:block/scrate7",
+      "y": 180
+    },
+    "sugar_cane=8,facing=west": {
+      "model": "explomod:block/scrate7",
+      "y": -90
+    },
+    "sugar_cane=9,facing=north": {
+      "model": "explomod:block/scrate8",
+      "y": 0
+    },
+    "sugar_cane=9,facing=east": {
+      "model": "explomod:block/scrate8",
+      "y": 90
+    },
+    "sugar_cane=9,facing=south": {
+      "model": "explomod:block/scrate8",
+      "y": 180
+    },
+    "sugar_cane=9,facing=west": {
+      "model": "explomod:block/scrate8",
+      "y": -90
+    },
+    "sugar_cane=10,facing=north": {
+      "model": "explomod:block/scrate9",
+      "y": 0
+    },
+    "sugar_cane=10,facing=east": {
+      "model": "explomod:block/scrate9",
+      "y": 90
+    },
+    "sugar_cane=10,facing=south": {
+      "model": "explomod:block/scrate9",
+      "y": 180
+    },
+    "sugar_cane=10,facing=west": {
+      "model": "explomod:block/scrate9",
+      "y": -90
+    },
+    "sugar_cane=11,facing=north": {
+      "model": "explomod:block/scrate10",
+      "y": 0
+    },
+    "sugar_cane=11,facing=east": {
+      "model": "explomod:block/scrate10",
+      "y": 90
+    },
+    "sugar_cane=11,facing=south": {
+      "model": "explomod:block/scrate10",
+      "y": 180
+    },
+    "sugar_cane=11,facing=west": {
+      "model": "explomod:block/scrate10",
+      "y": -90
+    },
+    "sugar_cane=12,facing=north": {
+      "model": "explomod:block/scrate11",
+      "y": 0
+    },
+    "sugar_cane=12,facing=east": {
+      "model": "explomod:block/scrate11",
+      "y": 90
+    },
+    "sugar_cane=12,facing=south": {
+      "model": "explomod:block/scrate11",
+      "y": 180
+    },
+    "sugar_cane=12,facing=west": {
+      "model": "explomod:block/scrate11",
+      "y": -90
+    },
+    "sugar_cane=13,facing=north": {
+      "model": "explomod:block/scrate12",
+      "y": 0
+    },
+    "sugar_cane=13,facing=east": {
+      "model": "explomod:block/scrate12",
+      "y": 90
+    },
+    "sugar_cane=13,facing=south": {
+      "model": "explomod:block/scrate12",
+      "y": 180
+    },
+    "sugar_cane=13,facing=west": {
+      "model": "explomod:block/scrate12",
+      "y": -90
+    },
+    "sugar_cane=14,facing=north": {
+      "model": "explomod:block/scrate13",
+      "y": 0
+    },
+    "sugar_cane=14,facing=east": {
+      "model": "explomod:block/scrate13",
+      "y": 90
+    },
+    "sugar_cane=14,facing=south": {
+      "model": "explomod:block/scrate13",
+      "y": 180
+    },
+    "sugar_cane=14,facing=west": {
+      "model": "explomod:block/scrate13",
+      "y": -90
+    }
+  }
+}

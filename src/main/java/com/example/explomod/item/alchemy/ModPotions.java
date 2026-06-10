@@ -1,10 +1,9 @@
-package item.alchemy;
+package com.example.explomod.item.alchemy;
 
 import com.example.explomod.ExploMod;
 import com.example.explomod.effect.ModEffects;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.alchemy.Potion;

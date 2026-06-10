@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "explomod:nice_stick"
+    },
+    "B": {
+      "item": "explomod:radium_ingot"
+    },
+    "C": {
+      "item": "explomod:nice_stick"
+    }
+  },
+  "pattern": [
+    "A ",
+    "BC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "explomod:tnt_staff"
+  }
+}

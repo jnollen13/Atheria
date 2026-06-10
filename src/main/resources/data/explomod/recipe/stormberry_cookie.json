@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:wheat"
+    },
+    "A": {
+      "item": "explomod:storm_berry"
+    }
+  },
+  "pattern": [
+    "   ",
+    "BAB",
+    "   "
+  ],
+  "result": {
+    "count": 1,
+    "id": "explomod:stormberry_cookie"
+  }
+}

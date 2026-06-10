@@ -1,8 +1,14 @@
 package com.example.explomod.block.custom.crates;
-import net.minecraft.world.level.block.Block;
 
-public class AppleCrateBlock extends Block {
+import com.example.explomod.block.custom.crates.template.TemplateCrateBlock;
+
+public class AppleCrateBlock extends TemplateCrateBlock {
     public AppleCrateBlock(Properties properties) {
-		super(properties);
+        super(properties);
+    }
+
+    @Override
+    public int getMax() {
+        return 1;
     }
 }

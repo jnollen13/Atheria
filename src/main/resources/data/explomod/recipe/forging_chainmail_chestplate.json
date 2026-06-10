@@ -1,0 +1,10 @@
+{
+  "type": "explomod:forge",
+  "ingredient": {
+    "item": "minecraft:chainmail_chestplate"
+  },
+  "result": {
+    "id": "minecraft:chain",
+    "count": 5
+  }
+}

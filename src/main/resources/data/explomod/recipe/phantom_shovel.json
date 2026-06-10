@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "explomod:phantom_ingot"
+    },
+    "C": {
+      "items": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " B ",
+    " C ",
+    " C "
+  ],
+  "result": {
+    "count": 1,
+    "id": "explomod:phantom_shovel"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "values": [
+    "#c:is_overworld",
+    "#c:is_nether",
+    "#c:is_end",
+    "#explomod:is_dark",
+    "#aether:is_aether"
+  ]
+}

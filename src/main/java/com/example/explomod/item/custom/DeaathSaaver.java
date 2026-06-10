@@ -1,6 +1,5 @@
-package item.custom;
+package com.example.explomod.item.custom;
 
-import com.google.common.eventbus.DeadEvent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 

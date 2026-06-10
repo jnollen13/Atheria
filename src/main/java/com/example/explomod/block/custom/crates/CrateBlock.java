@@ -1,4 +1,4 @@
-package com.example.explomod.block.custom;
+package com.example.explomod.block.custom.crates;
 
 import com.example.explomod.ExploMod;
 import com.mojang.serialization.MapCodec;
@@ -50,6 +50,11 @@ public class CrateBlock extends Block {
             m.consume(1, player);
             o.consume(1, player);
             level.setBlock(pos, Objects.requireNonNull(ExploMod.CRATE.get().getStateForPlacement(new BlockPlaceContext(level, player, InteractionHand.MAIN_HAND, stack, hitResult))), 2);
+            return ItemInteractionResult.SUCCESS;
+        }else if((o.is(Items.SUGAR_CANE)&&m.is(Items.PAPER)||(o.is(Items.PAPER)&&m.is(Items.SUGAR_CANE)))){
+            m.consume(1, player);
+            o.consume(1, player);
+            level.setBlock(pos, Objects.requireNonNull(ExploMod.CANE_CRATE.get().getStateForPlacement(new BlockPlaceContext(level, player, InteractionHand.MAIN_HAND, stack, hitResult))), 2);
             return ItemInteractionResult.SUCCESS;
         }else {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;

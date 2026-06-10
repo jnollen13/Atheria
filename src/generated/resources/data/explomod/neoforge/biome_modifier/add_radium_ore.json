@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_forest",
+  "features": "explomod:radium_ore_placed",
+  "step": "underground_ores"
+}

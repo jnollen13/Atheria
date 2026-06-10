@@ -1,0 +1,10 @@
+{
+  "type": "explomod:forge",
+  "ingredient": {
+    "item": "minecraft:chain"
+  },
+  "result": {
+    "id": "minecraft:iron_nugget",
+    "count": 2
+  }
+}

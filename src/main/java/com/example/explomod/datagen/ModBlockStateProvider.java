@@ -1,8 +1,7 @@
-package datagen;
+package com.example.explomod.datagen;
 
 import com.example.explomod.ExploMod;
 import net.minecraft.data.PackOutput;
-import net.minecraft.world.level.block.ButtonBlock;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;

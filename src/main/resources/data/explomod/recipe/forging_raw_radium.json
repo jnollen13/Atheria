@@ -1,0 +1,10 @@
+{
+  "type": "explomod:forge",
+  "ingredient": {
+    "item": "explomod:raw_radium"
+  },
+  "result": {
+    "id": "explomod:radium_ingot",
+    "count": 7
+  }
+}

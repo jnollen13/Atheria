@@ -1,8 +1,8 @@
-package worldgen.tree;
+package com.example.explomod.worldgen.tree;
 
 import com.example.explomod.ExploMod;
 import net.minecraft.world.level.block.grower.TreeGrower;
-import worldgen.ModConfiguredFeatures;
+import com.example.explomod.worldgen.ModConfiguredFeatures;
 
 import java.util.Optional;
 

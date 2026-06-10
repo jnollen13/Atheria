@@ -1,7 +1,7 @@
 {
   "type": "explomod:forge",
   "ingredient": {
-    "item": "#explomod:tags/item/forge_phantom"
+    "item": "explomod:phantom_shovel"
   },
   "result": {
     "id": "explomod:phantom_ingot",

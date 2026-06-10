@@ -1,4 +1,4 @@
-package worldgen;
+package com.example.explomod.worldgen;
 
 import com.example.explomod.ExploMod;
 import net.minecraft.core.Direction;
@@ -48,10 +48,10 @@ public class ModPlacedFeatures {
         Holder<ConfiguredFeature<?, ?>> holder12 = holdergetter.getOrThrow(CaveFeatures.MOSS_PATCH_CEILING);
 
         register(context, RADIUM_ORE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_RADIUM_ORE_KEY),
-                AetheriaOrePlacement.commonOrePlacement(12, HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(80))));
+                AetheriaOrePlacement.commonOrePlacement(10, HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(80))));
 
         register(context, FOOD_ORE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.FOOD_ORE_KEY),
-                AetheriaOrePlacement.commonOrePlacement(1, HeightRangePlacement.triangle(VerticalAnchor.absolute(-128), VerticalAnchor.absolute(320))));
+                AetheriaOrePlacement.rareOrePlacement(100, HeightRangePlacement.triangle(VerticalAnchor.absolute(-128), VerticalAnchor.absolute(320))));
 
         register(context, BLOODWOOD_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.BLOODWOOD_KEY),
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(3, 0.1f, 2),
@@ -107,7 +107,7 @@ public class ModPlacedFeatures {
                         BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BiomeFilter.biome());
 
         PlacementUtils.register(context, GLOWBERRY_BUSH_PLACED, configuredFeatures.getOrThrow(ModConfiguredFeatures.GLOWBERRY_BUSH_KEY),
-                CountPlacement.of(8), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                CountPlacement.of(4), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.matchesBlocks(Blocks.GRASS_BLOCK, Blocks.MOSS_BLOCK, Blocks.DIRT),
                         BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(1)), BiomeFilter.biome());
 

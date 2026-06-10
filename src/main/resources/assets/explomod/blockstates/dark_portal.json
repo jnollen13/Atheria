@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "explomod:block/dark_portal_ns"
+    },
+    "axis=z": {
+      "model": "explomod:block/dark_portal_ew"
+    }
+  }
+}

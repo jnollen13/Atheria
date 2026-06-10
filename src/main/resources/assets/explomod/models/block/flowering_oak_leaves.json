@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "explomod:block/flowering_oak_leaves"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "anvil_cost": 2,
+  "description": {
+    "translate": "enchantment.minecraft.freezing"
+  },
+  "effects": {
+    "minecraft:damage": [
+      {
+        "effect": {
+          "type": "minecraft:add",
+          "value": {
+            "type": "minecraft:linear",
+            "base": 0.5,
+            "per_level_above_first": 2.5
+          }
+        }
+      }
+    ],
+    "minecraft:post_attack": [
+      {
+        "affected": "victim",
+        "effect": {
+          "type": "minecraft:apply_mob_effect",
+          "max_amplifier": 6.0,
+          "max_duration": {
+            "type": "minecraft:linear",
+            "base": 3.5,
+            "per_level_above_first": 1.5
+          },
+          "min_amplifier": 2.0,
+          "min_duration": 3.0,
+          "to_apply": "minecraft:slowness"
+        },
+        "enchanted": "attacker",
+        "requirements": {
+          "condition": "minecraft:all_of",
+          "terms": [
+            {
+              "condition": "minecraft:damage_source_properties",
+              "predicate": {
+                "is_direct": true
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "exclusive_set": "#minecraft:exclusive_set/damage",
+  "max_cost": {
+    "base": 25,
+    "per_level_above_first": 8
+  },
+  "max_level": 3,
+  "min_cost": {
+    "base": 5,
+    "per_level_above_first": 7
+  },
+  "primary_items": "explomod:throwable",
+  "slots": [
+    "mainhand"
+  ],
+  "supported_items": "explomod:throwable",
+  "weight": 5
+}

@@ -1,0 +1,23 @@
+{
+  "display": "explomod:redtrav",
+  "settings": {
+    "biome": "minecraft:plains",
+    "features": true,
+    "lakes": false,
+    "layers": [
+      {
+        "block": "minecraft:bedrock",
+        "height": 1
+      },
+      {
+        "block": "minecraft:dirt",
+        "height": 2
+      },
+      {
+        "block": "explomod:redtrav",
+        "height": 1
+      }
+    ],
+    "structure_overrides": "minecraft:villages"
+  }
+}

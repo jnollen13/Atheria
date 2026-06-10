@@ -1,0 +1,17 @@
+{
+  "type": "explomod:two_block",
+  "config": {
+    "to_place": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:cobweb"
+      }
+    },
+    "top": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:cobweb"
+      }
+    }
+  }
+}

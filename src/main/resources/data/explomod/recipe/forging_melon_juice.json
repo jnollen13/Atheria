@@ -1,0 +1,10 @@
+{
+  "type": "explomod:forge",
+  "ingredient": {
+    "item": "explomod:melon_juice"
+  },
+  "result": {
+    "id": "explomod:fermented_melon_juice",
+    "count": 1
+  }
+}

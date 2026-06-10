@@ -3,10 +3,11 @@
     "air": [
       "minecraft:cave",
       "minecraft:cave_extra_underground",
-      "minecraft:canyon"
+      "minecraft:canyon",
+      "explomod:mini_cave"
     ]
   },
-  "downfall": 0.4,
+  "downfall": 0.93,
   "effects": {
     "fog_color": 12638463,
     "mood_sound": {
@@ -19,19 +20,18 @@
       "max_delay": 24000,
       "min_delay": 12000,
       "replace_current_music": false,
-      "sound": "minecraft:music.overworld.dripstone_caves"
+      "sound": "minecraft:music.overworld.forest"
     },
-    "sky_color": 7907327,
+    "sky_color": 7254527,
     "water_color": 4159204,
     "water_fog_color": 329011
   },
   "features": [
     [],
-    [
-      "minecraft:lake_lava_underground",
-      "minecraft:lake_lava_surface"
-    ],
     [],
+    [
+      "minecraft:amethyst_geode"
+    ],
     [
       "minecraft:monster_room",
       "minecraft:monster_room_deep"
@@ -40,48 +40,23 @@
     [],
     [
       "minecraft:ore_dirt",
-      "minecraft:ore_granite_upper",
-      "minecraft:ore_granite_lower",
-      "minecraft:ore_diorite_upper",
-      "minecraft:ore_diorite_lower",
-      "minecraft:ore_andesite_upper",
-      "minecraft:ore_andesite_lower",
-      "minecraft:ore_tuff",
-      "minecraft:ore_coal_upper",
-      "minecraft:ore_coal_lower",
-      "minecraft:ore_iron_upper",
-      "minecraft:ore_iron_middle",
-      "minecraft:ore_iron_small",
-      "minecraft:ore_gold",
-      "minecraft:ore_gold_lower",
-      "minecraft:ore_redstone",
-      "minecraft:ore_redstone_lower",
-      "minecraft:ore_diamond",
-      "minecraft:ore_diamond_medium",
-      "minecraft:ore_diamond_large",
-      "minecraft:ore_diamond_buried",
-      "minecraft:ore_lapis",
-      "minecraft:ore_lapis_buried",
-      "minecraft:ore_copper_large",
-      "minecraft:underwater_magma",
-      "minecraft:disk_sand",
-      "minecraft:disk_clay",
-      "minecraft:disk_gravel"
+      "explomod:radium_ore_placed",
+      "minecraft:underwater_magma"
     ],
     [
-      "minecraft:pointed_dripstone"
+      "minecraft:pointed_dripstone",
+      "explomod:veg1_placed",
+      "explomod:sveg1_placed",
+      "explomod:web1_placed",
+      "explomod:web2_placed"
     ],
     [
-      "minecraft:spring_water",
-      "minecraft:spring_lava"
+      "minecraft:spring_water"
     ],
     [
       "minecraft:glow_lichen",
-      "minecraft:patch_tall_grass_2",
-      "minecraft:trees_plains",
-      "minecraft:flower_plains",
-      "minecraft:patch_grass_plain",
-      "minecraft:red_mushroom_normal"
+      "minecraft:cave_vines",
+      "explomod:lush_caves_ceiling_vegetation"
     ],
     [
       "minecraft:freeze_top_layer"
@@ -93,9 +68,15 @@
     "ambient": [
       {
         "type": "minecraft:bat",
-        "maxCount": 10,
-        "minCount": 8,
-        "weight": 10
+        "maxCount": 8,
+        "minCount": 4,
+        "weight": 50
+      },
+      {
+        "type": "explomod:glow_bat",
+        "maxCount": 8,
+        "minCount": 1,
+        "weight": 100
       }
     ],
     "axolotls": [],
@@ -104,69 +85,39 @@
     "monster": [
       {
         "type": "minecraft:spider",
-        "maxCount": 4,
-        "minCount": 3,
-        "weight": 100
-      },
-      {
-        "type": "minecraft:zombie",
-        "maxCount": 4,
-        "minCount": 4,
-        "weight": 95
-      },
-      {
-        "type": "minecraft:zombie_villager",
-        "maxCount": 1,
-        "minCount": 1,
-        "weight": 5
-      },
-      {
-        "type": "minecraft:skeleton",
-        "maxCount": 4,
-        "minCount": 4,
-        "weight": 100
+        "maxCount": 18,
+        "minCount": 5,
+        "weight": 512
       },
       {
         "type": "minecraft:creeper",
-        "maxCount": 4,
-        "minCount": 4,
-        "weight": 100
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 1
       },
       {
         "type": "minecraft:slime",
         "maxCount": 4,
-        "minCount": 4,
-        "weight": 100
-      },
-      {
-        "type": "minecraft:enderman",
-        "maxCount": 4,
         "minCount": 1,
-        "weight": 10
-      },
-      {
-        "type": "minecraft:witch",
-        "maxCount": 1,
-        "minCount": 1,
-        "weight": 4
-      },
-      {
-        "type": "minecraft:drowned",
-        "maxCount": 4,
-        "minCount": 2,
-        "weight": 95
+        "weight": 2
       }
     ],
     "underground_water_creature": [
       {
         "type": "minecraft:glow_squid",
         "maxCount": 6,
-        "minCount": 4,
-        "weight": 10
+        "minCount": 1,
+        "weight": 2
+      },
+      {
+        "type": "explomod:gecko",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 5
       }
     ],
     "water_ambient": [],
     "water_creature": []
   },
-  "temperature": 0.8
+  "temperature": 0.45
 }

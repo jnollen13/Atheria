@@ -1,4 +1,4 @@
-package worldgen;
+package com.example.explomod.worldgen;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.GameRules;

@@ -1,4 +1,4 @@
-package datagen;
+package com.example.explomod.datagen;
 
 import com.example.explomod.entity.ModEntities;
 import com.mojang.datafixers.util.Pair;
@@ -10,9 +10,8 @@ import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.neoforged.fml.common.Mod;
-import worldgen.AtheriaBiomes;
-import worldgen.ModPlacedFeatures;
+import com.example.explomod.worldgen.AtheriaBiomes;
+import com.example.explomod.worldgen.ModPlacedFeatures;
 
 import java.util.List;
 

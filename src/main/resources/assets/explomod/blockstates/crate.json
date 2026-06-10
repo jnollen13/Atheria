@@ -1,0 +1,178 @@
+{
+  "variants": {
+    "eggs=0,facing=north": {
+      "model": "explomod:block/basket"
+    },
+    "eggs=0,facing=east": {
+      "model": "explomod:block/basket",
+      "y": 90
+    },
+    "eggs=0,facing=south": {
+      "model": "explomod:block/basket",
+      "y": 180
+    },
+    "eggs=0,facing=west": {
+      "model": "explomod:block/basket",
+      "y": -90
+    },
+    "eggs=1,facing=north": {
+      "model": "explomod:block/basket1",
+      "y": 0
+    },
+    "eggs=1,facing=east": {
+      "model": "explomod:block/basket1",
+      "y": 90
+    },
+    "eggs=1,facing=south": {
+      "model": "explomod:block/basket1",
+      "y": 180
+    },
+    "eggs=1,facing=west": {
+      "model": "explomod:block/basket1",
+      "y": -90
+    },
+    "eggs=2,facing=north": {
+      "model": "explomod:block/basket2"
+    },
+    "eggs=2,facing=east": {
+      "model": "explomod:block/basket2",
+      "y": 90
+    },
+    "eggs=2,facing=south": {
+      "model": "explomod:block/basket2",
+      "y": 180
+    },
+    "eggs=2,facing=west": {
+      "model": "explomod:block/basket2",
+      "y": -90
+    },
+    "eggs=3,facing=north": {
+      "model": "explomod:block/basket3",
+      "y": 0
+    },
+    "eggs=3,facing=east": {
+      "model": "explomod:block/basket3",
+      "y": 90
+    },
+    "eggs=3,facing=south": {
+      "model": "explomod:block/basket3",
+      "y": 180
+    },
+    "eggs=3,facing=west": {
+      "model": "explomod:block/basket3",
+      "y": -90
+    },
+    "eggs=4,facing=north": {
+      "model": "explomod:block/basket4",
+      "y": 0
+    },
+    "eggs=4,facing=east": {
+      "model": "explomod:block/basket4",
+      "y": 90
+    },
+    "eggs=4,facing=south": {
+      "model": "explomod:block/basket4",
+      "y": 180
+    },
+    "eggs=4,facing=west": {
+      "model": "explomod:block/basket4",
+      "y": -90
+    },
+    "eggs=5,facing=north": {
+      "model": "explomod:block/basket5",
+      "y": 0
+    },
+    "eggs=5,facing=east": {
+      "model": "explomod:block/basket5",
+      "y": 90
+    },
+    "eggs=5,facing=south": {
+      "model": "explomod:block/basket5",
+      "y": 180
+    },
+    "eggs=5,facing=west": {
+      "model": "explomod:block/basket5",
+      "y": -90
+    },
+    "eggs=6,facing=north": {
+      "model": "explomod:block/basket6",
+      "y": 0
+    },
+    "eggs=6,facing=east": {
+      "model": "explomod:block/basket6",
+      "y": 90
+    },
+    "eggs=6,facing=south": {
+      "model": "explomod:block/basket6",
+      "y": 180
+    },
+    "eggs=6,facing=west": {
+      "model": "explomod:block/basket6",
+      "y": -90
+    },
+    "eggs=7,facing=north": {
+      "model": "explomod:block/basket7",
+      "y": 0
+    },
+    "eggs=7,facing=east": {
+      "model": "explomod:block/basket7",
+      "y": 90
+    },
+    "eggs=7,facing=south": {
+      "model": "explomod:block/basket7",
+      "y": 180
+    },
+    "eggs=7,facing=west": {
+      "model": "explomod:block/basket7",
+      "y": -90
+    },
+    "eggs=8,facing=north": {
+      "model": "explomod:block/basket8",
+      "y": 0
+    },
+    "eggs=8,facing=east": {
+      "model": "explomod:block/basket8",
+      "y": 90
+    },
+    "eggs=8,facing=south": {
+      "model": "explomod:block/basket8",
+      "y": 180
+    },
+    "eggs=8,facing=west": {
+      "model": "explomod:block/basket8",
+      "y": -90
+    },
+    "eggs=9,facing=north": {
+      "model": "explomod:block/basket9",
+      "y": 0
+    },
+    "eggs=9,facing=east": {
+      "model": "explomod:block/basket9",
+      "y": 90
+    },
+    "eggs=9,facing=south": {
+      "model": "explomod:block/basket9",
+      "y": 180
+    },
+    "eggs=9,facing=west": {
+      "model": "explomod:block/basket9",
+      "y": -90
+    },
+    "eggs=10,facing=north": {
+      "model": "explomod:block/basket10",
+      "y": 0
+    },
+    "eggs=10,facing=east": {
+      "model": "explomod:block/basket10",
+      "y": 90
+    },
+    "eggs=10,facing=south": {
+      "model": "explomod:block/basket10",
+      "y": 180
+    },
+    "eggs=10,facing=west": {
+      "model": "explomod:block/basket10",
+      "y": -90
+    }
+  }
+}

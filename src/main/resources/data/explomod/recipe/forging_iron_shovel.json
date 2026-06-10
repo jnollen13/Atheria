@@ -1,0 +1,10 @@
+{
+  "type": "explomod:forge",
+  "ingredient": {
+    "item": "minecraft:iron_shovel"
+  },
+  "result": {
+    "id": "explomod:nice_stick",
+    "count": 1
+  }
+}
