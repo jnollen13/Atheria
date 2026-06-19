@@ -1,0 +1,15 @@
+{
+  "name": "explomod:hidden_room",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "explomod:hidden_room",
+        "processors": "minecraft:mossify_70_percent",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

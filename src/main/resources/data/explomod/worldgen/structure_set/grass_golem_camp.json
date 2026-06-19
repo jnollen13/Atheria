@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "explomod:grass_golem_camp",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 38739118,
+    "spacing": 45,
+    "separation": 10,
+    "type": "minecraft:random_spread"
+  }
+}

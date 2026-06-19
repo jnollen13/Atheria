@@ -100,6 +100,19 @@ public class SugarCaneCrateBlock extends HorizontalDirectionalBlock {
         }
     }
 
+    public void nullDrop(BlockState state, Level level, BlockPos pos, Boolean isSheared){
+        if(!state.getValue(CANE).equals(0)) {
+            ItemEntity itementity = new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), Items.SUGAR_CANE.getDefaultInstance().copyWithCount(state.getValue(CANE)));
+            level.addFreshEntity(itementity);
+        }
+        if(isSheared){
+            ItemEntity item1 = new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), Items.SUGAR_CANE.getDefaultInstance());
+            ItemEntity item2 = new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), Items.PAPER.getDefaultInstance());
+            level.addFreshEntity(item1);
+            level.addFreshEntity(item2);
+        }
+    }
+
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         return this.defaultBlockState().setValue(CANE, 0).setValue(FACING, context.getHorizontalDirection().getClockWise(Direction.Axis.Y));
@@ -109,8 +122,7 @@ public class SugarCaneCrateBlock extends HorizontalDirectionalBlock {
         boolean flag = level.hasNeighborSignal(pos) || level.hasNeighborSignal(pos.above())||level.hasNeighborSignal(pos.below());
         if (flag) {
             level.scheduleTick(pos, this, 4);
-            Player player = level.getNearestPlayer(TargetingConditions.DEFAULT, pos.getX(), pos.getY(), pos.getZ());
-            drop(level.getBlockState(pos), level, pos, player,  false);
+            nullDrop(state, level, pos, false);
             level.setBlock(pos, state.getBlock().defaultBlockState().setValue(FACING, state.getValue(FACING)).setValue(CANE, 0), 2);
         }
     }

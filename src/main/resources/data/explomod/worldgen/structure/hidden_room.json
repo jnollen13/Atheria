@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:jigsaw",
+  "biomes": "#c:is_grass",
+  "max_distance_from_center": 20,
+  "project_start_to_heightmap": "OCEAN_FLOOR_WG",
+  "size": 7,
+  "spawn_overrides": {},
+  "start_height": {
+    "absolute": -1
+  },
+  "start_pool": "explomod:hidden_room_top",
+  "step": "surface_structures",
+  "terrain_adaptation": "none",
+  "use_expansion_hack": false
+}

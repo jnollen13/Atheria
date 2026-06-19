@@ -1,0 +1,42 @@
+{
+  "name": "explomod:hallways",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 10,
+      "element": {
+        "location": "explomod:hallway1",
+        "processors": "minecraft:mossify_70_percent",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "explomod:hallway1_chestlit",
+        "processors": "minecraft:mossify_70_percent",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 5,
+      "element": {
+        "location": "explomod:hallway2",
+        "processors": "minecraft:mossify_70_percent",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "explomod:hallway3",
+        "processors": "minecraft:mossify_70_percent",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

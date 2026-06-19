@@ -26,6 +26,5 @@ public class ExploModClient {
     static void onClientSetup(FMLClientSetupEvent event) {
         // Some client setup code
         ExploMod.LOGGER.info("HELLO FROM CLIENT SETUP");
-        ExploMod.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
     }
 }

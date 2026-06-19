@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "explomod:dungeon",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 79425021,
+    "spacing": 45,
+    "separation": 10,
+    "type": "minecraft:random_spread"
+  }
+}

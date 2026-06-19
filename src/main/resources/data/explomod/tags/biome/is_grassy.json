@@ -1,0 +1,11 @@
+{
+  "values": [
+    "explomod:deep_forest",
+    "#c:is_forest",
+    "#c:is_floral",
+    "#c:is_lush",
+    "#c:is_magical",
+    "#c:is_dense_vegetation",
+    "#c:is_grassy_oak"
+  ]
+}

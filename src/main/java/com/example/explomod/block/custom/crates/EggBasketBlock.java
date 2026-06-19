@@ -33,7 +33,7 @@ import org.jetbrains.annotations.NotNull;
 public class EggBasketBlock extends HorizontalDirectionalBlock {
     public static final MapCodec<EggBasketBlock> CODEC = simpleCodec(EggBasketBlock::new);
     public static final int MIN_EGGS = 0;
-    public static final int MAX_EGGS = 8;
+    public static final int MAX_EGGS = 9;
     public static final IntegerProperty EGGS = IntegerProperty.create("eggs", MIN_EGGS, MAX_EGGS);
     private static final VoxelShape FOUR_AABB = Block.box(1.0, 0.0, 1.0, 15.0, 11.0, 15.0);
 

@@ -11,13 +11,14 @@ import com.example.explomod.entity.client.*;
 import com.example.explomod.loot.ModLootModifiers;
 import com.example.explomod.particle.ModParticles;
 import com.example.explomod.particle.SafteyParticle;
-import com.example.explomod.worldgen.structure.ModStructureType;
+import com.example.explomod.utill.ClientProxy;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import com.example.explomod.item.alchemy.ModPotions;
 import com.example.explomod.item.custom.*;
 import com.example.explomod.item.custom.Throwable;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -346,8 +347,10 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
                 output.accept(RADIUM_FIRESTARTER.get());
             }).build());
 
-    // The constructor for the mod class is the first code that is run when your mod is loaded.
-    // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
+
+    // use git add before git commit -m "whatever the commit message is"
+    // after commit use git push
+
     public ExploMod(IEventBus modEventBus, ModContainer modContainer) {
         // Register the commonSetup method for mod loading
         modEventBus.addListener(this::commonSetup);
@@ -365,7 +368,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
         ModEntities.register(modEventBus);
         ModFeature.register(modEventBus);
         ModPotions.register(modEventBus);
-        ModStructureType.register(modEventBus);
+        //ModStructureType.register(modEventBus); structures added through json files
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ExploMod) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
@@ -377,6 +380,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
         modContainer.registerConfig(ModConfig.Type.SERVER, Config.SERVER_SPEC);
+        modContainer.registerConfig(ModConfig.Type.CLIENT, Config.CLIENT_SPEC);
 
         this.eventSetup(modEventBus);
     }
@@ -388,6 +392,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
         IEventBus bus = NeoForge.EVENT_BUS;
 
         bus.addListener(AtheriaCommands::registerCommands);
+        bus.addListener(ClientProxy::registerCommands);
     }
 
     // Add the example block com.example.explomod.item to the building blocks tab
@@ -437,6 +442,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
     @SubscribeEvent
     public void onPlayerJoin(EntityJoinLevelEvent event) {
     }
+
     @SubscribeEvent
     public void addCustomTrades(VillagerTradesEvent event) {
         if(event.getType() == VillagerProfession.MASON) {
@@ -510,6 +516,70 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
                     new ItemCost(Items.EMERALD, 14),
                     new ItemStack(ExploMod.NICE_STICK.get(), 1), 1, 5, 35.85f));
         }
+        // Vendor Trades
+        if(event.getType()==ModVillagers.MODSELLER.value()) {
+            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+
+            // random creators
+            int r8 = RandomSource.create().nextIntBetweenInclusive(0,8);
+            int r6 = RandomSource.create().nextIntBetweenInclusive(0,6);
+            int r4 = RandomSource.create().nextIntBetweenInclusive(0,4);
+            boolean rb = RandomSource.create().nextBoolean();
+
+            // level 1 trades
+            trades.get(1).add((entity, randomSource) -> new MerchantOffer(new ItemCost(Items.EMERALD, 2),
+                    new ItemStack(ExploMod.EMPTY_CRATE_ITEM.asItem(), 1), 5, 1, 0.17f));
+
+            trades.get(1).add((entity, randomSource) -> new MerchantOffer(new ItemCost(Items.EMERALD,3),
+                    new ItemStack(ExploMod.STORMBERRY_COOKIE.get(), 4), 7, 1,0.08f));
+
+            trades.get(1).add((entity, randomSource) -> new MerchantOffer(new ItemCost(Items.SPRUCE_PLANKS, 16),
+                    new ItemStack(Items.EMERALD, 1), 2, 2, 0.35f));
+
+            trades.get(1).add((entity, randomSource) -> new MerchantOffer(new ItemCost(Items.SUGAR, 16+r8),
+                    new ItemStack(Items.EMERALD,1), 4, 2,0.1f));
+
+            if(rb){trades.get(1).add((entity, randomSource) -> new MerchantOffer(new ItemCost(Items.SUGAR_CANE, 14 + r6),
+                    new ItemStack(Items.EMERALD, 1), 4, 2, 0.1f));
+            }else{trades.get(1).add((entity, randomSource) -> new MerchantOffer(new ItemCost(Items.EGG, 14 + r4),
+                    new ItemStack(Items.EMERALD, 1), 4, 2, 0.1f));}
+
+            // level 2 trades
+            if(rb){trades.get(2).add((entity, randomSource) -> new MerchantOffer(new ItemCost(Items.EMERALD, 8),
+                    new ItemStack(ExploMod.CANE_CRATE_ITEM.get(), 1), 1, 2, 0.075f));
+            }else{trades.get(2).add((entity, randomSource) -> new MerchantOffer(new ItemCost(Items.EMERALD, 8),
+                    new ItemStack(ExploMod.CRATE_ITEM.get(), 1), 1, 2, 0.075f));}
+
+            trades.get(2).add((entity, randomSource) -> new MerchantOffer(new ItemCost(Items.EMERALD, 1),
+                    new ItemStack(Items.PAPER, 8), 8, 2, 0.125f));
+
+            trades.get(2).add((entity, randomSource) -> new MerchantOffer(new ItemCost(ExploMod.FERMENTED_GLOWSTONE, 4),
+                    new ItemStack(Items.EMERALD, 1), 4, 3, 0.1f));
+
+            // level 3 trades
+            trades.get(3).add((entity, randomSource) -> new MerchantOffer(new ItemCost(Items.EMERALD, 6),
+                    new ItemStack(ExploMod.PHANTOM_INGOT.get(), 1), 5, 3, 0.15f));
+
+            trades.get(3).add((entity, randomSource) -> new MerchantOffer(new ItemCost(Items.EMERALD, 4),
+                    new ItemStack(ExploMod.POPSICLE_FOOD.get(), 1), 15, 3, 0.1f));
+
+            trades.get(3).add((entity, randomSource) -> new MerchantOffer(new ItemCost(ExploMod.EXAMPLE_BLOCK_ITEM.asItem(),1),
+                    new ItemStack(Items.EMERALD, 4), 10, 4, 0.035f));
+
+            // level 4 trades
+            trades.get(4).add((entity, randomSource) -> new MerchantOffer(new ItemCost(ExploMod.STORM_BERRY.get(),12+r6),
+                    new ItemStack(Items.EMERALD, 1), 10, 5, 0.101255f));
+
+            trades.get(4).add((entity, randomSource) -> new MerchantOffer(new ItemCost(Items.EMERALD,1+r4),
+                    new ItemStack(ExploMod.STORM_BERRY_ROLL.get(), 1), 5, 4, 0.1105f));
+
+            trades.get(4).add((entity, randomSource) -> new MerchantOffer(new ItemCost(Items.EMERALD,1+r4),
+                    new ItemStack(ExploMod.STORMBERRY_PIE.get(), 1), 5, 4, 0.1105f));
+
+            trades.get(4).add((entity, randomSource) -> new MerchantOffer(new ItemCost(Items.EMERALD,1+r4),
+                    new ItemStack(ExploMod.STORM_BERRY_CAKE.get(), 1), 5, 4, 0.1105f));
+        }
+
     }
     @SubscribeEvent
     public void addWanderingTraders(WandererTradesEvent event) {
@@ -518,23 +588,26 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
 
         genericTrades.add((entity, randomSource) -> new MerchantOffer(
                 new ItemCost(Items.EMERALD, 8),
-                new ItemStack(ExploMod.XRAY_BLOCK_ITEM.get(), 1), 3, 3, 5.81f));
+                new ItemStack(ExploMod.XRAY_BLOCK_ITEM.get(), 1), 3, 3, 0.05f));
         genericTrades.add((entity, randomSource) -> new MerchantOffer(
                 new ItemCost(Items.EMERALD, 1),
                 new ItemStack(Items.SUGAR, 6), 14, 1, 0.81f));
         genericTrades.add((entity, randomSource) -> new MerchantOffer(
                 new ItemCost(Items.EMERALD, 10),
-                new ItemStack(ExploMod.LEGENDS_FROST_MUSIC_DISC.get(), 1), 1, 1, 1.81f));
+                new ItemStack(ExploMod.LEGENDS_FROST_MUSIC_DISC.get(), 1), 1, 1, 0.1f));
+        genericTrades.add((entity, randomSource) -> new MerchantOffer(
+                new ItemCost(Items.EMERALD,4),
+                new ItemStack(ExploMod.RADIUM_INGOT.get(), 1), 5, 1, 0.1f));
 
         rareTrades.add((entity, randomSource) -> new MerchantOffer(
                 new ItemCost(ExploMod.EXAMPLE_ITEM.get(), 1),
-                new ItemStack(Items.EMERALD, 12), 3, 3, 1.81f));
+                new ItemStack(Items.EMERALD, 12), 3, 3, 0.01f));
         rareTrades.add((entity, randomSource) -> new MerchantOffer(
                 new ItemCost(Items.EMERALD, 9),
-                new ItemStack(ExploMod.POPSICLE_FOOD.get(), 1), 2, 3, 1.81f));
+                new ItemStack(ExploMod.POPSICLE_FOOD.get(), 1), 2, 3, 0.21f));
         rareTrades.add((entity, randomSource) -> new MerchantOffer(
                 new ItemCost(Items.EMERALD, 1),
-                new ItemStack(Items.ARROW, 3), 3, 3, 0.81f));
+                new ItemStack(Items.ARROW, 3), 3, 3, 0.11f));
     }
     @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {

@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "explomod:ship",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 78394714,
+    "spacing": 45,
+    "separation": 10,
+    "type": "minecraft:random_spread"
+  }
+}

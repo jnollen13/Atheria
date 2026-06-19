@@ -1,0 +1,8 @@
+{
+  "values": [
+    "#minecraft:is_forest",
+    "explomod:deep_forest",
+    "#minecraft:is_savanna",
+    "#minecraft:is_jungle"
+  ]
+}

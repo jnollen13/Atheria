@@ -27,6 +27,15 @@
   "block.explomod.crate": "Egg Crate",
   "block.explomod.sugar_cane_crate": "Sugar Cane Crate",
   "block.explomod.radium_ore": "Radium Ore",
+  "explomod.configuration.modpack": "ModPack Configuration Settings",
+  "entity.minecraft.villager.explomod.modseller": "Vendor",
+  "explomod.configuration.commands": "Command Settings",
+  "explomod.configuration.villagers": "Villager Settings",
+  "explomod.configuration.permissions": "Permissions",
+  "should_use_commands": "Client-side Commands enabled",
+  "config.explomod.vendorsUseEggs": "should Vendors base on eggs",
+  "sounds.explomod.magic_block_break": "Lamp breaks",
+  "explomod.configuration.test_configs": "Test Configuration (does weird stuff)",
   "block.explomod.empty_crate": "Empty Crate",
   "item.explomod.harbinger": "Harbinger",
   "block.explomod.air": "Glowing Air",
@@ -316,5 +325,8 @@
   "tooltip.explomod.decoration": "Purely for Decoration.",
   "tooltip.explomod.nice_stick": "press shift for more info",
   "tooltip.explomod.nice_stick.shift_down": "hold right click to break stick. the Nice Stick is equal to 3 sticks",
-  "tooltip.explomod.staff.item": "Good for Decoration."
+  "tooltip.explomod.staff.item": "Good for Decoration.",
+  "explomod.configuration.commands.off": "client-side commands are disabled in your mod settings.",
+  "click.explomod.copy": "Click to Copy Value to Clipboard",
+  "click.explomod.say.info": "Click to send ClientInfo in the Chat"
 }

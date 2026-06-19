@@ -1,0 +1,12 @@
+{
+  "values": [
+    "explomod:dungeon",
+    "explomod:hidden_room",
+    "explomod:grass_golem_camp",
+    "explomod:redstone_build",
+    "explomod:redstone_temple",
+    "explomod:ship",
+    "explomod:spruce_vendor_stall",
+    "explomod:vendor_stall"
+  ]
+}

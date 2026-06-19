@@ -16,13 +16,10 @@ license="${mod_license}"
 
 # A URL to refer people to when problems occur with this mod
 #issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/" #optional
-
 # A list of mods - how many allowed here is determined by the individual mod loader
 [[mods]] #mandatory
-
 # The modid of the mod
 modId="${mod_id}" #mandatory
-
 # The version number of the mod
 version="${mod_version}" #mandatory
 
@@ -46,7 +43,7 @@ authors="Jodim"
 
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-a mod I made for explo
+an giant mod that adds a wide varity of things
 '''
 
 # The [[mixins]] block allows you to declare your mixin config to FML so that it gets loaded.

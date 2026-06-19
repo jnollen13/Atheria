@@ -1,0 +1,55 @@
+{
+  "type": "minecraft:jigsaw",
+  "biomes": "#c:is_dark",
+  "dimension_padding": 10,
+  "liquid_settings": "ignore_waterlogging",
+  "max_distance_from_center": 116,
+  "size": 20,
+  "spawn_overrides": {
+    "ambient": {
+      "bounding_box": "piece",
+      "spawns": []
+    },
+    "axolotls": {
+      "bounding_box": "piece",
+      "spawns": []
+    },
+    "creature": {
+      "bounding_box": "piece",
+      "spawns": []
+    },
+    "misc": {
+      "bounding_box": "piece",
+      "spawns": []
+    },
+    "monster": {
+      "bounding_box": "piece",
+      "spawns": []
+    },
+    "underground_water_creature": {
+      "bounding_box": "piece",
+      "spawns": []
+    },
+    "water_ambient": {
+      "bounding_box": "piece",
+      "spawns": []
+    },
+    "water_creature": {
+      "bounding_box": "piece",
+      "spawns": []
+    }
+  },
+  "start_height": {
+    "type": "minecraft:uniform",
+    "max_inclusive": {
+      "absolute": 140
+    },
+    "min_inclusive": {
+      "absolute": -10
+    }
+  },
+  "start_pool": "explomod:dungeon/small/hallways",
+  "step": "underground_decoration",
+  "terrain_adaptation": "none",
+  "use_expansion_hack": false
+}

@@ -1,0 +1,15 @@
+{
+  "name": "explomod:grass_golem_camp_pool",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "explomod:grass_golem_camp",
+        "processors": "explomod:maybe_dense_grass",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

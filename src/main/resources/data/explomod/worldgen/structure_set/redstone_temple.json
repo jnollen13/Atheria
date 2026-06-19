@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "explomod:redstone_temple",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 82649161,
+    "spacing": 45,
+    "separation": 10,
+    "type": "minecraft:random_spread"
+  }
+}

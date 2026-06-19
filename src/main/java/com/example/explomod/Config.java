@@ -16,20 +16,13 @@ public class Config {
 
     public static final ModConfigSpec.BooleanValue LOG_DIRT_BLOCK = BUILDER
             .comment("Whether to log the dirt block on common setup")
+            .push("test_configs")
             .define("logDirtBlock", true);
 
     public static final ModConfigSpec.BooleanValue BUTTON = BUILDER
             .comment("a button for testing experimental items & block (intended for dev use only)")
             .worldRestart()
             .define("buttonthing", false);
-
-    public static final ModConfigSpec.IntValue MAGIC_NUMBER = BUILDER
-            .comment("A magic number")
-            .defineInRange("magicNumber", 42, 0, Integer.MAX_VALUE);
-
-    public static final ModConfigSpec.ConfigValue<String> MAGIC_NUMBER_INTRODUCTION = BUILDER
-            .comment("What you want the introduction message to be for the magic number")
-            .define("magicNumberIntroduction", "The magic number is... ");
 
     // a list of strings that are treated as resource locations for items
     public static final ModConfigSpec.ConfigValue<List<? extends String>> ITEM_STRINGS = BUILDER
@@ -45,27 +38,61 @@ public class Config {
     public static class Server {
         public final ModConfigSpec.ConfigValue<String> portal_destination_dimension_ID;
         public final ModConfigSpec.ConfigValue<String> portal_return_dimension_ID;
+        public final ModConfigSpec.ConfigValue<Boolean> commandHistory_enabled;
+        public final ModConfigSpec.ConfigValue<Boolean> commandCrash_enabled;
+
 
         public Server(ModConfigSpec.Builder builder) {
-            builder.push("Modpack");
+            builder.push("modpack");
             portal_destination_dimension_ID = builder
-                    .comment("Sets the ID of the dimension that the Aether Portal will send the player to")
-                    .translation("config.aether.server.modpack.portal_destination_dimension_ID")
+                    .comment("Sets the ID of the dimension that the Dark Portal will send the player to")
+                    .translation("dark_portal_destination")
                     .define("Sets portal destination dimension", AtheriaDiemsions.AETHER_LEVEL.location().toString());
             portal_return_dimension_ID = builder
-                    .comment("Sets the ID of the dimension that the Aether Portal will return the player to")
-                    .translation("config.aether.server.modpack.portal_return_dimension_ID")
+                    .comment("Sets the ID of the dimension that the Dark Portal will return the player to")
+                    .translation("dark_portal_return_dimension")
                     .define("Sets portal return dimension", Level.OVERWORLD.location().toString());
+            builder.pop();
+            builder.push("villagers");
+            builder.pop();
+            builder.push("permissions");
+            commandHistory_enabled = builder
+                    .comment("if players are allowed to use the command history command")
+                    .translation("isCommandHistoryAllowed")
+                    .define("isCommandHistoryAllowed", true);
+            commandCrash_enabled = builder
+                    .comment("if players are allowed to use the crash command")
+                    .translation("isCommandCrashAllowed")
+                    .define("isCommandCrashAllowed", false);
+            builder.pop();
+        }
+    }
+
+    public static class Client {
+        public final ModConfigSpec.ConfigValue<Boolean> use_client_commands;
+
+        public Client(ModConfigSpec.Builder builder) {
+            builder.push("commands");
+            use_client_commands = builder
+                    .comment("should register commands")
+                    .translation("should_use_commands")
+                    .worldRestart()
+                    .define("client commands", false);
             builder.pop();
         }
     }
 
     public static final ModConfigSpec SERVER_SPEC;
     public static final Server SERVER;
+    public static final ModConfigSpec CLIENT_SPEC;
+    public static final Client CLIENT;
 
     static {
         final Pair<Server, ModConfigSpec> serverSpecPair = new ModConfigSpec.Builder().configure(Server::new);
         SERVER_SPEC = serverSpecPair.getRight();
         SERVER = serverSpecPair.getLeft();
+        final Pair<Client, ModConfigSpec> clientSpecPair = new ModConfigSpec.Builder().configure(Client::new);
+        CLIENT_SPEC = clientSpecPair.getRight();
+        CLIENT = clientSpecPair.getLeft();
     }
 }

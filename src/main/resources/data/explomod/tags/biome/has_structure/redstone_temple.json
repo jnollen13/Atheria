@@ -1,0 +1,7 @@
+{
+  "values": [
+    "#minecraft:has_structure/jungle_temple",
+    "#explomod:is_dark",
+    "minecraft:jungle"
+  ]
+}

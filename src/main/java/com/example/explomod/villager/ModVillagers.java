@@ -17,7 +17,7 @@ public class ModVillagers {
          DeferredRegister.create(BuiltInRegistries.VILLAGER_PROFESSION, ExploMod.MODID);
 
     public static final Holder<PoiType> MODSELLER_POI = POI_TYPES.register("modseller_poi",
-            () ->  new PoiType(ImmutableSet.copyOf(ExploMod.EXAMPLE_BLOCK.get().getStateDefinition().getPossibleStates()),1,1));
+            () ->  new PoiType(ImmutableSet.copyOf(ExploMod.TABLE.get().getStateDefinition().getPossibleStates()),2,2));
 
     public static final Holder<PoiType> DARK_PORTAL_POI = POI_TYPES.register("dark_portal_poi",
             () ->  new PoiType(ImmutableSet.copyOf(ExploMod.DARK_PORTAL.get().getStateDefinition().getPossibleStates()),1,1));

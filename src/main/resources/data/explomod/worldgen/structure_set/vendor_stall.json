@@ -1,0 +1,18 @@
+{
+  "structures": [
+    {
+      "structure": "explomod:vendor_stall",
+      "weight": 1
+    },
+    {
+      "structure": "explomod:spruce_vendor_stall",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 52742793,
+    "spacing": 45,
+    "separation": 33,
+    "type": "minecraft:random_spread"
+  }
+}
