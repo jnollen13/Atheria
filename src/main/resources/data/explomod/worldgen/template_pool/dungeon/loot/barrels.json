@@ -3,7 +3,7 @@
     {
       "element": {
         "element_type": "minecraft:legacy_single_pool_element",
-        "location": "explomod:dungeon/barrel1",
+        "location": "explomod:dungeon/loot/barrela/barrel1",
         "processors": {
           "processors": []
         },
@@ -14,7 +14,7 @@
     {
       "element": {
         "element_type": "minecraft:legacy_single_pool_element",
-        "location": "explomod:dungeon/barrel2",
+        "location": "explomod:dungeon/loot/barrels/barrel2",
         "processors": {
           "processors": []
         },

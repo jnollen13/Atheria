@@ -49,7 +49,7 @@
     }
   },
   "start_pool": "explomod:dungeon/small/hallways",
-  "step": "underground_decoration",
+  "step": "underground_structures",
   "terrain_adaptation": "none",
   "use_expansion_hack": false
 }

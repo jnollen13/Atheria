@@ -3,7 +3,29 @@
     {
       "element": {
         "element_type": "minecraft:legacy_single_pool_element",
-        "location": "explomod:zombie1",
+        "location": "explomod:dungeon/zombies/zombie1",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 25
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "explomod:dungeon/zombies/zombie1_hallway",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 25
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "minecraft:empty",
         "processors": {
           "processors": []
         },

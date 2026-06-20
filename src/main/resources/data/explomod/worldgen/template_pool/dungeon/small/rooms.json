@@ -5,7 +5,7 @@
     {
       "weight": 10,
       "element": {
-        "location": "explomod:room1",
+        "location": "explomod:dungeon/rooms/room1",
         "processors": "minecraft:mossify_70_percent",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -14,7 +14,7 @@
     {
       "weight": 10,
       "element": {
-        "location": "explomod:room2",
+        "location": "explomod:dungonen/rooms/room2",
         "processors": "minecraft:mossify_70_percent",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -23,7 +23,7 @@
     {
       "weight": 5,
       "element": {
-        "location": "explomod:room3",
+        "location": "explomod:dungeon/rooms/room3",
         "processors": "minecraft:mossify_70_percent",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -32,7 +32,7 @@
     {
       "weight": 5,
       "element": {
-        "location": "explomod:dungeon_start1",
+        "location": "explomod:dungeon/rooms/dungeon_start1",
         "processors": "minecraft:mossify_20_percent",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -41,7 +41,7 @@
     {
       "weight": 10,
       "element": {
-        "location": "explomod:pedestal_room",
+        "location": "explomod:dungeon/rooms/pedestal_room",
         "processors": "minecraft:mossify_70_percent",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -50,7 +50,7 @@
     {
       "weight": 10,
       "element": {
-        "location": "explomod:room4",
+        "location": "explomod:dungeon/rooms/room4",
         "processors": "minecraft:mossify_20_percent",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -59,7 +59,7 @@
     {
       "weight": 2,
       "element": {
-        "location": "explomod:room5",
+        "location": "explomod:dungeon/rooms/room5",
         "processors": "minecraft:mossify_70_percent",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -68,16 +68,7 @@
     {
       "weight": 1,
       "element": {
-        "location": "explomod:room5_trap",
-        "processors": "minecraft:mossify_50_percent",
-        "projection": "rigid",
-        "element_type": "minecraft:single_pool_element"
-      }
-    },
-    {
-      "weight": 3,
-      "element": {
-        "location": "explomod:room6",
+        "location": "explomod:dungeon/rooms/room5_empty",
         "processors": "minecraft:mossify_50_percent",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -86,7 +77,25 @@
     {
       "weight": 1,
       "element": {
-        "location": "explomod:room1_trap",
+        "location": "explomod:dungeon/rooms/room5_trap",
+        "processors": "minecraft:mossify_50_percent",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 3,
+      "element": {
+        "location": "explomod:dungeon/rooms/room6",
+        "processors": "minecraft:mossify_50_percent",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "explomod:dungeon/rooms/room1_trap",
         "processors": "minecraft:mossify_50_percent",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"

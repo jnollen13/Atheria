@@ -5,6 +5,7 @@ import com.example.explomod.block.custom.crates.CrateBlock;
 import com.example.explomod.block.custom.crates.EggBasketBlock;
 import com.example.explomod.block.custom.crates.SugarCaneCrateBlock;
 import com.example.explomod.command.AtheriaCommands;
+import com.example.explomod.component.AtheriaDataComponents;
 import com.example.explomod.effect.ModEffects;
 import com.example.explomod.entity.ModEntities;
 import com.example.explomod.entity.client.*;
@@ -256,7 +257,8 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
     public static final DeferredItem<BlockItem> EMPTY_CRATE_ITEM = ITEMS.registerSimpleBlockItem("empty_crate", EMPTY_CRATE);
     public static final DeferredBlock<Block> CANE_CRATE = BLOCKS.register("sugar_cane_crate", () -> new SugarCaneCrateBlock(BlockBehaviour.Properties.of().noOcclusion().destroyTime(1.5f)));
     public static final DeferredItem<BlockItem> CANE_CRATE_ITEM = ITEMS.registerSimpleBlockItem("sugar_cane_crate", CANE_CRATE);
-
+    public static final DeferredItem<Item> LOCATION_SAVER = ITEMS.register("location_saver", () -> new LocationSaverItem(new Item.Properties().stacksTo(1).setNoRepair().rarity(Rarity.UNCOMMON)));
+    
 
     //creative tabs
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
@@ -267,6 +269,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
                 output.accept(EXAMPLE_ITEM.get()); // Add the example com.example.explomod.item to the tab
                 output.accept(EXAMPLE_BLOCK_ITEM.get());
                 output.accept(INSTANTBOOM_ITEM.get());
+                output.accept(LOCATION_SAVER.get());
                 output.accept(PORTAL_ITEM.get());
                 output.accept(CANE_CRATE_ITEM.get());
                 output.accept(FERMENTED_GLOWSTONE.get());
@@ -368,6 +371,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
         ModEntities.register(modEventBus);
         ModFeature.register(modEventBus);
         ModPotions.register(modEventBus);
+        AtheriaDataComponents.register(modEventBus);
         //ModStructureType.register(modEventBus); structures added through json files
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ExploMod) to respond directly to events.
@@ -609,6 +613,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
                 new ItemCost(Items.EMERALD, 1),
                 new ItemStack(Items.ARROW, 3), 3, 3, 0.11f));
     }
+
     @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
         @SubscribeEvent
