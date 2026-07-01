@@ -20,6 +20,10 @@ public class ModPotions {
     public static final Holder<Potion> CREEPER_POTION = POTIONS.register("creeper_potion", () -> new Potion(new MobEffectInstance(ModEffects.BOOM_EFFECT, 3600)));
     public static final Holder<Potion> SHORT_POTION = POTIONS.register("short_potion", () -> new Potion(new MobEffectInstance(ModEffects.SHORT, 3605), new MobEffectInstance(ModEffects.HEALTH_DECREASE, 3600), new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 3582)));
     public static final Holder<Potion> STRONG_SHORT_POTION = POTIONS.register("strong_short_potion", () -> new Potion(new MobEffectInstance(ModEffects.SHORT, 3605, 1), new MobEffectInstance(ModEffects.HEALTH_DECREASE, 3600, 1), new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 3582, 1)));
+    public static final Holder<Potion> MANA_POTION = POTIONS.register("mana_potion", () -> new Potion(new MobEffectInstance(ModEffects.MANA, 1)));
+    public static final Holder<Potion> MANA_2_POTION = POTIONS.register("mana2_potion", () -> new Potion(new MobEffectInstance(ModEffects.MANA, 1,1)));
+    public static final Holder<Potion> MANA_3_POTION = POTIONS.register("mana3_potion", () -> new Potion(new MobEffectInstance(ModEffects.MANA, 1,2)));
+    public static final Holder<Potion> MANA_4_POTION = POTIONS.register("mana4_potion", () -> new Potion(new MobEffectInstance(ModEffects.MANA, 1,3)));
 
     public static void register(IEventBus eventBus) {
         POTIONS.register(eventBus);

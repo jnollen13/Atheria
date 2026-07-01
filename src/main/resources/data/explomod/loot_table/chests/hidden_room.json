@@ -172,6 +172,36 @@
       "bonus_rolls": 0.0,
       "entries": [
         {
+          "type": "minecraft:empty",
+          "weight": 25
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 1.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "explomod:dark_portal_placer",
+          "weight": 1
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 1.0,
+        "min": 0.2
+      }
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
           "type": "minecraft:item",
           "functions": [
             {

@@ -1,0 +1,45 @@
+{
+  "parent": "explomod:home/root",
+  "criteria": {
+    "cane_in_crate": {
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "explomod:sugar_cane_crate"
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": "minecraft:sugar_cane"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:item_used_on_block"
+
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.home.sugar_crate.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft:sugar_cane"
+    },
+    "title": {
+      "translate": "advancements.home.sugar_crate.title"
+    }
+  },
+  "requirements": [
+    [
+      "cane_in_crate"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

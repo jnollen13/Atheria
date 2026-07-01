@@ -76,7 +76,7 @@ public class MagicRadiationStaffItem extends Item implements ProjectileItem {
     }
 
     public @NotNull UseAnim getUseAnimation(@NotNull ItemStack stack) {
-        return UseAnim.CROSSBOW;
+        return UseAnim.SPEAR;
     }
 
     public int getUseDuration(@NotNull ItemStack stack, @NotNull LivingEntity entity) {

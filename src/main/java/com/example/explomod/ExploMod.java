@@ -6,38 +6,52 @@ import com.example.explomod.block.custom.crates.EggBasketBlock;
 import com.example.explomod.block.custom.crates.SugarCaneCrateBlock;
 import com.example.explomod.command.AtheriaCommands;
 import com.example.explomod.component.AtheriaDataComponents;
+import com.example.explomod.data.AtheriaDataAttachments;
 import com.example.explomod.effect.ModEffects;
 import com.example.explomod.entity.ModEntities;
 import com.example.explomod.entity.client.*;
 import com.example.explomod.loot.ModLootModifiers;
 import com.example.explomod.particle.ModParticles;
 import com.example.explomod.particle.SafteyParticle;
+import com.example.explomod.stats.AtheriaStats;
+import com.example.explomod.triggers.AtheriaTriggers;
 import com.example.explomod.utill.ClientProxy;
+import com.example.explomod.worldgen.AtheriaLevelUtill;
+import com.example.explomod.worldgen.ModBiomes;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import com.example.explomod.item.alchemy.ModPotions;
 import com.example.explomod.item.custom.*;
 import com.example.explomod.item.custom.Throwable;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.level.portal.DimensionTransition;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
+import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import net.neoforged.neoforge.event.village.WandererTradesEvent;
@@ -72,6 +86,7 @@ import com.example.explomod.worldgen.tree.ModTreeGrower;
 import java.util.List;
 
 import static net.minecraft.world.item.Items.registerBlock;
+import static net.neoforged.fml.loading.FMLEnvironment.dist;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(ExploMod.MODID)
@@ -258,7 +273,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
     public static final DeferredBlock<Block> CANE_CRATE = BLOCKS.register("sugar_cane_crate", () -> new SugarCaneCrateBlock(BlockBehaviour.Properties.of().noOcclusion().destroyTime(1.5f)));
     public static final DeferredItem<BlockItem> CANE_CRATE_ITEM = ITEMS.registerSimpleBlockItem("sugar_cane_crate", CANE_CRATE);
     public static final DeferredItem<Item> LOCATION_SAVER = ITEMS.register("location_saver", () -> new LocationSaverItem(new Item.Properties().stacksTo(1).setNoRepair().rarity(Rarity.UNCOMMON)));
-    
+    public static final DeferredItem<Item> DARK_PORTAL_CREATOR = ITEMS.register("dark_portal_placer", () -> new DarkPortalItem(new Item.Properties().fireResistant().stacksTo(1).rarity(Rarity.EPIC).setNoRepair()));
 
     //creative tabs
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
@@ -372,6 +387,10 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
         ModFeature.register(modEventBus);
         ModPotions.register(modEventBus);
         AtheriaDataComponents.register(modEventBus);
+        AtheriaStats.register(modEventBus);
+        AtheriaTriggers.register(modEventBus);
+        AtheriaDataAttachments.register(modEventBus);
+        ModBiomes.register(modEventBus);
         //ModStructureType.register(modEventBus); structures added through json files
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ExploMod) to respond directly to events.
@@ -385,7 +404,9 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
         modContainer.registerConfig(ModConfig.Type.SERVER, Config.SERVER_SPEC);
         modContainer.registerConfig(ModConfig.Type.CLIENT, Config.CLIENT_SPEC);
-
+        if (dist == Dist.CLIENT) {
+            ExploModClient.clientInit(modEventBus);
+        }
         this.eventSetup(modEventBus);
     }
 
@@ -445,6 +466,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
 
     @SubscribeEvent
     public void onPlayerJoin(EntityJoinLevelEvent event) {
+
     }
 
     @SubscribeEvent

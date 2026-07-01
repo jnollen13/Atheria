@@ -100,6 +100,24 @@
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
+    },
+    {
+      "weight": 10,
+      "element": {
+        "location": "explomod:dungonen/rooms/room7",
+        "processors": "minecraft:mossify_70_percent",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 4,
+      "element": {
+        "location": "explomod:dungonen/rooms/room8",
+        "processors": "minecraft:mossify_70_percent",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
     }
   ]
 }

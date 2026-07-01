@@ -1,6 +1,7 @@
 package com.example.explomod.block.custom.crates.template;
 
 import com.example.explomod.ExploMod;
+import com.example.explomod.stats.AtheriaStats;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -138,6 +139,7 @@ public class TemplateCrateBlock extends HorizontalDirectionalBlock {
             Integer i = state.getValue(getType())+1;
             player.causeFoodExhaustion(0.01f);
             stack.consume(1, player);
+            player.awardStat(AtheriaStats.PLACED_IN_CRATE.get(), 1);
             level.setBlock(pos, state.setValue(getType(), i), 2);
             return ItemInteractionResult.SUCCESS;
         } else if (stack.is(Items.SHEARS)) {
@@ -158,6 +160,7 @@ public class TemplateCrateBlock extends HorizontalDirectionalBlock {
     protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
         if(state.getValue(getType())>MIN) {
             level.setBlock(pos, state.setValue(getType(), state.getValue(getType()) - 1), 2);
+            player.awardStat(AtheriaStats.TAKEN_OUT_CRATE.get(), 1);
             if(!player.hasInfiniteMaterials()) {
                 player.addItem(new ItemStack(getItem()));
             }

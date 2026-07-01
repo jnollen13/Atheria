@@ -1,6 +1,7 @@
 package com.example.explomod.block.custom.crates;
 
 import com.example.explomod.ExploMod;
+import com.example.explomod.stats.AtheriaStats;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -131,6 +132,7 @@ public class SugarCaneCrateBlock extends HorizontalDirectionalBlock {
     protected @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
         if(stack.is(Items.SUGAR_CANE)&&state.getValue(CANE)<MAX){
             Integer i = state.getValue(CANE)+1;
+            player.awardStat(AtheriaStats.PLACED_IN_CRATE.get(), 1);
             player.causeFoodExhaustion(0.01f);
             stack.consume(1, player);
             level.setBlock(pos, state.setValue(CANE, i), 2);
@@ -153,6 +155,7 @@ public class SugarCaneCrateBlock extends HorizontalDirectionalBlock {
     protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
         if(state.getValue(CANE)>MIN) {
             level.setBlock(pos, state.setValue(CANE, state.getValue(CANE) - 1), 2);
+            player.awardStat(AtheriaStats.TAKEN_OUT_CRATE.get(), 1);
             if(!player.hasInfiniteMaterials()) {
                 player.addItem(new ItemStack(Items.SUGAR_CANE));
             }

@@ -1,6 +1,7 @@
 package com.example.explomod.block.custom.crates;
 
 import com.example.explomod.ExploMod;
+import com.example.explomod.stats.AtheriaStats;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -142,6 +143,7 @@ public class EggBasketBlock extends HorizontalDirectionalBlock {
             player.causeFoodExhaustion(0.01f);
             stack.consume(1, player);
             level.setBlock(pos, state.setValue(EGGS, i), 2);
+            player.awardStat(AtheriaStats.PLACED_IN_CRATE.get(), 1);
             return ItemInteractionResult.SUCCESS;
         } else if (stack.is(Items.SHEARS)) {
             stack.hurtAndBreak(1, player, player.getEquipmentSlotForItem(stack));
@@ -161,6 +163,7 @@ public class EggBasketBlock extends HorizontalDirectionalBlock {
     protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
         if(state.getValue(EGGS)>MIN_EGGS) {
             level.setBlock(pos, state.setValue(EGGS, state.getValue(EGGS) - 1), 2);
+            player.awardStat(AtheriaStats.TAKEN_OUT_CRATE.get(), 1);
             if(!player.hasInfiniteMaterials()) {
                 player.addItem(new ItemStack(Items.EGG));
             }

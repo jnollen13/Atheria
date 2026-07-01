@@ -1,0 +1,35 @@
+{
+  "criteria": {
+    "empty_crate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:empty_crate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "minecraft:textures/block/redstone_lamp",
+    "description": {
+      "translate": "advancements.home.root.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "explomod:empty_crate"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.home.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "empty_crate"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

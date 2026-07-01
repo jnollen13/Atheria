@@ -25,6 +25,10 @@ public class ModEffects{
             () -> new ExplosionEffect(MobEffectCategory.HARMFUL, 0x17fdea));
     public static final Holder<MobEffect> SAFE_EFFECT = MOD_EFFECTS.register("safe",
             () -> new SafeEffect(MobEffectCategory.BENEFICIAL, 0x93fdea));
+    public static final Holder<MobEffect> COOLDOWN = MOD_EFFECTS.register("cooldown",
+            () -> new CoolDown(MobEffectCategory.HARMFUL, 0));
+    public static final Holder<MobEffect> MANA = MOD_EFFECTS.register("mana",
+            () -> new ManaPotionEffect(MobEffectCategory.BENEFICIAL, 0xFF55FFFF, false));
 
     public static void register(IEventBus eventBus) {
         MOD_EFFECTS.register(eventBus);

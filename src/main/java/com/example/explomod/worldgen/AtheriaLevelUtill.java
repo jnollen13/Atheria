@@ -14,4 +14,8 @@ public class AtheriaLevelUtill {
     public static ResourceKey<Level> returnDimension() {
         return ResourceKey.create(Registries.DIMENSION, ResourceLocation.parse(Config.SERVER.portal_return_dimension_ID.get()));
     }
+
+    public static ResourceKey<Level> fallDimension() {
+        return ResourceKey.create(Registries.DIMENSION, ResourceLocation.parse("minecraft:the_nether"));
+    }
 }

@@ -1,0 +1,38 @@
+{
+  "criteria": {
+    "radium": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:raw_radium"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "explomod:textures/gui/advancements/backgrounds/portal.png",
+    "description": {
+      "translate": "advancements.exploration.root.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "explomod:raw_radium"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.exploration.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "radium"
+    ]
+  ],
+  "rewards": {
+    "experience": 1
+  },
+  "sends_telemetry_event": true
+}
