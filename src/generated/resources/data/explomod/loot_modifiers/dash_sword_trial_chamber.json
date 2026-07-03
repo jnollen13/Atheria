@@ -1,0 +1,14 @@
+{
+  "type": "explomod:add_item",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:equipment/trial_chamber_melee"
+    },
+    {
+      "chance": 0.047362,
+      "condition": "minecraft:random_chance"
+    }
+  ],
+  "item": "explomod:dash_sword"
+}

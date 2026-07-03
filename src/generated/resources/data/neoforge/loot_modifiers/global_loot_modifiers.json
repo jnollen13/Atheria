@@ -1,10 +1,22 @@
 {
   "entries": [
-    "explomod:nice_stick_to_deepslate_diamond_ore",
+    "explomod:nice_stick_from_birch",
+    "explomod:nice_stick_from_oak",
+    "explomod:nice_stick_from_dark_oak",
+    "explomod:nice_stick_from_jungle",
+    "explomod:nice_stick_from_mangrove",
+    "explomod:nice_stick_from_acacia",
     "explomod:longsword_from_chest",
+    "explomod:jungle_dash",
+    "explomod:melon_juice_plains",
+    "explomod:fermented_melon_juice_jungle_temple",
+    "explomod:dash_sword_trial_chamber",
+    "explomod:dark_portal_creator_mansion",
+    "explomod:popsicle_snowy_village",
     "explomod:popsicle_from_stray",
     "explomod:fuel_from_dungeon_chest",
     "explomod:fuel_from_village_chest",
+    "explomod:phantom_sword_toolsmith",
     "explomod:stool_from_enderman"
   ],
   "replace": false

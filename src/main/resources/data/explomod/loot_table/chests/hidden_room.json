@@ -158,6 +158,11 @@
           "weight": 1
         },
         {
+          "type": "minecraft:item",
+          "name": "explomod:dash_sword",
+          "weight": 5
+        },
+        {
           "type": "minecraft:empty",
           "weight": 15
         }

@@ -2,20 +2,14 @@ package com.example.explomod.event;
 
 import com.example.explomod.AtheriaKeys;
 import com.example.explomod.ExploMod;
-import com.example.explomod.ExploModClient;
 import com.example.explomod.data.AtheriaDataAttachments;
-import com.example.explomod.effect.CoolDown;
 import com.example.explomod.effect.ModEffects;
 import com.example.explomod.item.alchemy.ModPotions;
 import com.example.explomod.packets.DashPacket;
 import com.example.explomod.packets.FireballPacket;
 import com.example.explomod.stats.AtheriaStats;
-import com.mojang.authlib.GameProfile;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.Holder;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ClientInformation;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionBrewing;
@@ -56,16 +50,12 @@ public class ModEvents {
                     while (AtheriaKeys.CAST_FIREBALL.consumeClick()) {
                         PacketDistributor.sendToServer(new FireballPacket());
                     }
-                }else{
-                    mc.player.displayClientMessage(Component.translatable("message.explomod.fail.fireball"), true);
                 }
                 // dash
                 if(mc.player.getStats().getValue(AtheriaStats.HIDDEN_STATS.get().get(Items.LEATHER_BOOTS))>0) {
                     while ((AtheriaKeys.DASH.consumeClick())) {
                         PacketDistributor.sendToServer(new DashPacket());
                     }
-                }else {
-                    mc.player.displayClientMessage(Component.translatable("message.explomod.fail.dash"), true);
                 }
             }
         }

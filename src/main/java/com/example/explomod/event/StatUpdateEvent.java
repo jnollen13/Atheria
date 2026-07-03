@@ -48,6 +48,7 @@ public class StatUpdateEvent {
                     player.displayClientMessage(Component.literal("OOM"), true);
                     serverPlayer.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 1, 3));
                     serverPlayer.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 1, 2));
+                    serverPlayer.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 1, 1, false, true));
                     serverPlayer.addEffect(new MobEffectInstance(MobEffects.HUNGER, 1, 0, true, false, false));
                 } else if (mana.mana()>101.2f) {
                     player.displayClientMessage(Component.translatable("message.explomod.over"), true);

@@ -3,21 +3,21 @@ package com.example.explomod.item.custom;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.TieredItem;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -67,8 +67,26 @@ public class DashSwordItem extends TieredItem {
     }
 
     @Override
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player player, @NotNull InteractionHand usedHand) {
+        Vec3 angle = player.getLookAngle();
+        if(player.isShiftKeyDown()){
+            player.setDeltaMovement(angle.x *-1.25, angle.y *-0.257, angle.z *-1.25);
+        }else {
+            player.setDeltaMovement(angle.x * 2, angle.y * 0.25, angle.z * 2);
+        }
+        player.hurtMarked = true;
+        player.swing(usedHand);
+        ItemStack i =player.getItemInHand(usedHand);
+        i.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
+        player.getCooldowns().addCooldown(i.getItem(), 15);
+        return super.use(level, player, usedHand);
+    }
+
+    @Override
     public void postHurtEnemy(ItemStack stack, @NotNull LivingEntity target, @NotNull LivingEntity attacker) {
         stack.hurtAndBreak(1, attacker, EquipmentSlot.MAINHAND);
+        Vec3 angle = attacker.getLookAngle();
+        attacker.setDeltaMovement(angle.x*-1.1, angle.y*-0.25, angle.z*-1.1);
     }
 
     @Override

@@ -21,15 +21,70 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
 
     @Override
     protected void start() {
-        this.add("nice_stick_to_deepslate_diamond_ore",
+        this.add("nice_stick_from_birch",
                 new AddItemModifier(new LootItemCondition[] {
                         LootItemBlockStatePropertyCondition.hasBlockStateProperties(Blocks.BIRCH_LEAVES).build(),
                         LootItemRandomChanceCondition.randomChance(0.2f).build()}, ExploMod.NICE_STICK.get()));
+
+        this.add("nice_stick_from_oak",
+                new AddItemModifier(new LootItemCondition[] {
+                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(Blocks.OAK_LEAVES).build(),
+                        LootItemRandomChanceCondition.randomChance(0.2f).build()}, ExploMod.NICE_STICK.get()));
+
+        this.add("nice_stick_from_dark_oak",
+                new AddItemModifier(new LootItemCondition[] {
+                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(Blocks.DARK_OAK_LEAVES).build(),
+                        LootItemRandomChanceCondition.randomChance(0.2f).build()}, ExploMod.NICE_STICK.get()));
+
+        this.add("nice_stick_from_jungle",
+                new AddItemModifier(new LootItemCondition[] {
+                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(Blocks.JUNGLE_LEAVES).build(),
+                        LootItemRandomChanceCondition.randomChance(0.2f).build()}, ExploMod.NICE_STICK.get()));
+
+        this.add("nice_stick_from_mangrove",
+                new AddItemModifier(new LootItemCondition[] {
+                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(Blocks.MANGROVE_LEAVES).build(),
+                        LootItemRandomChanceCondition.randomChance(0.12f).build()}, ExploMod.NICE_STICK.get()));
+
+        this.add("nice_stick_from_acacia",
+                new AddItemModifier(new LootItemCondition[] {
+                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(Blocks.ACACIA_LEAVES).build(),
+                        LootItemRandomChanceCondition.randomChance(0.22f).build()}, ExploMod.NICE_STICK.get()));
 
         this.add("longsword_from_chest",
                 new AddItemModifier(new LootItemCondition[] {
                         new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/jungle_temple")).build(),
                         LootItemRandomChanceCondition.randomChance(0.05f).build()}, ExploMod.NEW_SWORD.get()));
+
+        this.add("jungle_dash",
+                new AddItemModifier(new LootItemCondition[] {
+                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/jungle_temple")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.25f).build()}, ExploMod.DASH_SWORD.get()));
+
+        this.add("melon_juice_plains",
+                new AddItemModifier(new LootItemCondition[] {
+                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/village/village_plains_house")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.2f).build()}, ExploMod.MELON_JUICE.get()));
+
+        this.add("fermented_melon_juice_jungle_temple",
+                new AddItemModifier(new LootItemCondition[] {
+                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/jungle_temple")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.0274f).build()}, ExploMod.FERMENTED_MELON_JUICE.get()));
+
+        this.add("dash_sword_trial_chamber",
+                new AddItemModifier(new LootItemCondition[] {
+                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("equipment/trial_chamber_melee")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.047362f).build()}, ExploMod.DASH_SWORD.get()));
+
+        this.add("dark_portal_creator_mansion",
+                new AddItemModifier(new LootItemCondition[] {
+                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/woodland_mansion")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.000132f).build()}, ExploMod.DARK_PORTAL_CREATOR.get()));
+
+        this.add("popsicle_snowy_village",
+                new AddItemModifier(new LootItemCondition[] {
+                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/village/village_snowy_house")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.327926f).build()}, ExploMod.POPSICLE_FOOD.get()));
 
         this.add("popsicle_from_stray",
                 new AddItemModifier(new LootItemCondition[] {
@@ -45,6 +100,11 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
                 new AddItemModifier(new LootItemCondition[] {
                         new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/village/village_toolsmith")).build(),
                         LootItemRandomChanceCondition.randomChance(0.85f).build()}, ExploMod.FUEL.get()));
+
+        this.add("phantom_sword_toolsmith",
+                new AddItemModifier(new LootItemCondition[] {
+                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/village/village_toolsmith")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.01f).build()}, ExploMod.PHANTOM_SWORD.get()));
 
             this.add("stool_from_enderman",
                              new AddItemModifier(new LootItemCondition[] {

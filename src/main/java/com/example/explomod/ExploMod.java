@@ -260,7 +260,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
     public static final DeferredItem<Item> HEALTH_INCREASER = ITEMS.register("health_boost", () -> new HeartGiverItem(new Item.Properties().rarity(Rarity.EPIC).stacksTo(1).fireResistant()));
     public static final DeferredBlock<Block> DENSE_GRASS = BLOCKS.registerSimpleBlock("dense_grass");
     public static final DeferredItem<BlockItem> DENSEGRASS = ITEMS.registerSimpleBlockItem("dense_grass", DENSE_GRASS);
-    public static final DeferredItem<Item> DASH_SWORD = ITEMS.register("dash_sword", () -> new DashSwordItem(Tiers.IRON, new Item.Properties().durability(5).attributes(SwordItem.createAttributes(Tiers.IRON, 3, -2.4F))));
+    public static final DeferredItem<Item> DASH_SWORD = ITEMS.register("dash_sword", () -> new DashSwordItem(Tiers.IRON, new Item.Properties().durability(15).attributes(SwordItem.createAttributes(Tiers.IRON, 3, -2.4F))));
     public static final DeferredItem<Item> HARBINGER = ITEMS.register("harbinger", () -> new SightedCrossBow(new Item.Properties().durability(320).rarity(Rarity.UNCOMMON)));
     public static final DeferredBlock<Block> AIR = BLOCKS.register("glowing_air", () -> new TimeOutAirBlock(BlockBehaviour.Properties.of()
             .replaceable().randomTicks().noCollission().lightLevel(p_187433_ -> 11).noLootTable().air()));
@@ -274,6 +274,8 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
     public static final DeferredItem<BlockItem> CANE_CRATE_ITEM = ITEMS.registerSimpleBlockItem("sugar_cane_crate", CANE_CRATE);
     public static final DeferredItem<Item> LOCATION_SAVER = ITEMS.register("location_saver", () -> new LocationSaverItem(new Item.Properties().stacksTo(1).setNoRepair().rarity(Rarity.UNCOMMON)));
     public static final DeferredItem<Item> DARK_PORTAL_CREATOR = ITEMS.register("dark_portal_placer", () -> new DarkPortalItem(new Item.Properties().fireResistant().stacksTo(1).rarity(Rarity.EPIC).setNoRepair()));
+    
+
 
     //creative tabs
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
@@ -281,7 +283,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
             .withTabsBefore(CreativeModeTabs.BUILDING_BLOCKS)
             .icon(() -> NEW.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
-                output.accept(EXAMPLE_ITEM.get()); // Add the example com.example.explomod.item to the tab
+                output.accept(EXAMPLE_ITEM.get());
                 output.accept(EXAMPLE_BLOCK_ITEM.get());
                 output.accept(INSTANTBOOM_ITEM.get());
                 output.accept(LOCATION_SAVER.get());
@@ -289,6 +291,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
                 output.accept(CANE_CRATE_ITEM.get());
                 output.accept(FERMENTED_GLOWSTONE.get());
                 output.accept(EMPTY_CRATE_ITEM.get());
+                output.accept(DASH_SWORD.get());
                 output.accept(CRATE_ITEM.get());
                 output.accept(HARBINGER);
                 output.accept(WINTEROAK_SAPLING.get());
