@@ -5,6 +5,8 @@ import com.example.explomod.loot.AddItemModifier;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.enchantment.EnchantmentInstance;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
@@ -12,6 +14,7 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCon
 import net.neoforged.neoforge.common.data.GlobalLootModifierProvider;
 import net.neoforged.neoforge.common.loot.LootTableIdCondition;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
@@ -51,6 +54,26 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
                         LootItemBlockStatePropertyCondition.hasBlockStateProperties(Blocks.ACACIA_LEAVES).build(),
                         LootItemRandomChanceCondition.randomChance(0.22f).build()}, ExploMod.NICE_STICK.get()));
 
+        this.add("nice_stick_from_other_leaves1",
+                new AddItemModifier(new LootItemCondition[] {
+                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(Blocks.AZALEA_LEAVES).build(),
+                        LootItemRandomChanceCondition.randomChance(0.05f).build()}, ExploMod.NICE_STICK.get()));
+
+        this.add("nice_stick_from_other_leaves2",
+                new AddItemModifier(new LootItemCondition[] {
+                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(Blocks.CHERRY_LEAVES).build(),
+                        LootItemRandomChanceCondition.randomChance(0.05f).build()}, ExploMod.NICE_STICK.get()));
+
+        this.add("nice_stick_from_other_leaves3",
+                new AddItemModifier(new LootItemCondition[] {
+                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(Blocks.FLOWERING_AZALEA_LEAVES).build(),
+                        LootItemRandomChanceCondition.randomChance(0.05f).build()}, ExploMod.NICE_STICK.get()));
+
+        this.add("nice_stick_from_other_leaves4",
+                new AddItemModifier(new LootItemCondition[] {
+                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(Blocks.MANGROVE_LEAVES).build(),
+                        LootItemRandomChanceCondition.randomChance(0.075f).build()}, ExploMod.NICE_STICK.get()));
+
         this.add("longsword_from_chest",
                 new AddItemModifier(new LootItemCondition[] {
                         new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/jungle_temple")).build(),
@@ -79,7 +102,22 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
         this.add("dark_portal_creator_mansion",
                 new AddItemModifier(new LootItemCondition[] {
                         new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/woodland_mansion")).build(),
-                        LootItemRandomChanceCondition.randomChance(0.000132f).build()}, ExploMod.DARK_PORTAL_CREATOR.get()));
+                        LootItemRandomChanceCondition.randomChance(0.0008374f).build()}, ExploMod.DARK_PORTAL_CREATOR.get()));
+
+        this.add("dark_portal_creator_end",
+                new AddItemModifier(new LootItemCondition[] {
+                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/end_city_treasure")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.00132794f).build()}, ExploMod.DARK_PORTAL_CREATOR.get()));
+
+        this.add("dark_portal_creator_ancient_city",
+                new AddItemModifier(new LootItemCondition[] {
+                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/ancient_city")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.061995373194f).build()}, ExploMod.DARK_PORTAL_CREATOR.get()));
+
+        this.add("dark_portal_creator_spawn_chest",
+                new AddItemModifier(new LootItemCondition[] {
+                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/spawn_bonus_chest")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.0000000018f).build()}, ExploMod.DARK_PORTAL_CREATOR.get()));
 
         this.add("popsicle_snowy_village",
                 new AddItemModifier(new LootItemCondition[] {
@@ -110,5 +148,10 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
                              new AddItemModifier(new LootItemCondition[] {
         new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("entities/enderman")).build(),
                 LootItemRandomChanceCondition.randomChance(0.35f).build()}, ExploMod.STOOL_ITEM.get()));
+
+        this.add("harbinger_ranged_trial_chamber",
+                new AddItemModifier(new LootItemCondition[] {
+                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("equipment/trial_chamber_ranged")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.0075f).build()}, ExploMod.HARBINGER.get()));
     }
 }

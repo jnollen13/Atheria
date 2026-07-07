@@ -3,10 +3,10 @@
   "conditions": [
     {
       "condition": "neoforge:loot_table_id",
-      "loot_table_id": "minecraft:chests/woodland_mansion"
+      "loot_table_id": "minecraft:chests/spawn_bonus_chest"
     },
     {
-      "chance": 8.374E-4,
+      "chance": 1.8E-9,
       "condition": "minecraft:random_chance"
     }
   ],

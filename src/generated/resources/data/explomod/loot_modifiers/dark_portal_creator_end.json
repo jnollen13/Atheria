@@ -3,10 +3,10 @@
   "conditions": [
     {
       "condition": "neoforge:loot_table_id",
-      "loot_table_id": "minecraft:chests/woodland_mansion"
+      "loot_table_id": "minecraft:chests/end_city_treasure"
     },
     {
-      "chance": 8.374E-4,
+      "chance": 0.00132794,
       "condition": "minecraft:random_chance"
     }
   ],

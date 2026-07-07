@@ -6,18 +6,26 @@
     "explomod:nice_stick_from_jungle",
     "explomod:nice_stick_from_mangrove",
     "explomod:nice_stick_from_acacia",
+    "explomod:nice_stick_from_other_leaves1",
+    "explomod:nice_stick_from_other_leaves2",
+    "explomod:nice_stick_from_other_leaves3",
+    "explomod:nice_stick_from_other_leaves4",
     "explomod:longsword_from_chest",
     "explomod:jungle_dash",
     "explomod:melon_juice_plains",
     "explomod:fermented_melon_juice_jungle_temple",
     "explomod:dash_sword_trial_chamber",
     "explomod:dark_portal_creator_mansion",
+    "explomod:dark_portal_creator_end",
+    "explomod:dark_portal_creator_ancient_city",
+    "explomod:dark_portal_creator_spawn_chest",
     "explomod:popsicle_snowy_village",
     "explomod:popsicle_from_stray",
     "explomod:fuel_from_dungeon_chest",
     "explomod:fuel_from_village_chest",
     "explomod:phantom_sword_toolsmith",
-    "explomod:stool_from_enderman"
+    "explomod:stool_from_enderman",
+    "explomod:harbinger_ranged_trial_chamber"
   ],
   "replace": false
 }

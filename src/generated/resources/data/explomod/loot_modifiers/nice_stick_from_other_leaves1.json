@@ -1,0 +1,14 @@
+{
+  "type": "explomod:add_item",
+  "conditions": [
+    {
+      "block": "minecraft:azalea_leaves",
+      "condition": "minecraft:block_state_property"
+    },
+    {
+      "chance": 0.05,
+      "condition": "minecraft:random_chance"
+    }
+  ],
+  "item": "explomod:nice_stick"
+}

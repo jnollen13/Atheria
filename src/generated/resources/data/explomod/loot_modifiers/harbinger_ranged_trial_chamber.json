@@ -3,12 +3,12 @@
   "conditions": [
     {
       "condition": "neoforge:loot_table_id",
-      "loot_table_id": "minecraft:chests/woodland_mansion"
+      "loot_table_id": "minecraft:equipment/trial_chamber_ranged"
     },
     {
-      "chance": 8.374E-4,
+      "chance": 0.0075,
       "condition": "minecraft:random_chance"
     }
   ],
-  "item": "explomod:dark_portal_placer"
+  "item": "explomod:harbinger"
 }
