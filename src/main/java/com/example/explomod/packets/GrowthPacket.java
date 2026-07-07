@@ -7,12 +7,12 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
-public record DashPacket() implements CustomPacketPayload {
-    public static final Type<DashPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(ExploMod.MODID, "dash_packet"));
+public class GrowthPacket implements CustomPacketPayload {
+    public static final Type<GrowthPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(ExploMod.MODID, "airburst_packet"));
 
-    public static final StreamCodec<FriendlyByteBuf, DashPacket> CODEC = StreamCodec.of(
+    public static final StreamCodec<FriendlyByteBuf, GrowthPacket> CODEC = StreamCodec.of(
             (buf, value) -> {},
-            buf -> new DashPacket()
+            buf -> new GrowthPacket()
     );
 
     @Override

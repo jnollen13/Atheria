@@ -244,6 +244,7 @@
   "item.explomod.fermented_glowstone": "Fermented Glowstone",
   "item.explomod.fermented_melon_juice": "Fermented Melon Juice",
   "item.explomod.fermented_melon_juice_half": "Fermented Melon Juice",
+  "item.explomod.fireball_spell": "Fireball-Teaching Magic",
   "item.explomod.food": "Cooked Food",
   "item.explomod.fuel": "Fuel",
   "item.explomod.gecko_spawn_egg": "Cave Lizard Spawn Egg",
@@ -378,5 +379,16 @@
   "tooltip.explomod.decoration": "Purely for Decoration.",
   "tooltip.explomod.nice_stick": "press shift for more info",
   "tooltip.explomod.nice_stick.shift_down": "hold right click to break stick. the Nice Stick is equal to 3 sticks",
-  "tooltip.explomod.staff.item": "Good for Decoration."
+  "tooltip.explomod.staff.item": "Good for Decoration.",
+  "message.explomod.magic.learn": "open statistics menu to sync stats and be able to use the new spell or level of spell you have obtained",
+  "item.explomod.dash_spell": "Dash Tome",
+  "spell.explomod.item.minecraft.fire_charge": "Fireball",
+  "spell.explomod.item.minecraft.leather_boots": "Dash",
+  "key.explomod.air_burst.desc": "Cast Air Burst",
+  "item.explomod.growth_spell": "Growth Tome",
+  "spell.explomod.item.minecraft.bone_meal": "Growth",
+  "magic.explomod.nem.growth": "not enough mana to cast growth",
+  "item.explomod.tome": "Tome",
+  "itemGroup.explomod.magic": "magic",
+  "spell.explomod.null": "null"
 }

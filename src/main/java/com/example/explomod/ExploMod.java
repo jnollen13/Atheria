@@ -6,6 +6,7 @@ import com.example.explomod.block.custom.crates.EggBasketBlock;
 import com.example.explomod.block.custom.crates.SugarCaneCrateBlock;
 import com.example.explomod.command.AtheriaCommands;
 import com.example.explomod.component.AtheriaDataComponents;
+import com.example.explomod.component.SavedSpells;
 import com.example.explomod.data.AtheriaDataAttachments;
 import com.example.explomod.effect.ModEffects;
 import com.example.explomod.entity.ModEntities;
@@ -13,45 +14,39 @@ import com.example.explomod.entity.client.*;
 import com.example.explomod.loot.ModLootModifiers;
 import com.example.explomod.particle.ModParticles;
 import com.example.explomod.particle.SafteyParticle;
+import com.example.explomod.registries.Spell;
+import com.example.explomod.registries.SpellRegistries;
 import com.example.explomod.stats.AtheriaStats;
 import com.example.explomod.triggers.AtheriaTriggers;
 import com.example.explomod.utill.ClientProxy;
-import com.example.explomod.worldgen.AtheriaLevelUtill;
 import com.example.explomod.worldgen.ModBiomes;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import com.example.explomod.item.alchemy.ModPotions;
 import com.example.explomod.item.custom.*;
 import com.example.explomod.item.custom.Throwable;
 import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.material.PushReaction;
-import net.minecraft.world.level.portal.DimensionTransition;
-import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
-import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import net.neoforged.neoforge.event.village.WandererTradesEvent;
@@ -225,7 +220,8 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
     public static final DeferredItem<Item> FERMENTED_MELON_JUICE = ITEMS.register("fermented_melon_juice", ()-> new DrinkBottle(new Item.Properties().stacksTo(1).rarity(Rarity.COMMON).food(new FoodProperties.Builder().nutrition(1).saturationModifier(4)
             .usingConvertsTo(ExploMod.FERMENTED_MELON_JUICE_HALF.get()).effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 5000), 0.5f).effect(() -> new MobEffectInstance(MobEffects.WEAKNESS, 3000), 0.5f).effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 1000), 0.35f).build())));
     public static final DeferredItem<Item> STORM_BERRY_ROLL = ITEMS.register("stormberry_roll", () -> new StormBerryRoll(new Item.Properties().rarity(Rarity.RARE).food(new FoodProperties.Builder().nutrition(5).saturationModifier(1).build()).component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)));
-    public static final DeferredItem<Item> STORM_BERRY = ITEMS.register("storm_berry", () -> new Item(new Item.Properties().rarity(Rarity.COMMON).food(new FoodProperties.Builder().nutrition(1).effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 300), 0.5f).effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 600), 0.5f).effect(() -> new MobEffectInstance(MobEffects.POISON, 3000), 0.999f).saturationModifier(0f).build())));
+    public static final DeferredItem<Item> STORM_BERRY = ITEMS.register("storm_berry", () -> new Item(new Item.Properties().rarity(Rarity.COMMON).food(new FoodProperties.Builder().nutrition(1).effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 300), 0.5f).effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 600), 0.5f)
+            .effect(() -> new MobEffectInstance(MobEffects.POISON, 3000), 0.999f).saturationModifier(0f).build())));
     public static final DeferredItem<Item> STORMBERRY_COOKIE = ITEMS.register("stormberry_cookie", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.15f).build())));
     public static final DeferredItem<Item> STORMBERRY_PIE = ITEMS.register("stormberry_pie", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(6).saturationModifier(0.3f).build())));
     public static final DeferredItem<Item> APPLE_PIE = ITEMS.register("apple_pie", () -> new ShieldDisabler(new Item.Properties().food(new FoodProperties.Builder().nutrition(6).saturationModifier(0.3f).build())));
@@ -274,8 +270,17 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
     public static final DeferredItem<BlockItem> CANE_CRATE_ITEM = ITEMS.registerSimpleBlockItem("sugar_cane_crate", CANE_CRATE);
     public static final DeferredItem<Item> LOCATION_SAVER = ITEMS.register("location_saver", () -> new LocationSaverItem(new Item.Properties().stacksTo(1).setNoRepair().rarity(Rarity.UNCOMMON)));
     public static final DeferredItem<Item> DARK_PORTAL_CREATOR = ITEMS.register("dark_portal_placer", () -> new DarkPortalItem(new Item.Properties().fireResistant().stacksTo(1).rarity(Rarity.EPIC).setNoRepair()));
-    
 
+
+    // spells
+    public static final DeferredItem<Item> FIREBALL_SPELL = ITEMS.register("fireball_spell", () -> new SpellItem(new Item.Properties().setNoRepair().rarity(Rarity.EPIC).durability(1).stacksTo(1).fireResistant()
+            .component(AtheriaDataComponents.SPELL, new SavedSpells(SpellRegistries.FIREBALL_SPELL))));
+    public static final DeferredItem<Item> DASH_SPELL = ITEMS.register("dash_spell", () -> new SpellItem(new Item.Properties().setNoRepair().rarity(Rarity.UNCOMMON).durability(1).stacksTo(1).fireResistant()
+            .component(AtheriaDataComponents.SPELL, new SavedSpells(SpellRegistries.DASH_SPELL))));
+    public static final DeferredItem<Item> AIRBURST_SPELL = ITEMS.register("growth_spell", () -> new SpellItem(new Item.Properties().setNoRepair().rarity(Rarity.RARE).durability(1).stacksTo(1).fireResistant()
+            .component(AtheriaDataComponents.SPELL, new SavedSpells(SpellRegistries.AIRBURST_SPELL))));
+    public static final DeferredItem<Item> SPELL_TOME = ITEMS.register("tome", ()-> new SpellItem(new Item.Properties().stacksTo(1).setNoRepair().durability(10).fireResistant().rarity(Rarity.RARE)
+            .component(AtheriaDataComponents.SPELL, new SavedSpells(SpellRegistries.NULLSPELL.getDelegate()))));
 
     //creative tabs
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
@@ -367,6 +372,17 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
                 output.accept(RADIUM_NUGGET.get());
                 output.accept(RADIUM_FIRESTARTER.get());
             }).build());
+    //dagger creative tab
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MAGIC_TAB = CREATIVE_MODE_TABS.register("magic_tab", () -> CreativeModeTab.builder()
+            .title(Component.translatable("itemGroup.explomod.magic"))
+            .withTabsBefore(CreativeModeTabs.BUILDING_BLOCKS)
+            .icon(() -> DASH_SPELL.get().getDefaultInstance())
+            .displayItems((parameters, output) -> parameters.holders().lookup(SpellRegistries.CUSTOM_THINGS.getRegistryKey()).ifPresent((p_337908_) -> {
+                output.accept(DASH_SPELL, CreativeModeTab.TabVisibility.SEARCH_TAB_ONLY);
+                output.accept(FIREBALL_SPELL, CreativeModeTab.TabVisibility.SEARCH_TAB_ONLY);
+                output.accept(AIRBURST_SPELL, CreativeModeTab.TabVisibility.SEARCH_TAB_ONLY);
+                output.accept(SPELL_TOME, CreativeModeTab.TabVisibility.SEARCH_TAB_ONLY);
+            })).build());
 
 
     // use git add before git commit -m "whatever the commit message is"
@@ -387,6 +403,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
         ModVillagers.register(modEventBus);
         ModSounds.register(modEventBus);
         ModEntities.register(modEventBus);
+        SpellRegistries.register(modEventBus);
         ModFeature.register(modEventBus);
         ModPotions.register(modEventBus);
         AtheriaDataComponents.register(modEventBus);
@@ -469,7 +486,6 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
 
     @SubscribeEvent
     public void onPlayerJoin(EntityJoinLevelEvent event) {
-
     }
 
     @SubscribeEvent

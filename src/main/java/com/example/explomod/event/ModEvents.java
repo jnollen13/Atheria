@@ -7,9 +7,10 @@ import com.example.explomod.effect.ModEffects;
 import com.example.explomod.item.alchemy.ModPotions;
 import com.example.explomod.packets.DashPacket;
 import com.example.explomod.packets.FireballPacket;
-import com.example.explomod.stats.AtheriaStats;
+import com.example.explomod.packets.SpellPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.Holder;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionBrewing;
@@ -46,15 +47,22 @@ public class ModEvents {
             Holder<MobEffect> c = ModEffects.COOLDOWN.getDelegate();
             if(!mc.player.hasEffect(c)) {
                 // fireball
-                if(mc.player.getStats().getValue(AtheriaStats.HIDDEN_STATS.get().get(Items.FIRE_CHARGE))>0) {
+                if(mc.player.getData(AtheriaDataAttachments.KNOWN_SPELLS.get()).knowsSpell(Items.FIRE_CHARGE)) {
                     while (AtheriaKeys.CAST_FIREBALL.consumeClick()) {
                         PacketDistributor.sendToServer(new FireballPacket());
                     }
                 }
                 // dash
-                if(mc.player.getStats().getValue(AtheriaStats.HIDDEN_STATS.get().get(Items.LEATHER_BOOTS))>0) {
+                if(mc.player.getData(AtheriaDataAttachments.KNOWN_SPELLS.get()).knowsSpell(Items.LEATHER_BOOTS)) {
                     while ((AtheriaKeys.DASH.consumeClick())) {
                         PacketDistributor.sendToServer(new DashPacket());
+                    }
+                }
+                // test
+                if(mc.player.getData(AtheriaDataAttachments.KNOWN_SPELLS.get()).knowsSpell(Items.BAKED_POTATO)) {
+                    while ((AtheriaKeys.AIR_BURST.consumeClick())) {
+                        mc.player.displayClientMessage(Component.literal("done"), false);
+                        PacketDistributor.sendToServer(new SpellPacket("test"));
                     }
                 }
             }

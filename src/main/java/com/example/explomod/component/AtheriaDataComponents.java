@@ -29,8 +29,8 @@ public class AtheriaDataComponents {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<net.minecraft.network.chat.Component>> DESCRIPTION = register("description",
             builder -> builder.persistent(ComponentSerialization.FLAT_CODEC).networkSynchronized(ComponentSerialization.STREAM_CODEC).cacheEncoding());
 
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<ItemStack>> SPELL = register("spell",
-            builder -> builder.persistent(ItemStack.CODEC));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<SavedSpells>> SPELL = register("spell",
+            builder -> builder.persistent(SavedSpells.CODEC));
 
 
     private static <T> DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(String name,
