@@ -4,6 +4,8 @@ import com.example.explomod.block.custom.*;
 import com.example.explomod.block.custom.crates.CrateBlock;
 import com.example.explomod.block.custom.crates.EggBasketBlock;
 import com.example.explomod.block.custom.crates.SugarCaneCrateBlock;
+import com.example.explomod.block.custom.crates.template.CrateData;
+import com.example.explomod.block.custom.crates.template.CrateList;
 import com.example.explomod.command.AtheriaCommands;
 import com.example.explomod.component.AtheriaDataComponents;
 import com.example.explomod.component.SavedSpells;
@@ -97,7 +99,7 @@ public class ExploMod {
     // Create a Deferred Register to hold CreativeModeTabs which will all be registered under the "explomod" namespace
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
-    //registries
+    //registries(item and block)
     public static final DeferredBlock<Block> EXAMPLE_BLOCK = BLOCKS.registerSimpleBlock("example_block", BlockBehaviour.Properties.of()
             .mapColor(MapColor.STONE).destroyTime(35f).explosionResistance(999f).friction(0.85f).requiresCorrectToolForDrops().sound(SoundType.STONE));
     //remember () -> new DropExperienceBlock(UniformInt.of(2, 4),
@@ -388,6 +390,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
     // use git add before git commit -m "whatever the commit message is"
     // after commit use git push
 
+    // modeventbus
     public ExploMod(IEventBus modEventBus, ModContainer modContainer) {
         // Register the commonSetup method for mod loading
         modEventBus.addListener(this::commonSetup);

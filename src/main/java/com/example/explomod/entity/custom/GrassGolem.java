@@ -158,7 +158,7 @@ public class GrassGolem extends Animal {
             return InteractionResult.PASS;
         } else {
             float f = this.getHealth();
-            this.heal(10.0F);
+            this.setHealth(10f);
             if (this.getHealth() == f) {
                 return InteractionResult.PASS;
             } else {
