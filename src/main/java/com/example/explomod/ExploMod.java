@@ -42,6 +42,7 @@ import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -272,7 +273,8 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
     public static final DeferredItem<BlockItem> CANE_CRATE_ITEM = ITEMS.registerSimpleBlockItem("sugar_cane_crate", CANE_CRATE);
     public static final DeferredItem<Item> LOCATION_SAVER = ITEMS.register("location_saver", () -> new LocationSaverItem(new Item.Properties().stacksTo(1).setNoRepair().rarity(Rarity.UNCOMMON)));
     public static final DeferredItem<Item> DARK_PORTAL_CREATOR = ITEMS.register("dark_portal_placer", () -> new DarkPortalItem(new Item.Properties().fireResistant().stacksTo(1).rarity(Rarity.EPIC).setNoRepair()));
-
+    public static final DeferredBlock<Block> MOSSY_CHISELED_STONE_BRICKS = BLOCKS.register("mossy_chiseled_stone_bricks", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(1.5F, 6.0F)));
+    public static final DeferredItem<BlockItem> MOSSY_CHISELED_STONE_BRICKS_ITEM = ITEMS.registerSimpleBlockItem("mossy_chiseled_stone_bricks", MOSSY_CHISELED_STONE_BRICKS);
 
     // spells
     public static final DeferredItem<Item> FIREBALL_SPELL = ITEMS.register("fireball_spell", () -> new SpellItem(new Item.Properties().setNoRepair().rarity(Rarity.EPIC).durability(1).stacksTo(1).fireResistant()
@@ -291,6 +293,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
             .icon(() -> NEW.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
                 output.accept(EXAMPLE_ITEM.get());
+                output.accept(MOSSY_CHISELED_STONE_BRICKS_ITEM.get());
                 output.accept(EXAMPLE_BLOCK_ITEM.get());
                 output.accept(INSTANTBOOM_ITEM.get());
                 output.accept(LOCATION_SAVER.get());

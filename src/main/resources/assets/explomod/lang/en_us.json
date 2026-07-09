@@ -390,5 +390,6 @@
   "magic.explomod.nem.growth": "not enough mana to cast growth",
   "item.explomod.tome": "Tome",
   "itemGroup.explomod.magic": "magic",
-  "spell.explomod.null": "null"
+  "spell.explomod.null": "null",
+  "block.explomod.mossy_chiseled_stone_bricks": "Mossy Chiseled Stone Bricks"
 }
