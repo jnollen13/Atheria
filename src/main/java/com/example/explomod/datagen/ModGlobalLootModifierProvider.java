@@ -119,6 +119,21 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
                         new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/spawn_bonus_chest")).build(),
                         LootItemRandomChanceCondition.randomChance(0.0000000018f).build()}, ExploMod.DARK_PORTAL_CREATOR.get()));
 
+        this.add("dark_portal_creator_dagger_temple",
+                new AddItemModifier(new LootItemCondition[] {
+                        new LootTableIdCondition.Builder(ResourceLocation.fromNamespaceAndPath("daggermod","chests/dagger_temple")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.000004018f).build()}, ExploMod.DARK_PORTAL_CREATOR.get()));
+
+        this.add("dark_portal_creator_igloo",
+                new AddItemModifier(new LootItemCondition[] {
+                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/igloo_chest")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.0000108f).build()}, ExploMod.DARK_PORTAL_CREATOR.get()));
+
+        this.add("dark_portal_creator_simple_dungeon",
+                new AddItemModifier(new LootItemCondition[] {
+                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/simple_dungeon")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.0049163822f).build()}, ExploMod.DARK_PORTAL_CREATOR.get()));
+
         this.add("popsicle_snowy_village",
                 new AddItemModifier(new LootItemCondition[] {
                         new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/village/village_snowy_house")).build(),
@@ -131,7 +146,7 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
 
         this.add("fuel_from_dungeon_chest",
                 new AddItemModifier(new LootItemCondition[] {
-                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/dungeon")).build(),
+                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/simple_dungeon")).build(),
                         LootItemRandomChanceCondition.randomChance(0.85f).build()}, ExploMod.FUEL.get()));
 
         this.add("fuel_from_village_chest",

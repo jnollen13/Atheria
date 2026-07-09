@@ -6,9 +6,9 @@
       "loot_table_id": "minecraft:chests/simple_dungeon"
     },
     {
-      "chance": 0.85,
+      "chance": 0.004916382,
       "condition": "minecraft:random_chance"
     }
   ],
-  "item": "explomod:fuel"
+  "item": "explomod:dark_portal_placer"
 }

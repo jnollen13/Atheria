@@ -3,12 +3,12 @@
   "conditions": [
     {
       "condition": "neoforge:loot_table_id",
-      "loot_table_id": "minecraft:chests/simple_dungeon"
+      "loot_table_id": "minecraft:chests/igloo_chest"
     },
     {
-      "chance": 0.85,
+      "chance": 1.08E-5,
       "condition": "minecraft:random_chance"
     }
   ],
-  "item": "explomod:fuel"
+  "item": "explomod:dark_portal_placer"
 }

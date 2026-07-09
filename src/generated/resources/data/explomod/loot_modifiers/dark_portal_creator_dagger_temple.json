@@ -3,12 +3,12 @@
   "conditions": [
     {
       "condition": "neoforge:loot_table_id",
-      "loot_table_id": "minecraft:chests/simple_dungeon"
+      "loot_table_id": "daggermod:chests/dagger_temple"
     },
     {
-      "chance": 0.85,
+      "chance": 4.018E-6,
       "condition": "minecraft:random_chance"
     }
   ],
-  "item": "explomod:fuel"
+  "item": "explomod:dark_portal_placer"
 }
