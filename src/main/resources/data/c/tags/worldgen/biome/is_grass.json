@@ -3,6 +3,7 @@
     "#minecraft:is_forest",
     "explomod:deep_forest",
     "#minecraft:is_savanna",
-    "#minecraft:is_jungle"
+    "#minecraft:is_jungle",
+    "#c:is_plains"
   ]
 }

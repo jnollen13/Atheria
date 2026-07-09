@@ -2,6 +2,7 @@ package com.example.explomod.event;
 
 import com.example.explomod.AtheriaKeys;
 import com.example.explomod.ExploMod;
+import com.example.explomod.client.renderer.AtheriaDimensionSpecialEffects;
 import com.example.explomod.data.AtheriaDataAttachments;
 import com.example.explomod.effect.ModEffects;
 import com.example.explomod.item.alchemy.ModPotions;
@@ -11,6 +12,7 @@ import com.example.explomod.packets.SpellPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionBrewing;
@@ -18,6 +20,7 @@ import net.minecraft.world.item.alchemy.Potions;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.neoforge.client.event.RegisterDimensionSpecialEffectsEvent;
 import net.neoforged.neoforge.client.event.RenderGuiEvent;
 import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
@@ -81,5 +84,14 @@ public class ModEvents {
                 guiGraphics.fill(0, 0, width, height, alphaColor);
             }
         }
+    }
+
+    @SubscribeEvent
+    public static void registerDimensionEffects(RegisterDimensionSpecialEffectsEvent event) {
+        // Register your effect with a custom ResourceLocation ID
+        event.register(
+                ResourceLocation.fromNamespaceAndPath(ExploMod.MODID, "dark"),
+                new AtheriaDimensionSpecialEffects.DarkEffects()
+        );
     }
 }

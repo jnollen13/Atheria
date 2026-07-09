@@ -133,7 +133,7 @@
       "element": {
         "location": "explomod:dark_portal/dark_portal_broken13",
         "processors": "explomod:true_mossify_50_percent",
-        "projection": "rigid",
+        "projection": "terrain_matching",
         "element_type": "minecraft:single_pool_element"
       }
     }

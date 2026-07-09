@@ -3,6 +3,10 @@
     {
       "structure": "explomod:grass_golem_camp",
       "weight": 1
+    },
+    {
+      "structure": "explomod:dark_grass_golem_camp",
+      "weight": 1
     }
   ],
   "placement": {

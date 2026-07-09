@@ -1,0 +1,24 @@
+{
+  "name": "explomod:dark_grass_golem_camp",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "location": "explomod:camps/dark_grass_golem_camp",
+        "processors": "explomod:maybe_dense_grass",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "explomod:camps/grass_golem_camp2",
+        "processors": "explomod:maybe_dense_grass",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}
