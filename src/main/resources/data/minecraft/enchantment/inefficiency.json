@@ -7,10 +7,11 @@
     "minecraft:attributes": [
       {
         "amount": {
-          "type": "minecraft:levels_squared",
-          "added": -1.0
+          "type": "minecraft:linear",
+          "base": -0.25,
+          "per_level_above_first": -0.1
         },
-        "attribute": "minecraft:player.mining_efficiency",
+        "attribute": "minecraft:player.block_break_speed",
         "id": "minecraft:enchantment.efficiency",
         "operation": "add_value"
       }

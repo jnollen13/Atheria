@@ -476,6 +476,9 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
             event.accept(GRASS_GOLEM_SPAWN_EGG);
             event.accept(LPHANTOM_SPAWN_EGG);
         }
+        if (event.getTabKey()==CreativeModeTabs.BUILDING_BLOCKS){
+            event.accept(MOSSY_CHISELED_STONE_BRICKS_ITEM);
+        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

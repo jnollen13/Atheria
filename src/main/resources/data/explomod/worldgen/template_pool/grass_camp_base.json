@@ -19,6 +19,78 @@
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "explomod:camps/grass_camp_base2",
+        "processors": "explomod:maybe_dense_grass",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "explomod:camps/grass_camp_base2",
+        "processors": "explomod:pathify",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "explomod:camps/grass_camp_base3",
+        "processors": "explomod:maybe_dense_grass",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "explomod:camps/grass_camp_base3",
+        "processors": "explomod:pathify",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "explomod:camps/grass_camp_base4",
+        "processors": "explomod:maybe_dense_grass",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "explomod:camps/grass_camp_base4",
+        "processors": "explomod:pathify",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "explomod:camps/grass_camp_base5",
+        "processors": "explomod:maybe_dense_grass",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "explomod:camps/grass_camp_base5",
+        "processors": "explomod:mossify",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
     }
   ]
 }

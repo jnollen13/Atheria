@@ -19,6 +19,51 @@
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "explomod:camps/grass_golem_camp3",
+        "processors": "explomod:maybe_dense_grass",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "explomod:camps/grass_golem_camp4",
+        "processors": "explomod:maybe_dense_grass",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "explomod:camps/grass_golem_camp5",
+        "processors": "explomod:maybe_dense_grass",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "explomod:camps/grass_golem_camp_spawner",
+        "processors": "explomod:maybe_dense_grass",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "explomod:camps/grass_golem_camp6",
+        "processors": "explomod:maybe_dense_grass",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
     }
   ]
 }

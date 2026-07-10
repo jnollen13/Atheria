@@ -1,13 +1,12 @@
 {
   "values": [
-    "#minecraft:is_forest",
-    "#minecraft:is_beach",
-    "#minecraft:is_jungle",
-    "#minecraft:is_savanna",
-    "#minecraft:is_taiga",
-    "#minecraft:is_ocean",
-    "minecraft:plains",
-    "minecraft:meadow",
+    "#c:is_forest",
+    "#c:is_beach",
+    "#c:is_jungle",
+    "#c:is_savanna",
+    "#c:is_taiga",
+    "#c:is_ocean",
+    "#c:is_plains",
     "explomod:deep_forest"
   ]
 }

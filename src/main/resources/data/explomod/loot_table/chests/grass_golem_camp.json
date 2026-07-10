@@ -49,10 +49,6 @@
           "weight": 4
         },
         {
-          "type": "minecraft:poisonous_potato",
-          "weight": 1
-        },
-        {
           "type": "minecraft:wheat",
           "weight": 4
         },
@@ -159,5 +155,5 @@
       "rolls": 1.0
     }
   ],
-  "random_sequence": "explomod:chests/gras_golem_camp"
+  "random_sequence": "explomod:chests/grass_golem_camp"
 }
