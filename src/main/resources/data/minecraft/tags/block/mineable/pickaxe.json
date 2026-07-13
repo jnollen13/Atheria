@@ -1,5 +1,8 @@
 {
   "values": [
+    "explomod:chiseled_stone_bricks_slab",
+    "explomod:chiseled_stone_bricks_stairs",
+    "explomod:infested_mossy_chiseled_stone_bricks",
     "explomod:example_block",
     "explomod:stoned",
     "explomod:tank",

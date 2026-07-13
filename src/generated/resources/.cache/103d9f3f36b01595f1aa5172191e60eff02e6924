@@ -1,4 +1,4 @@
-// 1.21.1	2026-06-06T13:10:03.044975082	Registries
+// 1.21.1	2026-07-12T17:12:05.422533628	Registries
 ab528b29d245672b01fede1662520629f6fb4fb1 data/explomod/neoforge/biome_modifier/add_food_ore.json
 69781815d980ae46316d85d1fcadac77ee4834d8 data/explomod/neoforge/biome_modifier/add_radium_ore.json
 12c7854587e6ab3409166f6553d653379647ebd0 data/explomod/neoforge/biome_modifier/add_stormberry_bush.json
@@ -18,6 +18,7 @@ f115090e8b5154a26cf3db63252dc901e4e41c83 data/explomod/worldgen/configured_featu
 210146a34c3c7338b04436f55d4ce08853d41484 data/explomod/worldgen/configured_feature/mini_bloodwood_tree.json
 1125e2d4f329f350ccb8ad4903adddf43554ce35 data/explomod/worldgen/configured_feature/mini_spruce_tree.json
 fb86c148fa2ed471ed8cfe8f9a9315a340b38d83 data/explomod/worldgen/configured_feature/radium_ore.json
+b04193d763a4a003464e51d04fcb1d19b31f6671 data/explomod/worldgen/configured_feature/red_flower.json
 7bb7f2d44dabc25356b7332797b722d6293dc375 data/explomod/worldgen/configured_feature/rooted_dark_oak_vegetation.json
 cd0382df6b7809f46a23989315cf942821c35797 data/explomod/worldgen/configured_feature/stormberry_bush.json
 75e7faf1b1732213da81de8884fa5acf4e59b59e data/explomod/worldgen/configured_feature/winter_oak.json
@@ -29,6 +30,7 @@ c64d86b411a16f503a134466c045b16ec859a999 data/explomod/worldgen/placed_feature/g
 801f042b71e3af1d87eeca35c813e63301e6d9a6 data/explomod/worldgen/placed_feature/lush_caves_ceiling_vegetation.json
 d5b7158b8e114ed0f1c368101a76e4b6470437a6 data/explomod/worldgen/placed_feature/r_veg1_placed.json
 bd51499b8bfc430bcac24fdd6cfa9143e9d4a7fe data/explomod/worldgen/placed_feature/radium_ore_placed.json
+9d0e1bee002fd29d2e5813acfdcd08c605d5bca0 data/explomod/worldgen/placed_feature/red_flowers.json
 aeb7b5ad188f74a4546d300ed08ecadf8e02da21 data/explomod/worldgen/placed_feature/stormberry_bush_placed.json
 fe93e3f8d10d1060c6a1e676ef19624194fc9da4 data/explomod/worldgen/placed_feature/sveg1_placed.json
 3a82d839eaf2514db3f679b385beb23560970182 data/explomod/worldgen/placed_feature/veg1_ceiling_placed.json

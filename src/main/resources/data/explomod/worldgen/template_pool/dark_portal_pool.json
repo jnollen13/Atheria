@@ -136,6 +136,33 @@
         "projection": "terrain_matching",
         "element_type": "minecraft:single_pool_element"
       }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "explomod:dark_portal/dark_portal_broken14",
+        "processors": "explomod:true_mossify_50_percent",
+        "projection": "terrain_matching",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "explomod:dark_portal/dark_portal_broken15",
+        "processors": "explomod:true_mossify_50_percent",
+        "projection": "terrain_matching",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "explomod:dark_portal/dark_portal_broken16",
+        "processors": "explomod:true_mossify_50_percent",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
     }
   ]
 }

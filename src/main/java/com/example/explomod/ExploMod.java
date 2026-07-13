@@ -41,6 +41,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.PushReaction;
@@ -83,6 +84,7 @@ import com.example.explomod.worldgen.tree.ModTreeGrower;
 
 import java.util.List;
 
+import static net.minecraft.world.item.Items.POPPY;
 import static net.minecraft.world.item.Items.registerBlock;
 import static net.neoforged.fml.loading.FMLEnvironment.dist;
 
@@ -264,7 +266,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
     public static final DeferredBlock<Block> AIR = BLOCKS.register("glowing_air", () -> new TimeOutAirBlock(BlockBehaviour.Properties.of()
             .replaceable().randomTicks().noCollission().lightLevel(p_187433_ -> 11).noLootTable().air()));
     public static final DeferredBlock<Block> GLOWBERRY_BUSH = BLOCKS.register("glowberry_bush", () -> new GlowBerryBushBlock(Items.GLOW_BERRIES, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).randomTicks().noCollission().sound(SoundType.SWEET_BERRY_BUSH).pushReaction(PushReaction.DESTROY)
-            .lightLevel(state -> state.getValue(GlowBerryBushBlock.GLOWING)? 12 : 1)));
+            .lightLevel(state -> state.getValue(GlowBerryBushBlock.GLOWING)?12:1)));
     public static final DeferredBlock<Block> CRATE = BLOCKS.register("crate", () -> new EggBasketBlock(BlockBehaviour.Properties.of().noOcclusion().destroyTime(2f)));
     public static final DeferredItem<BlockItem> CRATE_ITEM = ITEMS.registerSimpleBlockItem("crate", CRATE);
     public static final DeferredBlock<Block> EMPTY_CRATE = BLOCKS.register("empty_crate", () -> new CrateBlock(BlockBehaviour.Properties.of().noOcclusion().destroyTime(1.5f)));
@@ -273,8 +275,27 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
     public static final DeferredItem<BlockItem> CANE_CRATE_ITEM = ITEMS.registerSimpleBlockItem("sugar_cane_crate", CANE_CRATE);
     public static final DeferredItem<Item> LOCATION_SAVER = ITEMS.register("location_saver", () -> new LocationSaverItem(new Item.Properties().stacksTo(1).setNoRepair().rarity(Rarity.UNCOMMON)));
     public static final DeferredItem<Item> DARK_PORTAL_CREATOR = ITEMS.register("dark_portal_placer", () -> new DarkPortalItem(new Item.Properties().fireResistant().stacksTo(1).rarity(Rarity.EPIC).setNoRepair()));
-    public static final DeferredBlock<Block> MOSSY_CHISELED_STONE_BRICKS = BLOCKS.register("mossy_chiseled_stone_bricks", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(1.5F, 6.0F)));
+    public static final DeferredBlock<Block> MOSSY_CHISELED_STONE_BRICKS = BLOCKS.register("mossy_chiseled_stone_bricks", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(1.55F, 6.0F)));
     public static final DeferredItem<BlockItem> MOSSY_CHISELED_STONE_BRICKS_ITEM = ITEMS.registerSimpleBlockItem("mossy_chiseled_stone_bricks", MOSSY_CHISELED_STONE_BRICKS);
+    public static final DeferredBlock<Block> INFESTED_MOSSY_CHISELED_STONE_BRICKS = BLOCKS.register("infested_mossy_chiseled_stone_bricks", () -> new InfestedBlock(MOSSY_CHISELED_STONE_BRICKS.get(), BlockBehaviour.Properties.of().mapColor(MapColor.CLAY).strength(1.5F, 6.0F)));
+    public static final DeferredItem<BlockItem> INFESTED_MOSSY_CHISELED_STONE_BRICKS_ITEM = ITEMS.registerSimpleBlockItem("infested_mossy_chiseled_stone_bricks", INFESTED_MOSSY_CHISELED_STONE_BRICKS);
+    public static final DeferredBlock<Block> INFESTED_DIORITE = BLOCKS.register("infested_diorite", () -> new InfestedBlock(Blocks.DIORITE, BlockBehaviour.Properties.of().mapColor(MapColor.CLAY).strength(1.5F, 6.0F)));
+    public static final DeferredItem<BlockItem> INFESTED_DIORITE_ITEM = ITEMS.registerSimpleBlockItem("infested_diorite", INFESTED_DIORITE);
+    public static final DeferredBlock<SlabBlock> CHISELED_STONE_BRICKS_SLAB = BLOCKS.register("chiseled_stone_bricks_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.of().strength(1.5f).requiresCorrectToolForDrops().explosionResistance(6f).noOcclusion()));
+    public static final DeferredItem<BlockItem> CHISELED_STONE_BRICKS_SLAB_ITEM = ITEMS.registerSimpleBlockItem("chiseled_stone_bricks_slab", CHISELED_STONE_BRICKS_SLAB);
+    public static final DeferredBlock<StairBlock> CHISELED_STONE_BRICKS_STAIRS = BLOCKS.register("chiseled_stone_bricks_stairs",
+            () -> legacyStair(Blocks.CHISELED_STONE_BRICKS));
+    public static final DeferredItem<BlockItem> CHISELED_STONE_BRICKS_STAIRS_ITEM = ITEMS.registerSimpleBlockItem("chiseled_stone_bricks_stairs", CHISELED_STONE_BRICKS_STAIRS);
+    public static final DeferredBlock<WallBlock> CHISELED_STONE_BRICKS_WALL = BLOCKS.register("chiseled_stone_bricks_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CHISELED_STONE_BRICKS).forceSolidOn()));
+    public static final DeferredItem<BlockItem> CHISELED_STONE_BRICKS_WALL_ITEM = ITEMS.registerSimpleBlockItem("chiseled_stone_bricks_wall", CHISELED_STONE_BRICKS_WALL);
+    public static final DeferredBlock<Block> RED_FLOWER = BLOCKS.register("red_flower", () -> new FlowerBlock(MobEffects.GLOWING, 5.0F, BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY).noOcclusion()));
+    public static final DeferredItem<BlockItem> RED_FLOWER_ITEM = ITEMS.registerSimpleBlockItem("red_flower", RED_FLOWER);
+    public static final DeferredBlock<SlabBlock> MOSSY_CHISELED_STONE_BRICKS_SLAB = BLOCKS.register("mossy_chiseled_stone_bricks_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.of().strength(1.75f).requiresCorrectToolForDrops().explosionResistance(6f).noOcclusion()));
+    public static final DeferredItem<BlockItem> MOSSY_CHISELED_STONE_BRICKS_SLAB_ITEM = ITEMS.registerSimpleBlockItem("mossy_chiseled_stone_bricks_slab", MOSSY_CHISELED_STONE_BRICKS_SLAB);
+
 
     // spells
     public static final DeferredItem<Item> FIREBALL_SPELL = ITEMS.register("fireball_spell", () -> new SpellItem(new Item.Properties().setNoRepair().rarity(Rarity.EPIC).durability(1).stacksTo(1).fireResistant()
@@ -303,7 +324,12 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
                 output.accept(EMPTY_CRATE_ITEM.get());
                 output.accept(DASH_SWORD.get());
                 output.accept(CRATE_ITEM.get());
-                output.accept(HARBINGER);
+                output.accept(HARBINGER.get());
+                output.accept(INFESTED_MOSSY_CHISELED_STONE_BRICKS_ITEM.get());
+                output.accept(CHISELED_STONE_BRICKS_SLAB_ITEM.get());
+                output.accept(CHISELED_STONE_BRICKS_STAIRS_ITEM.get());
+                output.accept(CHISELED_STONE_BRICKS_WALL_ITEM.get());
+                output.accept(MOSSY_CHISELED_STONE_BRICKS_SLAB_ITEM.get());
                 output.accept(WINTEROAK_SAPLING.get());
                 output.accept(FLOWERING_OAK_LEAVES.get());
                 output.accept(GRASS_GOLEM_SPAWN_EGG.get());
@@ -363,6 +389,16 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
                 output.accept(DAGGER.get());
                 output.accept(BLUE_POPSICLE.get());
                 output.accept(HEART_FOOD.get());
+                output.accept(INFESTED_DIORITE_ITEM.get());
+                output.accept(RED_SNOWBALL);
+                output.accept(GREEN_SNOWBALL);
+                output.accept(BLUE_SNOWBALL);
+                output.accept(BROWN_SNOWBALL);
+                output.accept(WHITE_SNOWBALL, CreativeModeTab.TabVisibility.PARENT_TAB_ONLY);
+                output.accept(LIGHT_BLUE_SNOWBALL);
+                output.accept(YELLOW_SNOWBALL);
+                output.accept(ORANGE_SNOWBALL);
+                output.accept(RED_FLOWER_ITEM.get());
             }).build());
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> RADIUM_TAB = CREATIVE_MODE_TABS.register("radium_tab", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.explomod.radium")) //The language key for the title of your CreativeModeTab
@@ -393,7 +429,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
     // use git add before git commit -m "whatever the commit message is"
     // after commit use git push
 
-    // modeventbus
+    // mod eventbus
     public ExploMod(IEventBus modEventBus, ModContainer modContainer) {
         // Register the commonSetup method for mod loading
         modEventBus.addListener(this::commonSetup);
@@ -458,6 +494,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
             event.accept(STORMBERRY_PIE);
             event.accept(STORM_BERRY_CAKE);
             event.accept(MELON_JUICE);
+            event.accept(FERMENTED_MELON_JUICE);
         }
         if (event.getTabKey() == CreativeModeTabs.COMBAT) {
             event.accept(RED_SNOWBALL);
@@ -468,7 +505,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
             event.accept(YELLOW_SNOWBALL);
             event.accept(ORANGE_SNOWBALL);
             event.accept(BLACK_SNOWBALL);
-            event.accept(BROWN_SNOWBALL, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.accept(BROWN_SNOWBALL);
         }
         if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
             event.accept(GECKO_SPAWN_EGG);
@@ -478,6 +515,17 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
         }
         if (event.getTabKey()==CreativeModeTabs.BUILDING_BLOCKS){
             event.accept(MOSSY_CHISELED_STONE_BRICKS_ITEM);
+            event.accept(MOSSY_CHISELED_STONE_BRICKS_SLAB_ITEM);
+            event.accept(CHISELED_STONE_BRICKS_SLAB_ITEM);
+            event.accept(CHISELED_STONE_BRICKS_STAIRS_ITEM);
+            event.accept(CHISELED_STONE_BRICKS_WALL_ITEM);
+        }
+        if (event.getTabKey()==CreativeModeTabs.FUNCTIONAL_BLOCKS){
+            event.accept(INFESTED_DIORITE_ITEM);
+            event.accept(INFESTED_MOSSY_CHISELED_STONE_BRICKS_ITEM);
+        }
+        if (event.getTabKey()==CreativeModeTabs.NATURAL_BLOCKS){
+            event.accept(RED_FLOWER_ITEM.asItem());
         }
     }
 
@@ -682,5 +730,9 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
         public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
             event.registerSpriteSet(ModParticles.SAFETY_PARTICLES.get(), SafteyParticle.Provider::new);
         }
+    }
+
+    private static StairBlock legacyStair(Block baseBlock) {
+        return new StairBlock(baseBlock.defaultBlockState(), BlockBehaviour.Properties.ofLegacyCopy(baseBlock));
     }
 }

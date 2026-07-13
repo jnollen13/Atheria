@@ -30,6 +30,7 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> R_VEG1_PLACED = registerKey("r_veg1_placed");
     public static final ResourceKey<PlacedFeature> WEB1_PLACED = registerKey("web1_placed");
     public static final ResourceKey<PlacedFeature> WEB2_PLACED = registerKey("web2_placed");
+    public static final ResourceKey<PlacedFeature> RED_FLOWER_PLACED = registerKey("red_flowers");
     public static final ResourceKey<PlacedFeature> SVEG1_CEILING_PLACED = registerKey("veg1_ceiling_placed");
     public static final ResourceKey<PlacedFeature> VEG2_PLACED = registerKey("veg2_placed");
     public static final ResourceKey<PlacedFeature> VEG3_PLACED = registerKey("veg3_placed");
@@ -69,6 +70,11 @@ public class ModPlacedFeatures {
         PlacementUtils.register(context, WEB1_PLACED, configuredFeatures.getOrThrow(ModConfiguredFeatures.WEB1_KEY),
                 CountPlacement.of(128), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.matchesBlocks(Blocks.STONE,Blocks.BLACKSTONE,Blocks.DRIPSTONE_BLOCK),
+                        BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(1)), BiomeFilter.biome());
+
+        PlacementUtils.register(context, RED_FLOWER_PLACED, configuredFeatures.getOrThrow(ModConfiguredFeatures.RED_FLOWER_KEY),
+                CountPlacement.of(64), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.matchesBlocks(Blocks.GRASS_BLOCK,Blocks.DIRT,Blocks.MOSS_BLOCK,Blocks.PODZOL),
                         BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(1)), BiomeFilter.biome());
 
         PlacementUtils.register(context, WEB2_PLACED, configuredFeatures.getOrThrow(ModConfiguredFeatures.WEB2_KEY),

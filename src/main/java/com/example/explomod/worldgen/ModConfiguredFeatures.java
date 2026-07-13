@@ -37,6 +37,7 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> WINTER_OAK_KEY = registerKey("winter_oak");
     public static final ResourceKey<ConfiguredFeature<?, ?>> DARK_OAK_KEY = registerKey("dark_oak");
     public static final ResourceKey<ConfiguredFeature<?, ?>> UNDER_VEG_1_KEY = registerKey("dark_oak_stack");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> RED_FLOWER_KEY = registerKey("red_flower");
     public static final ResourceKey<ConfiguredFeature<?, ?>> ROOTED_VEG_1_KEY = registerKey("rooted_dark_oak_vegetation");
     public static final ResourceKey<ConfiguredFeature<?, ?>> VEG_2_KEY = registerKey("mini_bloodwood_tree");
     public static final ResourceKey<ConfiguredFeature<?, ?>> VEG_3_KEY = registerKey("mini_spruce_tree");
@@ -62,6 +63,9 @@ public class ModConfiguredFeatures {
 
         FeatureUtils.register(context, UNDER_VEG_1_KEY, ModFeature.TWO_BLOCK.get(), new TwoBlockConfiguration(BlockStateProvider.simple(Blocks.DARK_OAK_LOG
                 .defaultBlockState()),BlockStateProvider.simple(Blocks.DARK_OAK_LEAVES.defaultBlockState().setValue(LeavesBlock.PERSISTENT, true))));
+
+        FeatureUtils.register(context, RED_FLOWER_KEY, Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(ExploMod.RED_FLOWER.get()
+                .defaultBlockState())));
 
         FeatureUtils.register(context, ROOTED_VEG_1_KEY, ModFeature.TWO_BLOCK.get(), new TwoBlockConfiguration(BlockStateProvider.simple(Blocks.ROOTED_DIRT
                 .defaultBlockState()),BlockStateProvider.simple(Blocks.DARK_OAK_LEAVES.defaultBlockState().setValue(LeavesBlock.PERSISTENT, true))));

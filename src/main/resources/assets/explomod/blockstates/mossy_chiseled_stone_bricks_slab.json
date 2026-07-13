@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "explomod:block/mossy_chiseled_stone_bricks_slab"
+    },
+    "type=double": {
+      "model": "explomod:block/mossy_chiseled_stone_bricks"
+    },
+    "type=top": {
+      "model": "explomod:block/mossy_chiseled_stone_bricks_slab_top"
+    }
+  }
+}

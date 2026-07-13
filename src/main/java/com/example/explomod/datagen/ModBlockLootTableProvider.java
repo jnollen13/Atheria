@@ -35,6 +35,14 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
             dropSelf(ExploMod.STONED.get());
             dropSelf(ExploMod.KIT.get());
             dropSelf(ExploMod.BLOODWOOD_DOOR.get());
+            dropOther(ExploMod.INFESTED_DIORITE.get(), Items.DIORITE);
+            dropSelf(ExploMod.RED_FLOWER.get());
+            dropSelf(ExploMod.CHISELED_STONE_BRICKS_WALL.get());
+            dropSelf(ExploMod.CHISELED_STONE_BRICKS_STAIRS.get());
+            dropSelf(ExploMod.CHISELED_STONE_BRICKS_SLAB.get());
+            dropSelf(ExploMod.MOSSY_CHISELED_STONE_BRICKS.get());
+            dropSelf(ExploMod.INFESTED_MOSSY_CHISELED_STONE_BRICKS.get());
+            dropSelf(ExploMod.MOSSY_CHISELED_STONE_BRICKS_SLAB.get());
             dropSelf(ExploMod.LOG_BLOCK.get());
             dropSelf(ExploMod.XRAY_BLOCK.get());
             dropSelf(ExploMod.BLOODWOOD_SAPLING.get());
