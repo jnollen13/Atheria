@@ -4,20 +4,19 @@ import com.example.explomod.block.custom.*;
 import com.example.explomod.block.custom.crates.CrateBlock;
 import com.example.explomod.block.custom.crates.EggBasketBlock;
 import com.example.explomod.block.custom.crates.SugarCaneCrateBlock;
-import com.example.explomod.block.custom.crates.template.CrateData;
-import com.example.explomod.block.custom.crates.template.CrateList;
 import com.example.explomod.command.AtheriaCommands;
 import com.example.explomod.component.AtheriaDataComponents;
-import com.example.explomod.component.SavedSpells;
 import com.example.explomod.data.AtheriaDataAttachments;
 import com.example.explomod.effect.ModEffects;
 import com.example.explomod.entity.ModEntities;
 import com.example.explomod.entity.client.*;
+import com.example.explomod.item.custom.magic.SimpleSpellItem;
+import com.example.explomod.item.custom.magic.UnSummoningItem;
 import com.example.explomod.loot.ModLootModifiers;
 import com.example.explomod.particle.ModParticles;
 import com.example.explomod.particle.SafteyParticle;
-import com.example.explomod.registries.Spell;
 import com.example.explomod.registries.SpellRegistries;
+import com.example.explomod.spells.Spells;
 import com.example.explomod.stats.AtheriaStats;
 import com.example.explomod.triggers.AtheriaTriggers;
 import com.example.explomod.utill.ClientProxy;
@@ -27,21 +26,19 @@ import com.example.explomod.item.alchemy.ModPotions;
 import com.example.explomod.item.custom.*;
 import com.example.explomod.item.custom.Throwable;
 import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.PushReaction;
@@ -51,6 +48,7 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
+import net.neoforged.neoforge.event.entity.living.MobSpawnEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import net.neoforged.neoforge.event.village.WandererTradesEvent;
@@ -84,7 +82,6 @@ import com.example.explomod.worldgen.tree.ModTreeGrower;
 
 import java.util.List;
 
-import static net.minecraft.world.item.Items.POPPY;
 import static net.minecraft.world.item.Items.registerBlock;
 import static net.neoforged.fml.loading.FMLEnvironment.dist;
 
@@ -295,17 +292,14 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
     public static final DeferredBlock<SlabBlock> MOSSY_CHISELED_STONE_BRICKS_SLAB = BLOCKS.register("mossy_chiseled_stone_bricks_slab",
             () -> new SlabBlock(BlockBehaviour.Properties.of().strength(1.75f).requiresCorrectToolForDrops().explosionResistance(6f).noOcclusion()));
     public static final DeferredItem<BlockItem> MOSSY_CHISELED_STONE_BRICKS_SLAB_ITEM = ITEMS.registerSimpleBlockItem("mossy_chiseled_stone_bricks_slab", MOSSY_CHISELED_STONE_BRICKS_SLAB);
+    public static final DeferredItem<Item> UNSUMMONING_STAFF = ITEMS.register("unsummoning_staff", () -> new UnSummoningItem(UnSummoningItem.Method.ALL ,new Item.Properties().rarity(Rarity.EPIC).stacksTo(1).durability(64)));
+    public static final DeferredItem<Item> FLIGHT_COIN = ITEMS.register("flight_coin", () -> new SimpleSpellItem(Spells.FLYSPELL, new Item.Properties().stacksTo(1).rarity(Rarity.RARE).durability(10)));
+    public static final DeferredItem<Item> HEAL_TOKEN = ITEMS.register("heal_coin", () -> new SimpleSpellItem(Spells.HEAL_I, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).durability(15)));
+    public static final DeferredItem<Item> HEAL_TOKEN2 = ITEMS.register("heal_coin2", () -> new SimpleSpellItem(Spells.HEAL_II, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).durability(12)));
+    public static final DeferredItem<Item> HEAL_TOKEN3 = ITEMS.register("heal_coin3", () -> new SimpleSpellItem(Spells.HEAL_III, new Item.Properties().stacksTo(1).rarity(Rarity.RARE).durability(10)));
+    public static final DeferredItem<Item> HEAL_TOKEN4 = ITEMS.register("heal_coin4", () -> new SimpleSpellItem(Spells.HEAL_IV, new Item.Properties().stacksTo(1).rarity(Rarity.RARE).durability(7)));
+    public static final DeferredItem<Item> HEAL_TOKEN5 = ITEMS.register("heal_coin5", () -> new SimpleSpellItem(Spells.HEAL_V, new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).durability(5)));
 
-
-    // spells
-    public static final DeferredItem<Item> FIREBALL_SPELL = ITEMS.register("fireball_spell", () -> new SpellItem(new Item.Properties().setNoRepair().rarity(Rarity.EPIC).durability(1).stacksTo(1).fireResistant()
-            .component(AtheriaDataComponents.SPELL, new SavedSpells(SpellRegistries.FIREBALL_SPELL))));
-    public static final DeferredItem<Item> DASH_SPELL = ITEMS.register("dash_spell", () -> new SpellItem(new Item.Properties().setNoRepair().rarity(Rarity.UNCOMMON).durability(1).stacksTo(1).fireResistant()
-            .component(AtheriaDataComponents.SPELL, new SavedSpells(SpellRegistries.DASH_SPELL))));
-    public static final DeferredItem<Item> AIRBURST_SPELL = ITEMS.register("growth_spell", () -> new SpellItem(new Item.Properties().setNoRepair().rarity(Rarity.RARE).durability(1).stacksTo(1).fireResistant()
-            .component(AtheriaDataComponents.SPELL, new SavedSpells(SpellRegistries.AIRBURST_SPELL))));
-    public static final DeferredItem<Item> SPELL_TOME = ITEMS.register("tome", ()-> new SpellItem(new Item.Properties().stacksTo(1).setNoRepair().durability(10).fireResistant().rarity(Rarity.RARE)
-            .component(AtheriaDataComponents.SPELL, new SavedSpells(SpellRegistries.NULLSPELL.getDelegate()))));
 
     //creative tabs
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
@@ -337,6 +331,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
                 output.accept(DENSEGRASS.get());
                 output.accept(RADIUM_NUGGET.get());
                 output.accept(BLOOD_WOOD_SAPLING.get());
+                output.accept(UNSUMMONING_STAFF.get());
                 output.accept(STORM_BERRY_BUSH.get());
                 output.accept(STORMBERRY_COOKIE.get());
                 output.accept(MAGIC_RADIATION_STAFF.get());
@@ -399,6 +394,12 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
                 output.accept(YELLOW_SNOWBALL);
                 output.accept(ORANGE_SNOWBALL);
                 output.accept(RED_FLOWER_ITEM.get());
+                output.accept(FLIGHT_COIN.get());
+                output.accept(HEAL_TOKEN.get());
+                output.accept(HEAL_TOKEN2.get());
+                output.accept(HEAL_TOKEN3.get());
+                output.accept(HEAL_TOKEN4.get());
+                output.accept(HEAL_TOKEN5.get());
             }).build());
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> RADIUM_TAB = CREATIVE_MODE_TABS.register("radium_tab", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.explomod.radium")) //The language key for the title of your CreativeModeTab
@@ -413,17 +414,6 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
                 output.accept(RADIUM_NUGGET.get());
                 output.accept(RADIUM_FIRESTARTER.get());
             }).build());
-    //dagger creative tab
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MAGIC_TAB = CREATIVE_MODE_TABS.register("magic_tab", () -> CreativeModeTab.builder()
-            .title(Component.translatable("itemGroup.explomod.magic"))
-            .withTabsBefore(CreativeModeTabs.BUILDING_BLOCKS)
-            .icon(() -> DASH_SPELL.get().getDefaultInstance())
-            .displayItems((parameters, output) -> parameters.holders().lookup(SpellRegistries.CUSTOM_THINGS.getRegistryKey()).ifPresent((p_337908_) -> {
-                output.accept(DASH_SPELL, CreativeModeTab.TabVisibility.SEARCH_TAB_ONLY);
-                output.accept(FIREBALL_SPELL, CreativeModeTab.TabVisibility.SEARCH_TAB_ONLY);
-                output.accept(AIRBURST_SPELL, CreativeModeTab.TabVisibility.SEARCH_TAB_ONLY);
-                output.accept(SPELL_TOME, CreativeModeTab.TabVisibility.SEARCH_TAB_ONLY);
-            })).build());
 
 
     // use git add before git commit -m "whatever the commit message is"

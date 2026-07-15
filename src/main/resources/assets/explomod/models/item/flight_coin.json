@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "explomod:item/spells/fireball_spell"
+    "layer0": "explomod:item/spells/golden_cookie"
   }
 }

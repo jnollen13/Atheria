@@ -130,7 +130,7 @@ public class ModNetWorking {
                 (spellPacket, iPayloadContext) -> {
                     if(iPayloadContext.player() instanceof ServerPlayer player) {
                         String sId = spellPacket.spell();
-                        Spell.spell(sId).DoSpell(player);
+                        Spell.spell(sId).DoSpell(player.level(), player);
                     }
                 }
         );

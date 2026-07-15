@@ -41,6 +41,7 @@ public class Config {
         public final ModConfigSpec.ConfigValue<Boolean> commandHistory_enabled;
         public final ModConfigSpec.ConfigValue<Boolean> commandCrash_enabled;
         public final ModConfigSpec.ConfigValue<Boolean> fallVoidDark;
+        public final ModConfigSpec.ConfigValue<String> fallDarkDimension;
 
 
         public Server(ModConfigSpec.Builder builder) {
@@ -55,8 +56,12 @@ public class Config {
                     .define("Sets portal return dimension", Level.OVERWORLD.location().toString());
             fallVoidDark = builder
                     .comment("should anything that falls into the void in the dark fall into a new dimension")
-                    .translation("dark_portal_return_dimension")
+                    .translation("dark_fall")
                     .define("entities change dimensions in dark void", false);
+            fallDarkDimension = builder
+                    .comment("Sets the ID of the dimension that falling out of the dark will bring mobs to")
+                    .translation("dark_fall_dimension")
+                    .define("Sets the dimension that you fall into from the dark", Level.NETHER.location().toString());
             builder.pop();
             builder.push("villagers");
             builder.pop();

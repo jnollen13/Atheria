@@ -1,8 +1,10 @@
 package com.example.explomod.spells;
 
 import com.example.explomod.registries.Spell;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -17,8 +19,10 @@ public class FlySpell extends Spell {
     }
 
     @Override
-    public void DoSpell(ServerPlayer player) {
-        player.setDeltaMovement(0, 136.24, 0);
-        player.hurtMarked = true;
+    public void DoSpell(Level level, LivingEntity entity) {
+        entity.setDeltaMovement(0, 13.16, 0);
+        entity.hurtMarked = true;
+        entity.fallDistance = 0.0f;
+        entity.makeSound(SoundEvents.VILLAGER_HURT);
     }
 }

@@ -5,9 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.network.chat.ComponentSerialization;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.dimension.DimensionType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -28,9 +26,6 @@ public class AtheriaDataComponents {
 
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<net.minecraft.network.chat.Component>> DESCRIPTION = register("description",
             builder -> builder.persistent(ComponentSerialization.FLAT_CODEC).networkSynchronized(ComponentSerialization.STREAM_CODEC).cacheEncoding());
-
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<SavedSpells>> SPELL = register("spell",
-            builder -> builder.persistent(SavedSpells.CODEC));
 
 
     private static <T> DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(String name,
