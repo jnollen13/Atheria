@@ -1,7 +1,6 @@
 package com.example.explomod.registries;
 
 import com.example.explomod.ExploMod;
-import com.example.explomod.spells.FlySpell;
 import com.example.explomod.spells.SpellList;
 import com.example.explomod.spells.Spells;
 import com.example.explomod.spells.UnSummoningSpell;
@@ -17,7 +16,6 @@ import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import java.util.Collection;
 import java.util.List;
 
 import static com.example.explomod.spells.Spells.*;
@@ -42,7 +40,7 @@ public class SpellRegistries {
     public static final Spell UNSUMMONING_SPELL = new UnSummoningSpell("unsummoning", Items.TOTEM_OF_UNDYING, 1000,50,-5);
     public static final Spell NULL_SPELL =  new Spell("null", Items.AIR);
 
-    public static SpellList SPELLS = new SpellList(List.of(NULL_SPELL, UNSUMMONING_SPELL, Spells.FLYSPELL, HEAL_I,HEAL_II,HEAL_III,HEAL_IV,HEAL_V));
+    public static SpellList SPELLS = new SpellList(List.of(NULL_SPELL, UNSUMMONING_SPELL, FLYSPELL,HEAL_I,HEAL_II,HEAL_III,HEAL_IV,HEAL_V,HEALTH_DRAIN,MANA_DRAIN));
 
     public static final Codec<Holder<Spell>> HOLDER_CODEC =
             RegistryFixedCodec.create(SPELL_KEY);

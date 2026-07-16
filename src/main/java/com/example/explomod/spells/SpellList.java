@@ -36,6 +36,10 @@ public class SpellList {
         regsteredSpells.forEach(action);
     }
 
+    public boolean contains(Spell spell) {
+        return regsteredSpells.contains(spell);
+    }
+
     public boolean isSpellRegistered(Spell searchSpell){
         return regsteredSpells.contains(searchSpell);
     }

@@ -13,12 +13,16 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stat;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
 
 @EventBusSubscriber(modid = ExploMod.MODID, bus = EventBusSubscriber.Bus.GAME)
 public class StatUpdateEvent {
@@ -28,6 +32,7 @@ public class StatUpdateEvent {
         String message = event.getMessage().toString();
         if(message.equals("Mana")){
             event.setMessage(Component.literal("Mana").withStyle(ChatFormatting.AQUA));
+            event.getPlayer().sendSystemMessage(Component.literal("MANA").withStyle(ChatFormatting.BLUE), true);
         }
     }
 
@@ -70,6 +75,29 @@ public class StatUpdateEvent {
         }
     }
 
+    /*
+    @SubscribeEvent
+    public static void onMobTick(EntityTickEvent.Post event){
+        Entity entity = event.getEntity();
+        if(entity instanceof LivingEntity mob){
+            Mana mana = mob.getData(AtheriaDataAttachments.MANA);
+            if (!(mob instanceof Player)) {
+                if (mana.mana() < 0) {
+                    mob.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 1, 3));
+                    mob.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 1, 2));
+                    mob.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 1, 1, false, true));
+                    mob.addEffect(new MobEffectInstance(MobEffects.HUNGER, 1, 0, true, false, false));
+                } else if (mana.mana() > 101.2f) {
+                    mob.setData(AtheriaDataAttachments.MANA, new Mana(100f));
+                }
+                if (mana.mana() < 100.0f) {
+                    mob.setData(AtheriaDataAttachments.MANA, new Mana(mana.mana() + (0.1f / 50)));
+                }
+            }
+        }
+    }
+    */
+
     private static void executeServerLogic(Player p) {
         Item item = Items.CRAFTING_TABLE;
         LocalPlayer player = Minecraft.getInstance().player;
@@ -83,7 +111,7 @@ public class StatUpdateEvent {
     private static void executeClientLogic(Player player) {
         if(player.isHolding(Items.CRAFTING_TABLE)) {
             if(Minecraft.getInstance().player!=null) {
-                player.displayClientMessage(Component.literal("crafting skill is " + Minecraft.getInstance().player.getStats().getValue(getHiddenStats(Items.CRAFTING_TABLE))), true);
+
             }
         }
     }

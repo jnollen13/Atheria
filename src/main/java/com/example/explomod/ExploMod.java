@@ -11,6 +11,7 @@ import com.example.explomod.effect.ModEffects;
 import com.example.explomod.entity.ModEntities;
 import com.example.explomod.entity.client.*;
 import com.example.explomod.item.custom.magic.SimpleSpellItem;
+import com.example.explomod.item.custom.magic.TargetedSpellItem;
 import com.example.explomod.item.custom.magic.UnSummoningItem;
 import com.example.explomod.loot.ModLootModifiers;
 import com.example.explomod.particle.ModParticles;
@@ -299,7 +300,8 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
     public static final DeferredItem<Item> HEAL_TOKEN3 = ITEMS.register("heal_coin3", () -> new SimpleSpellItem(Spells.HEAL_III, new Item.Properties().stacksTo(1).rarity(Rarity.RARE).durability(10)));
     public static final DeferredItem<Item> HEAL_TOKEN4 = ITEMS.register("heal_coin4", () -> new SimpleSpellItem(Spells.HEAL_IV, new Item.Properties().stacksTo(1).rarity(Rarity.RARE).durability(7)));
     public static final DeferredItem<Item> HEAL_TOKEN5 = ITEMS.register("heal_coin5", () -> new SimpleSpellItem(Spells.HEAL_V, new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).durability(5)));
-
+    public static final DeferredItem<Item> MANA_DRAIN = ITEMS.register("mana_drain_coin", () -> new TargetedSpellItem(Spells.MANA_DRAIN, TargetedSpellItem.CastType.INTEGRATED, new Item.Properties().stacksTo(1).rarity(Rarity.RARE).durability(6)));
+    public static final DeferredItem<Item> HEALTH_DRAIN = ITEMS.register("health_drain_coin", () -> new TargetedSpellItem(Spells.HEALTH_DRAIN, TargetedSpellItem.CastType.INTEGRATED, new Item.Properties().stacksTo(2).rarity(Rarity.RARE).durability(12)));
 
     //creative tabs
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
@@ -400,6 +402,8 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
                 output.accept(HEAL_TOKEN3.get());
                 output.accept(HEAL_TOKEN4.get());
                 output.accept(HEAL_TOKEN5.get());
+                output.accept(MANA_DRAIN.get());
+                output.accept(HEALTH_DRAIN.get());
             }).build());
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> RADIUM_TAB = CREATIVE_MODE_TABS.register("radium_tab", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.explomod.radium")) //The language key for the title of your CreativeModeTab

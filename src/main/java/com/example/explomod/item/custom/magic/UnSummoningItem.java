@@ -8,7 +8,6 @@ import com.example.explomod.utill.MoreMath;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.ComponentUtils;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -102,6 +101,7 @@ public class UnSummoningItem extends Item {
         }else{
             tooltipComponents.add(Component.literal(MoreMath.round(1, mana.mana())+"/"+manaUsage).append(Component.translatable("message.explomod.mtc")).withStyle(ChatFormatting.ITALIC, ChatFormatting.GREEN));
         }
+        tooltipComponents.add(Component.translatable("tooltip.explomod.charges").append(Component.literal(String.valueOf(this.getMaxDamage(stack)/5))).withStyle(ChatFormatting.DARK_PURPLE));
     }
 
     @Override

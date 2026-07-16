@@ -7,24 +7,24 @@ import com.example.explomod.utill.MoreMath;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.Objects;
 
-public class SimpleSpellItem extends Item {
+public class TargetedSpellItem extends Item {
     private Spell spell;
+    private CastType type;
 
-    public SimpleSpellItem(Spell spell, Properties properties) {
+    public TargetedSpellItem(Spell spell, CastType type, Properties properties) {
         super(properties);
         this.spell = spell;
+        this.type = type;
     }
 
     public Item withSpell(Spell spell){
@@ -37,21 +37,17 @@ public class SimpleSpellItem extends Item {
     }
 
     @Override
-    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, @NotNull Player player, @NotNull InteractionHand usedHand) {
-        if(spell.tryCastSpell(level, player, Spell.CooldownType.ITEM, 0.5f)){
-            if(usedHand==InteractionHand.MAIN_HAND) {
-                player.getItemInHand(usedHand).hurtAndBreak(5, player, EquipmentSlot.MAINHAND);
-            }else{
-                player.getItemInHand(usedHand).hurtAndBreak(5, player, EquipmentSlot.OFFHAND);
+    public boolean hurtEnemy(@NotNull ItemStack stack, @NotNull LivingEntity target, @NotNull LivingEntity attacker) {
+        if(this.type==CastType.INTEGRATED) {
+            if (spell.tryCastSpellIntegrated(Objects.requireNonNull(attacker.level().getServer()).getLevel(attacker.level().dimension()), attacker, Spell.CooldownType.ITEM, target, 0.9f)) {
+                stack.hurtAndBreak(5, attacker, EquipmentSlot.MAINHAND);
+            } else {
+                stack.hurtAndBreak(1, attacker, EquipmentSlot.MAINHAND);
             }
         }else{
-            if(usedHand==InteractionHand.MAIN_HAND) {
-                player.getItemInHand(usedHand).hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
-            }else{
-                player.getItemInHand(usedHand).hurtAndBreak(1, player, EquipmentSlot.OFFHAND);
-            }
+            spell.tryCastSpell(attacker.level(), attacker, Spell.CooldownType.ITEM, target);
         }
-        return super.use(level, player, usedHand);
+        return super.hurtEnemy(stack, target, attacker);
     }
 
     @Override
@@ -60,11 +56,11 @@ public class SimpleSpellItem extends Item {
         tooltipComponents.add(spell.displayName(true));
         tooltipComponents.add(Component.literal("cooldown: "+spell.getCooldown()).withStyle(ChatFormatting.DARK_AQUA));
         tooltipComponents.add(Component.literal("mana: "+spell.manaUsage()).withStyle(ChatFormatting.DARK_AQUA));
-        tooltipComponents.add(Component.literal("item mana coverage: 50%").withStyle(ChatFormatting.GREEN));
-        tooltipComponents.add(Component.literal("total mana: "+spell.manaUsage()/2).withStyle(ChatFormatting.DARK_GREEN));
+        tooltipComponents.add(Component.literal("item cooldown reduction: 10%").withStyle(ChatFormatting.GREEN));
+        tooltipComponents.add(Component.literal("total cooldown: "+spell.getCooldown()*0.9).withStyle(ChatFormatting.DARK_GREEN));
         assert Minecraft.getInstance().player != null;
         Mana mana = Minecraft.getInstance().player.getData(AtheriaDataAttachments.MANA);
-        float manaUsage = spell.manaUsage()/2;
+        float manaUsage = spell.manaUsage();
         tooltipComponents.add(spell.spellDescription(true));
         tooltipComponents.add(Component.literal(" "));
         if(mana.mana()<manaUsage){
@@ -79,11 +75,16 @@ public class SimpleSpellItem extends Item {
     public @NotNull String getDescriptionId(@NotNull ItemStack stack) {
         assert Minecraft.getInstance().player != null;
         Mana mana = Minecraft.getInstance().player.getData(AtheriaDataAttachments.MANA);
-        float manaUsage = spell.manaUsage()/2;
+        float manaUsage = spell.manaUsage();
         if(mana.mana()<manaUsage){
             return this.getDescriptionId()+".fail";
         }else{
             return super.getDescriptionId();
         }
+    }
+
+    public enum CastType{
+        INTEGRATED,
+        DEFAULT
     }
 }

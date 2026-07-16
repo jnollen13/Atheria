@@ -287,6 +287,10 @@
   "item.explomod.heal_coin4.fail": "Heal IV  Token(Inactive)",
   "item.explomod.heal_coin5": "Heal V  Token",
   "item.explomod.heal_coin5.fail": "Heal V  Token(Inactive)",
+  "item.explomod.health_drain_coin": "Health Drain Token",
+  "item.explomod.health_drain_coin.fail": "Health Drain Token(Inactive)",
+  "item.explomod.mana_drain_coin": "Mana Drain Token",
+  "item.explomod.mana_drain_coin.fail": "Mana Drain Token(Inactive)",
   "item.explomod.ice_food": "Popsicle",
   "item.explomod.lfrost_music_disc": "Music Disc",
   "item.explomod.lfrost_music_disc.desc": "Miracle of Sound - Legends of the Frost (CC0)",
@@ -429,6 +433,10 @@
   "spell.explomod.heal4.desc": "Restores 4 hearts(8 hp). Will be reversed if undead",
   "spell.explomod.heal5": "Heal V",
   "spell.explomod.heal5.desc": "Restores 5 hearts(10 hp). Will be reversed if undead",
+  "spell.explomod.health_drain": "Drain(Health)",
+  "spell.explomod.health_drain.desc": "Drains the targets health and gives it to the user.",
+  "spell.explomod.mana_drain": "Drain(Mana)",
+  "spell.explomod.mana_drain.desc": "Drains the targets mana and gives it to the user. this spell can make the target go OOM",
   "spell.explomod.item.minecraft.bone_meal": "Growth",
   "spell.explomod.item.minecraft.fire_charge": "Fireball",
   "spell.explomod.item.minecraft.leather_boots": "Dash",
@@ -445,5 +453,7 @@
   "tooltip.explomod.decoration": "Purely for Decoration.",
   "tooltip.explomod.nice_stick": "press shift for more info",
   "tooltip.explomod.nice_stick.shift_down": "hold right click to break stick. the Nice Stick is equal to 3 sticks",
-  "tooltip.explomod.staff.item": "Good for Decoration."
+  "tooltip.explomod.staff.item": "Good for Decoration.",
+  "commands.spell.success.self": "Cast %s",
+  "tooltip.explomod.charges": "max uses:"
 }

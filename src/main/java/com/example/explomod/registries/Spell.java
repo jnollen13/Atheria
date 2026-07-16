@@ -53,7 +53,7 @@ public class Spell implements FeatureElement {
     private final String name;
     private final int cooldown;
     private final Item item;
-    private final int manaUse;
+    private final float manaUse;
     private final int low;
     private FeatureFlagSet requiredFeatures;
 
@@ -65,7 +65,23 @@ public class Spell implements FeatureElement {
         this.low=minimum;
     }
 
+    public Spell(@org.jetbrains.annotations.Nullable String name, @NotNull Item saveTo, int cooldownDuration, float manaUsage, int minimum){
+        this.name = name;
+        this.item = saveTo;
+        this.cooldown = cooldownDuration;
+        this.manaUse=manaUsage;
+        this.low=minimum;
+    }
+
     public Spell(@org.jetbrains.annotations.Nullable String name, @NotNull Item saveTo, int cooldownDuration, int manaUsage){
+        this.name = name;
+        this.item = saveTo;
+        this.cooldown = cooldownDuration;
+        this.manaUse=manaUsage;
+        this.low=0;
+    }
+
+    public Spell(@org.jetbrains.annotations.Nullable String name, @NotNull Item saveTo, int cooldownDuration, float manaUsage){
         this.name = name;
         this.item = saveTo;
         this.cooldown = cooldownDuration;
