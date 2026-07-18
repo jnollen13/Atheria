@@ -1,0 +1,56 @@
+{
+  "parent": "explomod:exploration/find_structure",
+  "criteria": {
+    "vendor_stall": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structures": "explomod:vendor_stall"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "spruce_vendor_stall": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structures": "explomod:spruce_vendor_stall"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.explore.vendor_stall.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "explomod:table"
+    },
+    "title": {
+      "translate": "advancements.explore.vendor_stall.title"
+    }
+  },
+  "requirements": [
+    [
+      "vendor_stall",
+      "spruce_vendor_stall"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

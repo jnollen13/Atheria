@@ -1,0 +1,38 @@
+{
+  "parent": "explomod:exploration/dark",
+  "criteria": {
+    "cave_lizard": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "explomod:gecko"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.explore.kill_lizard.description"
+    },
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "explomod:ice_food"
+    },
+    "title": {
+      "translate": "advancements.explore.kill_lizard.title"
+    }
+  },
+  "requirements": [
+    [
+      "cave_lizard"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

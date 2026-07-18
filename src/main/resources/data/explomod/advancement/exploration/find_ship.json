@@ -1,0 +1,39 @@
+{
+  "parent": "explomod:exploration/find_structure",
+  "criteria": {
+    "ship": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structures": "explomod:ship"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.explore.ship.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "explomod:rapier_of_nine_lives"
+    },
+    "title": {
+      "translate": "advancements.explore.ship.title"
+    }
+  },
+  "requirements": [
+    [
+      "ship"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

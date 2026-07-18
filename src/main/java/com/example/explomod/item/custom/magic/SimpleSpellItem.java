@@ -64,7 +64,7 @@ public class SimpleSpellItem extends Item {
         tooltipComponents.add(Component.literal("total mana: "+spell.manaUsage()/2).withStyle(ChatFormatting.DARK_GREEN));
         assert Minecraft.getInstance().player != null;
         Mana mana = Minecraft.getInstance().player.getData(AtheriaDataAttachments.MANA);
-        float manaUsage = spell.manaUsage()/2;
+        float manaUsage = (spell.manaUsage()/2)+spell.getLow();
         tooltipComponents.add(spell.spellDescription(true));
         tooltipComponents.add(Component.literal(" "));
         if(mana.mana()<manaUsage){

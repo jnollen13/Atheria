@@ -1,0 +1,62 @@
+{
+  "parent": "explomod:exploration/find_vendor_stall",
+  "criteria": {
+    "vendor_stall": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structures": "explomod:vendor_stall"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "spruce_vendor_stall": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structures": "explomod:spruce_vendor_stall"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.explore.vendor_stalls.description"
+    },
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "explomod:sugar_cane_crate"
+    },
+    "title": {
+      "translate": "advancements.explore.vendor_stalls.title"
+    }
+  },
+  "requirements": [
+    [
+      "vendor_stall"
+    ],
+    [
+      "spruce_vendor_stall"
+    ]
+  ],
+  "rewards": {
+    "experience": 2
+  },
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,59 @@
+{
+  "parent": "explomod:exploration/open_food_chest",
+  "criteria": {
+    "food_chest": {
+      "conditions": {
+        "loot_table": "explomod:chests/food_chest"
+      },
+      "trigger": "minecraft:player_generates_container_loot"
+    },
+    "map_chest": {
+      "conditions": {
+        "loot_table": "minecraft:chests/shipwreck_map"
+      },
+      "trigger": "minecraft:player_generates_container_loot"
+    },
+    "supply_chest": {
+      "conditions": {
+        "loot_table": "minecraft:chests/shipwreck_supply"
+      },
+      "trigger": "minecraft:player_generates_container_loot"
+    },
+    "treasure_chest": {
+      "conditions": {
+        "loot_table": "minecraft:chests/shipwreck_treasure"
+      },
+      "trigger": "minecraft:player_generates_container_loot"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.explore.loot_ship.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft:gold_ingot"
+    },
+    "title": {
+      "translate": "advancements.explore.loot_ship.title"
+    }
+  },
+  "requirements": [
+    [
+      "food_chest"
+    ],
+    [
+      "map_chest"
+    ],
+    [
+      "supply_chest"
+    ],
+    [
+      "treasure_chest"
+    ]
+  ],
+  "rewards": {
+    "experience": 1
+  },
+  "sends_telemetry_event": true
+}

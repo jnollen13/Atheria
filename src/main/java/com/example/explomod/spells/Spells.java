@@ -18,6 +18,7 @@ public class Spells{
     public static final Spell HEAL_V = new HealSpell("heal5", Items.GLISTERING_MELON_SLICE, 40, 10, -6, 10f);
     public static final Spell MANA_DRAIN = new DrainSpell("mana_drain", Items.HOPPER, 100, 9, -9, true);
     public static final Spell HEALTH_DRAIN = new DrainSpell("health_drain", Items.HOPPER_MINECART, 100, 10.36f, -5, false);
+    public static final Spell CAT_SUMMONING = new CatSummoning("kitten_summoning", Items.CAT_SPAWN_EGG, 100000, 223.816f, -20);
 
     @Experimental
     public static Item setSpell(Item i, Spell spell){

@@ -1,0 +1,39 @@
+{
+  "parent": "explomod:exploration/find_structure",
+  "criteria": {
+    "dungeon": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structures": "explomod:dungeon"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.explore.dungeon.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft:chiseled_stone_bricks"
+    },
+    "title": {
+      "translate": "advancements.explore.dungeon.title"
+    }
+  },
+  "requirements": [
+    [
+      "dungeon"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

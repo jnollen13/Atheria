@@ -1,0 +1,29 @@
+{
+  "parent": "explomod:exploration/root",
+  "criteria": {
+    "visit_dark": {
+      "conditions": {
+        "to": "explomod:dark"
+      },
+      "trigger": "minecraft:changed_dimension"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.explore.dark.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "explomod:dark_portal"
+    },
+    "title": {
+      "translate": "advancements.explore.dark.title"
+    }
+  },
+  "requirements": [
+    [
+      "visit_dark"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,30 @@
+{
+  "parent": "explomod:exploration/dark",
+  "criteria": {
+    "glowberry_bush": {
+      "conditions": {
+        "block": "explomod:glowberry_bush"
+      },
+      "trigger": "minecraft:enter_block"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.explore.glowberry.description"
+    },
+    "hidden": false,
+    "icon": {
+      "count": 1,
+      "id": "minecraft:glow_berries"
+    },
+    "title": {
+      "translate": "advancements.explore.glowberry.title"
+    }
+  },
+  "requirements": [
+    [
+      "glowberry_bush"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

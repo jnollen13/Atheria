@@ -40,7 +40,7 @@ public class SpellRegistries {
     public static final Spell UNSUMMONING_SPELL = new UnSummoningSpell("unsummoning", Items.TOTEM_OF_UNDYING, 1000,50,-5);
     public static final Spell NULL_SPELL =  new Spell("null", Items.AIR);
 
-    public static SpellList SPELLS = new SpellList(List.of(NULL_SPELL, UNSUMMONING_SPELL, FLYSPELL,HEAL_I,HEAL_II,HEAL_III,HEAL_IV,HEAL_V,HEALTH_DRAIN,MANA_DRAIN));
+    public static SpellList SPELLS = new SpellList(List.of(NULL_SPELL, UNSUMMONING_SPELL, FLYSPELL,HEAL_I,HEAL_II,HEAL_III,HEAL_IV,HEAL_V,HEALTH_DRAIN,MANA_DRAIN,CAT_SUMMONING));
 
     public static final Codec<Holder<Spell>> HOLDER_CODEC =
             RegistryFixedCodec.create(SPELL_KEY);

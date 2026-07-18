@@ -4,6 +4,7 @@ import com.example.explomod.data.AtheriaDataAttachments;
 import com.example.explomod.data.Mana;
 import com.example.explomod.effect.ModEffects;
 import com.example.explomod.payloads.SyncManaPayload;
+import com.example.explomod.stats.AtheriaStats;
 import com.google.errorprone.annotations.ForOverride;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -113,27 +114,45 @@ public class Spell implements FeatureElement {
         return (Spell)/*just in case*/ this;
     }
 
+    public int getLow(){
+        return low;
+    }
+
     public void DoSpell(Level level, LivingEntity entity){
-        entity.level().playSound(entity, entity.blockPosition(), SoundEvents.LIGHTNING_BOLT_THUNDER, SoundSource.MASTER, 2.0f, 1.0f);
+        entity.level().playSound(entity, entity.blockPosition(), SoundEvents.LIGHTNING_BOLT_THUNDER, SoundSource.MASTER, 1.0f, 1.0f);
+        if(entity instanceof Player player){
+            player.awardStat(AtheriaStats.SPELLS_CAST.get(), 1);
+        }
     }
 
     protected void DoIntegratedSpell(Level level, LivingEntity caster, LivingEntity target){
+        if(caster instanceof Player player){
+            player.awardStat(AtheriaStats.SPELLS_CAST.get(), 1);
+        }
         caster.swing(InteractionHand.MAIN_HAND);
         target.swing(InteractionHand.OFF_HAND);
     }
 
     public void DoTargetedSpell(Level level, LivingEntity target){
-        target.level().playSound(target, target.blockPosition(), SoundEvents.HORSE_DEATH, SoundSource.MASTER, 2.0f, 1.0f);
+        target.level().playSound(target, target.blockPosition(), SoundEvents.HORSE_DEATH, SoundSource.MASTER, 5.0f, 1.0f);
     }
 
     public boolean canCast(LivingEntity castingEntity) {
-        Mana mana = castingEntity.getData(AtheriaDataAttachments.MANA);
-        return mana.mana() >= this.low + this.manaUse;
+        if(!castingEntity.hasEffect(ModEffects.COOLDOWN)) {
+            Mana mana = castingEntity.getData(AtheriaDataAttachments.MANA);
+            return mana.mana() >= this.low + this.manaUse;
+        }else{
+            return false;
+        }
     }
 
     public boolean canCast(LivingEntity castingEntity, float manaModifier){
-        Mana mana = castingEntity.getData(AtheriaDataAttachments.MANA);
-        return mana.mana() >= this.low + (this.manaUse*manaModifier);
+        if(!castingEntity.hasEffect(ModEffects.COOLDOWN)) {
+            Mana mana = castingEntity.getData(AtheriaDataAttachments.MANA);
+            return mana.mana() >= this.low + (this.manaUse * manaModifier);
+        }else{
+            return false;
+        }
     }
 
     public float manaUsage(){

@@ -1,0 +1,34 @@
+{
+  "parent": "explomod:exploration/root",
+  "criteria": {
+    "radium_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:radium_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.explore.radium.description"
+    },
+    "hidden": false,
+    "icon": {
+      "count": 1,
+      "id": "explomod:radium_ingot"
+    },
+    "title": {
+      "translate": "advancements.explore.radium.title"
+    }
+  },
+  "requirements": [
+    [
+      "radium_ingot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

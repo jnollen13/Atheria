@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "explomod:parkour_tower",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 74157118,
+    "spacing": 18,
+    "separation": 10,
+    "type": "minecraft:random_spread"
+  }
+}

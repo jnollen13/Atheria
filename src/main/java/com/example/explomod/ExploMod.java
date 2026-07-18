@@ -302,6 +302,8 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
     public static final DeferredItem<Item> HEAL_TOKEN5 = ITEMS.register("heal_coin5", () -> new SimpleSpellItem(Spells.HEAL_V, new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).durability(5)));
     public static final DeferredItem<Item> MANA_DRAIN = ITEMS.register("mana_drain_coin", () -> new TargetedSpellItem(Spells.MANA_DRAIN, TargetedSpellItem.CastType.INTEGRATED, new Item.Properties().stacksTo(1).rarity(Rarity.RARE).durability(6)));
     public static final DeferredItem<Item> HEALTH_DRAIN = ITEMS.register("health_drain_coin", () -> new TargetedSpellItem(Spells.HEALTH_DRAIN, TargetedSpellItem.CastType.INTEGRATED, new Item.Properties().stacksTo(2).rarity(Rarity.RARE).durability(12)));
+    public static final DeferredItem<Item> KITTEN_TOKEN = ITEMS.register("kitten_coin", () -> new SimpleSpellItem(Spells.CAT_SUMMONING, new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).durability(3)));
+
 
     //creative tabs
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()

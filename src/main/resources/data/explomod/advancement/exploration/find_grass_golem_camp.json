@@ -1,0 +1,56 @@
+{
+  "parent": "explomod:exploration/find_structure",
+  "criteria": {
+    "grass_golem_camp": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structures": "explomod:grass_golem_camp"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "dark_grass_golem_camp": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structures": "explomod:dark_grass_golem_camp"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.explore.grass_camp.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft:short_grass"
+    },
+    "title": {
+      "translate": "advancements.explore.grass_camp.title"
+    }
+  },
+  "requirements": [
+    [
+      "grass_golem_camp",
+      "dark_grass_golem_camp"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

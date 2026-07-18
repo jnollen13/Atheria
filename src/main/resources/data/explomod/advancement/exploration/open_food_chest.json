@@ -1,0 +1,30 @@
+{
+  "parent": "explomod:exploration/find_ship",
+  "criteria": {
+    "food_chest": {
+      "conditions": {
+        "loot_table": "explomod:chests/food_chest"
+      },
+      "trigger": "minecraft:player_generates_container_loot"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.explore.food_chest.description"
+    },
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "explomod:stormberry_pie"
+    },
+    "title": {
+      "translate": "advancements.explore.food_chest.title"
+    }
+  },
+  "requirements": [
+    [
+      "food_chest"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

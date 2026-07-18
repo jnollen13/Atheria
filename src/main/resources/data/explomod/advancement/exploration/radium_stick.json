@@ -1,0 +1,34 @@
+{
+  "parent": "explomod:exploration/smelt_radium_ingot",
+  "criteria": {
+    "radium": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:tnt_staff"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.explore.radium_stick.description"
+    },
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "explomod:tnt_staff"
+    },
+    "title": {
+      "translate": "advancements.explore.radium_stick.title"
+    }
+  },
+  "requirements": [
+    [
+      "radium"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
