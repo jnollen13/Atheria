@@ -1,0 +1,112 @@
+{
+  "parent": "explomod:exploration/stormberry",
+  "criteria": {
+    "stormberry": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:storm_berry"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "stormberry_cake": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:stormberry_cake"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "stormberry_cookie": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:stormberry_cookie"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "stormberry_pie": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:stormberry_pie"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "stormberry_roll": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:stormberry_roll"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "hold_stormberry_bush": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:stormberry_bush"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "enter_stormberry_bush": {
+      "conditions": {
+        "block": "explomod:stormberry_bush"
+      },
+      "trigger": "minecraft:enter_block"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.explore.stormberryist.description"
+    },
+    "hidden": false,
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "explomod:storm_berry"
+    },
+    "title": {
+      "translate": "advancements.explore.stormberryist.title"
+    }
+  },
+  "requirements": [
+    [
+      "stormberry"
+    ],
+    [
+      "stormberry_cake"
+    ],
+    [
+      "stormberry_cookie"
+    ],
+    [
+      "stormberry_pie"
+    ],
+    [
+      "stormberry_roll"
+    ],
+    [
+      "hold_stormberry_bush"
+    ],
+    [
+      "enter_stormberry_bush"
+    ]
+  ],
+  "rewards": {
+    "experience": 50
+  },
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,37 @@
+{
+  "parent": "explomod:exploration/stormberry",
+  "criteria": {
+    "stormberry_bush": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:stormberry_roll"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.explore.stormberry_bush.description"
+    },
+    "hidden": false,
+    "icon": {
+      "count": 1,
+      "id": "explomod:stormberry_bush"
+    },
+    "title": {
+      "translate": "advancements.explore.stormberry_bush.title"
+    }
+  },
+  "requirements": [
+    [
+      "stormberry_bush"
+    ]
+  ],
+  "rewards": {
+    "experience": 10
+  },
+  "sends_telemetry_event": true
+}

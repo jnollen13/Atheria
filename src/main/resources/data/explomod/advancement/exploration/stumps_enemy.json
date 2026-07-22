@@ -1,0 +1,43 @@
+{
+  "parent": "explomod:exploration/stormberry_cake",
+  "criteria": {
+    "stand_on_stormberry_cake": {
+      "conditions": {
+        "block": "explomod:stormberry_cake"
+      },
+      "trigger": "minecraft:enter_block"
+    },
+    "eat_stormberry": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:storm_berry"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.explore.stumps_enemy.description"
+    },
+    "hidden": false,
+    "icon": {
+      "count": 1,
+      "id": "explomod:stormberry_cake_bitten"
+    },
+    "title": {
+      "translate": "advancements.explore.stumps_enemy.title"
+    }
+  },
+  "requirements": [
+    [
+      "stand_on_stormberry_cake"
+    ],
+    [
+      "eat_stormberry"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

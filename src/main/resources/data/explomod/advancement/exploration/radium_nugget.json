@@ -1,0 +1,39 @@
+{
+  "parent": "explomod:exploration/smelt_radium_ingot",
+  "criteria": {
+    "radium": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:radium_nugget"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.explore.radium_nugget.description"
+    },
+    "hidden": false,
+    "icon": {
+      "count": 1,
+      "id": "explomod:radium_nugget"
+    },
+    "title": {
+      "translate": "advancements.explore.radium_nugget.title"
+    }
+  },
+  "requirements": [
+    [
+      "radium"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "explomod:radium_chain"
+    ]
+  },
+  "sends_telemetry_event": true
+}

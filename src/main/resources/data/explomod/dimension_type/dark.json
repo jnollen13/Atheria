@@ -13,7 +13,7 @@
   "monster_spawn_block_light_limit": 0,
   "monster_spawn_light_level": {
     "type": "minecraft:uniform",
-    "max_inclusive": 10,
+    "max_inclusive": 12,
     "min_inclusive": 0
   },
   "natural": true,

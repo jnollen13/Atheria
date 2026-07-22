@@ -26,6 +26,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import com.example.explomod.item.alchemy.ModPotions;
 import com.example.explomod.item.custom.*;
 import com.example.explomod.item.custom.Throwable;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.util.RandomSource;
@@ -303,6 +304,9 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
     public static final DeferredItem<Item> MANA_DRAIN = ITEMS.register("mana_drain_coin", () -> new TargetedSpellItem(Spells.MANA_DRAIN, TargetedSpellItem.CastType.INTEGRATED, new Item.Properties().stacksTo(1).rarity(Rarity.RARE).durability(6)));
     public static final DeferredItem<Item> HEALTH_DRAIN = ITEMS.register("health_drain_coin", () -> new TargetedSpellItem(Spells.HEALTH_DRAIN, TargetedSpellItem.CastType.INTEGRATED, new Item.Properties().stacksTo(2).rarity(Rarity.RARE).durability(12)));
     public static final DeferredItem<Item> KITTEN_TOKEN = ITEMS.register("kitten_coin", () -> new SimpleSpellItem(Spells.CAT_SUMMONING, new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).durability(3)));
+    public static final DeferredBlock<Block> RADIUM_CHAIN = BLOCKS.register("radium_chain", () -> new ChainBlock(BlockBehaviour.Properties.of().noOcclusion().mapColor(MapColor.COLOR_LIGHT_GREEN).strength(5f, 10).requiresCorrectToolForDrops()));
+    public static final DeferredItem<BlockItem> RADIUM_CHAIN_ITEM = ITEMS.registerSimpleBlockItem("radium_chain", RADIUM_CHAIN);
+    public static final DeferredItem<Item> STORMBERRY_CAKE_BITTEN = ITEMS.register("stormberry_cake_bitten", () -> new ToolTipItem(Component.translatable("tooltip.explomod.unintended").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY, ChatFormatting.BOLD), new Item.Properties().setNoRepair().stacksTo(1)));
 
 
     //creative tabs
@@ -354,6 +358,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
                 output.accept(STORM_BERRY.get());
                 output.accept(BLOODWOOD_DOOR_ITEM.get());
                 output.accept(RADIATION_STAFF.get());
+                output.accept(RADIUM_CHAIN_ITEM.get());
                 output.accept(PHANTOM_HOE.get());
                 output.accept(TABLE_ITEM.get());
                 output.accept(LOG_BLOCK_ITEM.get());
@@ -419,6 +424,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
                 output.accept(RAW_RADIUM.get());
                 output.accept(RADIUM_NUGGET.get());
                 output.accept(RADIUM_FIRESTARTER.get());
+                output.accept(RADIUM_CHAIN_ITEM.get());
             }).build());
 
 

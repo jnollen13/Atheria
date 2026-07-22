@@ -1,0 +1,10 @@
+{
+  "angry_texture": "explomod:entity/wolf/nests_end_wolf_angry",
+  "biomes": [
+    "explomod:nests_end",
+    "explomod:spider_nests",
+    "explomod:deep_forest"
+  ],
+  "tame_texture": "explomod:entity/wolf/nests_end_wolf_tame",
+  "wild_texture": "explomod:entity/wolf/nests_end_wolf"
+}

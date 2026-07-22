@@ -1,6 +1,7 @@
 {
+  "parent": "explomod:exploration/root",
   "criteria": {
-    "empty_crate": {
+    "crate": {
       "conditions": {
         "items": [
           {
@@ -12,23 +13,20 @@
     }
   },
   "display": {
-    "announce_to_chat": false,
-    "background": "minecraft:textures/block/redstone_lamp",
     "description": {
-      "translate": "advancements.home.root.description"
+      "translate": "advancements.home.crate.description"
     },
     "icon": {
       "count": 1,
       "id": "explomod:empty_crate"
     },
-    "show_toast": false,
     "title": {
-      "translate": "advancements.home.root.title"
+      "translate": "advancements.home.crate.title"
     }
   },
   "requirements": [
     [
-      "empty_crate"
+      "crate"
     ]
   ],
   "sends_telemetry_event": true

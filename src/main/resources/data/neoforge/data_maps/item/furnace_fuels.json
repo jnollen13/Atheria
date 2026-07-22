@@ -8,6 +8,27 @@
     },
     "explomod:storm_berry": {
       "burn_time": 2
+    },
+    "explomod:storm_berry_bush": {
+      "burn_time": 40
+    },
+    "explomod:flowering_oak_leaves": {
+      "burn_time": 20
+    },
+    "explomod:table": {
+      "burn_time": 400
+    },
+    "explomod:stool": {
+      "burn_time": 420
+    },
+    "explomod:empty_crate": {
+      "burn_time": 200
+    },
+    "explomod:crate": {
+      "burn_time": 195
+    },
+    "explomod:cane_crate": {
+      "burn_time": 210
     }
   }
 }

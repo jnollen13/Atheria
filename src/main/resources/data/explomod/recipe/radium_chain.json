@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "item": "explomod:radium_ingot"
+    },
+    "S": {
+      "item": "explomod:radium_nugget"
+    }
+  },
+  "pattern": [
+    " S ",
+    " P ",
+    " S "
+  ],
+  "result": {
+    "count": 4,
+    "id": "explomod:radium_chain"
+  }
+}

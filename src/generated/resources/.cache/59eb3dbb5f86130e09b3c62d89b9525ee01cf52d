@@ -1,4 +1,4 @@
-// 1.21.1	2026-07-12T17:12:05.420756615	Loot Tables
+// 1.21.1	2026-07-20T16:44:17.062162855	Loot Tables
 473fad9f290dc53e7be477f8098d15cefdca4d53 data/explomod/loot_table/blocks/bloodwood_button.json
 f8ff56f07e765974c18c76af7611d8b863b6b50b data/explomod/loot_table/blocks/bloodwood_door.json
 a0236bff84dbca9b374db10a77073c7e827cdf60 data/explomod/loot_table/blocks/bloodwood_sapling.json
@@ -20,6 +20,7 @@ e49191ddf1bcf62b5e88a6fd240ede7179b640a8 data/explomod/loot_table/blocks/lavahol
 3a93be8153991e1193a1a211bee6132ff15980a7 data/explomod/loot_table/blocks/mossy_chiseled_stone_bricks.json
 8b9605d94d1201b9c94894a97008181db585cd37 data/explomod/loot_table/blocks/mossy_chiseled_stone_bricks_slab.json
 9d845786e7d9ea537de21322528e6acdd4960b6b data/explomod/loot_table/blocks/phantom_block.json
+35de3d3d69adcfd92a2483a230d2c24392f58189 data/explomod/loot_table/blocks/radium_chain.json
 99307030e33a6599edff281040e334dcaa50adad data/explomod/loot_table/blocks/radium_ore.json
 478dbe9d6567ee4555b5e5c02f31e00e5e9fff58 data/explomod/loot_table/blocks/red_flower.json
 3c2a10938d3108945f5a85a2a9be30c5041b34be data/explomod/loot_table/blocks/redtrav.json

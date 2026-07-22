@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
+  "category": "combat",
   "key": {
     "B": {
       "item": "explomod:phantom_ingot"
@@ -13,6 +13,6 @@
   ],
   "result": {
     "count": 1,
-    "id": "explomod:phantom_helmet"
+    "id": "explomod:phantom_helm"
   }
 }

@@ -30,5 +30,10 @@
       "radium_ingot"
     ]
   ],
+  "rewards": {
+    "recipes": [
+      "explomod:radium_chain"
+    ]
+  },
   "sends_telemetry_event": true
 }

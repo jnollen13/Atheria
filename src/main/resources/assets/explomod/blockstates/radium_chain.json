@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "explomod:block/radium_chain",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "explomod:block/radium_chain"
+    },
+    "axis=z": {
+      "model": "explomod:block/radium_chain",
+      "x": 90
+    }
+  }
+}

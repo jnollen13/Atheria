@@ -2,12 +2,9 @@ package com.example.explomod.spells;
 
 import com.example.explomod.item.custom.magic.SimpleSpellItem;
 import com.example.explomod.registries.Spell;
-import com.example.explomod.registries.SpellRegistries;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import org.apache.http.annotation.Experimental;
-
-import java.util.List;
 
 public class Spells{
     public static final Spell FLYSPELL = new FlySpell("flight", Items.ELYTRA, 10);

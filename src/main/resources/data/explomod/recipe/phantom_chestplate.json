@@ -9,7 +9,7 @@
   "pattern": [
     "B B",
     "BBB",
-    "BBB",
+    "BBB"
   ],
   "result": {
     "count": 1,

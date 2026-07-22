@@ -1,0 +1,60 @@
+{
+  "parent": "explomod:exploration/root",
+  "criteria": {
+    "stormberry_pie": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:stormberry_pie"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "apple_pie": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:apple_pie"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "pumpkin_pie": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:pumpkin_pie"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.explore.pie_baker.description"
+    },
+    "hidden": false,
+    "icon": {
+      "count": 1,
+      "id": "explomod:apple_pie"
+    },
+    "title": {
+      "translate": "advancements.explore.pie_baker.title"
+    }
+  },
+  "requirements": [
+    [
+      "stormberry_pie"
+    ],
+    [
+      "apple_pie"
+    ],
+    [
+      "pumpkin_pie"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

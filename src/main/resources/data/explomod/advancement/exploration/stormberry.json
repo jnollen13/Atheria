@@ -1,0 +1,41 @@
+{
+  "parent": "explomod:exploration/root",
+  "criteria": {
+    "stormberry": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:storm_berry"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.explore.stormberry.description"
+    },
+    "hidden": false,
+    "icon": {
+      "count": 1,
+      "id": "explomod:storm_berry"
+    },
+    "title": {
+      "translate": "advancements.explore.stormberry.title"
+    }
+  },
+  "requirements": [
+    [
+      "stormberry"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "explomod:stormberry_pie",
+      "explomod:stormberry_cookie",
+      "explomod:stormberry_cake"
+    ]
+  },
+  "sends_telemetry_event": true
+}

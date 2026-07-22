@@ -1,0 +1,34 @@
+{
+  "parent": "explomod:exploration/stormberry",
+  "criteria": {
+    "stormberry_cake": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:stormberry_cake"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.explore.stormberry_cake.description"
+    },
+    "hidden": false,
+    "icon": {
+      "count": 1,
+      "id": "explomod:stormberry_cake"
+    },
+    "title": {
+      "translate": "advancements.explore.stormberry_cake.title"
+    }
+  },
+  "requirements": [
+    [
+      "stormberry_cake"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

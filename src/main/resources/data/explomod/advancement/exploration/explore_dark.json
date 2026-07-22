@@ -17,6 +17,22 @@
       },
       "trigger": "minecraft:location"
     },
+    "explomod:nests_end": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biomes": "explomod:nests_end"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
     "explomod:spider_nests": {
       "conditions": {
         "player": [
@@ -53,6 +69,9 @@
     ],
     [
       "explomod:spider_nests"
+    ],
+    [
+      "explomod:nests_end"
     ]
   ],
   "rewards": {

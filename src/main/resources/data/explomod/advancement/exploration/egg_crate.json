@@ -1,21 +1,21 @@
 {
-  "parent": "explomod:home/root",
+  "parent": "explomod:exploration/crates",
   "criteria": {
-    "cane_in_crate": {
+    "egg_in_crate": {
       "conditions": {
         "location": [
           {
             "condition": "minecraft:location_check",
             "predicate": {
               "block": {
-                "blocks": "explomod:sugar_cane_crate"
+                "blocks": "explomod:crate"
               }
             }
           },
           {
             "condition": "minecraft:match_tool",
             "predicate": {
-              "items": "minecraft:sugar_cane"
+              "items": "minecraft:egg"
             }
           }
         ]
@@ -26,19 +26,19 @@
   },
   "display": {
     "description": {
-      "translate": "advancements.home.sugar_crate.description"
+      "translate": "advancements.home.egg_crate.description"
     },
     "icon": {
       "count": 1,
-      "id": "minecraft:sugar_cane"
+      "id": "minecraft:egg"
     },
     "title": {
-      "translate": "advancements.home.sugar_crate.title"
+      "translate": "advancements.home.egg_crate.title"
     }
   },
   "requirements": [
     [
-      "cane_in_crate"
+      "egg_in_crate"
     ]
   ],
   "sends_telemetry_event": true

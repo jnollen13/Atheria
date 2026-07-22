@@ -6,6 +6,36 @@
       "type": "minecraft:multi_noise",
       "biomes": [
         {
+          "biome": "explomod:nests_end",
+          "parameters": {
+            "continentalness": [
+              -0.15,
+              0.15
+            ],
+            "depth": [
+              -1.0,
+              -0.5
+            ],
+            "erosion": [
+              -0.7,
+              0.9
+            ],
+            "humidity": [
+              -0.8,
+              0.8
+            ],
+            "offset": 0.3,
+            "temperature": [
+              -1.0,
+              -0.1
+            ],
+            "weirdness": [
+              -0.9,
+              0.9
+            ]
+          }
+        },
+        {
           "biome": "explomod:spider_nests",
           "parameters": {
             "continentalness": [
@@ -185,7 +215,6 @@
             ]
           }
         },
-
         {
           "biome": "explomod:spider_nests",
           "parameters": {
@@ -243,6 +272,36 @@
             "weirdness": [
               -1.0,
               1.0
+            ]
+          }
+        },
+        {
+          "biome": "explomod:nests_end",
+          "parameters": {
+            "continentalness": [
+              -0.35,
+              0.35
+            ],
+            "depth": [
+              -1.0,
+              -0.4
+            ],
+            "erosion": [
+              -0.35,
+              0.35
+            ],
+            "humidity": [
+              -0.2,
+              0.1
+            ],
+            "offset": 0.8,
+            "temperature": [
+              -0.9,
+              -0.85
+            ],
+            "weirdness": [
+              -0.7,
+              0.5
             ]
           }
         }

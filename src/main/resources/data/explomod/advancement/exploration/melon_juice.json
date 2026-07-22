@@ -1,0 +1,43 @@
+{
+  "parent": "explomod:exploration/root",
+  "criteria": {
+    "drink_half_of_melon_juice": {
+      "conditions": {
+        "item": {
+          "items": "explomod:melon_juice"
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    },
+    "drink_last_of_melon_juice": {
+      "conditions": {
+        "item": {
+          "items": "explomod:melon_juice_half"
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.explore.melon_juice.description"
+    },
+    "hidden": false,
+    "icon": {
+      "count": 1,
+      "id": "explomod:melon_juice"
+    },
+    "title": {
+      "translate": "advancements.explore.melon_juice.title"
+    }
+  },
+  "requirements": [
+    [
+      "drink_half_of_melon_juice"
+    ],
+    [
+      "drink_last_of_melon_juice"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

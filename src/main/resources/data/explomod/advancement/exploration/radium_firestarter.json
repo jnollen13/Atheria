@@ -1,0 +1,34 @@
+{
+  "parent": "explomod:exploration/smelt_radium_ingot",
+  "criteria": {
+    "radium": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:radium_firestarter"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.explore.radium_firestarter.description"
+    },
+    "hidden": false,
+    "icon": {
+      "count": 1,
+      "id": "explomod:radium_firestarter"
+    },
+    "title": {
+      "translate": "advancements.explore.radium_firestarter.title"
+    }
+  },
+  "requirements": [
+    [
+      "radium"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

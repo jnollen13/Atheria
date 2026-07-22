@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
+  "category": "combat",
   "key": {
     "P": {
       "item": "explomod:phantom_ingot"

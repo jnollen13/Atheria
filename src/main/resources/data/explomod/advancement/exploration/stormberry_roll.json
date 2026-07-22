@@ -1,0 +1,38 @@
+{
+  "parent": "explomod:exploration/stormberry",
+  "criteria": {
+    "stormberry_roll": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:stormberry_roll"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.explore.stormberry_roll.description"
+    },
+    "hidden": false,
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "explomod:stormberry_roll"
+    },
+    "title": {
+      "translate": "advancements.explore.stormberry_roll.title"
+    }
+  },
+  "requirements": [
+    [
+      "stormberry_roll"
+    ]
+  ],
+  "rewards": {
+    "experience": 10
+  },
+  "sends_telemetry_event": true
+}
