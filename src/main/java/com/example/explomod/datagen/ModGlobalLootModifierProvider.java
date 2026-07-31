@@ -168,5 +168,60 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
                 new AddItemModifier(new LootItemCondition[] {
                         new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("equipment/trial_chamber_ranged")).build(),
                         LootItemRandomChanceCondition.randomChance(0.0075f).build()}, ExploMod.HARBINGER.get()));
+
+        this.add("kings_chalice_bastion_bridge",
+                new AddItemModifier(new LootItemCondition[] {
+                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/bastion_bridge")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.005f).build()}, ExploMod.KINGS_CHALICE.get()));
+
+        this.add("kings_chalice_bastion_treasure",
+                new AddItemModifier(new LootItemCondition[] {
+                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/bastion_treasure")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.01037f).build()}, ExploMod.KINGS_CHALICE.get()));
+
+        this.add("kings_chalice_buried_treasure",
+                new AddItemModifier(new LootItemCondition[] {
+                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/buried_treasure")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.0973197358f).build()}, ExploMod.KINGS_CHALICE.get()));
+
+        this.add("kings_chalice_shipwreck_treasure",
+                new AddItemModifier(new LootItemCondition[] {
+                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/shipwreck_treasure")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.00374297f).build()}, ExploMod.KINGS_CHALICE.get()));
+
+        this.add("kings_chalice_spawn_bonus_chest",
+                new AddItemModifier(new LootItemCondition[] {
+                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/spawn_bonus_chest")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.0537f).build()}, ExploMod.KINGS_CHALICE.get()));
+
+        this.add("kings_chalice_village_temple",
+                new AddItemModifier(new LootItemCondition[] {
+                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/village/village_temple")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.01037f).build()}, ExploMod.KINGS_CHALICE.get()));
+
+        this.add("kings_chalice_piglin_bartering",
+                new AddItemModifier(new LootItemCondition[] {
+                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("gameplay/piglin_bartering")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.0005003810004f).build()}, ExploMod.KINGS_CHALICE.get()));
+
+        this.add("kings_chalice_sniffer",
+                new AddItemModifier(new LootItemCondition[] {
+                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("gameplay/sniffer_digging")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.00306842f).build()}, ExploMod.KINGS_CHALICE.get()));
+
+        this.add("kings_chalice_weaponsmith_gift",
+                new AddItemModifier(new LootItemCondition[] {
+                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("gameplay/hero_of_the_village/weaponsmith_gift")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.080000428100007f).build()}, ExploMod.KINGS_CHALICE.get()));
+
+        this.add("kings_chalice_cleric_gift",
+                new AddItemModifier(new LootItemCondition[] {
+                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("gameplay/hero_of_the_village/cleric_gift")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.0300000000684248215379f).build()}, ExploMod.KINGS_CHALICE.get()));
+
+        this.add("kings_chalice_fishing",
+                new AddItemModifier(new LootItemCondition[] {
+                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("gameplay/fising/treasure")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.010040702050103060908f).build()}, ExploMod.KINGS_CHALICE.get()));
     }
 }

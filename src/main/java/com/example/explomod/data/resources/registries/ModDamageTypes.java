@@ -17,13 +17,13 @@ public class ModDamageTypes {
     public static final ResourceKey<DamageType> CRUSH = createKey("crush");
     public static final ResourceKey<DamageType> BURN = createKey("burn");
     public static final ResourceKey<DamageType> ICE_CRYSTAL = createKey("ice_crystal");
-    public static final ResourceKey<DamageType> OVERHEAT = createKey("overheat");
+    public static final ResourceKey<DamageType> RADIUM_BALL = createKey("radium_ball");
 
     public static void bootstrap(BootstrapContext<DamageType> context) {
         context.register(CRUSH, new DamageType("explomod.crush", 0.1F));
         context.register(BURN, new DamageType("explomod.burn", 0.1F, DamageEffects.BURNING));
         context.register(ICE_CRYSTAL, new DamageType("explomod.ice_crystal", 0.1F, DamageEffects.FREEZING));
-        context.register(OVERHEAT, new DamageType("explomod.overheat", 0.1F, DamageEffects.BURNING));
+        context.register(RADIUM_BALL, new DamageType("explomod.radium_ball", 0.1F, DamageEffects.BURNING));
     }
 
     private static ResourceKey<DamageType> createKey(String name) {

@@ -96,7 +96,7 @@ public class ModTraderTrades extends VillagerTrades {
             ItemStack itemstack;
             if (!optional.isEmpty()) {
                 Holder<Enchantment> holder = (Holder)optional.get();
-                Enchantment enchantment = (Enchantment)holder.value();
+                Enchantment enchantment = holder.value();
                 int j = Math.max(enchantment.getMinLevel(), this.minLevel);
                 int k = Math.min(enchantment.getMaxLevel(), this.maxLevel);
                 int l = Mth.nextInt(random, j, k);

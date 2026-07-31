@@ -1,0 +1,14 @@
+{
+  "type": "explomod:add_item",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:gameplay/fising/treasure"
+    },
+    {
+      "chance": 0.010040702,
+      "condition": "minecraft:random_chance"
+    }
+  ],
+  "item": "explomod:kings_chalice"
+}

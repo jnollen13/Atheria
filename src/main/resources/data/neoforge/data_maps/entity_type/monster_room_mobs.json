@@ -1,0 +1,10 @@
+{
+  "values": {
+    "minecraft:cave_spider": {
+      "weight": 1
+    },
+    "explomod:grass_golem": {
+      "weight": 50
+    }
+  }
+}

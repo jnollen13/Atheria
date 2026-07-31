@@ -1,7 +1,11 @@
 package com.example.explomod.item.custom;
 
+import com.example.explomod.ExploMod;
+import com.example.explomod.advancement.StatTrigger;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -79,6 +83,7 @@ public class DashSwordItem extends TieredItem {
         ItemStack i =player.getItemInHand(usedHand);
         i.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
         player.getCooldowns().addCooldown(i.getItem(), 15);
+        player.awardStat(Stats.ITEM_USED.get(ExploMod.DASH_SWORD.get()), 1);
         return super.use(level, player, usedHand);
     }
 

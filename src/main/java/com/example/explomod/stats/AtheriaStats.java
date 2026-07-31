@@ -28,14 +28,6 @@ public class AtheriaStats {
     public static final DeferredHolder<ResourceLocation, ResourceLocation> SPELLS_CAST =
             C_STATS.register("spells_cast", () -> ResourceLocation.fromNamespaceAndPath(ExploMod.MODID, "spells_cast"));
 
-    public static final DeferredHolder<StatType<?>, StatType<Item>> HIDDEN_STATS =
-            T_STATS.register(sjt, () -> makeRegistryStatType(sjt, BuiltInRegistries.ITEM));
-
-
-    public static <T> StatType<T> makeRegistryStatType(String name, Registry<T> registry) {
-        Component component = Component.translatable("stat_type.explomod." + name);
-        return Registry.register(BuiltInRegistries.STAT_TYPE, ResourceLocation.fromNamespaceAndPath(ExploMod.MODID, name), new StatType<>(registry, component));
-    }
 
     public static void register(IEventBus eventBus) {
         C_STATS.register(eventBus);

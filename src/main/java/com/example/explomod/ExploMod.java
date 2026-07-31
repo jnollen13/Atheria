@@ -1,5 +1,6 @@
 package com.example.explomod;
 
+import com.example.explomod.advancement.AtheriaAdvancementTriggers;
 import com.example.explomod.block.custom.*;
 import com.example.explomod.block.custom.crates.CrateBlock;
 import com.example.explomod.block.custom.crates.EggBasketBlock;
@@ -10,12 +11,14 @@ import com.example.explomod.data.AtheriaDataAttachments;
 import com.example.explomod.effect.ModEffects;
 import com.example.explomod.entity.ModEntities;
 import com.example.explomod.entity.client.*;
+import com.example.explomod.item.custom.magic.CokosCaneItem;
 import com.example.explomod.item.custom.magic.SimpleSpellItem;
 import com.example.explomod.item.custom.magic.TargetedSpellItem;
 import com.example.explomod.item.custom.magic.UnSummoningItem;
 import com.example.explomod.loot.ModLootModifiers;
 import com.example.explomod.particle.ModParticles;
 import com.example.explomod.particle.SafteyParticle;
+import com.example.explomod.recipe.AtheriaRecipeSerializer;
 import com.example.explomod.registries.SpellRegistries;
 import com.example.explomod.spells.Spells;
 import com.example.explomod.stats.AtheriaStats;
@@ -28,16 +31,21 @@ import com.example.explomod.item.custom.*;
 import com.example.explomod.item.custom.Throwable;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionContents;
+import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.block.*;
@@ -50,7 +58,6 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
-import net.neoforged.neoforge.event.entity.living.MobSpawnEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import net.neoforged.neoforge.event.village.WandererTradesEvent;
@@ -84,7 +91,6 @@ import com.example.explomod.worldgen.tree.ModTreeGrower;
 
 import java.util.List;
 
-import static net.minecraft.world.item.Items.registerBlock;
 import static net.neoforged.fml.loading.FMLEnvironment.dist;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
@@ -307,6 +313,8 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
     public static final DeferredBlock<Block> RADIUM_CHAIN = BLOCKS.register("radium_chain", () -> new ChainBlock(BlockBehaviour.Properties.of().noOcclusion().mapColor(MapColor.COLOR_LIGHT_GREEN).strength(5f, 10).requiresCorrectToolForDrops()));
     public static final DeferredItem<BlockItem> RADIUM_CHAIN_ITEM = ITEMS.registerSimpleBlockItem("radium_chain", RADIUM_CHAIN);
     public static final DeferredItem<Item> STORMBERRY_CAKE_BITTEN = ITEMS.register("stormberry_cake_bitten", () -> new ToolTipItem(Component.translatable("tooltip.explomod.unintended").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY, ChatFormatting.BOLD), new Item.Properties().setNoRepair().stacksTo(1)));
+    public static final DeferredItem<Item> KINGS_CHALICE = ITEMS.register("kings_chalice", () -> new KingsChalice(new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.RARE).component(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).durability(184)));
+    public static final DeferredItem<Item> KOKOS_CANE = ITEMS.register("kokos_cane", () -> new CokosCaneItem(new Item.Properties().fireResistant().stacksTo(1).rarity(Rarity.UNCOMMON).durability(245).attributes(SwordItem.createAttributes(Tiers.WOOD, 7, -2.4F))));
 
 
     //creative tabs
@@ -337,6 +345,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
                 output.accept(GRASS_GOLEM_SPAWN_EGG.get());
                 output.accept(RAPIER_OF_NINE_LIVES.get());
                 output.accept(DENSEGRASS.get());
+                output.accept(KINGS_CHALICE.get());
                 output.accept(RADIUM_NUGGET.get());
                 output.accept(BLOOD_WOOD_SAPLING.get());
                 output.accept(UNSUMMONING_STAFF.get());
@@ -427,6 +436,19 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
                 output.accept(RADIUM_CHAIN_ITEM.get());
             }).build());
 
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> POTIONS_TAB = CREATIVE_MODE_TABS.register("potions_tab", () -> CreativeModeTab.builder()
+            .title(Component.translatable("itemGroup.explomod.potions"))
+            .withTabsBefore(CreativeModeTabs.COMBAT)
+            .icon(() -> KINGS_CHALICE.get().getDefaultInstance())
+            .displayItems((parameters, output) -> parameters.holders().lookup(Registries.POTION).ifPresent((p_337908_) -> {
+                generatePotionTypes(output, p_337908_, KINGS_CHALICE.get(), parameters.enabledFeatures());
+            })).build());
+
+
+    private static void generatePotionTypes(CreativeModeTab.Output output, HolderLookup<Potion> potions, Item item, FeatureFlagSet requiredFeatures) {
+        potions.listElements().filter((p_337926_) -> p_337926_.value().isEnabled(requiredFeatures)).map((p_330083_) -> PotionContents.createItemStack(item, p_330083_)).forEach((p_270000_) -> output.accept(p_270000_, CreativeModeTab.TabVisibility.SEARCH_TAB_ONLY));
+    }
+
 
     // use git add before git commit -m "whatever the commit message is"
     // after commit use git push
@@ -455,6 +477,8 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
         AtheriaTriggers.register(modEventBus);
         AtheriaDataAttachments.register(modEventBus);
         ModBiomes.register(modEventBus);
+        AtheriaRecipeSerializer.register(modEventBus);
+        AtheriaAdvancementTriggers.register(modEventBus);
         //ModStructureType.register(modEventBus); structures added through json files
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ExploMod) to respond directly to events.

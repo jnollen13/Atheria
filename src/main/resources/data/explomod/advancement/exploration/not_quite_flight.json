@@ -1,0 +1,33 @@
+{
+  "parent": "explomod:exploration/root",
+  "criteria": {
+    "dash_sword": {
+      "conditions": {
+        "usages": 103,
+        "item": {
+          "id": "explomod:dash_sword"
+        }
+      },
+      "trigger": "explomod:item_use_stat"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.exploration.not_quite_flight.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "explomod:dash_sword"
+    },
+    "title": {
+      "translate": "advancements.exploration.not_quite_flight.title"
+    }
+  },
+  "requirements": [
+    [
+      "dash_sword"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

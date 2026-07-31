@@ -24,5 +24,54 @@
       "translation": [ 1.13, 3.2, 1.13],
       "scale": [ 0.68, 0.68, 0.68 ]
     }
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "pulling": 1
+      },
+      "model": "explomod:item/harbinger_pulling_1"
+    },
+    {
+      "predicate": {
+        "pulling": 1,
+        "pull": 0.21
+      },
+      "model": "explomod:item/harbinger_pulling_2"
+    },
+    {
+      "predicate": {
+        "pulling": 1,
+        "pull": 0.55
+      },
+      "model": "explomod:item/harbinger_pulling_3"
+    },
+    {
+      "predicate": {
+        "pulling": 1,
+        "pull": 0.75
+      },
+      "model": "explomod:item/harbinger_pulling_4"
+    },
+    {
+      "predicate": {
+        "pulling": 1,
+        "pull": 0.9
+      },
+      "model": "explomod:item/harbinger_pulling_5"
+    },
+    {
+      "predicate": {
+        "charged": 1
+      },
+      "model": "explomod:item/harbinger_charged_arrow"
+    },
+    {
+      "predicate": {
+        "charged": 1,
+        "firework": 1
+      },
+      "model": "explomod:item/harbinger_charged_rocket"
+    }
+  ]
 }

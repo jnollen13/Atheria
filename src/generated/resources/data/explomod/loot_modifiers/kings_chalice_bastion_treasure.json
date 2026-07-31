@@ -1,0 +1,14 @@
+{
+  "type": "explomod:add_item",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:chests/bastion_treasure"
+    },
+    {
+      "chance": 0.01037,
+      "condition": "minecraft:random_chance"
+    }
+  ],
+  "item": "explomod:kings_chalice"
+}

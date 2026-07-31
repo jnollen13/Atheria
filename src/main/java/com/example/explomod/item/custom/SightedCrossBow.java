@@ -5,7 +5,7 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.ItemAbilities;
 import org.jetbrains.annotations.NotNull;
 
-public class SightedCrossBow extends CrossbowItem {
+public class SightedCrossBow extends CrossbowItem{
     public SightedCrossBow(Properties properties) {
         super(properties);
     }

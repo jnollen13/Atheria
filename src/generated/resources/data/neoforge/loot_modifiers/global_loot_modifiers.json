@@ -28,7 +28,18 @@
     "explomod:fuel_from_village_chest",
     "explomod:phantom_sword_toolsmith",
     "explomod:stool_from_enderman",
-    "explomod:harbinger_ranged_trial_chamber"
+    "explomod:harbinger_ranged_trial_chamber",
+    "explomod:kings_chalice_bastion_bridge",
+    "explomod:kings_chalice_bastion_treasure",
+    "explomod:kings_chalice_buried_treasure",
+    "explomod:kings_chalice_shipwreck_treasure",
+    "explomod:kings_chalice_spawn_bonus_chest",
+    "explomod:kings_chalice_village_temple",
+    "explomod:kings_chalice_piglin_bartering",
+    "explomod:kings_chalice_sniffer",
+    "explomod:kings_chalice_weaponsmith_gift",
+    "explomod:kings_chalice_cleric_gift",
+    "explomod:kings_chalice_fishing"
   ],
   "replace": false
 }

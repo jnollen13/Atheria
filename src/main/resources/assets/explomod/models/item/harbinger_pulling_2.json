@@ -1,0 +1,6 @@
+{
+  "parent": "explomod:item/harbinger",
+  "textures": {
+    "layer0": "explomod:item/harbinger_pulling_2"
+  }
+}

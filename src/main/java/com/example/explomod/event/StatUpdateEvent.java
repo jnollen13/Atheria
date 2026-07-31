@@ -1,6 +1,7 @@
 package com.example.explomod.event;
 
 import com.example.explomod.ExploMod;
+import com.example.explomod.advancement.StatTrigger;
 import com.example.explomod.data.AtheriaDataAttachments;
 import com.example.explomod.data.Mana;
 import com.example.explomod.payloads.SyncManaPayload;
@@ -99,12 +100,8 @@ public class StatUpdateEvent {
     */
 
     private static void executeServerLogic(Player p) {
-        Item item = Items.CRAFTING_TABLE;
-        LocalPlayer player = Minecraft.getInstance().player;
-        if(player!=null) {
-            int j = player.getStats().getValue(AtheriaStats.HIDDEN_STATS.get().get(item));
-
-            player.getStats().setValue(p, getHiddenStats(item), j);
+        if(p instanceof ServerPlayer player){
+            StatTrigger.doTrigger(player);
         }
     }
 
@@ -114,9 +111,5 @@ public class StatUpdateEvent {
 
             }
         }
-    }
-
-    public static Stat<?> getHiddenStats(Item i){
-        return AtheriaStats.HIDDEN_STATS.get().get(i);
     }
 }

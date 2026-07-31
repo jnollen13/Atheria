@@ -1,0 +1,97 @@
+{
+  "parent": "explomod:exploration/stormberry",
+  "criteria": {
+    "storm_berry": {
+      "conditions": {
+        "usages": 100,
+        "item": {
+          "id": "explomod:storm_berry"
+        }
+      },
+      "trigger": "explomod:item_use_stat"
+    },
+    "stormberry_cookie": {
+      "conditions": {
+        "usages": 100,
+        "item": {
+          "id": "explomod:stormberry_cookie"
+        }
+      },
+      "trigger": "explomod:item_use_stat"
+    },
+    "stormberry_pie": {
+      "conditions": {
+        "usages": 100,
+        "item": {
+          "id": "explomod:stormberry_pie"
+        }
+      },
+      "trigger": "explomod:item_use_stat"
+    },
+    "stormberry_roll": {
+      "conditions": {
+        "usages": 100,
+        "item": {
+          "id": "explomod:stormberry_roll"
+        }
+      },
+      "trigger": "explomod:item_use_stat"
+    },
+    "stormberry_cake": {
+      "conditions": {
+        "usages": 100,
+        "item": {
+          "id": "explomod:stormberry_cake"
+        }
+      },
+      "trigger": "explomod:item_use_stat"
+    },
+    "hold_stormberry_bush": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:stormberry_bush"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.exploration.stormberry_eater.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "explomod:stormberry_cookie"
+    },
+    "title": {
+      "translate": "advancements.exploration.stormberry_eater.title"
+    }
+  },
+  "requirements": [
+    [
+      "storm_berry"
+    ],
+    [
+      "stormberry_cookie"
+    ],
+    [
+      "stormberry_pie"
+    ],
+    [
+      "stormberry_roll"
+    ],
+    [
+      "stormberry_cake"
+    ],
+    [
+      "hold"
+    ]
+  ],
+  "rewards": {
+    "experience": 250
+  },
+  "sends_telemetry_event": true
+}

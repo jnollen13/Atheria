@@ -1,0 +1,14 @@
+{
+  "type": "explomod:add_item",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:gameplay/hero_of_the_village/cleric_gift"
+    },
+    {
+      "chance": 0.03,
+      "condition": "minecraft:random_chance"
+    }
+  ],
+  "item": "explomod:kings_chalice"
+}

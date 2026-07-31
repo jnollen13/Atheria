@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.*;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 
@@ -74,5 +75,12 @@ public final class ModTags {
         }
     }
 
+    public static class Enchantments {
+        public static final TagKey<Enchantment> DISTILL = createTag("distill_enchants");
+
+        private static TagKey<Enchantment> createTag(String name) {
+            return  TagKey.create(Registries.ENCHANTMENT, ResourceLocation.withDefaultNamespace(name));
+        }
+    }
 
 }
