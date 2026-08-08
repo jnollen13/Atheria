@@ -1,6 +1,7 @@
 package com.example.explomod.registries;
 
 import com.example.explomod.ExploMod;
+import com.example.explomod.component.AtheriaDataComponents;
 import com.example.explomod.spells.SpellList;
 import com.example.explomod.spells.Spells;
 import com.example.explomod.spells.UnSummoningSpell;
@@ -10,8 +11,12 @@ import net.minecraft.core.Registry;
 import net.minecraft.resources.RegistryFixedCodec;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -51,11 +56,18 @@ public class SpellRegistries {
         eventBus.addListener(SpellRegistries::registerDatapackRegistry);
     }
 
+    @SubscribeEvent
     private static void registerDatapackRegistry(DataPackRegistryEvent.NewRegistry event) {
         event.dataPackRegistry(
                 SPELL_KEY,
                 Spell.CODEC2,
                 Spell.CODEC2
         );
+    }
+
+    public static ItemStack setLevel(Item item, int level){
+        ItemStack stack = new ItemStack(item);
+        stack.set(AtheriaDataComponents.SPELL_LEVEL, level);
+        return stack;
     }
 }

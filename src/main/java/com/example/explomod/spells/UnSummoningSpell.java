@@ -24,7 +24,7 @@ public class UnSummoningSpell extends Spell {
 
     @Override
     public void DoTargetedSpell(Level level, LivingEntity target) {
-        particles(level, target);
+        particles(level, target, 125);
         if(target.getTags().contains("summoned")){
             Collection<ItemEntity> items = target.captureDrops();
             level.addParticle(ParticleTypes.POOF, true, target.getX(), target.getY(), target.getZ(), 0, 0, 0);
@@ -34,8 +34,8 @@ public class UnSummoningSpell extends Spell {
         }
     }
 
-    public void particles(Level level, LivingEntity entity){
-        for (int r = 0; r < 121; r++) {
+    public void particles(Level level, LivingEntity entity, int repeats){
+        for (int r = 0; r < repeats; r++) {
             double rand1 = RandomSource.create().nextDouble();
             double rand2 = RandomSource.create().nextDouble();
             level.addParticle(ParticleTypes.WHITE_SMOKE, true, entity.getX()+rand1, entity.getY() + 1, entity.getZ()+rand2, 0.0, 0, 0.0);
@@ -52,6 +52,6 @@ public class UnSummoningSpell extends Spell {
 
     @Override
     public void DoSpell(Level level, LivingEntity entity) {
-        particles(level, entity);
+        particles(level, entity, 35);
     }
 }

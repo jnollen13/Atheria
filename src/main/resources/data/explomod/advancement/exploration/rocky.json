@@ -1,0 +1,34 @@
+{
+  "parent": "explomod:exploration/dark",
+  "criteria": {
+    "rock": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:rock"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.explore.rocky.description"
+    },
+    "hidden": false,
+    "icon": {
+      "count": 1,
+      "id": "explomod:rock"
+    },
+    "title": {
+      "translate": "advancements.explore.rocky.title"
+    }
+  },
+  "requirements": [
+    [
+      "rock"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

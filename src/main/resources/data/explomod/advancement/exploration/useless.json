@@ -1,0 +1,34 @@
+{
+  "parent": "explomod:exploration/root",
+  "criteria": {
+    "white_snowball": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:white_snowball"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.explore.white_snowball.description"
+    },
+    "hidden": false,
+    "icon": {
+      "count": 1,
+      "id": "explomod:white_snowball"
+    },
+    "title": {
+      "translate": "advancements.explore.white_snowball.title"
+    }
+  },
+  "requirements": [
+    [
+      "white_snowball"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.3,
+  "group": "phantom",
+  "ingredient": {
+    "item": "explomod:phantom_leggings"
+  },
+  "result": {
+    "count": 7,
+    "id": "minecraft:phantom_membrane"
+  }
+}

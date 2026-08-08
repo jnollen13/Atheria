@@ -1,5 +1,6 @@
 package com.example.explomod.effect;
 
+import com.example.explomod.particle.ModParticles;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
@@ -18,7 +19,7 @@ import java.util.Collection;
 
 public class ExplosionEffect extends MobEffect {
     protected ExplosionEffect(MobEffectCategory category, int color) {
-        super(category, color, ParticleTypes.EXPLOSION);
+        super(category, color);
     }
     @Override
     public boolean applyEffectTick(LivingEntity livingEntity, int amplifier) {
@@ -28,6 +29,9 @@ public class ExplosionEffect extends MobEffect {
             livingEntity.setSilent(true);
             return true;
 
+        }
+        if(livingEntity.tickCount % 3 == 0) {
+            livingEntity.level().addParticle(ModParticles.TNT_PARTICLES.get(), livingEntity.getX(), livingEntity.getY() + 1, livingEntity.getZ(), 0, 0.8, 0);
         }
         return super.applyEffectTick(livingEntity, amplifier);
     }

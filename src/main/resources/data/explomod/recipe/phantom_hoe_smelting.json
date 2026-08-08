@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.31,
+  "group": "phantom",
+  "ingredient": {
+    "item": "explomod:phantom_hoe"
+  },
+  "result": {
+    "count": 2,
+    "id": "minecraft:phantom_membrane"
+  }
+}

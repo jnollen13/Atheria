@@ -14,7 +14,11 @@ public class ModParticles {
             DeferredRegister.create(BuiltInRegistries.PARTICLE_TYPE, ExploMod.MODID);
 
     public static final Supplier<SimpleParticleType> SAFETY_PARTICLES =
-            PARTICLE_TYPES.register("protection_particles", () -> new SimpleParticleType(true));
+            PARTICLE_TYPES.register("protection_particles", () -> new SimpleParticleType(false));
+
+    public static final Supplier<SimpleParticleType> TNT_PARTICLES = PARTICLE_TYPES.register("tnt", () -> new SimpleParticleType(false));
+
+    public static final Supplier<SimpleParticleType> RUSH = PARTICLE_TYPES.register("rush", () -> new SimpleParticleType(false));
 
     public static void register(IEventBus eventBus) {
         PARTICLE_TYPES.register(eventBus);

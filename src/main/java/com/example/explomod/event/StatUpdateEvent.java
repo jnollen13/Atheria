@@ -4,6 +4,7 @@ import com.example.explomod.ExploMod;
 import com.example.explomod.advancement.StatTrigger;
 import com.example.explomod.data.AtheriaDataAttachments;
 import com.example.explomod.data.Mana;
+import com.example.explomod.data.MaxMana;
 import com.example.explomod.payloads.SyncManaPayload;
 import com.example.explomod.stats.AtheriaStats;
 import net.minecraft.ChatFormatting;
@@ -25,7 +26,7 @@ import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 
-@EventBusSubscriber(modid = ExploMod.MODID, bus = EventBusSubscriber.Bus.GAME)
+@EventBusSubscriber(modid = ExploMod.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class StatUpdateEvent {
 
     @SubscribeEvent
@@ -50,22 +51,24 @@ public class StatUpdateEvent {
         if(!player.level().isClientSide){
             if (player instanceof ServerPlayer serverPlayer) {
                 Mana mana = serverPlayer.getData(AtheriaDataAttachments.MANA);
+                MaxMana maxMana = serverPlayer.getData(AtheriaDataAttachments.MAX_MANA);
                 if(mana.mana()<0){
                     player.displayClientMessage(Component.literal("OOM"), true);
                     serverPlayer.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 1, 3));
                     serverPlayer.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 1, 2));
                     serverPlayer.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 1, 1, false, true));
                     serverPlayer.addEffect(new MobEffectInstance(MobEffects.HUNGER, 1, 0, true, false, false));
-                } else if (mana.mana()>101.2f) {
+                } else if (mana.mana()>maxMana.maxMana()+1.02f) {
                     player.displayClientMessage(Component.translatable("message.explomod.over"), true);
-                    serverPlayer.setData(AtheriaDataAttachments.MANA, new Mana(100f));
+                    serverPlayer.setData(AtheriaDataAttachments.MANA, new Mana(serverPlayer.getData(AtheriaDataAttachments.MAX_MANA).maxMana()));
                 }
             }
         }
         if(!player.level().isClientSide){
             if (player instanceof ServerPlayer serverPlayer) {
             Mana stats = serverPlayer.getData(AtheriaDataAttachments.MANA.get());
-            if(stats.mana()<100.0f) {
+                MaxMana max = serverPlayer.getData(AtheriaDataAttachments.MAX_MANA.get());
+            if(stats.mana()<max.maxMana()) {
                 serverPlayer.setData(AtheriaDataAttachments.MANA, new Mana(stats.mana() + (0.1f/50)));
             }
                 net.neoforged.neoforge.network.PacketDistributor.sendToPlayer(

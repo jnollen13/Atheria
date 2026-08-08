@@ -48,6 +48,8 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> FOOD_ORE_KEY = registerKey("food_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> GLOWBERRY_BUSH_KEY = registerKey("glowberry_bush");
     public static final ResourceKey<ConfiguredFeature<?, ?>> STORMBERRY_BUSH_KEY = registerKey("stormberry_bush");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ROCK_KEY = registerKey("rock");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> PEBBLE_KEY = registerKey("pebble");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         RuleTest stoneReplaceables = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
@@ -79,6 +81,10 @@ public class ModConfiguredFeatures {
         FeatureUtils.register(context, S_VEG_1_KEY, Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(Blocks.DARK_OAK_LEAVES.defaultBlockState().setValue(LeavesBlock.PERSISTENT, true))));
 
         FeatureUtils.register(context, GRASS_KEY, Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(Blocks.SHORT_GRASS)));
+
+        FeatureUtils.register(context, ROCK_KEY, Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(ExploMod.ROCK.get())));
+
+        FeatureUtils.register(context, PEBBLE_KEY, Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(ExploMod.NATURAL_PEBBLE.get())));
 
         FeatureUtils.register(context, WEB1_KEY, Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(Blocks.COBWEB)));
 

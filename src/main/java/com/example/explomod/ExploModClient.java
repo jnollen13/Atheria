@@ -2,6 +2,7 @@ package com.example.explomod;
 
 import com.example.explomod.data.AtheriaDataAttachments;
 import com.example.explomod.data.Mana;
+import com.example.explomod.data.MaxMana;
 import com.example.explomod.entity.ModEntities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
@@ -60,8 +61,9 @@ public class ExploModClient {
                 (guiGraphics, deltaTracker) -> {
                     assert Minecraft.getInstance().player != null;
                     Mana stats = Minecraft.getInstance().player.getData(AtheriaDataAttachments.MANA.get());
+                    MaxMana maxMana = Minecraft.getInstance().player.getData(AtheriaDataAttachments.MAX_MANA.get());
                     float currentValue = stats.mana();
-                    float maxValue = 100.0f;
+                    float maxValue = maxMana.maxMana();
                     float percentage = Math.max(0.0f, Math.min(1.0f, currentValue / maxValue));
                     if (Minecraft.getInstance().player != null && Minecraft.getInstance().level != null && !Minecraft.getInstance().options.hideGui) {
                         boolean shouldRender = AtheriaKeys.SHOW_MANA.isDown();

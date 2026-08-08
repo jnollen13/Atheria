@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:adventure/root",
+  "parent": "explomod:exploration/root",
   "criteria": {
     "longsword": {
       "conditions": {

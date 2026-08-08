@@ -41,7 +41,7 @@ public class RandCommandWeb {
                         return 1;
                     }));
         }else{
-            return literalFactory.apply(ExploMod.MODID+"*cmd").executes(context -> {
+            return literalFactory.apply("atheriaClient").executes(context -> {
                 assert Minecraft.getInstance().player != null;
                 Minecraft.getInstance().player.sendSystemMessage(Component.translatable("explomod.configuration.commands.off"));
                         return 1;

@@ -2,20 +2,17 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "A": {
-      "item": "explomod:example_block"
-    },
     "B": {
-      "item": "minecraft:slime_ball"
+      "item": "explomod:radium_ingot"
     }
   },
   "pattern": [
     "BBB",
-    "BAB",
+    "BBB",
     "BBB"
   ],
   "result": {
-    "count": 4,
-    "id": "explomod:log"
+    "count": 1,
+    "id": "explomod:radium_block"
   }
 }

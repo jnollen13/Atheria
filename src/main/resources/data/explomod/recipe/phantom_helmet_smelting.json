@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.3,
+  "group": "phantom",
+  "ingredient": {
+    "item": "explomod:phantom_helmet"
+  },
+  "result": {
+    "count": 5,
+    "id": "minecraft:phantom_membrane"
+  }
+}

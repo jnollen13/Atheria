@@ -20,6 +20,14 @@ public class AtheriaDataAttachments {
                     .build()
     );
 
+    public static final Supplier<AttachmentType<MaxMana>> MAX_MANA = ATTACHMENT_TYPES.register(
+            "max_mana",
+            () -> AttachmentType.builder(() -> new MaxMana(1.0f))
+                    .serialize(MaxMana.CODEC)
+                    .copyOnDeath()
+                    .build()
+    );
+
     public static final Supplier<AttachmentType<LearnedSpells>> KNOWN_SPELLS = ATTACHMENT_TYPES.register(
             "known_spells",
             () -> AttachmentType.builder(() -> new LearnedSpells(Collections.emptyList()))

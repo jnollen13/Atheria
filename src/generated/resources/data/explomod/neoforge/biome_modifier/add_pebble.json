@@ -1,0 +1,15 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "minecraft:dripstone_caves",
+    "minecraft:lush_caves",
+    "minecraft:jagged_peaks",
+    "minecraft:old_growth_spruce_taiga",
+    "minecraft:old_growth_pine_taiga",
+    "minecraft:old_growth_birch_forest",
+    "minecraft:mangrove_swamp",
+    "minecraft:savanna_plateau"
+  ],
+  "features": "explomod:pebbles",
+  "step": "vegetal_decoration"
+}

@@ -1,0 +1,90 @@
+{
+  "parent": "explomod:exploration/root",
+  "criteria": {
+    "phantom_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:phantom_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "phantom_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:phantom_block"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "phantom_sword": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:phantom_sword"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.explore.phantom_ingot.description"
+    },
+    "hidden": false,
+    "icon": {
+      "count": 1,
+      "id": "explomod:phantom_ingot"
+    },
+    "title": {
+      "translate": "advancements.explore.phantom_ingot.title"
+    }
+  },
+  "requirements": [
+    [
+      "phantom_ingot",
+      "phantom_block",
+      "phantom_sword"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "explomod:phantom_axe",
+      "explomod:phantom_axe_blasting",
+      "explomod:phantom_axe_smelting",
+      "explomod:phantom_block",
+      "explomod:phantom_boots",
+      "explomod:phantom_boots_blasting",
+      "explomod:phantom_boots_smelting",
+      "explomod:phantom_chestplate",
+      "explomod:phantom_chestplate_blasting",
+      "explomod:phantom_chestplate_smelting",
+      "explomod:phantom_helmet",
+      "explomod:phantom_helmet_blasting",
+      "explomod:phantom_helmet_smelting",
+      "explomod:phantom_hoe",
+      "explomod:phantom_hoe_blasting",
+      "explomod:phantom_hoe_smelting",
+      "explomod:phantom_ingot",
+      "explomod:phantom_ingot2",
+      "explomod:phantom_ingot_blasting",
+      "explomod:phantom_ingot_smelting",
+      "explomod:phantom_leggings",
+      "explomod:phantom_leggings_blasting",
+      "explomod:phantom_leggings_smelting",
+      "explomod:phantom_membrane",
+      "explomod:phantom_shovel",
+      "explomod:phantom_shovel_blasting",
+      "explomod:phantom_shovel_smelting",
+      "explomod:phantom_sword",
+      "explomod:phantom_sword_blasting",
+      "explomod:phantom_sword_smelting"
+    ]
+  },
+  "sends_telemetry_event": true
+}

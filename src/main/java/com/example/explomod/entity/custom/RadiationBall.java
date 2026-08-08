@@ -1,6 +1,7 @@
 package com.example.explomod.entity.custom;
 
 import com.example.explomod.entity.ModEntities;
+import com.example.explomod.particle.ModParticles;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.sounds.SoundEvents;
@@ -41,7 +42,6 @@ public class RadiationBall extends AbstractWindCharge {
         if (this.noDeflectTicks > 0) {
             --this.noDeflectTicks;
         }
-
     }
 
     public boolean deflect(@NotNull ProjectileDeflection deflection, @Nullable Entity entity, @Nullable Entity owner, boolean deflectedByPlayer) {

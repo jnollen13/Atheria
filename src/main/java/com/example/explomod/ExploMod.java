@@ -8,18 +8,20 @@ import com.example.explomod.block.custom.crates.SugarCaneCrateBlock;
 import com.example.explomod.command.AtheriaCommands;
 import com.example.explomod.component.AtheriaDataComponents;
 import com.example.explomod.data.AtheriaDataAttachments;
+import com.example.explomod.data.MaxMana;
 import com.example.explomod.effect.ModEffects;
 import com.example.explomod.entity.ModEntities;
 import com.example.explomod.entity.client.*;
-import com.example.explomod.item.custom.magic.CokosCaneItem;
-import com.example.explomod.item.custom.magic.SimpleSpellItem;
-import com.example.explomod.item.custom.magic.TargetedSpellItem;
-import com.example.explomod.item.custom.magic.UnSummoningItem;
+import com.example.explomod.item.custom.magic.*;
 import com.example.explomod.loot.ModLootModifiers;
 import com.example.explomod.particle.ModParticles;
+import com.example.explomod.particle.RushParticle;
 import com.example.explomod.particle.SafteyParticle;
+import com.example.explomod.particle.TNTParticle;
+import com.example.explomod.payloads.SyncMaxManaPayload;
 import com.example.explomod.recipe.AtheriaRecipeSerializer;
 import com.example.explomod.registries.SpellRegistries;
+import com.example.explomod.spells.LevelingSpell;
 import com.example.explomod.spells.Spells;
 import com.example.explomod.stats.AtheriaStats;
 import com.example.explomod.triggers.AtheriaTriggers;
@@ -33,8 +35,11 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.ColorRGBA;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.npc.VillagerProfession;
@@ -44,8 +49,6 @@ import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionContents;
-import net.minecraft.world.item.alchemy.Potions;
-import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.block.*;
@@ -61,6 +64,8 @@ import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import net.neoforged.neoforge.event.village.WandererTradesEvent;
+import net.neoforged.neoforge.network.PacketDistributor;
+import org.apache.http.annotation.Experimental;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -295,7 +300,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
     public static final DeferredBlock<WallBlock> CHISELED_STONE_BRICKS_WALL = BLOCKS.register("chiseled_stone_bricks_wall",
             () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CHISELED_STONE_BRICKS).forceSolidOn()));
     public static final DeferredItem<BlockItem> CHISELED_STONE_BRICKS_WALL_ITEM = ITEMS.registerSimpleBlockItem("chiseled_stone_bricks_wall", CHISELED_STONE_BRICKS_WALL);
-    public static final DeferredBlock<Block> RED_FLOWER = BLOCKS.register("red_flower", () -> new FlowerBlock(MobEffects.GLOWING, 5.0F, BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY).noOcclusion()));
+    public static final DeferredBlock<Block> RED_FLOWER = BLOCKS.register("red_flower", () -> new FlowerBlock(MobEffects.GLOWING, 5.0F, BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY).lightLevel(lightLevel -> 1).noOcclusion()));
     public static final DeferredItem<BlockItem> RED_FLOWER_ITEM = ITEMS.registerSimpleBlockItem("red_flower", RED_FLOWER);
     public static final DeferredBlock<SlabBlock> MOSSY_CHISELED_STONE_BRICKS_SLAB = BLOCKS.register("mossy_chiseled_stone_bricks_slab",
             () -> new SlabBlock(BlockBehaviour.Properties.of().strength(1.75f).requiresCorrectToolForDrops().explosionResistance(6f).noOcclusion()));
@@ -310,11 +315,21 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
     public static final DeferredItem<Item> MANA_DRAIN = ITEMS.register("mana_drain_coin", () -> new TargetedSpellItem(Spells.MANA_DRAIN, TargetedSpellItem.CastType.INTEGRATED, new Item.Properties().stacksTo(1).rarity(Rarity.RARE).durability(6)));
     public static final DeferredItem<Item> HEALTH_DRAIN = ITEMS.register("health_drain_coin", () -> new TargetedSpellItem(Spells.HEALTH_DRAIN, TargetedSpellItem.CastType.INTEGRATED, new Item.Properties().stacksTo(2).rarity(Rarity.RARE).durability(12)));
     public static final DeferredItem<Item> KITTEN_TOKEN = ITEMS.register("kitten_coin", () -> new SimpleSpellItem(Spells.CAT_SUMMONING, new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).durability(3)));
+    public static final DeferredItem<SimpleSpellItem> DASH_TOKEN = ITEMS.register("dash_token", () -> new SimpleSpellItem(Spells.DASH, new Item.Properties().stacksTo(1).rarity(Rarity.COMMON).durability(7)));
     public static final DeferredBlock<Block> RADIUM_CHAIN = BLOCKS.register("radium_chain", () -> new ChainBlock(BlockBehaviour.Properties.of().noOcclusion().mapColor(MapColor.COLOR_LIGHT_GREEN).strength(5f, 10).requiresCorrectToolForDrops()));
     public static final DeferredItem<BlockItem> RADIUM_CHAIN_ITEM = ITEMS.registerSimpleBlockItem("radium_chain", RADIUM_CHAIN);
     public static final DeferredItem<Item> STORMBERRY_CAKE_BITTEN = ITEMS.register("stormberry_cake_bitten", () -> new ToolTipItem(Component.translatable("tooltip.explomod.unintended").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY, ChatFormatting.BOLD), new Item.Properties().setNoRepair().stacksTo(1)));
     public static final DeferredItem<Item> KINGS_CHALICE = ITEMS.register("kings_chalice", () -> new KingsChalice(new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.RARE).component(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).durability(184)));
     public static final DeferredItem<Item> KOKOS_CANE = ITEMS.register("kokos_cane", () -> new CokosCaneItem(new Item.Properties().fireResistant().stacksTo(1).rarity(Rarity.UNCOMMON).durability(245).attributes(SwordItem.createAttributes(Tiers.WOOD, 7, -2.4F))));
+    public static final DeferredItem<Item> LEVELING_SPELL_COIN = ITEMS.register("leveling_spell_coin", () -> new LevelingSpellItem(Spells.LEVELING_SPELL, new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).durability(1)));
+    public static final DeferredBlock<Block> RADIUM_BLOCK = BLOCKS.registerSimpleBlock("radium_block", BlockBehaviour.Properties.of().strength(5.2f, 7.2f).sound(SoundType.METAL).mapColor(MapColor.COLOR_LIGHT_GREEN).requiresCorrectToolForDrops());
+    public static final DeferredItem<BlockItem> RADIUM_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("radium_block", RADIUM_BLOCK);
+    public static final DeferredItem<Item> FIREBALL_COIN = ITEMS.register("fireball_coin", () -> new LevelingSpellItem(Spells.FIREBALL_SPELL, new Item.Properties().rarity(Rarity.RARE).durability(5).stacksTo(1).fireResistant().component(AtheriaDataComponents.SPELL_LEVEL, 1)));
+    public static final DeferredBlock<Block> ROCK = BLOCKS.register("rock", () -> new FallingRock(new ColorRGBA(-8356741), Block.box(2, 0, 2, 14, 8, 14), BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(3.4f, 8.36f).noOcclusion()));
+    public static final DeferredItem<BlockItem> ROCK_ITEM = ITEMS.registerSimpleBlockItem("rock", ROCK);
+    public static final DeferredBlock<Block> PEBBLE = BLOCKS.register("pebble", () -> new FallingRock(new ColorRGBA(-8356741), Block.box(8, 0, 7, 10, 2, 9), BlockBehaviour.Properties.of().strength(0.12f, 0.147f).noOcclusion().mapColor(MapColor.STONE).pushReaction(PushReaction.DESTROY)));
+    public static final DeferredItem<BlockItem> PEBBLE_ITEM = ITEMS.registerSimpleBlockItem("pebble", PEBBLE);
+    public static final DeferredBlock<Block> NATURAL_PEBBLE = BLOCKS.register("natural_pebble", () -> new FallingRock(new ColorRGBA(-8356741), Block.box(4, 0, 3, 14, 2, 13), BlockBehaviour.Properties.of().strength(0.673f, 1.36f).noOcclusion().offsetType(BlockBehaviour.OffsetType.XZ).dynamicShape().replaceable().mapColor(MapColor.STONE)));
 
 
     //creative tabs
@@ -323,6 +338,8 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
             .withTabsBefore(CreativeModeTabs.BUILDING_BLOCKS)
             .icon(() -> NEW.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
+                output.accept(ROCK_ITEM.get());
+                output.accept(PEBBLE_ITEM.get());
                 output.accept(EXAMPLE_ITEM.get());
                 output.accept(MOSSY_CHISELED_STONE_BRICKS_ITEM.get());
                 output.accept(EXAMPLE_BLOCK_ITEM.get());
@@ -346,12 +363,10 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
                 output.accept(RAPIER_OF_NINE_LIVES.get());
                 output.accept(DENSEGRASS.get());
                 output.accept(KINGS_CHALICE.get());
-                output.accept(RADIUM_NUGGET.get());
                 output.accept(BLOOD_WOOD_SAPLING.get());
                 output.accept(UNSUMMONING_STAFF.get());
                 output.accept(STORM_BERRY_BUSH.get());
                 output.accept(STORMBERRY_COOKIE.get());
-                output.accept(MAGIC_RADIATION_STAFF.get());
                 output.accept(STORMBERRY_PIE.get());
                 output.accept(APPLE_PIE.get());
                 output.accept(STORM_BERRY_ROLL.get());
@@ -366,8 +381,6 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
                 output.accept(BLOODWOOD_BUTTON_ITEM.get());
                 output.accept(STORM_BERRY.get());
                 output.accept(BLOODWOOD_DOOR_ITEM.get());
-                output.accept(RADIATION_STAFF.get());
-                output.accept(RADIUM_CHAIN_ITEM.get());
                 output.accept(PHANTOM_HOE.get());
                 output.accept(TABLE_ITEM.get());
                 output.accept(LOG_BLOCK_ITEM.get());
@@ -385,7 +398,15 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
                 output.accept(GREEN_POPSICLE.get());
                 output.accept(BOW.get());
                 output.accept(WEAPON_ITEM.get());
+                output.accept(RADIATION_STAFF.get());
+                output.accept(MAGIC_RADIATION_STAFF.get());
+                output.accept(RADIUM_INGOT.get());
+                output.accept(RADIUM_ORE_ITEM.get());
+                output.accept(RAW_RADIUM.get());
+                output.accept(RADIUM_NUGGET.get());
                 output.accept(RADIUM_FIRESTARTER.get());
+                output.accept(RADIUM_CHAIN_ITEM.get());
+                output.accept(RADIUM_BLOCK_ITEM.get());
                 output.accept(FUEL.get());
                 output.accept(LAMP_ITEM.get());
                 output.accept(REDTRAV_ITEM.get());
@@ -420,20 +441,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
                 output.accept(HEAL_TOKEN5.get());
                 output.accept(MANA_DRAIN.get());
                 output.accept(HEALTH_DRAIN.get());
-            }).build());
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> RADIUM_TAB = CREATIVE_MODE_TABS.register("radium_tab", () -> CreativeModeTab.builder()
-            .title(Component.translatable("itemGroup.explomod.radium")) //The language key for the title of your CreativeModeTab
-            .withTabsBefore(CreativeModeTabs.COMBAT)
-            .icon(() -> RADIATION_STAFF.get().getDefaultInstance())
-            .displayItems((parameters, output) -> {
-                output.accept(RADIATION_STAFF.get());
-                output.accept(MAGIC_RADIATION_STAFF.get());
-                output.accept(RADIUM_INGOT.get());
-                output.accept(RADIUM_ORE_ITEM.get());
-                output.accept(RAW_RADIUM.get());
-                output.accept(RADIUM_NUGGET.get());
-                output.accept(RADIUM_FIRESTARTER.get());
-                output.accept(RADIUM_CHAIN_ITEM.get());
+                output.accept(DASH_TOKEN.get());
             }).build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> POTIONS_TAB = CREATIVE_MODE_TABS.register("potions_tab", () -> CreativeModeTab.builder()
@@ -441,12 +449,22 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
             .withTabsBefore(CreativeModeTabs.COMBAT)
             .icon(() -> KINGS_CHALICE.get().getDefaultInstance())
             .displayItems((parameters, output) -> parameters.holders().lookup(Registries.POTION).ifPresent((p_337908_) -> {
+                generateSpellTypes(output, Spells.FIREBALL_SPELL, FIREBALL_COIN.get(), CreativeModeTab.TabVisibility.SEARCH_TAB_ONLY);
                 generatePotionTypes(output, p_337908_, KINGS_CHALICE.get(), parameters.enabledFeatures());
+                generateSpellTypes(output, Spells.LEVELING_SPELL, LEVELING_SPELL_COIN.get(), CreativeModeTab.TabVisibility.SEARCH_TAB_ONLY);
             })).build());
 
 
     private static void generatePotionTypes(CreativeModeTab.Output output, HolderLookup<Potion> potions, Item item, FeatureFlagSet requiredFeatures) {
         potions.listElements().filter((p_337926_) -> p_337926_.value().isEnabled(requiredFeatures)).map((p_330083_) -> PotionContents.createItemStack(item, p_330083_)).forEach((p_270000_) -> output.accept(p_270000_, CreativeModeTab.TabVisibility.SEARCH_TAB_ONLY));
+    }
+
+    @Experimental
+    private static void generateSpellTypes(CreativeModeTab.Output output, LevelingSpell levelingSpell, Item item, CreativeModeTab.TabVisibility visibility) {
+        levelingSpell.getPossibleLevels().forEach(integer -> {
+            ItemStack stack = SpellRegistries.setLevel(item, integer);
+            output.accept(stack, visibility);
+        });
     }
 
 
@@ -552,6 +570,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
         }
         if (event.getTabKey()==CreativeModeTabs.NATURAL_BLOCKS){
             event.accept(RED_FLOWER_ITEM.asItem());
+            event.accept(ROCK_ITEM.asItem());
         }
     }
 
@@ -564,6 +583,23 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
     public void OnPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
         if (event.getEntity() instanceof Player player) {
             player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 22));
+            if(player instanceof ServerPlayer serverPlayer) {
+                if (!player.getTags().contains("mana set")) {
+                    float a = 1.5f;
+                    if(event.getEntity().level().getDifficulty()== Difficulty.PEACEFUL){
+                        a = 135f;
+                    } else if (serverPlayer.level().getDifficulty()==Difficulty.EASY) {
+                        a=100f;
+                    } else if (serverPlayer.level().getDifficulty()==Difficulty.NORMAL) {
+                        a=75;
+                    } else if (serverPlayer.level().getDifficulty()==Difficulty.HARD) {
+                        a=3.1f;
+                    }
+                    serverPlayer.setData(AtheriaDataAttachments.MAX_MANA.get(), new MaxMana(a));
+                    player.addTag("mana set");
+                    PacketDistributor.sendToPlayer(serverPlayer, new SyncMaxManaPayload(a));
+                }
+            }
         }
     }
 
@@ -755,6 +791,8 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
         @SubscribeEvent
         public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
             event.registerSpriteSet(ModParticles.SAFETY_PARTICLES.get(), SafteyParticle.Provider::new);
+            event.registerSpriteSet(ModParticles.TNT_PARTICLES.get(), TNTParticle.Provider::new);
+            event.registerSpriteSet(ModParticles.RUSH.get(), RushParticle.Provider::new);
         }
     }
 

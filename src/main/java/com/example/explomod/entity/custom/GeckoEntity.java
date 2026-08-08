@@ -1,5 +1,6 @@
 package com.example.explomod.entity.custom;
 
+import com.example.explomod.Config;
 import com.example.explomod.ExploMod;
 import com.example.explomod.entity.ModEntities;
 import net.minecraft.server.level.ServerLevel;
@@ -13,6 +14,7 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
@@ -48,12 +50,12 @@ public class GeckoEntity extends Animal {
 
     @Override
     public boolean isFood(ItemStack stack) {
-        return stack.is(ExploMod.PHANTOM_BLOCK_ITEM.get());
+        return stack.is(ExploMod.POPSICLE_FOOD.get());
     }
 
     @Nullable
     @Override
-    public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob otherParent) {
+    public AgeableMob getBreedOffspring(@NotNull ServerLevel level, @NotNull AgeableMob otherParent) {
         return ModEntities.GECKO.get().create(level);
     }
 
@@ -72,6 +74,9 @@ public class GeckoEntity extends Animal {
         super.tick();
         if(this.level().isClientSide()) {
             this.setupAnimationStates();
+        }
+        if(Config.SERVER.despawn_cave_lizards.get()&&this.tickCount>=Config.SERVER.despawn_cave_lizards_ticks.get()){
+            this.remove(RemovalReason.DISCARDED);
         }
     }
 }

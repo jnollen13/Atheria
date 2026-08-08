@@ -34,13 +34,15 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Objects;
 
 public class Spell implements FeatureElement {
     public static final Codec<Spell> CODEC2 = RecordCodecBuilder.create(instance -> instance.group(
             Codec.STRING.optionalFieldOf("name", "unnamed").forGetter(Spell::name),
             BuiltInRegistries.ITEM.byNameCodec().fieldOf("item").forGetter(Spell::item),
-            Codec.INT.optionalFieldOf("cooldown", 1).forGetter(Spell::getCooldown)
+            Codec.INT.optionalFieldOf("cooldown", 1).forGetter(Spell::getCooldown),
+            Codec.FLOAT.optionalFieldOf("mana", 1.1f).forGetter(Spell::manaUsage)
     ).apply(instance, Spell::new));
     public static final StreamCodec<RegistryFriendlyByteBuf, Spell> STREAM_CODEC2 = StreamCodec.composite(
             ByteBufCodecs.STRING_UTF8, Spell::name,
@@ -155,6 +157,7 @@ public class Spell implements FeatureElement {
         }
     }
 
+
     public float manaUsage(){
         return manaUse;
     }
@@ -167,7 +170,7 @@ public class Spell implements FeatureElement {
         return "spell.explomod."+this.name;
     }
 
-    private Component translated(){
+    protected Component translated(){
         return Component.translatable(this.descriptionId());
     }
 
@@ -185,6 +188,14 @@ public class Spell implements FeatureElement {
         }else {
             return Component.translatable(descriptionId() + ".desc");
         }
+    }
+
+    public void addSpellTooltip(List<Component> tooltipComponents){
+        tooltipComponents.add(Component.literal(" "));
+        tooltipComponents.add(this.displayName(true));
+        tooltipComponents.add(Component.literal("cooldown: "+getCooldown()).withStyle(ChatFormatting.DARK_AQUA));
+        tooltipComponents.add(Component.literal("mana: "+manaUsage()).withStyle(ChatFormatting.DARK_AQUA));
+        tooltipComponents.add(spellDescription(true));
     }
 
     public ResourceLocation spellImageLocation(String nameSpace){
@@ -254,7 +265,10 @@ public class Spell implements FeatureElement {
         return SpellRegistries.NULLSPELL.value();
     }
 
-    private void subtractMana(LivingEntity entity, float manaReduction){
+    /**
+     * removes mana from the user
+     */
+    protected void subtractMana(LivingEntity entity, float manaReduction){
         float currentMana = entity.getData(AtheriaDataAttachments.MANA).mana();
         entity.setData(AtheriaDataAttachments.MANA.get(), new Mana(currentMana-manaReduction));
         if(entity instanceof ServerPlayer serverPlayer) {
@@ -300,7 +314,7 @@ public class Spell implements FeatureElement {
     public boolean tryCastSpell(Level level, LivingEntity caster, CooldownType type){
         if(canCast(caster)){
             this.DoSpell(level, caster);
-            cooldownChecker(type, caster, this.cooldown);
+            cooldownChecker(type, caster, getCooldown());
             subtractMana(caster, this.manaUse);
             return true;
         }else {
@@ -311,7 +325,7 @@ public class Spell implements FeatureElement {
     public boolean tryCastSpell(Level level, LivingEntity caster, CooldownType type, double cooldownModifier){
         if(canCast(caster)){
             this.DoSpell(level, caster);
-            cooldownChecker(type, caster, this.cooldown*(int) cooldownModifier);
+            cooldownChecker(type, caster, getCooldown()*(int) cooldownModifier);
             subtractMana(caster, this.manaUse);
             return true;
         }else {
@@ -322,7 +336,7 @@ public class Spell implements FeatureElement {
     public boolean tryCastSpell(Level level, LivingEntity caster, CooldownType type, float manaModifier){
         if(canCast(caster, manaModifier)){
             this.DoSpell(level, caster);
-            cooldownChecker(type, caster, this.cooldown);
+            cooldownChecker(type, caster, getCooldown());
             subtractMana(caster, this.manaUse*manaModifier);
             return true;
         }else {
@@ -333,7 +347,7 @@ public class Spell implements FeatureElement {
     public boolean tryCastSpell(Level level, LivingEntity caster, CooldownType type, double cooldownModifier, float manaModifier){
         if(canCast(caster, manaModifier)){
             this.DoSpell(level, caster);
-            cooldownChecker(type, caster, this.cooldown*(int) cooldownModifier);
+            cooldownChecker(type, caster, getCooldown()*(int) cooldownModifier);
             subtractMana(caster, this.manaUse*manaModifier);
             return true;
         }else {
@@ -346,7 +360,7 @@ public class Spell implements FeatureElement {
             this.DoSpell(level, caster);
             notify(target, this.getSpell());
             this.DoTargetedSpell(level, target);
-            cooldownChecker(type, caster, this.cooldown);
+            cooldownChecker(type, caster, getCooldown());
             subtractMana(caster, this.manaUse);
             return true;
         }else {
@@ -359,7 +373,7 @@ public class Spell implements FeatureElement {
             this.DoSpell(level, caster);
             notify(target, this.getSpell());
             this.DoTargetedSpell(level, target);
-            cooldownChecker(type, caster, this.cooldown*(int) cooldownModifier);
+            cooldownChecker(type, caster, getCooldown()*(int) cooldownModifier);
             subtractMana(caster, this.manaUse);
             return true;
         }else {
@@ -372,7 +386,7 @@ public class Spell implements FeatureElement {
             this.DoSpell(level, caster);
             notify(target, this.getSpell());
             this.DoTargetedSpell(level, target);
-            cooldownChecker(type, caster, this.cooldown);
+            cooldownChecker(type, caster, getCooldown());
             subtractMana(caster, this.manaUse*manaModifier);
             return true;
         }else {
@@ -385,7 +399,7 @@ public class Spell implements FeatureElement {
             this.DoSpell(level, caster);
             notify(target, this.getSpell());
             this.DoTargetedSpell(level, target);
-            cooldownChecker(type, caster, this.cooldown*(int) cooldownModifier);
+            cooldownChecker(type, caster, getCooldown()*(int) cooldownModifier);
             subtractMana(caster, this.manaUse*manaModifier);
             return true;
         }else {
@@ -397,7 +411,7 @@ public class Spell implements FeatureElement {
         if(canCast(caster, manaModifier)){
             DoIntegratedSpell(level, caster, target);
             notify(target, this.getSpell());
-            cooldownChecker(type, caster, this.cooldown*(int) cooldownModifier);
+            cooldownChecker(type, caster, getCooldown()*(int) cooldownModifier);
             subtractMana(caster, this.manaUse*manaModifier);
             return true;
         }else {
@@ -409,7 +423,7 @@ public class Spell implements FeatureElement {
         if(canCast(caster)){
             DoIntegratedSpell(level, caster, target);
             notify(target, this.getSpell());
-            cooldownChecker(type, caster, this.cooldown*(int) cooldownModifier);
+            cooldownChecker(type, caster, getCooldown()*(int) cooldownModifier);
             subtractMana(caster, this.manaUse);
             return true;
         }else {
@@ -421,7 +435,7 @@ public class Spell implements FeatureElement {
         if(canCast(caster, manaModifier)){
             DoIntegratedSpell(level, caster, target);
             notify(target, this.getSpell());
-            cooldownChecker(type, caster, this.cooldown);
+            cooldownChecker(type, caster, getCooldown());
             subtractMana(caster, this.manaUse*manaModifier);
             return true;
         }else {
@@ -433,7 +447,7 @@ public class Spell implements FeatureElement {
         if(canCast(caster)){
             DoIntegratedSpell(level, caster, target);
             notify(target, this.getSpell());
-            cooldownChecker(type, caster, this.cooldown);
+            cooldownChecker(type, caster, getCooldown());
             subtractMana(caster, this.manaUse);
             return true;
         }else {

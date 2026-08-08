@@ -1,0 +1,33 @@
+{
+  "parent": "explomod:exploration/root",
+  "criteria": {
+    "mossy_chiseled_stone_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:mossy_chiseled_stone_bricks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.exploration.mossy_chiseled_stone_bricks.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "explomod:mossy_chiseled_stone_bricks"
+    },
+    "title": {
+      "translate": "advancements.exploration.mossy_chiseled_stone_bricks.title"
+    }
+  },
+  "requirements": [
+    [
+      "mossy_chiseled_stone_bricks"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

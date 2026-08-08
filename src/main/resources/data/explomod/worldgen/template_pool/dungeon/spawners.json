@@ -17,6 +17,15 @@
         "projection": "rigid"
       },
       "weight": 10
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "explomod:dungeon/spawners/spawner3",
+        "processors": "explomod:spawner_grass",
+        "projection": "rigid"
+      },
+      "weight": 8
     }
   ],
   "fallback": "minecraft:empty"

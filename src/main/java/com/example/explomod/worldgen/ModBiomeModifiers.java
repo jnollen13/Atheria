@@ -28,7 +28,8 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_STORMBERRY_BUSH = registerKey("add_stormberry_bush");
     public static final ResourceKey<BiomeModifier> SPAWN_GRASS_GOLEM = registerKey("spawn_grass_golem");
     public static final ResourceKey<BiomeModifier> SPAWN_TRADER = registerKey("spawn_trader");
-
+    public static final ResourceKey<BiomeModifier> ADD_PEBBLE = registerKey("add_pebble");
+    public static final ResourceKey<BiomeModifier> ADD_RARE_PEBBLE = registerKey("add_rare_pebble");
 
     public static void bootstrap(BootstrapContext<BiomeModifier> context) {
         // CF -> PF -> BM
@@ -67,6 +68,23 @@ public class ModBiomeModifiers {
         context.register(SPAWN_TRADER, new BiomeModifiers.AddSpawnsBiomeModifier(
                 HolderSet.direct(biomes.getOrThrow(Biomes.MUSHROOM_FIELDS), biomes.getOrThrow(Biomes.NETHER_WASTES), biomes.getOrThrow(Biomes.FLOWER_FOREST), biomes.getOrThrow(Biomes.WINDSWEPT_GRAVELLY_HILLS)),
                 List.of(new MobSpawnSettings.SpawnerData(ModEntities.TRADER.get(), 1, 1, 1))));
+
+
+        context.register(ADD_PEBBLE, new BiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(biomes.getOrThrow(Biomes.DRIPSTONE_CAVES), biomes.getOrThrow(Biomes.LUSH_CAVES), biomes.getOrThrow(Biomes.JAGGED_PEAKS), biomes.getOrThrow(Biomes.OLD_GROWTH_SPRUCE_TAIGA),
+                        biomes.getOrThrow(Biomes.OLD_GROWTH_PINE_TAIGA), biomes.getOrThrow(Biomes.OLD_GROWTH_BIRCH_FOREST), biomes.getOrThrow(Biomes.MANGROVE_SWAMP),biomes.getOrThrow(Biomes.SAVANNA_PLATEAU)),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.PEBBLE_PLACED)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(ADD_RARE_PEBBLE, new BiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(biomes.getOrThrow(Biomes.SAVANNA), biomes.getOrThrow(Biomes.PLAINS),biomes.getOrThrow(Biomes.MEADOW),biomes.getOrThrow(Biomes.FOREST),biomes.getOrThrow(Biomes.DARK_FOREST),
+                        biomes.getOrThrow(Biomes.BIRCH_FOREST),biomes.getOrThrow(Biomes.BAMBOO_JUNGLE),biomes.getOrThrow(Biomes.SPARSE_JUNGLE),biomes.getOrThrow(Biomes.SUNFLOWER_PLAINS),
+                        biomes.getOrThrow(Biomes.CHERRY_GROVE),biomes.getOrThrow(Biomes.BEACH),biomes.getOrThrow(Biomes.GROVE),biomes.getOrThrow(Biomes.FLOWER_FOREST),biomes.getOrThrow(Biomes.WINDSWEPT_FOREST),
+                        biomes.getOrThrow(Biomes.SNOWY_TAIGA),biomes.getOrThrow(Biomes.DEEP_DARK),biomes.getOrThrow(Biomes.WOODED_BADLANDS),biomes.getOrThrow(Biomes.SWAMP)),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.PEBBLE_RARE_PLACED)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
+
     }
 
     private static ResourceKey<BiomeModifier> registerKey(String name) {

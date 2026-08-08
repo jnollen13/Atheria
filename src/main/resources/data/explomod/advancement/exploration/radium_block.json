@@ -1,0 +1,40 @@
+{
+  "parent": "explomod:exploration/smelt_radium_ingot",
+  "criteria": {
+    "radium": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:radium_block"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.explore.radium_block.description"
+    },
+    "hidden": false,
+    "icon": {
+      "count": 1,
+      "id": "explomod:radium_block"
+    },
+    "title": {
+      "translate": "advancements.explore.radium_block.title"
+    }
+  },
+  "requirements": [
+    [
+      "radium"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "explomod:radium_block",
+      "explomod:radium_ingot4"
+    ]
+  },
+  "sends_telemetry_event": true
+}

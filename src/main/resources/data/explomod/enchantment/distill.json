@@ -1,5 +1,5 @@
 {
-  "anvil_cost": 1,
+  "anvil_cost": 2,
   "description": {
     "translate": "enchantment.minecraft.distill"
   },
@@ -36,7 +36,7 @@
     "base": 20,
     "per_level_above_first": 40
   },
-  "max_level": 20,
+  "max_level": 100,
   "min_cost": {
     "base": 5,
     "per_level_above_first": 10

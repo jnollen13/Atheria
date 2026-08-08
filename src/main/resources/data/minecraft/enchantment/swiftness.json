@@ -139,7 +139,7 @@
             "movement_scale": -0.2
           },
           "particle": {
-            "type": "minecraft:smoke"
+            "type": "explomod:rush"
           },
           "speed": 1.0,
           "vertical_position": {

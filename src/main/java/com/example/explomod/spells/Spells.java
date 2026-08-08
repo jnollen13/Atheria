@@ -1,6 +1,7 @@
 package com.example.explomod.spells;
 
 import com.example.explomod.item.custom.magic.SimpleSpellItem;
+import com.example.explomod.registries.LevelScaling;
 import com.example.explomod.registries.Spell;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -16,6 +17,9 @@ public class Spells{
     public static final Spell MANA_DRAIN = new DrainSpell("mana_drain", Items.HOPPER, 100, 9, -9, true);
     public static final Spell HEALTH_DRAIN = new DrainSpell("health_drain", Items.HOPPER_MINECART, 100, 10.36f, -5, false);
     public static final Spell CAT_SUMMONING = new CatSummoning("kitten_summoning", Items.CAT_SPAWN_EGG, 100000, 223.816f, -20);
+    public static final Spell DASH = new DashSpell("dash", Items.LEATHER_BOOTS, 300, 1.8946f, -2);
+    public static final LevelingSpell LEVELING_SPELL = new LevelingSpell("leveling", Items.EXPERIENCE_BOTTLE, new LevelScaling(5, 5, 5, 5), 5);
+    public static final LevelingSpell FIREBALL_SPELL = new FireballSpell("fireball_spell", Items.FIRE_CHARGE, 6, 10, -4, new LevelScaling(5, 8, 5, 5), 8);
 
     @Experimental
     public static Item setSpell(Item i, Spell spell){

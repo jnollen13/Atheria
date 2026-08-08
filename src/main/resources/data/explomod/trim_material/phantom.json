@@ -1,0 +1,9 @@
+{
+  "asset_name": "phantom",
+  "description": {
+    "color": "#6219ff",
+    "translate": "trim_material.explomod.phantom"
+  },
+  "ingredient": "explomod:phantom_ingot",
+  "item_model_index": 1.1
+}

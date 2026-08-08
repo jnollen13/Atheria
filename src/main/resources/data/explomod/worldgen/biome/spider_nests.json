@@ -50,7 +50,9 @@
       "explomod:veg1_placed",
       "explomod:sveg1_placed",
       "explomod:web1_placed",
-      "explomod:web2_placed"
+      "explomod:web2_placed",
+      "explomod:common_rocks",
+      "explomod:rare_pebbles"
     ],
     [
       "minecraft:spring_water"

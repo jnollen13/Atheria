@@ -41,6 +41,13 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> DARK_OAK_PLACED_KEY = registerKey("dark_oak_placed");
     public static final ResourceKey<PlacedFeature> WINTER_OAK_PLACED_KEY = registerKey("winter_oak_placed");
     public static final ResourceKey<PlacedFeature> STORMBERRY_BUSH_PLACED_KEY = registerKey("stormberry_bush_placed");
+    public static final ResourceKey<PlacedFeature> ROCK_PLACED = registerKey("rocks");
+    public static final ResourceKey<PlacedFeature> ROCK_COMMON_PLACED = registerKey("common_rocks");
+    public static final ResourceKey<PlacedFeature> ROCK_RARE_PLACED = registerKey("rare_rocks");
+    public static final ResourceKey<PlacedFeature> ROCK_FEW_PLACED = registerKey("few_rocks");
+    public static final ResourceKey<PlacedFeature> PEBBLE_PLACED = registerKey("pebbles");
+    public static final ResourceKey<PlacedFeature> PEBBLE_RARE_PLACED = registerKey("rare_pebbles");
+    public static final ResourceKey<PlacedFeature> PEBBLE_COMMON_PLACED = registerKey("common_pebbles");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -75,6 +82,41 @@ public class ModPlacedFeatures {
         PlacementUtils.register(context, RED_FLOWER_PLACED, configuredFeatures.getOrThrow(ModConfiguredFeatures.RED_FLOWER_KEY),
                 CountPlacement.of(64), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.matchesBlocks(Blocks.GRASS_BLOCK,Blocks.DIRT,Blocks.MOSS_BLOCK,Blocks.PODZOL),
+                        BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(1)), BiomeFilter.biome());
+
+        PlacementUtils.register(context, ROCK_PLACED, configuredFeatures.getOrThrow(ModConfiguredFeatures.ROCK_KEY),
+                CountPlacement.of(16), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.matchesBlocks(Blocks.GRASS_BLOCK,Blocks.DIRT,Blocks.STONE,Blocks.PODZOL, Blocks.DRIPSTONE_BLOCK, Blocks.DEEPSLATE),
+                        BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(1)), BiomeFilter.biome());
+
+        PlacementUtils.register(context, ROCK_COMMON_PLACED, configuredFeatures.getOrThrow(ModConfiguredFeatures.ROCK_KEY),
+                CountPlacement.of(48), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.matchesBlocks(Blocks.GRASS_BLOCK,Blocks.DIRT,Blocks.STONE,Blocks.PODZOL, Blocks.DRIPSTONE_BLOCK, Blocks.DEEPSLATE),
+                        BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(1)), BiomeFilter.biome());
+
+        PlacementUtils.register(context, ROCK_RARE_PLACED, configuredFeatures.getOrThrow(ModConfiguredFeatures.ROCK_KEY),
+                CountPlacement.of(8), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.matchesBlocks(Blocks.GRASS_BLOCK,Blocks.DIRT,Blocks.STONE,Blocks.PODZOL, Blocks.DRIPSTONE_BLOCK, Blocks.DEEPSLATE),
+                        BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(1)), BiomeFilter.biome());
+
+        PlacementUtils.register(context, ROCK_FEW_PLACED, configuredFeatures.getOrThrow(ModConfiguredFeatures.ROCK_KEY),
+                CountPlacement.of(1), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.matchesBlocks(Blocks.GRASS_BLOCK,Blocks.DIRT,Blocks.STONE,Blocks.PODZOL, Blocks.DRIPSTONE_BLOCK, Blocks.DEEPSLATE),
+                        BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(1)), BiomeFilter.biome());
+
+        PlacementUtils.register(context, PEBBLE_PLACED, configuredFeatures.getOrThrow(ModConfiguredFeatures.PEBBLE_KEY),
+                CountPlacement.of(16), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.matchesBlocks(Blocks.GRASS_BLOCK,Blocks.DIRT,Blocks.STONE,Blocks.PODZOL,Blocks.CALCITE, Blocks.DRIPSTONE_BLOCK, Blocks.DEEPSLATE,Blocks.MOSS_BLOCK,Blocks.GRAVEL,Blocks.DIORITE,Blocks.GRANITE,Blocks.TUFF,Blocks.COAL_ORE,Blocks.COPPER_ORE,Blocks.IRON_ORE,Blocks.SANDSTONE),
+                        BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(1)), BiomeFilter.biome());
+
+        PlacementUtils.register(context, PEBBLE_COMMON_PLACED, configuredFeatures.getOrThrow(ModConfiguredFeatures.PEBBLE_KEY),
+                CountPlacement.of(64), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.matchesBlocks(Blocks.GRASS_BLOCK,Blocks.DIRT,Blocks.STONE,Blocks.PODZOL,Blocks.CALCITE, Blocks.DRIPSTONE_BLOCK, Blocks.DEEPSLATE,Blocks.MOSS_BLOCK,Blocks.GRAVEL,Blocks.DIORITE,Blocks.GRANITE,Blocks.TUFF,Blocks.COAL_ORE,Blocks.COPPER_ORE,Blocks.IRON_ORE,Blocks.SANDSTONE),
+                        BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(1)), BiomeFilter.biome());
+
+        PlacementUtils.register(context, PEBBLE_RARE_PLACED, configuredFeatures.getOrThrow(ModConfiguredFeatures.PEBBLE_KEY),
+                CountPlacement.of(1), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.matchesBlocks(Blocks.GRASS_BLOCK,Blocks.DIRT,Blocks.STONE,Blocks.PODZOL,Blocks.CALCITE, Blocks.DRIPSTONE_BLOCK, Blocks.DEEPSLATE,Blocks.MOSS_BLOCK,Blocks.GRAVEL,Blocks.DIORITE,Blocks.GRANITE,Blocks.TUFF,Blocks.COAL_ORE,Blocks.COPPER_ORE,Blocks.IRON_ORE,Blocks.SANDSTONE),
                         BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(1)), BiomeFilter.biome());
 
         PlacementUtils.register(context, WEB2_PLACED, configuredFeatures.getOrThrow(ModConfiguredFeatures.WEB2_KEY),

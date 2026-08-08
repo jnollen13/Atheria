@@ -5,6 +5,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.network.chat.ComponentSerialization;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.util.ExtraCodecs;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -20,6 +22,9 @@ public class AtheriaDataComponents {
 
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<BlockPos>> COORDINATES = register("coordinates",
             builder -> builder.persistent(BlockPos.CODEC));
+
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> SPELL_LEVEL = register("spell_level",
+            builder -> builder.persistent(ExtraCodecs.NON_NEGATIVE_INT));
 
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<ResourceKey<Level>>> SAVED_DIMENSION = register("saved_dimension",
                                                                                                                           builder -> builder.persistent(Level.RESOURCE_KEY_CODEC));

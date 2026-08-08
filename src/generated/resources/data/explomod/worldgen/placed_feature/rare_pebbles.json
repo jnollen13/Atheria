@@ -1,0 +1,62 @@
+{
+  "feature": "explomod:pebble",
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 1
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:uniform",
+        "max_inclusive": {
+          "absolute": 256
+        },
+        "min_inclusive": {
+          "above_bottom": 0
+        }
+      }
+    },
+    {
+      "type": "minecraft:environment_scan",
+      "allowed_search_condition": {
+        "type": "minecraft:matching_blocks",
+        "blocks": "minecraft:air"
+      },
+      "direction_of_search": "down",
+      "max_steps": 12,
+      "target_condition": {
+        "type": "minecraft:matching_blocks",
+        "blocks": [
+          "minecraft:grass_block",
+          "minecraft:dirt",
+          "minecraft:stone",
+          "minecraft:podzol",
+          "minecraft:calcite",
+          "minecraft:dripstone_block",
+          "minecraft:deepslate",
+          "minecraft:moss_block",
+          "minecraft:gravel",
+          "minecraft:diorite",
+          "minecraft:granite",
+          "minecraft:tuff",
+          "minecraft:coal_ore",
+          "minecraft:copper_ore",
+          "minecraft:iron_ore",
+          "minecraft:sandstone"
+        ]
+      }
+    },
+    {
+      "type": "minecraft:random_offset",
+      "xz_spread": 0,
+      "y_spread": 1
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

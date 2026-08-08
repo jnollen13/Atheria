@@ -1,10 +1,7 @@
 {
   "values": [
-    "explomod:log",
-    "explomod:bloodwood_door",
-    "explomod:bloodwood_button",
     "explomod:crate",
     "explomod:empty_crate",
-    "explomod:cane_crate"
+    "explomod:sugar_cane_crate"
   ]
 }

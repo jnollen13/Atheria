@@ -7,8 +7,12 @@
     "explomod:stoned",
     "explomod:tank",
     "explomod:phantom_block",
+    "explomod:radium_block",
     "explomod:radium_chain",
     "explomod:radium_ore",
+    "explomod:rock",
+    "explomod:pebble",
+    "explomod:natural_pebble",
     "explomod:mossy_chiseled_stone_bricks",
     "minecraft:stone"
   ]

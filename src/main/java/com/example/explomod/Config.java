@@ -42,6 +42,8 @@ public class Config {
         public final ModConfigSpec.ConfigValue<Boolean> commandCrash_enabled;
         public final ModConfigSpec.ConfigValue<Boolean> fallVoidDark;
         public final ModConfigSpec.ConfigValue<String> fallDarkDimension;
+        public final ModConfigSpec.ConfigValue<Boolean> despawn_cave_lizards;
+        public final ModConfigSpec.ConfigValue<Integer> despawn_cave_lizards_ticks;
 
 
         public Server(ModConfigSpec.Builder builder) {
@@ -75,6 +77,16 @@ public class Config {
                     .translation("isCommandCrashAllowed")
                     .define("isCommandCrashAllowed", false);
             builder.pop();
+            builder.push("performance");
+            despawn_cave_lizards = builder
+                    .comment("despawns cave lizards after the specified amount of time")
+                    .translation("despawn_cave_lizards")
+                    .define("despawn cave lizards", false);
+
+            despawn_cave_lizards_ticks = builder
+                    .comment("sets the amount of time that it takes for cave lizards to despawn")
+                    .translation("despawn_cave_lizards_time")
+                    .define("despawn cave lizards after ticks", 1200);
         }
     }
 

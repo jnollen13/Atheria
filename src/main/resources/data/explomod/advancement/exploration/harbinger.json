@@ -1,0 +1,33 @@
+{
+  "parent": "explomod:exploration/root",
+  "criteria": {
+    "harbinger": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:harbinger"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.exploration.harbinger.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "explomod:harbinger"
+    },
+    "title": {
+      "translate": "advancements.exploration.harbinger.title"
+    }
+  },
+  "requirements": [
+    [
+      "harbinger"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

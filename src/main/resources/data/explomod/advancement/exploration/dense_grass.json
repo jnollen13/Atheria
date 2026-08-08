@@ -1,0 +1,33 @@
+{
+  "parent": "explomod:exploration/root",
+  "criteria": {
+    "dense_grass": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:dense_grass"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.exploration.dense_grass.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "explomod:dense_grass"
+    },
+    "title": {
+      "translate": "advancements.exploration.dense_grass.title"
+    }
+  },
+  "requirements": [
+    [
+      "dense_grass"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

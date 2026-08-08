@@ -2,6 +2,7 @@ package com.example.explomod.particle;
 
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import org.jetbrains.annotations.NotNull;
 
@@ -12,9 +13,9 @@ public class SafteyParticle extends TextureSheetParticle{
     protected SafteyParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, SpriteSet spriteSet) {
         super(level, x, y, z, xSpeed, ySpeed, zSpeed);
 
-        this.friction = 0.8f;
+        this.friction = 0.9f;
 
-        this.lifetime = 80;
+        this.lifetime = 20;
         this.setSpriteFromAge(spriteSet);
 
         this.rCol = 1f;

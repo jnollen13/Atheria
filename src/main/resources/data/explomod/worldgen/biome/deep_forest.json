@@ -59,7 +59,8 @@
       "explomod:veg3_placed",
       "explomod:grass_placed",
       "explomod:veg1_ceiling_placed",
-      "explomod:red_flowers"
+      "explomod:red_flowers",
+      "explomod:few_rocks"
     ],
     [
       "minecraft:spring_water"

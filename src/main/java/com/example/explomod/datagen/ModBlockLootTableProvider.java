@@ -31,7 +31,11 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
             dropSelf(ExploMod.TABLE.get());
             dropSelf(ExploMod.NEW_LAMP.get());
             dropSelf(ExploMod.DENSE_GRASS.get());
+            dropSelf(ExploMod.ROCK.get());
             dropSelf(ExploMod.LAVA_HOLDER.get());
+            dropSelf(ExploMod.RADIUM_BLOCK.get());
+            dropSelf(ExploMod.PEBBLE.get());
+            dropOther(ExploMod.NATURAL_PEBBLE.get(), ExploMod.PEBBLE_ITEM.get());
             dropSelf(ExploMod.STONED.get());
             dropSelf(ExploMod.RADIUM_CHAIN.get());
             dropSelf(ExploMod.KIT.get());

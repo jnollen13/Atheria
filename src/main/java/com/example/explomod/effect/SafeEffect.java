@@ -32,7 +32,7 @@ public class SafeEffect extends MobEffect {
                     false,
                     Level.ExplosionInteraction.TRIGGER,
                     ParticleTypes.GUST_EMITTER_SMALL,
-                    ParticleTypes.GUST_EMITTER_LARGE,
+                    ModParticles.SAFETY_PARTICLES.get(),
                     SoundEvents.MUSIC_END
             );}
             if(livingEntity.isOnFire()){
@@ -43,13 +43,16 @@ public class SafeEffect extends MobEffect {
                         X,
                         Y,
                         Z, 4,
-                        true,
+                        false,
                         Level.ExplosionInteraction.TRIGGER,
                         ParticleTypes.EXPLOSION_EMITTER,
-                        ParticleTypes.GUST_EMITTER_LARGE,
+                        ModParticles.SAFETY_PARTICLES.get(),
                         SoundEvents.MUSIC_END
                 );
             }
+        }
+        if(livingEntity.isCrouching()){
+            livingEntity.level().explode(livingEntity, null, AbstractWindCharge.EXPLOSION_DAMAGE_CALCULATOR, livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), 2, false, Level.ExplosionInteraction.TRIGGER, ParticleTypes.UNDERWATER, ModParticles.SAFETY_PARTICLES.get(), SoundEvents.MUSIC_GAME);
         }
         return true;
     }

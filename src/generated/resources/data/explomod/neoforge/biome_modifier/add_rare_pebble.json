@@ -1,0 +1,25 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "minecraft:savanna",
+    "minecraft:plains",
+    "minecraft:meadow",
+    "minecraft:forest",
+    "minecraft:dark_forest",
+    "minecraft:birch_forest",
+    "minecraft:bamboo_jungle",
+    "minecraft:sparse_jungle",
+    "minecraft:sunflower_plains",
+    "minecraft:cherry_grove",
+    "minecraft:beach",
+    "minecraft:grove",
+    "minecraft:flower_forest",
+    "minecraft:windswept_forest",
+    "minecraft:snowy_taiga",
+    "minecraft:deep_dark",
+    "minecraft:wooded_badlands",
+    "minecraft:swamp"
+  ],
+  "features": "explomod:rare_pebbles",
+  "step": "vegetal_decoration"
+}

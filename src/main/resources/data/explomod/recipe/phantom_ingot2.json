@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "explomod:phantom_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "explomod:phantom_ingot"
+  }
+}

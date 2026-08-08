@@ -61,7 +61,8 @@
       "explomod:grass_placed",
       "explomod:veg1_ceiling_placed",
       "explomod:web1_placed",
-      "explomod:web2_placed"
+      "explomod:web2_placed",
+      "explomod:rocks"
     ],
     [
       "minecraft:spring_water"

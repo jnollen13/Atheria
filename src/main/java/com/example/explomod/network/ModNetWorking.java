@@ -3,12 +3,14 @@ package com.example.explomod.network;
 import com.example.explomod.ExploMod;
 import com.example.explomod.data.AtheriaDataAttachments;
 import com.example.explomod.data.Mana;
+import com.example.explomod.data.MaxMana;
 import com.example.explomod.effect.ModEffects;
 import com.example.explomod.packets.GrowthPacket;
 import com.example.explomod.packets.DashPacket;
 import com.example.explomod.packets.FireballPacket;
 import com.example.explomod.packets.SpellPacket;
 import com.example.explomod.payloads.SyncManaPayload;
+import com.example.explomod.payloads.SyncMaxManaPayload;
 import com.example.explomod.registries.Spell;
 import com.example.explomod.stats.AtheriaStats;
 import net.minecraft.client.Minecraft;
@@ -157,9 +159,19 @@ public class ModNetWorking {
                 SyncManaPayload.TYPE,
                 SyncManaPayload.STREAM_CODEC,
                 (payload, context) -> context.enqueueWork(() -> {
-                    var player = Minecraft.getInstance().player;
+                    var player = context.player();
                     if (player != null) {
                         player.setData(AtheriaDataAttachments.MANA.get(), new Mana(payload.mana()));
+                    }
+                })
+        );
+        registrar.playToClient(
+                SyncMaxManaPayload.TYPE,
+                SyncMaxManaPayload.STREAM_CODEC,
+                (payload, context) -> context.enqueueWork(() -> {
+                    var player = context.player();
+                    if (player != null) {
+                        player.setData(AtheriaDataAttachments.MAX_MANA.get(), new MaxMana(payload.maxMana()));
                     }
                 })
         );
