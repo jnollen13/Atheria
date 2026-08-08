@@ -1,8 +1,8 @@
 {
   "values": [
-    "minecraft:poisoned",
-    "minecraft:eweakness",
-    "minecraft:slowing",
-    "minecraft:withering"
+    "explomod:poisoned",
+    "explomod:eweakness",
+    "explomod:slowing",
+    "explomod:withering"
   ]
 }

@@ -1,5 +1,5 @@
 {
   "type": "minecraft:single",
-  "enchantment": "minecraft:rapid_fire",
+  "enchantment": "explomod:rapid_fire",
   "level": 10
 }

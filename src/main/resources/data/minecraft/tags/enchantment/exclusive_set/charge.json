@@ -1,6 +1,6 @@
 {
   "values": [
-    "minecraft:slow_charge",
+    "explomod:slow_charge",
     "minecraft:quick_charge"
   ]
 }

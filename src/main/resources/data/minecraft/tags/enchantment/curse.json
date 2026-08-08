@@ -1,9 +1,9 @@
 {
   "values": [
-    "minecraft:dullness",
-    "minecraft:inefficiency",
-    "minecraft:slow_charge",
-    "minecraft:vulnerability",
-    "minecraft:weak_shot"
+    "explomod:dullness",
+    "explomod:inefficiency",
+    "explomod:slow_charge",
+    "explomod:vulnerability",
+    "explomod:weak_shot"
   ]
 }

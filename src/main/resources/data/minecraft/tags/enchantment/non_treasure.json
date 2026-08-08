@@ -1,15 +1,15 @@
 {
   "values": [
-    "minecraft:freezing",
-    "minecraft:thundering",
-    "minecraft:phantom",
-    "minecraft:dullness",
-    "minecraft:inefficiency",
-    "minecraft:slow_charge",
-    "minecraft:vulnerability",
-    "minecraft:weak_shot",
-    "minecraft:rapid_fire",
-    "minecraft:swiftness",
-    "minecraft:bane_of_plants"
+    "explomod:freezing",
+    "explomod:thundering",
+    "explomod:phantom",
+    "explomod:dullness",
+    "explomod:inefficiency",
+    "explomod:slow_charge",
+    "explomod:vulnerability",
+    "explomod:weak_shot",
+    "explomod:rapid_fire",
+    "explomod:swiftness",
+    "explomod:bane_of_plants"
   ]
 }
