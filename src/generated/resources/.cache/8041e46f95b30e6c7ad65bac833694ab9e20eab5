@@ -1,8 +1,13 @@
-// 1.21.1	2026-06-05T20:47:55.269755739	Item Models: explomod
+// 1.21.1	2026-08-08T20:42:47.081908325	Item Models: explomod
+405e826218cf4b6690eea236ba6529e3240a1c70 assets/explomod/models/item/atheria_structure_map.json
 f1cbd9b43591eb7ef85bc01844e56257a804a328 assets/explomod/models/item/bloodwood_door.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/explomod/models/item/cave_phantom_spawn_egg.json
+405e826218cf4b6690eea236ba6529e3240a1c70 assets/explomod/models/item/dark_portal_map.json
+405e826218cf4b6690eea236ba6529e3240a1c70 assets/explomod/models/item/dungeon_map.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/explomod/models/item/gecko_spawn_egg.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/explomod/models/item/grass_golem_spawn_egg.json
+405e826218cf4b6690eea236ba6529e3240a1c70 assets/explomod/models/item/parkour_tower_map.json
 2104a4b06788c4fe55d34cce92108d14fd04ef14 assets/explomod/models/item/radium_firestarter.json
 437fa44bbb447da74f89be740be803d634d7748a assets/explomod/models/item/radium_nugget.json
+405e826218cf4b6690eea236ba6529e3240a1c70 assets/explomod/models/item/ship_map.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/explomod/models/item/trader_spawn_egg.json

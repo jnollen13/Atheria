@@ -21,6 +21,28 @@
         "projection": "rigid"
       },
       "weight": 20
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "explomod:dungeon/loot/barrels/barrel3",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 25
+    },
+    {
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "explomod:dungeon/loot/barrels/barrel4",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 25
     }
   ],
   "fallback": "minecraft:empty"

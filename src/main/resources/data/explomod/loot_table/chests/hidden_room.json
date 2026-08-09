@@ -163,12 +163,13 @@
           "weight": 5
         },
         {
-          "type": "minecraft:empty",
-          "weight": 15
+          "type": "minecraft:item",
+          "name": "explomod:harbinger",
+          "weight": 2
         },
         {
-          "type": "explomod:harbinger",
-          "weight": 2
+          "type": "minecraft:empty",
+          "weight": 15
         }
       ],
       "rolls": {
@@ -204,7 +205,7 @@
       "rolls": {
         "type": "minecraft:uniform",
         "max": 1.0,
-        "min": 0.2
+        "min": 0.0
       }
     },
     {
@@ -289,6 +290,16 @@
           ],
           "name": "minecraft:cobblestone",
           "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "explomod:ship_map",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "name": "explomod:dark_portal_map",
+          "weight": 1
         }
       ],
       "rolls": 4.0

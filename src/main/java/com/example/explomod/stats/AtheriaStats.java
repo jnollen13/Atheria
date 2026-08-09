@@ -14,11 +14,9 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class AtheriaStats {
     public static final DeferredRegister<ResourceLocation> C_STATS = DeferredRegister.create(Registries.CUSTOM_STAT, ExploMod.MODID);
-    public static final DeferredRegister<StatType<?>> T_STATS = DeferredRegister.create(Registries.STAT_TYPE, ExploMod.MODID);
 
     static final String pic = "placed_in_crate";
     static final String tioc = "taken_out_crate";
-    static final String sjt = "hidden_stats";
 
 
     public static final DeferredHolder<ResourceLocation, ResourceLocation> PLACED_IN_CRATE =
@@ -31,6 +29,5 @@ public class AtheriaStats {
 
     public static void register(IEventBus eventBus) {
         C_STATS.register(eventBus);
-        T_STATS.register(eventBus);
     }
 }

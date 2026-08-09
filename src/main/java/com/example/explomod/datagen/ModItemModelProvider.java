@@ -23,6 +23,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         withExistingParent(ExploMod.GRASS_GOLEM_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ExploMod.LPHANTOM_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ExploMod.TRADER_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+        structureMap(ExploMod.ATHERIA_STRUCTURE_MAP);
+        structureMap(ExploMod.DARK_PORTAL_MAP);
+        structureMap(ExploMod.DUNGEON_MAP);
+        structureMap(ExploMod.PARKOUR_TOWER_MAP);
+        structureMap(ExploMod.SHIP_MAP);
+        structureMap(ExploMod.GRASS_GOLEM_CAMP_MAP);
     }
 
 
@@ -30,5 +36,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         return withExistingParent(item.getId().getPath(),
                 ResourceLocation.parse("item/handheld")).texture("layer0",
                 ResourceLocation.fromNamespaceAndPath(ExploMod.MODID,"item/" + item.getId().getPath()));
+    }
+    protected ItemModelBuilder structureMap(DeferredItem<?> item){
+        return withExistingParent(item.getId().getPath(), ResourceLocation.fromNamespaceAndPath(ExploMod.MODID, "item/structure_map"));
     }
 }

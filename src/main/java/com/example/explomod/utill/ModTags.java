@@ -9,6 +9,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.levelgen.structure.Structure;
 
 public final class ModTags {
 
@@ -24,6 +25,19 @@ public final class ModTags {
 
         private static TagKey<Block> createTag(String name) {
             return BlockTags.create(ResourceLocation.fromNamespaceAndPath(ExploMod.MODID, name));
+        }
+    }
+
+    public static class Structures {
+        public static final TagKey<Structure> VENDOR_STALLS = createTag("on_vendor_maps");
+        public static final TagKey<Structure> DARK_PORTALS = createTag("on_dark_portal_maps");
+        public static final TagKey<Structure> PARKOUR_TOWERS = createTag("on_parkour_tower_maps");
+        public static final TagKey<Structure> DUNGEONS = createTag("on_dungeon_maps");
+        public static final TagKey<Structure> SHIPS = createTag("on_ship_maps");
+        public static final TagKey<Structure> GRASS_GOLEM_CAMPS = createTag("on_grass_golem_camp_maps");
+
+        private static TagKey<Structure> createTag(String name) {
+            return TagKey.create(Registries.STRUCTURE, ResourceLocation.fromNamespaceAndPath(ExploMod.MODID, name));
         }
     }
 
@@ -43,6 +57,13 @@ public final class ModTags {
 
             private static TagKey<Biome> createTag(String name) {
                 return TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(cTags.tag, name));
+            }
+        }
+        public static class Structures {
+            public static final TagKey<Structure> ATHERIA = createTag("atheria");
+
+            private static TagKey<Structure> createTag(String name) {
+                return TagKey.create(Registries.STRUCTURE, ResourceLocation.fromNamespaceAndPath(tag, name));
             }
         }
     }

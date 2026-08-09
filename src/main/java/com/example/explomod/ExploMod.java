@@ -13,6 +13,7 @@ import com.example.explomod.effect.ModEffects;
 import com.example.explomod.entity.ModEntities;
 import com.example.explomod.entity.client.*;
 import com.example.explomod.item.custom.magic.*;
+import com.example.explomod.item.maps.AtheriaMapDecorationTypes;
 import com.example.explomod.loot.ModLootModifiers;
 import com.example.explomod.particle.ModParticles;
 import com.example.explomod.particle.RushParticle;
@@ -26,6 +27,7 @@ import com.example.explomod.spells.Spells;
 import com.example.explomod.stats.AtheriaStats;
 import com.example.explomod.triggers.AtheriaTriggers;
 import com.example.explomod.utill.ClientProxy;
+import com.example.explomod.utill.ModTags;
 import com.example.explomod.worldgen.ModBiomes;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import com.example.explomod.item.alchemy.ModPotions;
@@ -33,6 +35,7 @@ import com.example.explomod.item.custom.*;
 import com.example.explomod.item.custom.Throwable;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerPlayer;
@@ -49,12 +52,15 @@ import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionContents;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.level.saveddata.maps.MapDecorationType;
+import net.minecraft.world.level.saveddata.maps.MapDecorationTypes;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
@@ -330,7 +336,13 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
     public static final DeferredBlock<Block> PEBBLE = BLOCKS.register("pebble", () -> new FallingRock(new ColorRGBA(-8356741), Block.box(8, 0, 7, 10, 2, 9), BlockBehaviour.Properties.of().strength(0.12f, 0.147f).noOcclusion().mapColor(MapColor.STONE).pushReaction(PushReaction.DESTROY)));
     public static final DeferredItem<BlockItem> PEBBLE_ITEM = ITEMS.registerSimpleBlockItem("pebble", PEBBLE);
     public static final DeferredBlock<Block> NATURAL_PEBBLE = BLOCKS.register("natural_pebble", () -> new FallingRock(new ColorRGBA(-8356741), Block.box(4, 0, 3, 14, 2, 13), BlockBehaviour.Properties.of().strength(0.673f, 1.36f).noOcclusion().offsetType(BlockBehaviour.OffsetType.XZ).dynamicShape().replaceable().mapColor(MapColor.STONE)));
-
+    public static final DeferredItem<Item> VENDOR_STALL_MAP = ITEMS.register("vendor_stall_map", () -> new StructureMapItem(ModTags.Structures.VENDOR_STALLS, "explomod.vendor_stall.map", AtheriaMapDecorationTypes.VENDOR_STALL.getDelegate(), new Item.Properties().rarity(Rarity.UNCOMMON).stacksTo(1)));
+    public static final DeferredItem<Item> ATHERIA_STRUCTURE_MAP = ITEMS.register("atheria_structure_map", ()-> new StructureMapItem(ModTags.cTags.Structures.ATHERIA, "explomod.atherian.map", MapDecorationTypes.TARGET_X, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+    public static final DeferredItem<Item> DARK_PORTAL_MAP = ITEMS.register("dark_portal_map", ()-> new StructureMapItem(ModTags.Structures.DARK_PORTALS, "explomod.dark_portal.map", AtheriaMapDecorationTypes.DARK_PORTAL.getDelegate(), new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+    public static final DeferredItem<Item> DUNGEON_MAP = ITEMS.register("dungeon_map", ()-> new StructureMapItem(ModTags.Structures.DUNGEONS, "explomod.dungeon.map", AtheriaMapDecorationTypes.DUNGEON.getDelegate(), new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+    public static final DeferredItem<Item> PARKOUR_TOWER_MAP = ITEMS.register("parkour_tower_map", ()-> new StructureMapItem(ModTags.Structures.PARKOUR_TOWERS, "explomod.parkour_tower.map", AtheriaMapDecorationTypes.PARKOUR_TOWER.getDelegate(), new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+    public static final DeferredItem<Item> SHIP_MAP = ITEMS.register("ship_map", ()-> new StructureMapItem(ModTags.Structures.SHIPS, "explomod.ship.map", AtheriaMapDecorationTypes.SHIP.getDelegate(), new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+    public static final DeferredItem<Item> GRASS_GOLEM_CAMP_MAP = ITEMS.register("grass_golem_camp_map", ()-> new StructureMapItem(ModTags.Structures.GRASS_GOLEM_CAMPS, "item.explomod.grass_golem_camp_map", AtheriaMapDecorationTypes.GRASS_GOLEM_CAMP.getDelegate(), new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
 
     //creative tabs
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
@@ -345,6 +357,13 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
                 output.accept(EXAMPLE_BLOCK_ITEM.get());
                 output.accept(INSTANTBOOM_ITEM.get());
                 output.accept(LOCATION_SAVER.get());
+                output.accept(ATHERIA_STRUCTURE_MAP.get());
+                output.accept(GRASS_GOLEM_CAMP_MAP.get());
+                output.accept(VENDOR_STALL_MAP.get());
+                output.accept(DUNGEON_MAP.get());
+                output.accept(DARK_PORTAL_MAP.get());
+                output.accept(PARKOUR_TOWER_MAP.get());
+                output.accept(SHIP_MAP.get());
                 output.accept(PORTAL_ITEM.get());
                 output.accept(CANE_CRATE_ITEM.get());
                 output.accept(FERMENTED_GLOWSTONE.get());
@@ -497,6 +516,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
         ModBiomes.register(modEventBus);
         AtheriaRecipeSerializer.register(modEventBus);
         AtheriaAdvancementTriggers.register(modEventBus);
+        AtheriaMapDecorationTypes.register(modEventBus);
         //ModStructureType.register(modEventBus); structures added through json files
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ExploMod) to respond directly to events.
@@ -679,6 +699,10 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
             trades.get(5).add((entity, randomSource) -> new MerchantOffer(
                     new ItemCost(Items.EMERALD, 14),
                     new ItemStack(ExploMod.NICE_STICK.get(), 1), 1, 5, 35.85f));
+
+            trades.get(2).add((entity, randomSource) -> new VillagerTrades.TreasureMapForEmeralds(
+                    10, ModTags.Structures.VENDOR_STALLS, "explomod.vendor_stall.map", AtheriaMapDecorationTypes.VENDOR_STALL.getDelegate(), 4, 2
+            ).getOffer(entity, RandomSource.create()));
         }
         // Vendor Trades
         if(event.getType()==ModVillagers.MODSELLER.value()) {
@@ -742,6 +766,10 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
 
             trades.get(4).add((entity, randomSource) -> new MerchantOffer(new ItemCost(Items.EMERALD,1+r4),
                     new ItemStack(ExploMod.STORM_BERRY_CAKE.get(), 1), 5, 4, 0.1105f));
+
+            // level 5 trades
+            trades.get(5).add((entity, randomSource) -> new MerchantOffer(new ItemCost(Items.EMERALD,24+r8),
+                    PotionContents.createItemStack(ExploMod.KINGS_CHALICE.get(), Potions.HEALING), 2, 5, 0.100051847f));
         }
 
     }

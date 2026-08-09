@@ -142,7 +142,7 @@ public class Spell implements FeatureElement {
     public boolean canCast(LivingEntity castingEntity) {
         if(!castingEntity.hasEffect(ModEffects.COOLDOWN)) {
             Mana mana = castingEntity.getData(AtheriaDataAttachments.MANA);
-            return mana.mana() >= this.low + this.manaUse;
+            return mana.mana() >= this.low + manaUsage();
         }else{
             return false;
         }
@@ -151,7 +151,7 @@ public class Spell implements FeatureElement {
     public boolean canCast(LivingEntity castingEntity, float manaModifier){
         if(!castingEntity.hasEffect(ModEffects.COOLDOWN)) {
             Mana mana = castingEntity.getData(AtheriaDataAttachments.MANA);
-            return mana.mana() >= this.low + (this.manaUse * manaModifier);
+            return mana.mana() >= this.low + (manaUsage() * manaModifier);
         }else{
             return false;
         }
@@ -315,7 +315,7 @@ public class Spell implements FeatureElement {
         if(canCast(caster)){
             this.DoSpell(level, caster);
             cooldownChecker(type, caster, getCooldown());
-            subtractMana(caster, this.manaUse);
+            subtractMana(caster, manaUsage());
             return true;
         }else {
             return false;
@@ -326,7 +326,7 @@ public class Spell implements FeatureElement {
         if(canCast(caster)){
             this.DoSpell(level, caster);
             cooldownChecker(type, caster, getCooldown()*(int) cooldownModifier);
-            subtractMana(caster, this.manaUse);
+            subtractMana(caster, manaUsage());
             return true;
         }else {
             return false;
@@ -337,7 +337,7 @@ public class Spell implements FeatureElement {
         if(canCast(caster, manaModifier)){
             this.DoSpell(level, caster);
             cooldownChecker(type, caster, getCooldown());
-            subtractMana(caster, this.manaUse*manaModifier);
+            subtractMana(caster, manaUsage()*manaModifier);
             return true;
         }else {
             return false;
@@ -348,7 +348,7 @@ public class Spell implements FeatureElement {
         if(canCast(caster, manaModifier)){
             this.DoSpell(level, caster);
             cooldownChecker(type, caster, getCooldown()*(int) cooldownModifier);
-            subtractMana(caster, this.manaUse*manaModifier);
+            subtractMana(caster, manaUsage()*manaModifier);
             return true;
         }else {
             return false;
@@ -361,7 +361,7 @@ public class Spell implements FeatureElement {
             notify(target, this.getSpell());
             this.DoTargetedSpell(level, target);
             cooldownChecker(type, caster, getCooldown());
-            subtractMana(caster, this.manaUse);
+            subtractMana(caster, manaUsage());
             return true;
         }else {
             return false;
@@ -374,7 +374,7 @@ public class Spell implements FeatureElement {
             notify(target, this.getSpell());
             this.DoTargetedSpell(level, target);
             cooldownChecker(type, caster, getCooldown()*(int) cooldownModifier);
-            subtractMana(caster, this.manaUse);
+            subtractMana(caster, manaUsage());
             return true;
         }else {
             return false;
@@ -387,7 +387,7 @@ public class Spell implements FeatureElement {
             notify(target, this.getSpell());
             this.DoTargetedSpell(level, target);
             cooldownChecker(type, caster, getCooldown());
-            subtractMana(caster, this.manaUse*manaModifier);
+            subtractMana(caster, manaUsage()*manaModifier);
             return true;
         }else {
             return false;
@@ -400,7 +400,7 @@ public class Spell implements FeatureElement {
             notify(target, this.getSpell());
             this.DoTargetedSpell(level, target);
             cooldownChecker(type, caster, getCooldown()*(int) cooldownModifier);
-            subtractMana(caster, this.manaUse*manaModifier);
+            subtractMana(caster, manaUsage()*manaModifier);
             return true;
         }else {
             return false;
@@ -412,7 +412,7 @@ public class Spell implements FeatureElement {
             DoIntegratedSpell(level, caster, target);
             notify(target, this.getSpell());
             cooldownChecker(type, caster, getCooldown()*(int) cooldownModifier);
-            subtractMana(caster, this.manaUse*manaModifier);
+            subtractMana(caster, manaUsage()*manaModifier);
             return true;
         }else {
             return false;
@@ -424,7 +424,7 @@ public class Spell implements FeatureElement {
             DoIntegratedSpell(level, caster, target);
             notify(target, this.getSpell());
             cooldownChecker(type, caster, getCooldown()*(int) cooldownModifier);
-            subtractMana(caster, this.manaUse);
+            subtractMana(caster, manaUsage());
             return true;
         }else {
             return false;
@@ -436,7 +436,7 @@ public class Spell implements FeatureElement {
             DoIntegratedSpell(level, caster, target);
             notify(target, this.getSpell());
             cooldownChecker(type, caster, getCooldown());
-            subtractMana(caster, this.manaUse*manaModifier);
+            subtractMana(caster, manaUsage()*manaModifier);
             return true;
         }else {
             return false;
@@ -448,7 +448,7 @@ public class Spell implements FeatureElement {
             DoIntegratedSpell(level, caster, target);
             notify(target, this.getSpell());
             cooldownChecker(type, caster, getCooldown());
-            subtractMana(caster, this.manaUse);
+            subtractMana(caster, manaUsage());
             return true;
         }else {
             return false;
