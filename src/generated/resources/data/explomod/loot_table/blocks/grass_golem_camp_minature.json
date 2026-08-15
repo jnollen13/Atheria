@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "explomod:grass_golem_camp_minature"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "explomod:blocks/grass_golem_camp_minature"
+}

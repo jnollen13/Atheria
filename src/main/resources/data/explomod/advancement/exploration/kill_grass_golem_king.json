@@ -1,0 +1,38 @@
+{
+  "parent": "explomod:exploration/root",
+  "criteria": {
+    "explomod:boss_grass_golem": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "explomod:boss_grass_golem"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.explore.kill_king.description"
+    },
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "explomod:torn_grass"
+    },
+    "title": {
+      "translate": "advancements.explore.kill_king.title"
+    }
+  },
+  "requirements": [
+    [
+      "explomod:boss_grass_golem"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -45,7 +45,7 @@ public class StructureMapItem extends Item {
             return InteractionResultHolder.fail(player.getItemInHand(usedHand));
         } else {
             ServerLevel serverlevel = (ServerLevel)player.level();
-            BlockPos blockpos = serverlevel.findNearestMapStructure(this.destination, player.blockPosition(), 1024, true);
+            BlockPos blockpos = serverlevel.findNearestMapStructure(this.destination, player.blockPosition(), 2112, true);
             if (blockpos != null) {
                 ItemStack itemstack = MapItem.create(serverlevel, blockpos.getX(), blockpos.getZ(), (byte) RandomSource.create().nextIntBetweenInclusive(1,4), true, true);
                 MapItem.renderBiomePreviewMap(serverlevel, itemstack);

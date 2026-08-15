@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "T": {
+      "item": "explomod:torn_grass"
+    },
+    "B": {
+      "item": "minecraft:moss_carpet"
+    },
+    "D": {
+      "item": "explomod:dense_grass"
+    },
+    "P": {
+      "tag": "#minecraft:planks"
+    }
+  },
+  "pattern": [
+    " T ",
+    "PTP",
+    "DBD"
+  ],
+  "result": {
+    "count": 1,
+    "id": "explomod:grass_golem_camp_minature"
+  }
+}

@@ -16,7 +16,7 @@ public class ModEntities {
 
     public static final Supplier<EntityType<GeckoEntity>> GECKO =
             ENTITY_TYPES.register("gecko", () -> EntityType.Builder.of(GeckoEntity::new, MobCategory.CREATURE)
-                    .sized(0.5f, 0.23f).nameTagOffset(5f).build("gecko"));
+                    .sized(0.5f, 0.23f).nameTagOffset(2f).eyeHeight(0.15f).build("gecko"));
 
     public static final Supplier<EntityType<PhantomLizard>> LEGGED_PHANTOM =
             ENTITY_TYPES.register("legged_phantom", () -> EntityType.Builder.of(PhantomLizard::new, MobCategory.CREATURE)

@@ -103,6 +103,11 @@
         },
         {
           "type": "minecraft:item",
+          "name": "explomod:grass_golem_camp_map",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
           "functions": [
             {
               "add": false,

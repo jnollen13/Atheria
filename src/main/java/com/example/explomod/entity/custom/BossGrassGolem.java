@@ -4,6 +4,7 @@ package com.example.explomod.entity.custom;
 import com.example.explomod.entity.ModEntities;
 import com.example.explomod.entity.npc.BossGrassGolemAttatck;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -14,10 +15,13 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -32,6 +36,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.ExplosionDamageCalculator;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.NaturalSpawner;
@@ -73,14 +78,14 @@ public class BossGrassGolem extends Animal {
 
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 150.0F)
+                .add(Attributes.MAX_HEALTH, 250.0F)
                 .add(Attributes.MOVEMENT_SPEED, 0.25d)
                 .add(Attributes.ATTACK_DAMAGE, 7.0F)
                 .add(Attributes.ATTACK_KNOCKBACK, 8f)
-                .add(Attributes.ARMOR, 4d).add(Attributes.FOLLOW_RANGE, 50d)
-                .add(Attributes.GRAVITY, 0.5).add(Attributes.JUMP_STRENGTH, 20)
-                .add(Attributes.SAFE_FALL_DISTANCE, 132.5d)
-                .add(Attributes.STEP_HEIGHT, 3.0F);
+                .add(Attributes.ARMOR, 8d).add(Attributes.FOLLOW_RANGE, 55d)
+                .add(Attributes.GRAVITY, 0.4).add(Attributes.JUMP_STRENGTH, 22)
+                .add(Attributes.SAFE_FALL_DISTANCE, 132.5d).add(Attributes.OXYGEN_BONUS, 100d)
+                .add(Attributes.STEP_HEIGHT, 5.5F);
     }
 
     protected int decreaseAirSupply(int air) {
@@ -120,6 +125,19 @@ public class BossGrassGolem extends Animal {
         return (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE);
     }
 
+    @Override
+    public void tick() {
+        super.tick();
+        if(this.tickCount % 100 == 0&&this.getHealth()<this.getMaxHealth()){
+            this.heal(1f);
+            for (int i = 0; i < 9; i++) {
+                double rand1 = RandomSource.create().nextDouble();
+                double rand2 = RandomSource.create().nextDouble();
+                level().addParticle(ParticleTypes.HAPPY_VILLAGER, this.getX()+rand1, this.getY()+this.getBbHeight(), this.getZ()+rand2, 0, 0.4, 0);
+            }
+        }
+    }
+
     public boolean doHurtTarget(Entity entity) {
         this.attackAnimationTick = 10;
         this.level().broadcastEntityEvent(this, (byte)4);
@@ -139,6 +157,23 @@ public class BossGrassGolem extends Animal {
     }
 
     public boolean hurt(@NotNull DamageSource source, float amount) {
+        if(this.tickCount % 5 == 0){
+            GrassGolem grassGolem = new GrassGolem(ModEntities.GRASS_GOLEM.get(), this.level());
+            grassGolem.setPlayerCreated(false);
+            grassGolem.setHealth(20f);
+            grassGolem.setCanPickUpLoot(true);
+            grassGolem.moveTo(this.position());
+            if(amount>14) {
+                level().addParticle(ParticleTypes.EXPLOSION_EMITTER, this.getX(), this.getY(), this.getZ(), 0, 0.1, 0);
+                if(amount>19){
+                    level().explode(this, null, new ExplosionDamageCalculator(), this.getX(), this.getY(), this.getZ(), 9.647f, false, Level.ExplosionInteraction.MOB);
+                }
+            }else{
+                level().addParticle(ParticleTypes.TOTEM_OF_UNDYING, this.getX(), this.getY(), this.getZ(), 0, 1, 0);
+            }
+            level().addFreshEntity(grassGolem);
+            grassGolem.addTag("summoned");
+        }
         return super.hurt(source, amount);
     }
 
@@ -194,7 +229,11 @@ public class BossGrassGolem extends Animal {
     }
 
     public void die(@NotNull DamageSource cause) {
-        super.die(cause);
+        if(cause.is(DamageTypeTags.IS_FIRE)){
+            this.heal(100.32f);
+        }else {
+            super.die(cause);
+        }
     }
 
     public boolean checkSpawnObstruction(LevelReader level) {

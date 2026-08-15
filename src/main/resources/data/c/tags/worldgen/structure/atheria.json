@@ -10,6 +10,7 @@
     "explomod:ship",
     "explomod:spruce_vendor_stall",
     "explomod:vendor_stall",
-    "explomod:dark_portal"
+    "explomod:dark_portal",
+    "explomod:monster_outpost"
   ]
 }

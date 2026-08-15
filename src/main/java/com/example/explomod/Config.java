@@ -9,8 +9,6 @@ import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import org.apache.commons.lang3.tuple.Pair;
 
-// An example config class. This is not required, but it's a good idea to have one to keep your config organized.
-// Demonstrates how to use Neo's config APIs
 public class Config {
     private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 
@@ -44,6 +42,8 @@ public class Config {
         public final ModConfigSpec.ConfigValue<String> fallDarkDimension;
         public final ModConfigSpec.ConfigValue<Boolean> despawn_cave_lizards;
         public final ModConfigSpec.ConfigValue<Integer> despawn_cave_lizards_ticks;
+        public final ModConfigSpec.ConfigValue<Boolean> cave_wizards_cast_spells;
+        public final ModConfigSpec.ConfigValue<Integer> lightning_cube_max_targets;
 
 
         public Server(ModConfigSpec.Builder builder) {
@@ -66,6 +66,16 @@ public class Config {
                     .define("Sets the dimension that you fall into from the dark", Level.NETHER.location().toString());
             builder.pop();
             builder.push("villagers");
+            builder.pop();
+            builder.push("spells");
+            cave_wizards_cast_spells = builder
+                    .comment("can cave wizards cast spells")
+                    .translation("caveWizardSpells")
+                    .define("caveWizardSpells", true);
+            lightning_cube_max_targets = builder
+                    .comment("maxium amount of targets that can be hit with lightning cube")
+                    .translation("lightningCubeMaxTargets")
+                    .define("lightningCubeMaxTargets", 143);
             builder.pop();
             builder.push("permissions");
             commandHistory_enabled = builder

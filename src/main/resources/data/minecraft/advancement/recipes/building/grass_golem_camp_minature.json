@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_torn_grass": {
+      "conditions": {
+        "items": [
+          {
+            "items": "explomod:torn_grass"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "explomod:grass_golem_camp_minature"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_torn_grass"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "explomod:grass_golem_camp_minature"
+    ]
+  }
+}

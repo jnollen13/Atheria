@@ -39,6 +39,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.StructureTags;
 import net.minecraft.util.ColorRGBA;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -343,6 +344,19 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
     public static final DeferredItem<Item> PARKOUR_TOWER_MAP = ITEMS.register("parkour_tower_map", ()-> new StructureMapItem(ModTags.Structures.PARKOUR_TOWERS, "explomod.parkour_tower.map", AtheriaMapDecorationTypes.PARKOUR_TOWER.getDelegate(), new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     public static final DeferredItem<Item> SHIP_MAP = ITEMS.register("ship_map", ()-> new StructureMapItem(ModTags.Structures.SHIPS, "explomod.ship.map", AtheriaMapDecorationTypes.SHIP.getDelegate(), new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     public static final DeferredItem<Item> GRASS_GOLEM_CAMP_MAP = ITEMS.register("grass_golem_camp_map", ()-> new StructureMapItem(ModTags.Structures.GRASS_GOLEM_CAMPS, "item.explomod.grass_golem_camp_map", AtheriaMapDecorationTypes.GRASS_GOLEM_CAMP.getDelegate(), new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+    public static final DeferredItem<Item> TORN_GRASS = ITEMS.register("torn_grass", () -> new Item(new Item.Properties().rarity(Rarity.EPIC)));
+    public static final DeferredItem<Item> GRASSY_SWORD = ITEMS.register("grassy_sword", () -> new SwordItem(ModToolTiers.GRASS, new Item.Properties().rarity(Rarity.RARE).stacksTo(1).attributes(SwordItem.createAttributes(ModToolTiers.GRASS, 5, -2.4F))));
+    public static final DeferredBlock<Block> GRASS_GOLEM_CAMP_MINIATURE = BLOCKS.register("grass_golem_camp_minature", () -> new ShapedBlock(Block.box(2, 0, 2, 14, 5, 14), Block.box(2, 0, 2, 14, 1, 14), BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_GREEN).pushReaction(PushReaction.BLOCK).noOcclusion().strength(0.1f, 0.01742f)));
+    public static final DeferredItem<BlockItem> GRASS_GOLEM_CAMP_MINIATURE_ITEM = ITEMS.registerSimpleBlockItem("grass_golem_camp_minature", GRASS_GOLEM_CAMP_MINIATURE);
+    public static final DeferredItem<Item> GRASS_AXE = ITEMS.register("grass_axe", () -> new AxeItem(ModToolTiers.GRASS, new Item.Properties().rarity(Rarity.RARE).stacksTo(1).attributes(AxeItem.createAttributes(ModToolTiers.GRASS, 7, -3.0f))));
+    public static final DeferredItem<Item> GRASS_HOE = ITEMS.register("grass_hoe", () -> new HoeItem(ModToolTiers.GRASS, new Item.Properties().rarity(Rarity.RARE).stacksTo(1).attributes(HoeItem.createAttributes(ModToolTiers.GRASS, -1, 0.0f))));
+    public static final DeferredItem<Item> GRASS_PICKAXE = ITEMS.register("grass_pickaxe", () -> new PickaxeItem(ModToolTiers.GRASS, new Item.Properties().rarity(Rarity.RARE).stacksTo(1).attributes(PickaxeItem.createAttributes(ModToolTiers.GRASS, 3, -2.8f))));
+    public static final DeferredItem<Item> GRASS_SHOVEL = ITEMS.register("grass_shovel", () -> new ShovelItem(ModToolTiers.GRASS, new Item.Properties().rarity(Rarity.RARE).stacksTo(1).attributes(ShovelItem.createAttributes(ModToolTiers.GRASS, 1.5f, -3.0f))));
+    public static final DeferredItem<Item> LIGHTNING_CUBE_COIN = ITEMS.register("lightning_cube_coin", () -> new LevelingSpellItem(Spells.LIGHTNING_CUBE, new Item.Properties().durability(2).rarity(Rarity.EPIC).stacksTo(1).component(AtheriaDataComponents.SPELL_LEVEL, 1)));
+    public static final DeferredItem<Item> MONSTER_OUTPOST_MAP = ITEMS.register("monster_outpost_map", () -> new StructureMapItem(ModTags.Structures.MONSTER_CAMPS, "item.explomod.monster_outpost_map", AtheriaMapDecorationTypes.MONSTER_OUTPOST.getDelegate(), new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+    public static final DeferredItem<Item> OCEAN_EXPLORER_MAP = ITEMS.register("ocean_explorer_map", () -> new StructureMapItem(StructureTags.ON_OCEAN_EXPLORER_MAPS, "filled_map.monument", MapDecorationTypes.OCEAN_MONUMENT, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+    public static final DeferredItem<Item> JUNGLE_EXPLORER_MAP = ITEMS.register("jungle_explorer_map", () -> new StructureMapItem(StructureTags.ON_JUNGLE_EXPLORER_MAPS, "item.explomod.jungle_explorer_map", MapDecorationTypes.JUNGLE_TEMPLE, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+    public static final DeferredItem<Item> MOB_ATTACK_PLANS = ITEMS.register("mob_attack_plans", () -> new StructureMapItem(ModTags.Structures.MONSTER_ENEMY, "plans.attack", AtheriaMapDecorationTypes.ATTACK, new Item.Properties().rarity(Rarity.RARE).stacksTo(1)));
 
     //creative tabs
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
@@ -363,6 +377,10 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
                 output.accept(DUNGEON_MAP.get());
                 output.accept(DARK_PORTAL_MAP.get());
                 output.accept(PARKOUR_TOWER_MAP.get());
+                output.accept(MONSTER_OUTPOST_MAP.get());
+                output.accept(OCEAN_EXPLORER_MAP.get());
+                output.accept(JUNGLE_EXPLORER_MAP.get());
+                output.accept(MOB_ATTACK_PLANS.asItem());
                 output.accept(SHIP_MAP.get());
                 output.accept(PORTAL_ITEM.get());
                 output.accept(CANE_CRATE_ITEM.get());
@@ -381,6 +399,13 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
                 output.accept(GRASS_GOLEM_SPAWN_EGG.get());
                 output.accept(RAPIER_OF_NINE_LIVES.get());
                 output.accept(DENSEGRASS.get());
+                output.accept(TORN_GRASS.get());
+                output.accept(GRASSY_SWORD.get());
+                output.accept(GRASS_AXE.get());
+                output.accept(GRASS_HOE.get());
+                output.accept(GRASS_PICKAXE.get());
+                output.accept(GRASS_SHOVEL.get());
+                output.accept(GRASS_GOLEM_CAMP_MINIATURE_ITEM.get());
                 output.accept(KINGS_CHALICE.get());
                 output.accept(BLOOD_WOOD_SAPLING.get());
                 output.accept(UNSUMMONING_STAFF.get());
@@ -461,21 +486,33 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
                 output.accept(MANA_DRAIN.get());
                 output.accept(HEALTH_DRAIN.get());
                 output.accept(DASH_TOKEN.get());
+                output.accept(LIGHTNING_CUBE_COIN.get());
+                output.accept(FIREBALL_COIN.get());
             }).build());
 
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> POTIONS_TAB = CREATIVE_MODE_TABS.register("potions_tab", () -> CreativeModeTab.builder()
-            .title(Component.translatable("itemGroup.explomod.potions"))
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MAGIC_TAB = CREATIVE_MODE_TABS.register("magic_tab", () -> CreativeModeTab.builder()
+            .title(Component.translatable("itemGroup.explomod.magic"))
             .withTabsBefore(CreativeModeTabs.COMBAT)
             .icon(() -> KINGS_CHALICE.get().getDefaultInstance())
             .displayItems((parameters, output) -> parameters.holders().lookup(Registries.POTION).ifPresent((p_337908_) -> {
-                generateSpellTypes(output, Spells.FIREBALL_SPELL, FIREBALL_COIN.get(), CreativeModeTab.TabVisibility.SEARCH_TAB_ONLY);
+                output.accept(FLIGHT_COIN.get());
+                output.accept(HEAL_TOKEN.get());
+                output.accept(HEAL_TOKEN2.get());
+                output.accept(HEAL_TOKEN3.get());
+                output.accept(HEAL_TOKEN4.get());
+                output.accept(HEAL_TOKEN5.get());
+                output.accept(MANA_DRAIN.get());
+                output.accept(HEALTH_DRAIN.get());
+                output.accept(DASH_TOKEN.get());
+                generateSpellTypes(output, Spells.FIREBALL_SPELL, FIREBALL_COIN.get(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                generateSpellTypes(output, Spells.LIGHTNING_CUBE, LIGHTNING_CUBE_COIN.get(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 generatePotionTypes(output, p_337908_, KINGS_CHALICE.get(), parameters.enabledFeatures());
                 generateSpellTypes(output, Spells.LEVELING_SPELL, LEVELING_SPELL_COIN.get(), CreativeModeTab.TabVisibility.SEARCH_TAB_ONLY);
             })).build());
 
 
     private static void generatePotionTypes(CreativeModeTab.Output output, HolderLookup<Potion> potions, Item item, FeatureFlagSet requiredFeatures) {
-        potions.listElements().filter((p_337926_) -> p_337926_.value().isEnabled(requiredFeatures)).map((p_330083_) -> PotionContents.createItemStack(item, p_330083_)).forEach((p_270000_) -> output.accept(p_270000_, CreativeModeTab.TabVisibility.SEARCH_TAB_ONLY));
+        potions.listElements().filter((p_337926_) -> p_337926_.value().isEnabled(requiredFeatures)).map((p_330083_) -> PotionContents.createItemStack(item, p_330083_)).forEach((p_270000_) -> output.accept(p_270000_, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS));
     }
 
     @Experimental

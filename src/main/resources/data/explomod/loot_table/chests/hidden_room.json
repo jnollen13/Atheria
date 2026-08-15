@@ -154,6 +154,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "explomod:heal_coin5"
+        },
+        {
+          "type": "minecraft:item",
           "name": "minecraft:enchanted_golden_apple",
           "weight": 1
         },
@@ -309,7 +313,7 @@
       "entries": [
         {
           "type": "minecraft:empty",
-          "weight": 6
+          "weight": 7
         },
         {
           "type": "minecraft:item",
@@ -321,6 +325,10 @@
             }
           ],
           "name": "explomod:phantom_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "explomod:pebble"
         }
       ],
       "rolls": 1.0

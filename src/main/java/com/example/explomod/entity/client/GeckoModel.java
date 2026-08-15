@@ -11,15 +11,18 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import org.jetbrains.annotations.NotNull;
 
 public class GeckoModel<T extends GeckoEntity> extends HierarchicalModel<T> {
     public static final ModelLayerLocation LAYER_LOCATION =
             new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(ExploMod.MODID, "gecko"), "main");
     private final ModelPart body;
     private final ModelPart head;
+    private final ModelPart hat;
     public GeckoModel(ModelPart root) {
         this.body = root.getChild("Body");
         this.head = this.body.getChild("Head");
+        this.hat = this.head.getChild("hat");
     }
 
     public static LayerDefinition createBodyLayer() {
@@ -31,7 +34,12 @@ public class GeckoModel<T extends GeckoEntity> extends HierarchicalModel<T> {
         PartDefinition Head = Body.addOrReplaceChild("Head", CubeListBuilder.create().texOffs(8, 7).addBox(-1.0F, -1.0623F, -1.9587F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F))
                 .texOffs(0, 0).addBox(-0.75F, -0.3123F, -2.4087F, 1.5F, 1.25F, 0.45F, new CubeDeformation(0.0F))
                 .texOffs(4, 19).addBox(-1.25F, -0.8123F, -1.7087F, 0.75F, 0.75F, 0.75F, new CubeDeformation(0.0F))
-                .texOffs(4, 19).mirror().addBox(0.5F, -0.8123F, -1.7087F, 0.75F, 0.75F, 0.75F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(0.0F, -1.0F, -3.0F));
+                .texOffs(4, 19).mirror().addBox(0.5F, -0.8123F, -1.7087F, 0.75F, 0.75F, 0.75F, new CubeDeformation(0.0F))
+                .mirror(false), PartPose.offset(0.0F, -1.0F, -3.0F));
+
+        PartDefinition hat = Head.addOrReplaceChild("hat", CubeListBuilder.create().texOffs(20, 28).addBox(-1.5F, -2.1F, -2.5F, 3.0F, 1.0F, 3.0F, new CubeDeformation(0.0F))
+                .texOffs(23, 24).addBox(-1.5F, -1.6001F, -2.5F, 3.0F, 0.0F, 3.0F, new CubeDeformation(0.0F))
+                .texOffs(17, 23).addBox(-1.0F, -3.1001F, -2.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
         PartDefinition Tail = Body.addOrReplaceChild("Tail", CubeListBuilder.create().texOffs(0, 7).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 1.9F, 3.5F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -1.0F, 1.5F));
 
@@ -75,7 +83,7 @@ public class GeckoModel<T extends GeckoEntity> extends HierarchicalModel<T> {
     }
 
     @Override
-    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
+    public void renderToBuffer(@NotNull PoseStack poseStack, @NotNull VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
         body.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
     }
 

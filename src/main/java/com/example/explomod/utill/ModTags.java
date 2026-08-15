@@ -35,6 +35,8 @@ public final class ModTags {
         public static final TagKey<Structure> DUNGEONS = createTag("on_dungeon_maps");
         public static final TagKey<Structure> SHIPS = createTag("on_ship_maps");
         public static final TagKey<Structure> GRASS_GOLEM_CAMPS = createTag("on_grass_golem_camp_maps");
+        public static final TagKey<Structure> MONSTER_CAMPS = createTag("on_monster_camp_maps");
+        public static final TagKey<Structure> MONSTER_ENEMY = createTag("on_monster_attack_plans");
 
         private static TagKey<Structure> createTag(String name) {
             return TagKey.create(Registries.STRUCTURE, ResourceLocation.fromNamespaceAndPath(ExploMod.MODID, name));

@@ -42,7 +42,8 @@
       ],
       "palette_key": "trims/color_palettes/trim_palette",
       "permutations": {
-        "phantom": "explomod:trims/color_palettes/phantom"
+        "phantom": "explomod:trims/color_palettes/phantom",
+        "grass": "explomod:trims/color_palettes/grass"
       }
     }
   ]

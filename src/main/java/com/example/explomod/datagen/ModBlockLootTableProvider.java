@@ -39,6 +39,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
             dropSelf(ExploMod.STONED.get());
             dropSelf(ExploMod.RADIUM_CHAIN.get());
             dropSelf(ExploMod.KIT.get());
+            dropSelf(ExploMod.GRASS_GOLEM_CAMP_MINIATURE.get());
             dropSelf(ExploMod.BLOODWOOD_DOOR.get());
             dropOther(ExploMod.INFESTED_DIORITE.get(), Items.DIORITE);
             dropSelf(ExploMod.RED_FLOWER.get());

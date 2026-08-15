@@ -20,6 +20,7 @@ public class Spells{
     public static final Spell DASH = new DashSpell("dash", Items.LEATHER_BOOTS, 300, 1.8946f, -2);
     public static final LevelingSpell LEVELING_SPELL = new LevelingSpell("leveling", Items.EXPERIENCE_BOTTLE, new LevelScaling(5, 5, 5, 5), 5);
     public static final LevelingSpell FIREBALL_SPELL = new FireballSpell("fireball_spell", Items.FIRE_CHARGE, 6, 10, -4, new LevelScaling(5, 8, 5, 5), 8);
+    public static final LevelingSpell LIGHTNING_CUBE = new LightningCube("lightning_cube", Items.LIGHTNING_ROD, 1000, 25f, 15, new LevelScaling(5, 2f, 5, 5), 16);
 
     @Experimental
     public static Item setSpell(Item i, Spell spell){

@@ -288,7 +288,7 @@ public class Spell implements FeatureElement {
         STREAM_CODEC = ByteBufCodecs.holderRegistry(SpellRegistries.CUSTOM_THINGS.getRegistryKey());
     }
 
-    private static void notify(LivingEntity entity, Spell spell){
+    protected static void notify(LivingEntity entity, Spell spell){
         if(entity instanceof Player player){
             player.displayClientMessage(Component.literal(Component.translatable("spell.target.self")+": "+spell.displayName(true)), true);
         }

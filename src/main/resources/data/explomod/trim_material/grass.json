@@ -1,0 +1,9 @@
+{
+  "asset_name": "grass",
+  "description": {
+    "color": "#667e44",
+    "translate": "trim_material.explomod.grass"
+  },
+  "ingredient": "explomod:torn_grass",
+  "item_model_index": 1.3
+}

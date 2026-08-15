@@ -40,7 +40,7 @@
     },
     "icon": {
       "count": 1,
-      "id": "explomod:dense_grass"
+      "id": "explomod:grass_golem_camp_minature"
     },
     "title": {
       "translate": "advancements.explore.grass_camps.title"

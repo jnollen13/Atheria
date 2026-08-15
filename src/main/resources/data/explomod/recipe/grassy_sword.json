@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "combat",
+  "key": {
+    "G": {
+      "item": "explomod:torn_grass"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " G ",
+    " G ",
+    " S "
+  ],
+  "result": {
+    "count": 1,
+    "id": "explomod:grassy_sword"
+  }
+}

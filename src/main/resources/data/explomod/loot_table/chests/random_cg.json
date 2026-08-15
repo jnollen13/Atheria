@@ -78,6 +78,10 @@
         },
         {
           "type": "minecraft:item",
+          "name": "explomod:fireball_coin"
+        },
+        {
+          "type": "minecraft:item",
           "functions": [
             {
               "function": "minecraft:set_potion",

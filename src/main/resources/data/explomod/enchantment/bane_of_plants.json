@@ -10,8 +10,8 @@
           "type": "minecraft:add",
           "value": {
             "type": "minecraft:linear",
-            "base": 2.5,
-            "per_level_above_first": 2.5
+            "base": 1.25,
+            "per_level_above_first": 2.125
           }
         },
         "requirements": {
@@ -27,9 +27,9 @@
   "exclusive_set": "#minecraft:exclusive_set/damage",
   "max_cost": {
     "base": 25,
-    "per_level_above_first": 8
+    "per_level_above_first": 10
   },
-  "max_level": 20,
+  "max_level": 6,
   "min_cost": {
     "base": 5,
     "per_level_above_first": 8

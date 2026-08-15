@@ -17,6 +17,8 @@ public class AtheriaMapDecorationTypes {
     public static final DeferredHolder<MapDecorationType, MapDecorationType> DUNGEON = MAP_DECORATION.register("dungeon", () -> new MapDecorationType(assetId("dungeon"), true, 7500660, false, true));
     public static final DeferredHolder<MapDecorationType, MapDecorationType> SHIP = MAP_DECORATION.register("ship", () -> new MapDecorationType(assetId("ship"), true, 2704624, false, true));
     public static final DeferredHolder<MapDecorationType, MapDecorationType> GRASS_GOLEM_CAMP = MAP_DECORATION.register("grass_golem_camp", () -> new MapDecorationType(assetId("grass_golem_camp"), true, 3967576, true, true));
+    public static final DeferredHolder<MapDecorationType, MapDecorationType> MONSTER_OUTPOST = MAP_DECORATION.register("monster_outpost", () -> new MapDecorationType(assetId("monster_outpost"), true, 6844251, false, true));
+    public static final DeferredHolder<MapDecorationType, MapDecorationType> ATTACK = MAP_DECORATION.register("attack", () -> new MapDecorationType(assetId("attack"), true, 13766953, false, true));
 
     private static ResourceLocation assetId(String name){
         return ResourceLocation.fromNamespaceAndPath(ExploMod.MODID, name);

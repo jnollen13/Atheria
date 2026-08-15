@@ -90,10 +90,4 @@ public class LevelingSpellItem extends Item {
             return super.getDescriptionId();
         }
     }
-
-    @Override
-    public void inventoryTick(@NotNull ItemStack stack, @NotNull Level level, @NotNull Entity entity, int slotId, boolean isSelected) {
-        super.inventoryTick(stack, level, entity, slotId, isSelected);
-        spell.setLevel(getSpellLevel(stack));
-    }
 }

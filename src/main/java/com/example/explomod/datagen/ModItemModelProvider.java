@@ -19,6 +19,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ExploMod.BLOODWOOD_DOOR.asItem());
         basicItem(ExploMod.RADIUM_FIRESTARTER.asItem());
         basicItem(ExploMod.RADIUM_NUGGET.asItem());
+        handheldItem(ExploMod.GRASSY_SWORD);
+        handheldItem(ExploMod.GRASS_AXE);
+        handheldItem(ExploMod.GRASS_HOE);
+        handheldItem(ExploMod.GRASS_PICKAXE);
+        handheldItem(ExploMod.GRASS_SHOVEL);
         withExistingParent(ExploMod.GECKO_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ExploMod.GRASS_GOLEM_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ExploMod.LPHANTOM_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
@@ -29,6 +34,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         structureMap(ExploMod.PARKOUR_TOWER_MAP);
         structureMap(ExploMod.SHIP_MAP);
         structureMap(ExploMod.GRASS_GOLEM_CAMP_MAP);
+        structureMap(ExploMod.MONSTER_OUTPOST_MAP);
+        structureMap(ExploMod.JUNGLE_EXPLORER_MAP);
+        structureMap(ExploMod.OCEAN_EXPLORER_MAP);
+        spellCoin(ExploMod.LIGHTNING_CUBE_COIN);
     }
 
 
@@ -39,5 +48,8 @@ public class ModItemModelProvider extends ItemModelProvider {
     }
     protected ItemModelBuilder structureMap(DeferredItem<?> item){
         return withExistingParent(item.getId().getPath(), ResourceLocation.fromNamespaceAndPath(ExploMod.MODID, "item/structure_map"));
+    }
+    protected ItemModelBuilder spellCoin(DeferredItem<?> item){
+        return withExistingParent(item.getId().getPath(), ResourceLocation.fromNamespaceAndPath(ExploMod.MODID, "item/token"));
     }
 }

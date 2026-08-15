@@ -76,6 +76,7 @@ public class LevelingSpell extends Spell {
     public void setLevel(int level) {
         this.level = level;
     }
+    public LevelingSpell withLevel(int level){this.setLevel(level);return this.getSpell();}
 
     public List<Integer> getPossibleLevels(){
         List<Integer> levelList = new java.util.ArrayList<>(List.of(1));
@@ -111,6 +112,15 @@ public class LevelingSpell extends Spell {
             return translated();
         }else{
             return Component.translatable(descriptionId()).append(" ").append(Component.translatable("enchantment.level."+level)).withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.RED);
+        }
+    }
+
+    @Override
+    public Component spellDescription(boolean formated) {
+        if(formated){
+            return Component.translatable(descriptionId() + ".desc", level).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC);
+        }else {
+            return Component.translatable(descriptionId() + ".desc", level);
         }
     }
 
@@ -153,6 +163,10 @@ public class LevelingSpell extends Spell {
 
         protected float applyFloatLeveling(float leveling) {
             return leveling*(level-1);
+        }
+
+        protected float applyFloatLevelingCustomLinear(float base, float perLevelAfterFirst){
+            return base + (level-1)*perLevelAfterFirst;
         }
 
         protected float applyFloatLevelingAdd(float base) {

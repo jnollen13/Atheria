@@ -1,6 +1,7 @@
 package com.example.explomod.item.custom;
 
 import com.example.explomod.ExploMod;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -14,4 +15,6 @@ public class ModToolTiers {
             300, 5.0f, 2.5f, 15, () -> Ingredient.of(Items.COPPER_INGOT));
     public static final Tier RAPIER = new SimpleTier(ModTags.Blocks.INCORRECT_FOR_COPPER_TOOL,
             400, 4.0f, 3.5f, 18, () -> Ingredient.of(Items.IRON_INGOT));
+    public static final Tier GRASS = new SimpleTier(BlockTags.BAMBOO_BLOCKS,
+            500, 4.0f, 0.5f, 21, () -> Ingredient.of(ExploMod.TORN_GRASS));
 }

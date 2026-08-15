@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:jigsaw",
+  "biomes": "#explomod:has_structure/monster_outpost",
+  "max_distance_from_center": 25,
+  "project_start_to_heightmap": "WORLD_SURFACE_WG",
+  "size": 14,
+  "spawn_overrides": {},
+  "start_height": {
+    "absolute": 0
+  },
+  "start_pool": "explomod:monster_outpost_pool",
+  "step": "surface_structures",
+  "terrain_adaptation": "beard_thin",
+  "use_expansion_hack": false
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "item": "explomod:torn_grass"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " G ",
+    " S ",
+    " S "
+  ],
+  "result": {
+    "count": 1,
+    "id": "explomod:grass_shovel"
+  }
+}

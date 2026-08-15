@@ -1,4 +1,4 @@
-// 1.21.1	2026-08-08T09:10:14.891934554	Loot Tables
+// 1.21.1	2026-08-09T11:47:14.317078523	Loot Tables
 473fad9f290dc53e7be477f8098d15cefdca4d53 data/explomod/loot_table/blocks/bloodwood_button.json
 f8ff56f07e765974c18c76af7611d8b863b6b50b data/explomod/loot_table/blocks/bloodwood_door.json
 a0236bff84dbca9b374db10a77073c7e827cdf60 data/explomod/loot_table/blocks/bloodwood_sapling.json
@@ -11,6 +11,7 @@ fbd8877bba570b8e00779855770a2eca740ab4f5 data/explomod/loot_table/blocks/dense_g
 07acb296190f32c294b20bf39e170cb538e1ddd2 data/explomod/loot_table/blocks/example_block.json
 11139644f7710047573f8661c688fd2ca480e9ce data/explomod/loot_table/blocks/flowering_oak_leaves.json
 51fb083b4ab45dc245e39c6b96a20f5306b0ec7b data/explomod/loot_table/blocks/glowberry_bush.json
+9f48ca2f0bc78819abde4873f981e02660ef16a9 data/explomod/loot_table/blocks/grass_golem_camp_minature.json
 c1235d2d36b3088c371a1bf8ef565cb2361229d7 data/explomod/loot_table/blocks/infested_diorite.json
 cb97cdc0d53a7aff28cd96dab4ac8454f6136aa4 data/explomod/loot_table/blocks/infested_mossy_chiseled_stone_bricks.json
 7a8382ea02f959aa2c4e02fea09d084d571e9058 data/explomod/loot_table/blocks/kit.json

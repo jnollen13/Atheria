@@ -2,6 +2,7 @@ package com.example.explomod.dispenser;
 
 import com.example.explomod.ExploMod;
 import com.example.explomod.block.custom.crates.EggBasketBlock;
+import jdk.jfr.Experimental;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.dispenser.BlockSource;
@@ -13,6 +14,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DispenserBlock;
 import org.jetbrains.annotations.NotNull;
 
+@Experimental
 public class CrateDispenseItemBehavior extends DefaultDispenseItemBehavior {
     private final DefaultDispenseItemBehavior defaultDispenseItemBehavior;
 

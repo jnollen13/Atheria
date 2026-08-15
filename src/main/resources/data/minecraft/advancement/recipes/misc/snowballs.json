@@ -10,27 +10,24 @@
         ]
       },
       "trigger": "minecraft:inventory_changed"
-    },
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": [
-          "explomod:snowball_red",
-          "explomod:snowball_orange"
-        ]
-      },
-      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_the_recipe",
       "has_snowball"
     ]
   ],
   "rewards": {
     "recipes": [
       "explomod:snowball_red",
-      "explomod:snowball_orange"
+      "explomod:snowball_orange",
+      "explomod:snowball_black",
+      "explomod:snowball_blue",
+      "explomod:snowball_brown",
+      "explomod:snowball_green",
+      "explomod:snowball_light_blue",
+      "explomod:snowball_white",
+      "explomod:snowball_yellow"
     ]
   }
 }

@@ -70,6 +70,10 @@ public class ModTraderTrades extends VillagerTrades {
                             new ModTraderTrades.ItemsForEmeralds(ExploMod.TABLE_ITEM.get(), 1, 2, 6, 1),
                             new ModTraderTrades.ItemsForEmeralds(ExploMod.STRANGE_ARROW.get(), 16, 1, 1, 1),
                             new ModTraderTrades.EnchantBookForEmeralds(1, 1, 6, EnchantmentTags.CURSE),
+                            new VillagerTrades.ItemsForEmeralds(ExploMod.GRASS_GOLEM_CAMP_MINIATURE.get(), 16, 1, 4, 1),
+                            new VillagerTrades.ItemsForEmeralds(ExploMod.DUNGEON_MAP.get(), 8, 1, 2, 1),
+                            new VillagerTrades.ItemsForEmeralds(ExploMod.GRASS_GOLEM_CAMP_MAP.get(), 6, 1, 1, 1),
+                            new VillagerTrades.ItemsForEmeralds(ExploMod.DARK_PORTAL_MAP.get(), 4, 1, 3, 1)
                     }
             )
     );
