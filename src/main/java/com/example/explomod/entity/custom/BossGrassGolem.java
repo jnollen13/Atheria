@@ -51,7 +51,7 @@ public class BossGrassGolem extends Animal {
     private int attackAnimationTick;
 
     private final ServerBossEvent bossEvent =
-            new ServerBossEvent(Component.literal("GRASS GOLEM KING"), BossEvent.BossBarColor.GREEN, BossEvent.BossBarOverlay.PROGRESS);
+            new ServerBossEvent(Component.literal("Grass Golem King"), BossEvent.BossBarColor.GREEN, BossEvent.BossBarOverlay.PROGRESS);
 
     public BossGrassGolem(EntityType<? extends BossGrassGolem> entityType, Level level) {
         super(entityType, level);

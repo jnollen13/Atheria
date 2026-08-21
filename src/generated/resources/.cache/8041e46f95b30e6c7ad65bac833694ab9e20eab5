@@ -1,9 +1,11 @@
-// 1.21.1	2026-08-11T21:09:27.899651096	Item Models: explomod
+// 1.21.1	2026-08-21T19:26:18.721725054	Item Models: explomod
 405e826218cf4b6690eea236ba6529e3240a1c70 assets/explomod/models/item/atheria_structure_map.json
+63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/explomod/models/item/block_bird_spawn_egg.json
 f1cbd9b43591eb7ef85bc01844e56257a804a328 assets/explomod/models/item/bloodwood_door.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/explomod/models/item/cave_phantom_spawn_egg.json
 405e826218cf4b6690eea236ba6529e3240a1c70 assets/explomod/models/item/dark_portal_map.json
 405e826218cf4b6690eea236ba6529e3240a1c70 assets/explomod/models/item/dungeon_map.json
+01caf3176b320f83dfb341b23a10fcf6be88bd0c assets/explomod/models/item/full_moon.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/explomod/models/item/gecko_spawn_egg.json
 7e5adc74cf9b5793c1fbd88df39bc9bcdc68f524 assets/explomod/models/item/grass_axe.json
 405e826218cf4b6690eea236ba6529e3240a1c70 assets/explomod/models/item/grass_golem_camp_map.json
@@ -14,7 +16,6 @@ ee330297b635d8e6de85bfedaac492857d966abe assets/explomod/models/item/grass_shove
 7f1e564cc7c8a8fad1558e5a9708ae53caca1edd assets/explomod/models/item/grassy_sword.json
 405e826218cf4b6690eea236ba6529e3240a1c70 assets/explomod/models/item/jungle_explorer_map.json
 66316e832405ab10df5514b9335fa6278d616960 assets/explomod/models/item/lightning_cube_coin.json
-405e826218cf4b6690eea236ba6529e3240a1c70 assets/explomod/models/item/mob_attack_plans.json
 405e826218cf4b6690eea236ba6529e3240a1c70 assets/explomod/models/item/monster_outpost_map.json
 405e826218cf4b6690eea236ba6529e3240a1c70 assets/explomod/models/item/ocean_explorer_map.json
 405e826218cf4b6690eea236ba6529e3240a1c70 assets/explomod/models/item/parkour_tower_map.json

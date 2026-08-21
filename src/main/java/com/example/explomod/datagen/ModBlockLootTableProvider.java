@@ -10,6 +10,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -34,6 +35,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
             dropSelf(ExploMod.ROCK.get());
             dropSelf(ExploMod.LAVA_HOLDER.get());
             dropSelf(ExploMod.RADIUM_BLOCK.get());
+            dropSelf(ExploMod.RADIUM_LANTERN.get());
+            dropSelf(ExploMod.DARK_BLOSSOM.get());
             dropSelf(ExploMod.PEBBLE.get());
             dropOther(ExploMod.NATURAL_PEBBLE.get(), ExploMod.PEBBLE_ITEM.get());
             dropSelf(ExploMod.STONED.get());
@@ -51,6 +54,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
             dropSelf(ExploMod.MOSSY_CHISELED_STONE_BRICKS_SLAB.get());
             dropSelf(ExploMod.LOG_BLOCK.get());
             dropSelf(ExploMod.XRAY_BLOCK.get());
+            dropPottedContents(ExploMod.RED_FLOWER_POT.get());
+            dropPottedContents(ExploMod.POTTED_DARK_BLOSSOM.get());
             dropSelf(ExploMod.BLOODWOOD_SAPLING.get());
             dropSelf(ExploMod.STORMBERRY_BUSH.get());
             dropSelf(ExploMod.REDTRAV.get());
@@ -80,7 +85,11 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                         .apply(ApplyBonusCount.addOreBonusCount(registrylookup.getOrThrow(Enchantments.FORTUNE)))));
     }
 
-        @Override
+    protected void dropOthers(Block block, ItemLike item, ItemLike item2) {
+        super.dropOther(block, item);
+    }
+
+    @Override
         protected @NotNull Iterable<Block> getKnownBlocks() {
             return ExploMod.BLOCKS.getEntries().stream().map(Holder::value)::iterator;
         }

@@ -48,6 +48,7 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> PEBBLE_PLACED = registerKey("pebbles");
     public static final ResourceKey<PlacedFeature> PEBBLE_RARE_PLACED = registerKey("rare_pebbles");
     public static final ResourceKey<PlacedFeature> PEBBLE_COMMON_PLACED = registerKey("common_pebbles");
+    public static final ResourceKey<PlacedFeature> DARK_BLOSSOM_PLACED = registerKey("dark_blossoms");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -82,6 +83,11 @@ public class ModPlacedFeatures {
         PlacementUtils.register(context, RED_FLOWER_PLACED, configuredFeatures.getOrThrow(ModConfiguredFeatures.RED_FLOWER_KEY),
                 CountPlacement.of(64), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.matchesBlocks(Blocks.GRASS_BLOCK,Blocks.DIRT,Blocks.MOSS_BLOCK,Blocks.PODZOL),
+                        BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(1)), BiomeFilter.biome());
+
+        PlacementUtils.register(context, DARK_BLOSSOM_PLACED, configuredFeatures.getOrThrow(ModConfiguredFeatures.DARK_BLOSSOM_KEY),
+                CountPlacement.of(1), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.matchesBlocks(Blocks.GRASS_BLOCK),
                         BlockPredicate.ONLY_IN_AIR_PREDICATE, 12), RandomOffsetPlacement.vertical(ConstantInt.of(1)), BiomeFilter.biome());
 
         PlacementUtils.register(context, ROCK_PLACED, configuredFeatures.getOrThrow(ModConfiguredFeatures.ROCK_KEY),

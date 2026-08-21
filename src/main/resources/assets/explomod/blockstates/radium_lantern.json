@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "explomod:block/radium_lantern"
+    },
+    "hanging=true": {
+      "model": "explomod:block/radium_lantern_hanging"
+    }
+  }
+}

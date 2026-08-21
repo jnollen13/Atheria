@@ -40,38 +40,6 @@ public class ModEvents {
         builder.addMix(ModPotions.MANA_3_POTION, Items.GLOWSTONE_DUST, ModPotions.MANA_4_POTION);
     }
 
-
-    @SubscribeEvent
-    public static void onClientTick(ClientTickEvent.Post event) {
-        Minecraft mc = Minecraft.getInstance();
-
-        if (mc.player != null && mc.screen == null) {
-            // checks if the player has a cooldown
-            Holder<MobEffect> c = ModEffects.COOLDOWN.getDelegate();
-            if(!mc.player.hasEffect(c)) {
-                // fireball
-                if(mc.player.getData(AtheriaDataAttachments.KNOWN_SPELLS.get()).knowsSpell(Items.FIRE_CHARGE)) {
-                    while (AtheriaKeys.CAST_FIREBALL.consumeClick()) {
-                        PacketDistributor.sendToServer(new FireballPacket());
-                    }
-                }
-                // dash
-                if(mc.player.getData(AtheriaDataAttachments.KNOWN_SPELLS.get()).knowsSpell(Items.LEATHER_BOOTS)) {
-                    while ((AtheriaKeys.DASH.consumeClick())) {
-                        PacketDistributor.sendToServer(new DashPacket());
-                    }
-                }
-                // test
-                if(mc.player.getData(AtheriaDataAttachments.KNOWN_SPELLS.get()).knowsSpell(Items.BAKED_POTATO)) {
-                    while ((AtheriaKeys.AIR_BURST.consumeClick())) {
-                        mc.player.displayClientMessage(Component.literal("done"), false);
-                        PacketDistributor.sendToServer(new SpellPacket("test"));
-                    }
-                }
-            }
-        }
-    }
-
     @SubscribeEvent
     public static void onRenderGuiPre(RenderGuiEvent.Pre event) {
         Minecraft mc = Minecraft.getInstance();

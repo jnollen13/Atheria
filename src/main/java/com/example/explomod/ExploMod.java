@@ -35,7 +35,6 @@ import com.example.explomod.item.custom.*;
 import com.example.explomod.item.custom.Throwable;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerPlayer;
@@ -59,8 +58,7 @@ import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
-import net.minecraft.world.level.material.PushReaction;
-import net.minecraft.world.level.saveddata.maps.MapDecorationType;
+import net.minecraft.world.level.material.*;
 import net.minecraft.world.level.saveddata.maps.MapDecorationTypes;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -81,7 +79,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
@@ -121,7 +118,7 @@ public class ExploMod {
 
     //registries(item and block)
     public static final DeferredBlock<Block> EXAMPLE_BLOCK = BLOCKS.registerSimpleBlock("example_block", BlockBehaviour.Properties.of()
-            .mapColor(MapColor.STONE).destroyTime(35f).explosionResistance(999f).friction(0.85f).requiresCorrectToolForDrops().sound(SoundType.STONE));
+            .mapColor(MapColor.STONE).destroyTime(8f).explosionResistance(9f).friction(0.85f).requiresCorrectToolForDrops().sound(SoundType.STONE));
     //remember () -> new DropExperienceBlock(UniformInt.of(2, 4),
     public static final DeferredItem<BlockItem> EXAMPLE_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("example_block", EXAMPLE_BLOCK);
     public static final DeferredBlock<Block> LOG_BLOCK = BLOCKS.registerSimpleBlock("log", BlockBehaviour.Properties.of().mapColor(MapColor.FIRE).jumpFactor(2f).explosionResistance(5f).destroyTime(1).sound(SoundType.WOOD).pushReaction(PushReaction.PUSH_ONLY));
@@ -346,7 +343,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
     public static final DeferredItem<Item> GRASS_GOLEM_CAMP_MAP = ITEMS.register("grass_golem_camp_map", ()-> new StructureMapItem(ModTags.Structures.GRASS_GOLEM_CAMPS, "item.explomod.grass_golem_camp_map", AtheriaMapDecorationTypes.GRASS_GOLEM_CAMP.getDelegate(), new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     public static final DeferredItem<Item> TORN_GRASS = ITEMS.register("torn_grass", () -> new Item(new Item.Properties().rarity(Rarity.EPIC)));
     public static final DeferredItem<Item> GRASSY_SWORD = ITEMS.register("grassy_sword", () -> new SwordItem(ModToolTiers.GRASS, new Item.Properties().rarity(Rarity.RARE).stacksTo(1).attributes(SwordItem.createAttributes(ModToolTiers.GRASS, 5, -2.4F))));
-    public static final DeferredBlock<Block> GRASS_GOLEM_CAMP_MINIATURE = BLOCKS.register("grass_golem_camp_minature", () -> new ShapedBlock(Block.box(2, 0, 2, 14, 5, 14), Block.box(2, 0, 2, 14, 1, 14), BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_GREEN).pushReaction(PushReaction.BLOCK).noOcclusion().strength(0.1f, 0.01742f)));
+    public static final DeferredBlock<Block> GRASS_GOLEM_CAMP_MINIATURE = BLOCKS.register("grass_golem_camp_minature", () -> new RotatableShapedBlock(Block.box(2, 0, 2, 14, 5, 14), Block.box(2, 0, 2, 14, 1, 14), BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_GREEN).pushReaction(PushReaction.BLOCK).noOcclusion().strength(0.1f, 0.01742f)));
     public static final DeferredItem<BlockItem> GRASS_GOLEM_CAMP_MINIATURE_ITEM = ITEMS.registerSimpleBlockItem("grass_golem_camp_minature", GRASS_GOLEM_CAMP_MINIATURE);
     public static final DeferredItem<Item> GRASS_AXE = ITEMS.register("grass_axe", () -> new AxeItem(ModToolTiers.GRASS, new Item.Properties().rarity(Rarity.RARE).stacksTo(1).attributes(AxeItem.createAttributes(ModToolTiers.GRASS, 7, -3.0f))));
     public static final DeferredItem<Item> GRASS_HOE = ITEMS.register("grass_hoe", () -> new HoeItem(ModToolTiers.GRASS, new Item.Properties().rarity(Rarity.RARE).stacksTo(1).attributes(HoeItem.createAttributes(ModToolTiers.GRASS, -1, 0.0f))));
@@ -357,6 +354,19 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
     public static final DeferredItem<Item> OCEAN_EXPLORER_MAP = ITEMS.register("ocean_explorer_map", () -> new StructureMapItem(StructureTags.ON_OCEAN_EXPLORER_MAPS, "filled_map.monument", MapDecorationTypes.OCEAN_MONUMENT, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     public static final DeferredItem<Item> JUNGLE_EXPLORER_MAP = ITEMS.register("jungle_explorer_map", () -> new StructureMapItem(StructureTags.ON_JUNGLE_EXPLORER_MAPS, "item.explomod.jungle_explorer_map", MapDecorationTypes.JUNGLE_TEMPLE, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     public static final DeferredItem<Item> MOB_ATTACK_PLANS = ITEMS.register("mob_attack_plans", () -> new StructureMapItem(ModTags.Structures.MONSTER_ENEMY, "plans.attack", AtheriaMapDecorationTypes.ATTACK, new Item.Properties().rarity(Rarity.RARE).stacksTo(1)));
+    public static final DeferredBlock<Block> RADIUM_LANTERN = BLOCKS.register("radium_lantern", () -> new LanternBlock(BlockBehaviour.Properties.of().destroyTime(1f).explosionResistance(0.78f).lightLevel(lightLevel -> 11).forceSolidOn().mapColor(MapColor.METAL).noOcclusion().noOcclusion().pushReaction(PushReaction.PUSH_ONLY).requiresCorrectToolForDrops()));
+    public static final DeferredItem<BlockItem> RADIUM_LANTERN_ITEM = ITEMS.registerSimpleBlockItem("radium_lantern", RADIUM_LANTERN);
+    public static final DeferredBlock<Block> DARK_BLOSSOM = BLOCKS.register("dark_blossom", () -> new FlowerBlock(ModEffects.SHORT, 13f, BlockBehaviour.Properties.of().noOcclusion().lightLevel(lightLevel -> 4).pushReaction(PushReaction.DESTROY).explosionResistance(0.5f).instabreak().mapColor(MapColor.COLOR_MAGENTA).noCollission().offsetType(BlockBehaviour.OffsetType.XZ)));
+    public static final DeferredItem<BlockItem> DARK_BLOSSOM_ITEM = ITEMS.registerSimpleBlockItem("dark_blossom", DARK_BLOSSOM);
+    public static final DeferredBlock<Block> RED_FLOWER_POT = BLOCKS.register("potted_red_flower", () -> flowerPot(RED_FLOWER.get()));
+    public static final DeferredBlock<Block> POTTED_DARK_BLOSSOM = BLOCKS.register("potted_dark_blossom", () -> new FlowerPotBlock(DARK_BLOSSOM.get(), BlockBehaviour.Properties.of().noOcclusion().pushReaction(PushReaction.DESTROY).instabreak().lightLevel(lightLevel -> 3)));
+    public static final DeferredBlock<Block> GLOW_WATER = BLOCKS.register("glow_water", () -> new LiquidBlock(Fluids.WATER, BlockBehaviour.Properties.of().replaceable().strength(75f).mapColor(MapColor.COLOR_CYAN).noCollission().noLootTable().sound(SoundType.AMETHYST).pushReaction(PushReaction.DESTROY).lightLevel(lightLevel -> 15)));
+    public static final DeferredItem<Item> FULL_MOON = ITEMS.register("full_moon", () -> new FullMoonShuriken(new Item.Properties().stacksTo(16).rarity(Rarity.UNCOMMON)));
+    public static final DeferredItem<Item> DRAGONS_CLAW = ITEMS.register("dragons_claw", () -> new DamagableItem(new Item.Properties().attributes(SwordItem.createAttributes((Tier) Tiers.STONE, 2, -2.05f)).durability(248)));
+    public static final DeferredItem<Item> GOLD_DRAKKEN = ITEMS.registerSimpleItem("gold_drakken");
+    public static final DeferredItem<Item> BLOCK_BIRD_SPAWN_EGG = ITEMS.register("block_bird_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.BLOCK_BIRD,16711680 , 16777215,
+                    new Item.Properties().stacksTo(64)));
 
     //creative tabs
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
@@ -398,6 +408,9 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
                 output.accept(FLOWERING_OAK_LEAVES.get());
                 output.accept(GRASS_GOLEM_SPAWN_EGG.get());
                 output.accept(RAPIER_OF_NINE_LIVES.get());
+                output.accept(FULL_MOON.get());
+                output.accept(DRAGONS_CLAW.get());
+                output.accept(GOLD_DRAKKEN.get());
                 output.accept(DENSEGRASS.get());
                 output.accept(TORN_GRASS.get());
                 output.accept(GRASSY_SWORD.get());
@@ -422,6 +435,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
                 output.accept(STRANGE_ARROW.get());
                 output.accept(LPHANTOM_SPAWN_EGG.get());
                 output.accept(GECKO_SPAWN_EGG.get());
+                output.accept(BLOCK_BIRD_SPAWN_EGG.get());
                 output.accept(BLOODWOOD_BUTTON_ITEM.get());
                 output.accept(STORM_BERRY.get());
                 output.accept(BLOODWOOD_DOOR_ITEM.get());
@@ -451,6 +465,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
                 output.accept(RADIUM_FIRESTARTER.get());
                 output.accept(RADIUM_CHAIN_ITEM.get());
                 output.accept(RADIUM_BLOCK_ITEM.get());
+                output.accept(RADIUM_LANTERN_ITEM);
                 output.accept(FUEL.get());
                 output.accept(LAMP_ITEM.get());
                 output.accept(REDTRAV_ITEM.get());
@@ -477,6 +492,7 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
                 output.accept(YELLOW_SNOWBALL);
                 output.accept(ORANGE_SNOWBALL);
                 output.accept(RED_FLOWER_ITEM.get());
+                output.accept(DARK_BLOSSOM_ITEM.get());
                 output.accept(FLIGHT_COIN.get());
                 output.accept(HEAL_TOKEN.get());
                 output.accept(HEAL_TOKEN2.get());
@@ -627,7 +643,9 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
         }
         if (event.getTabKey()==CreativeModeTabs.NATURAL_BLOCKS){
             event.accept(RED_FLOWER_ITEM.asItem());
+            event.accept(DARK_BLOSSOM_ITEM.asItem());
             event.accept(ROCK_ITEM.asItem());
+            event.accept(PEBBLE_ITEM.asItem());
         }
     }
 
@@ -849,8 +867,10 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
             EntityRenderers.register(ModEntities.LEGGED_PHANTOM.get(), PhantomLizardRenderer::new);
             EntityRenderers.register(ModEntities.TRADER.get(), TraderRenderer::new);
             EntityRenderers.register(ModEntities.STRANGE_ARROW.get(), StrangeArrowRenderer::new);
+            EntityRenderers.register(ModEntities.FULL_MOON.get(), NinjaStarRenderer::new);
             EntityRenderers.register(ModEntities.BOSS_GRASS_GOLEM.get(), BossGrassGolemRenderer::new);
             EntityRenderers.register(ModEntities.GLOW_BAT.get(), GlowBatRenderer::new);
+            EntityRenderers.register(ModEntities.BLOCK_BIRD.get(), BlockBirdRenderer::new);
         }
 
         @SubscribeEvent
@@ -863,5 +883,9 @@ public static final DeferredItem<Item> YELLOW_POPSICLE = ITEMS.registerSimpleIte
 
     private static StairBlock legacyStair(Block baseBlock) {
         return new StairBlock(baseBlock.defaultBlockState(), BlockBehaviour.Properties.ofLegacyCopy(baseBlock));
+    }
+
+    private static Block flowerPot(Block potted) {
+        return new FlowerPotBlock(potted, BlockBehaviour.Properties.of().instabreak().noOcclusion().pushReaction(PushReaction.DESTROY));
     }
 }

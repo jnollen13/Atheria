@@ -34,6 +34,10 @@ public class ModEntities {
             ENTITY_TYPES.register("glow_bat", () -> EntityType.Builder.of(GlowBat::new, MobCategory.AMBIENT)
                     .sized(0.9f, 1f).canSpawnFarFromPlayer().build("glow_bat"));
 
+    public static final Supplier<EntityType<BlockBird>> BLOCK_BIRD =
+            ENTITY_TYPES.register("block_bird", () -> EntityType.Builder.of(BlockBird::new, MobCategory.CREATURE)
+                    .sized(0.219f, 0.25f).eyeHeight(0.17f).build("block_bird"));
+
     public static final Supplier<EntityType<BossGrassGolem>> BOSS_GRASS_GOLEM =
             ENTITY_TYPES.register("boss_grass_golem", () -> EntityType.Builder.of(BossGrassGolem::new, MobCategory.MONSTER)
                     .sized(1.8f, 3.8f).canSpawnFarFromPlayer().build("boss_grass_golem"));
@@ -41,6 +45,10 @@ public class ModEntities {
     public static final Supplier<EntityType<StrangeArrowEntity>> STRANGE_ARROW =
             ENTITY_TYPES.register("mysterious_arrow", () -> EntityType.Builder.<StrangeArrowEntity>of(StrangeArrowEntity::new, MobCategory.MISC)
                     .sized(0.5f, 0.25f).build("mysterious_arrow"));
+
+    public static final Supplier<EntityType<NinjaStar>> FULL_MOON =
+            ENTITY_TYPES.register("full_moon_star", () -> EntityType.Builder.<NinjaStar>of(NinjaStar::new, MobCategory.MISC)
+                    .sized(0.5f, 0.25f).build("full_moon_star"));
 
     public static final Supplier<EntityType<RadiationBall>> RADIUM_BALL =
             ENTITY_TYPES.register("radium_orb", () -> EntityType.Builder.<RadiationBall>of(RadiationBall::new, MobCategory.MISC)

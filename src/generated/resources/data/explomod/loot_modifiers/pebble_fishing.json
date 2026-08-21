@@ -1,0 +1,14 @@
+{
+  "type": "explomod:add_item",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:gameplay/fising/junk"
+    },
+    {
+      "chance": 0.001,
+      "condition": "minecraft:random_chance"
+    }
+  ],
+  "item": "explomod:pebble"
+}

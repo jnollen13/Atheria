@@ -100,6 +100,7 @@ public final class ModTags {
 
     public static class Enchantments {
         public static final TagKey<Enchantment> DISTILL = createTag("distill_enchants");
+        public static final TagKey<Enchantment> BOOMERANG = createTag("boomerangs");
 
         private static TagKey<Enchantment> createTag(String name) {
             return  TagKey.create(Registries.ENCHANTMENT, ResourceLocation.withDefaultNamespace(name));

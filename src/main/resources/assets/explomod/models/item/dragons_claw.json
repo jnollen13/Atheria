@@ -1,0 +1,18 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "explomod:item/dragons_claw"
+  },
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [ -180, -90, 40 ],
+      "translation": [ 0, -6.5, 1 ],
+      "scale": [ 0.6, 0.6, 0.6 ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [ -80, -90, 40 ],
+      "translation": [ 0, -6.5, 0.75 ],
+      "scale": [ 0.6, 0.6, 0.6 ]
+    }
+  }
+}

@@ -39,7 +39,12 @@
     "explomod:kings_chalice_sniffer",
     "explomod:kings_chalice_weaponsmith_gift",
     "explomod:kings_chalice_cleric_gift",
-    "explomod:kings_chalice_fishing"
+    "explomod:kings_chalice_fishing",
+    "explomod:pebble_fishing",
+    "explomod:pebble_jungle_temple",
+    "explomod:radium_lantern_woodland_mansion",
+    "explomod:full_moon_shuriken_woodland_mansion",
+    "explomod:full_moon_shuriken_shipwreck_treasure"
   ],
   "replace": false
 }

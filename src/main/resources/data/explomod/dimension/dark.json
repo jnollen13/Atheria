@@ -126,6 +126,36 @@
           }
         },
         {
+          "biome": "explomod:sacred_grove",
+          "parameters": {
+            "continentalness": [
+              -0.15,
+              0.15
+            ],
+            "depth": [
+              -0.6,
+              -0.5
+            ],
+            "erosion": [
+              0.0,
+              0.2
+            ],
+            "humidity": [
+              0.895,
+              0.9
+            ],
+            "offset": 0.0,
+            "temperature": [
+              -0.01,
+              0.01
+            ],
+            "weirdness": [
+              -0.1,
+              0.1
+            ]
+          }
+        },
+        {
           "biome": "explomod:deep_forest",
           "parameters": {
           "continentalness": [

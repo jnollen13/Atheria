@@ -3,10 +3,10 @@
   "fallback": "minecraft:empty",
   "elements": [
     {
-      "weight": 10,
+      "weight": 8,
       "element": {
         "location": "explomod:dungeon/hallways/hallway1",
-        "processors": "minecraft:mossify_70_percent",
+        "processors": "minecraft:mossify_50_percent",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
@@ -15,7 +15,7 @@
       "weight": 1,
       "element": {
         "location": "explomod:dungeon/hallways/hallway1_chestlit",
-        "processors": "minecraft:mossify_70_percent",
+        "processors": "minecraft:mossify_50_percent",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
@@ -24,7 +24,7 @@
       "weight": 5,
       "element": {
         "location": "explomod:dungeon/hallways/hallway2",
-        "processors": "minecraft:mossify_70_percent",
+        "processors": "minecraft:mossify_50_percent",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
@@ -33,6 +33,24 @@
       "weight": 2,
       "element": {
         "location": "explomod:dungeon/hallways/hallway3",
+        "processors": "minecraft:mossify_20_percent",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "location": "explomod:dungeon/hallways/hallway4",
+        "processors": "explomod:true_mossify_50_percent",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "explomod:dungeon/hallways/hallway5",
         "processors": "minecraft:mossify_70_percent",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"

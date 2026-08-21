@@ -1,6 +1,7 @@
 package com.example.explomod.event;
 
 import com.example.explomod.ExploMod;
+import com.example.explomod.advancement.BreakStatTrigger;
 import com.example.explomod.advancement.StatTrigger;
 import com.example.explomod.data.AtheriaDataAttachments;
 import com.example.explomod.data.Mana;
@@ -105,6 +106,7 @@ public class StatUpdateEvent {
     private static void executeServerLogic(Player p) {
         if(p instanceof ServerPlayer player){
             StatTrigger.doTrigger(player);
+            BreakStatTrigger.doTrigger(player);
         }
     }
 

@@ -1,4 +1,4 @@
-// 1.21.1	2026-08-08T14:30:54.937380198	Registries
+// 1.21.1	2026-08-18T22:33:13.930231537	Registries
 ab528b29d245672b01fede1662520629f6fb4fb1 data/explomod/neoforge/biome_modifier/add_food_ore.json
 1a410ade615fc9ae8a66a360d0c4d41b180946f8 data/explomod/neoforge/biome_modifier/add_pebble.json
 69781815d980ae46316d85d1fcadac77ee4834d8 data/explomod/neoforge/biome_modifier/add_radium_ore.json
@@ -11,6 +11,7 @@ df8b1bd44061c6deabcce4dc5c9f78cb34cbdac8 data/explomod/neoforge/biome_modifier/s
 b3c7b34f8a04f4aa408faa51cec7c38a1262fecc data/explomod/worldgen/configured_feature/bloodwood.json
 31f7f71df33aae42ecb42b5a0729309f77fef8a4 data/explomod/worldgen/configured_feature/cobweb01.json
 7a81e6a76a90c4e0e2f90c0e3d953c48fe1d297f data/explomod/worldgen/configured_feature/cobweb02.json
+a31f8615bd896de71d87ed0ee5f37ac25aea3b18 data/explomod/worldgen/configured_feature/dark_blossom.json
 2bc7f565a5bfa77135df7a58a72a54a0353f95e1 data/explomod/worldgen/configured_feature/dark_oak.json
 f115090e8b5154a26cf3db63252dc901e4e41c83 data/explomod/worldgen/configured_feature/dark_oak_leaves_block.json
 971599cb8e931d1cc7731d3ed20de0de409f4e6d data/explomod/worldgen/configured_feature/dark_oak_stack.json
@@ -29,6 +30,7 @@ cd0382df6b7809f46a23989315cf942821c35797 data/explomod/worldgen/configured_featu
 a8f80e3fb98a70d018759dd0f05948058a5ea266 data/explomod/worldgen/placed_feature/bloodwood_placed.json
 5af0ede05ab378177484fc78a2108bcb4d250b09 data/explomod/worldgen/placed_feature/common_pebbles.json
 dd897994d85f64ee8a41fd42011ca35a2e2b5cc0 data/explomod/worldgen/placed_feature/common_rocks.json
+95d35cea7cb2195922e6123966d66fe31265dc1e data/explomod/worldgen/placed_feature/dark_blossoms.json
 661f238de4ac121f9154b8e68f4b79fc66d5406f data/explomod/worldgen/placed_feature/dark_oak_placed.json
 53ce05332b0bbcec952e45459496faf59728b60c data/explomod/worldgen/placed_feature/few_rocks.json
 c782488089845c3c8c7768d9d5b663affa899d49 data/explomod/worldgen/placed_feature/food_ore.json

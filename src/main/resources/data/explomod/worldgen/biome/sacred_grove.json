@@ -1,0 +1,163 @@
+{
+  "carvers": {
+    "air": [
+      "minecraft:cave_extra_underground",
+      "minecraft:canyon"
+    ]
+  },
+  "downfall": 0.72,
+  "grass_color_modifier": "dark_forest",
+  "effects": {
+    "fog_color": 245,
+    "mood_sound": {
+      "block_search_extent": 8,
+      "offset": 2.0,
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000
+    },
+    "music": {
+      "max_delay": 24000,
+      "min_delay": 12000,
+      "replace_current_music": false,
+      "sound": "minecraft:music.overworld.forest"
+    },
+    "sky_color": 255,
+    "water_color": 250,
+    "water_fog_color": 250
+  },
+  "features": [
+    [],
+    [],
+    [
+      "minecraft:amethyst_geode"
+    ],
+    [],
+    [],
+    [],
+    [
+      "minecraft:ore_dirt",
+      "minecraft:ore_iron_small",
+      "minecraft:ore_gold_lower",
+      "minecraft:ore_redstone_lower",
+      "minecraft:ore_diamond_buried",
+      "explomod:radium_ore_placed",
+      "minecraft:ore_lapis_buried",
+      "minecraft:underwater_magma"
+    ],
+    [
+      "explomod:veg1_placed",
+      "explomod:veg2_placed",
+      "explomod:sveg1_placed",
+      "explomod:veg1b_placed",
+      "explomod:veg3_placed",
+      "explomod:grass_placed",
+      "explomod:veg1_ceiling_placed",
+      "explomod:red_flowers"
+    ],
+    [
+      "minecraft:spring_water"
+    ],
+    [
+      "minecraft:glow_lichen",
+      "explomod:glowberry_bush",
+      "minecraft:cave_vines",
+      "minecraft:lush_caves_ceiling_vegetation",
+      "explomod:winter_oak_placed",
+      "minecraft:forest_flowers",
+      "minecraft:flower_default",
+      "minecraft:patch_grass_forest"
+    ],
+    [
+      "minecraft:freeze_top_layer"
+    ]
+  ],
+  "has_precipitation": true,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [
+      {
+        "type": "minecraft:bat",
+        "maxCount": 8,
+        "minCount": 4,
+        "weight": 5
+      },
+      {
+        "type": "explomod:glow_bat",
+        "maxCount": 8,
+        "minCount": 1,
+        "weight": 100
+      }
+    ],
+    "axolotls": [],
+    "creature": [
+      {
+        "type": "minecraft:sheep",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 1
+      },
+      {
+        "type": "minecraft:parrot",
+        "maxCount": 6,
+        "minCount": 2,
+        "weight": 50
+      },
+      {
+        "type": "minecraft:wolf",
+        "maxCount": 6,
+        "minCount": 2,
+        "weight": 10
+      },
+      {
+        "type": "explomod:block_bird",
+        "maxCount": 9,
+        "minCount": 4,
+        "weight": 450
+      }
+    ],
+    "misc": [],
+    "monster": [
+      {
+        "type": "minecraft:spider",
+        "maxCount": 5,
+        "minCount": 1,
+        "weight": 5
+      },
+      {
+        "type": "minecraft:creeper",
+        "maxCount": 10,
+        "minCount": 1,
+        "weight": 9
+      },
+      {
+        "type": "minecraft:slime",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 15
+      },
+      {
+        "type": "explomod:grass_golem",
+        "maxCount": 15,
+        "minCount": 5,
+        "weight": 168
+      }
+    ],
+    "underground_water_creature": [
+      {
+        "type": "minecraft:glow_squid",
+        "maxCount": 6,
+        "minCount": 4,
+        "weight": 12
+      },
+      {
+        "type": "explomod:gecko",
+        "maxCount": 1,
+        "minCount": 1,
+        "weight": 5
+      }
+    ],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 1.2
+}

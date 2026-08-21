@@ -71,7 +71,7 @@ public class Config {
             cave_wizards_cast_spells = builder
                     .comment("can cave wizards cast spells")
                     .translation("caveWizardSpells")
-                    .define("caveWizardSpells", true);
+                    .define("caveWizardSpells", false);
             lightning_cube_max_targets = builder
                     .comment("maxium amount of targets that can be hit with lightning cube")
                     .translation("lightningCubeMaxTargets")

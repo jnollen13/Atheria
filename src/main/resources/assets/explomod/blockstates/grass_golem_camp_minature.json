@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=north": {
       "model": "explomod:block/grass_golem_camp_minature"
+    },
+    "facing=east": {
+      "model": "explomod:block/grass_golem_camp_minature",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "explomod:block/grass_golem_camp_minature",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "explomod:block/grass_golem_camp_minature",
+      "y": -90
     }
   }
 }

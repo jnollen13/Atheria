@@ -4,6 +4,7 @@ import com.example.explomod.ExploMod;
 import com.example.explomod.loot.AddItemModifier;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -12,6 +13,7 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePrope
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.neoforged.neoforge.common.data.GlobalLootModifierProvider;
+import net.neoforged.neoforge.common.loot.AddTableLootModifier;
 import net.neoforged.neoforge.common.loot.LootTableIdCondition;
 
 import java.util.List;
@@ -223,5 +225,30 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
                 new AddItemModifier(new LootItemCondition[] {
                         new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("gameplay/fising/treasure")).build(),
                         LootItemRandomChanceCondition.randomChance(0.010040702050103060908f).build()}, ExploMod.KINGS_CHALICE.get()));
+
+        this.add("pebble_fishing",
+                new AddItemModifier(new LootItemCondition[] {
+                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("gameplay/fising/junk")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.001f).build()}, ExploMod.PEBBLE_ITEM.get()));
+
+        this.add("pebble_jungle_temple",
+                new AddItemModifier(new LootItemCondition[] {
+                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/jungle_temple")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.01f).build()}, ExploMod.PEBBLE_ITEM.get()));
+
+        this.add("radium_lantern_woodland_mansion",
+                new AddItemModifier(new LootItemCondition[] {
+                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/woodland_mansion")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.020000009f).build()}, ExploMod.RADIUM_LANTERN_ITEM.get()));
+
+        this.add("full_moon_shuriken_woodland_mansion",
+                new AddItemModifier(new LootItemCondition[] {
+                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/woodland_mansion")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.0904307f).build()}, ExploMod.FULL_MOON.get()));
+
+        this.add("full_moon_shuriken_shipwreck_treasure",
+                new AddItemModifier(new LootItemCondition[] {
+                        new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/shipwreck_treasure")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.1204739586f).build()}, ExploMod.FULL_MOON.get()));
     }
 }

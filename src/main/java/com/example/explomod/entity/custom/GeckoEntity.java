@@ -196,8 +196,10 @@ public class GeckoEntity extends Animal {
     public void think(ServerLevel serverLevel){
         if(isWizard) {
             this.spawnGolemIfNeeded(serverLevel, 5);
+            ExploMod.LOGGER.info("Cave Lizard think tick");
             if(Config.SERVER.cave_wizards_cast_spells.get()) {
                 caveWizardSpell().DoSpell(serverLevel, this);
+                ExploMod.LOGGER.warn("Cave Lizard Spell Ticked, Possible Crash");
             }
         }
     }

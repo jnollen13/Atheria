@@ -11,6 +11,7 @@ public class AtheriaAdvancementTriggers {
     private static final DeferredRegister<CriterionTrigger<?>> ADVANCEMENT_TRIGGERS = DeferredRegister.create(BuiltInRegistries.TRIGGER_TYPES, ExploMod.MODID);
 
     public static final DeferredHolder<CriterionTrigger<?>, StatTrigger> STAT = ADVANCEMENT_TRIGGERS.register("item_use_stat", StatTrigger::new);
+    public static final DeferredHolder<CriterionTrigger<?>, BreakStatTrigger> BREAK_STAT = ADVANCEMENT_TRIGGERS.register("item_break_stat", BreakStatTrigger::new);
 
     public static void register(IEventBus eventBus) {
         ADVANCEMENT_TRIGGERS.register(eventBus);

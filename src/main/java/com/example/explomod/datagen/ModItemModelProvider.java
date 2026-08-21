@@ -19,6 +19,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ExploMod.BLOODWOOD_DOOR.asItem());
         basicItem(ExploMod.RADIUM_FIRESTARTER.asItem());
         basicItem(ExploMod.RADIUM_NUGGET.asItem());
+        basicItem(ExploMod.FULL_MOON.asItem());
         handheldItem(ExploMod.GRASSY_SWORD);
         handheldItem(ExploMod.GRASS_AXE);
         handheldItem(ExploMod.GRASS_HOE);
@@ -28,6 +29,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         withExistingParent(ExploMod.GRASS_GOLEM_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ExploMod.LPHANTOM_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ExploMod.TRADER_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+        withExistingParent(ExploMod.BLOCK_BIRD_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         structureMap(ExploMod.ATHERIA_STRUCTURE_MAP);
         structureMap(ExploMod.DARK_PORTAL_MAP);
         structureMap(ExploMod.DUNGEON_MAP);

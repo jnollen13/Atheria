@@ -60,7 +60,8 @@
       "explomod:grass_placed",
       "explomod:veg1_ceiling_placed",
       "explomod:red_flowers",
-      "explomod:few_rocks"
+      "explomod:few_rocks",
+      "explomod:dark_blossoms"
     ],
     [
       "minecraft:spring_water"

@@ -1,0 +1,14 @@
+{
+  "type": "explomod:add_item",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:chests/woodland_mansion"
+    },
+    {
+      "chance": 0.0904307,
+      "condition": "minecraft:random_chance"
+    }
+  ],
+  "item": "explomod:full_moon"
+}

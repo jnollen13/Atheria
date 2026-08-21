@@ -4,6 +4,7 @@ import com.example.explomod.ExploMod;
 import com.example.explomod.entity.ModEntities;
 import com.example.explomod.entity.client.*;
 import com.example.explomod.entity.custom.*;
+import net.minecraft.world.entity.FlyingMob;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.ambient.AmbientCreature;
 import net.minecraft.world.entity.animal.Animal;
@@ -22,11 +23,13 @@ public class ModEventBusEvents{
     public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(GeckoModel.LAYER_LOCATION, GeckoModel::createBodyLayer);
         event.registerLayerDefinition(StrangeArrowModel.LAYER_LOCATION, StrangeArrowModel::createBodyLayer);
+        event.registerLayerDefinition(Flat8x8Model.LAYER_LOCATION, Flat8x8Model::createBodyLayer);
         event.registerLayerDefinition(PhantomLizardModel.LAYER_LOCATION, PhantomLizardModel::createBodyLayer);
         event.registerLayerDefinition(TraderModel.LAYER_LOCATION, TraderModel::createBodyLayer);
         event.registerLayerDefinition(GrassGolemModel.LAYER_LOCATION, GrassGolemModel::createBodyLayer);
         event.registerLayerDefinition(GlowBatModel.LAYER_LOCATION, GlowBatModel::createBodyLayer);
         event.registerLayerDefinition(BossGrassGolemModel.LAYER_LOCATION, BossGrassGolemModel::createBodyLayer);
+        event.registerLayerDefinition(BlockBirdModel.LAYER_LOCATION, BlockBirdModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -37,6 +40,7 @@ public class ModEventBusEvents{
         event.put(ModEntities.GRASS_GOLEM.get(), GrassGolem.createAttributes().build());
         event.put(ModEntities.GLOW_BAT.get(), GlowBat.createAttributes().build());
         event.put(ModEntities.BOSS_GRASS_GOLEM.get(), BossGrassGolem.createAttributes().build());
+        event.put(ModEntities.BLOCK_BIRD.get(), BlockBird.createAttributes().build());
     }
 
 
@@ -50,5 +54,7 @@ public class ModEventBusEvents{
                 AbstractVillager::checkMobSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
         event.register(ModEntities.GLOW_BAT.get(), SpawnPlacementTypes.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 AmbientCreature::checkMobSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+        event.register(ModEntities.BLOCK_BIRD.get(), SpawnPlacementTypes.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                FlyingMob::checkMobSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
     }
 }
